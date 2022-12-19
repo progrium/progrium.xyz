@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "jsxFactory": "m",
+  },
+  "tasks": {
+    "generate": "deno eval --unstable 'import {generateAll} from \"./scripts/generate.ts\"; generateAll(\"./out\");'",
+    "serve": "deno run --unstable --allow-read --allow-net --watch scripts/serve.ts"
+  }
+}
