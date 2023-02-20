@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
     <link href="/style.css" rel="stylesheet">
-    <title>Home - progrium.xyz</title>
+    <title>Towards the Personal Potential of Software - progrium.xyz</title>
   </head>
 
   <body class="bg-black">
@@ -34,17 +34,33 @@
     </header>
     <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
       <div class="mx-auto max-w-2xl">
-        <div>
-          <div class="flex gap-8">
-            <div>
-              <p class="my-4 text-3xl">Hello, I'm Jeff!</p>
-              <p class="my-4">I'm a creator and entrepreneur known for my work and ideas in open source developer tooling.</p>
-              <p class="my-4">I try to push the boundaries of computing as a magical tool and compiler for imagination.</p>
-              <p class="my-4">Otherwise I enjoy making indie games and producing music. Someday I'd like to make films.</p>
-            </div>
-            <div class="shrink-0 py-1"><img src="./photo2.jpeg" class="w-64 grayscale hover:grayscale-0 rounded-xl"></div>
+        <main class="mb-8 max-w-xl">
+          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2021-07-05</span>
+            <h1 class="mb-8">Towards the Personal Potential of Software</h1>
           </div>
-        </div>
+          <div class="blog-body mx-auto text-left text-gray-800">
+            <p>Since starting work under <a href="http://progrium.com">Progrium Technology Company</a>, I&#39;ve had a single objective: to build a system called Tractor. It&#39;s what I&#39;ve been slowly approaching in my dense 22 year career as an independent programmer. The Tractor System is still hard for me to describe at this stage, but its goal is to make building production-grade personal software systems like building with Legos: fast and fun.</p>
+            <p>After a difficult year heads-down in 2020, I started posting here in January with the intention of sharing and officially releasing components I&#39;ve been working on that are building up to Tractor. Besides warming up for when I&#39;d eventually talk about Tractor, I wanted people to see how I make independently useful building blocks towards an ideal. That&#39;s a core part of the Tractor philosophy.</p>
+            <p>Let&#39;s review what I&#39;ve shared so far, and then set up what&#39;s coming in the next 6 months.</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k38vrxqkzvmr9ek72l3i.gif" alt="MacDriver"></p>
+            <p>The first big release of the year was the <a href="https://github.com/progrium/macdriver">macdriver</a> project, which got a significant response on Hacker News. It gives us Objective-C and Apple framework bindings for Go, letting you build simple Apple apps entirely from Go. That wasn&#39;t possible before, so it was a little exciting, but it was early. The native Go APIs included for commonly used Foundation and Cocoa classes were far from complete. They could still be used if you knew what you were doing, but with an ideal of total coverage of Apple frameworks, that wouldn&#39;t be enough. There were also unresolved issues just deciding how to best manage memory and pointers, which I knew would fall on me to figure out and take some time.</p>
+            <p>Luckily I&#39;ve since gotten a colleague involved in the company, and he&#39;s been helping push <a href="https://github.com/progrium/macdriver">macdriver</a> towards a real beta. Part of this was made possible by a project I spun out of macdriver and <a href="https://dev.to/progrium/apple-api-schemas-for-code-generation-and-more-1phj">posted about</a>, though again in a very early state. That project was <a href="https://github.com/progrium/macschema">macschema</a>.</p>
+            <p>With the <a href="https://github.com/progrium/macschema">macschema</a> toolchain, you can generate API schemas about any Apple framework, class, function, etc based on their documentation and header declarations. This is useful for us in generating framework bindings in macdriver, but it would be useful for any project doing similar work, such as bindings for other languages. This sort of approach will play a big part in how Tractor will integrate with &quot;whatever we want&quot; down the line. </p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/plpudhz4v7dponsucy91.gif" alt="topframe"></p>
+            <p>Along the way, I released a few demos for macdriver to make clear the possibilities and provide reference examples. One of them I spun off into a standalone project called <a href="https://github.com/progrium/topframe">topframe</a>, which is also serving as a test bed for how we are doing cross-platform support. More on that in a moment.</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/c2xo2fuvpkt30kfsrprr.jpeg" alt="Multiplexing"></p>
+            <p>Unrelated to macdriver, I released a protocol called <a href="https://github.com/progrium/qmux">qmux</a> with <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">a post</a> explaining why this (but really any) muxing protocol, including and especially QUIC, is such a great primitive for network programming. The project came with two implementations, Go and TypeScript, with more on the way. The post about it was the first explainer article I&#39;d done in a while and people liked it. This was important because the idea behind it was really more valuable than the protocol itself, but regardless we still need implementations of it to exist. To show the idea in action, I built a <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel">130 line version of Ngrok</a>, which turned into <a href="https://dev.to/progrium/building-your-own-ngrok-in-130-lines-2lif">a great post</a> walking through how it works. </p>
+            <p>That brings us to today, half way through 2021. Let&#39;s talk about what&#39;s coming.</p>
+            <p>More exciting than qmux is what we built on top of it, which is called <em>qtalk</em>. This is my meticulously designed, re-written-several-times network/IPC programming stack. While not <em>that</em> different from just JSON-RPC with pluggable codecs, its two unique features are callbacks and streams. Callbacks means its bi-directional, either side can expose or call methods. Just that alone is something rare in existing RPC stacks, but necessary for callbacks. And while streaming RPC is not new, our streams are full virtual connections, so you can stream more RPC results, arbitrary byte streams, or tunnel something else like a database connection. I&#39;ll share more about the possibilities when it&#39;s released.</p>
+            <p>So in the second half of 2021, we&#39;ll see qtalk, we&#39;ll see a major update to macdriver, and then with those two parts we can release <em>shelldriver</em>. This is a cross platform API to platform specific resources like windows, dialogs, menus, etc. It&#39;s about native GUI shell integration, it&#39;s not about having every native UI component. In fact, for app UI it really focuses on windows and webviews, a la Electron. Unlike Electron, it can be used from any language that has a qmux and qtalk implementation. The result should be a simple &quot;Electron but as a library&quot; that you can use from Go and other languages.</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y7qq2kea7hvdk83ughuk.png" alt="shelldriver"></p>
+            <p>Once shelldriver is out I will be able to finally start talking about the first <em>real</em> piece of the Tractor system: Tractor Toolkit. I hope to have at least a public demo by the end of the year. The Toolkit is already being shown to friends and sponsors. The work I&#39;ve shared so far is just the tip of the iceberg.</p>
+            <p>Which reminds me ...</p>
+            <p>I really, really have to thank my <a href="https://github.com/sponsors/progrium">sponsors</a>. As things are ramping up, I&#39;m starting to work with more people and this is all self funded. Not only does sponsorship support all this open source work, but sponsors get early access to Tractor Toolkit <em>and</em> see more of what I&#39;m up to.</p>
+            <p>Also to you, thanks for reading and following along. I&#39;ll be back soon with more releases.</p>
+            <p><em>For more posts like this sent directly to your inbox and to stay on top of what I&#39;m up to, get on the list at <a href="http://progrium.com">progrium.com</a> ✌️</em></p>
+          </div>
+        </main>
       </div>
     </section>
     <footer class="bg-black py-16">

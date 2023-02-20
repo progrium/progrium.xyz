@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
     <link href="/style.css" rel="stylesheet">
-    <title>Home - progrium.xyz</title>
+    <title>Large Type legacy celebrated in 80 line Go program - progrium.xyz</title>
   </head>
 
   <body class="bg-black">
@@ -34,17 +34,36 @@
     </header>
     <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
       <div class="mx-auto max-w-2xl">
-        <div>
-          <div class="flex gap-8">
-            <div>
-              <p class="my-4 text-3xl">Hello, I'm Jeff!</p>
-              <p class="my-4">I'm a creator and entrepreneur known for my work and ideas in open source developer tooling.</p>
-              <p class="my-4">I try to push the boundaries of computing as a magical tool and compiler for imagination.</p>
-              <p class="my-4">Otherwise I enjoy making indie games and producing music. Someday I'd like to make films.</p>
-            </div>
-            <div class="shrink-0 py-1"><img src="./photo2.jpeg" class="w-64 grayscale hover:grayscale-0 rounded-xl"></div>
+        <main class="mb-8 max-w-xl">
+          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2021-01-15</span>
+            <h1 class="mb-8">Large Type legacy celebrated in 80 line Go program</h1>
           </div>
-        </div>
+          <div class="blog-body mx-auto text-left text-gray-800">
+            <p>There is a little known feature in the MacOS Contacts app where if you right-click a phone number, you get a Large Type option. Large Type fills your screen with the phone number in the largest font size possible, allowing you or anybody else to easily see the number from far away. Nifty!</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/i/f33yege5cr9zjdl9wgnj.jpg" alt="Old OS X Large Type"></p>
+            <p>As far as I know, this feature has been in every version of OS X since its release back in 2000. Contacts was known as Address Book back then. The builtin calculator also had a Large Type view, but it seems it has since been removed. The feature might even exist in NeXTSTEP apps. </p>
+            <p>Presumably inspired by OS X Address Book, Large Type was also added to the legendary <a href="https://qsapp.com/">Quicksilver</a> app launcher from the mid-2000&#39;s. Now, using Quicksilver, you could quickly type or paste in <em>any</em> text and display it in Large Type. More nifty!</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/i/rquufwhmpocuca5ljk6a.png" alt="Quicksilver Large Type"></p>
+            <p>Since I was involved in the SHDH hacker parties, this feature got a lot of use as a way to share a piece of information across a noisy, crowded room. Many users of Quicksilver also had a shell script that would run AppleScript to get Quicksilver to display text from the command line. Now it could be scripted! </p>
+            <p>It became the most memorable feature of my Quicksilver experience.</p>
+            <p>Large Type has the same sort of charm as the <code>say</code> command. It&#39;s nifty, maybe unnecessary, but really simple, there when you need it, and is kind of just a cool thing to play around with and show off. </p>
+            <p>The feature almost died with Quicksilver. Unsurprisingly, the modern Quicksilver equivalent, Alfred, also has Large Type. Except. I don&#39;t really want Alfred or Quicksilver installed just for Large Type now. It would be nice to have a standalone utility!</p>
+            <p>Thanks to a project I&#39;m sharing in a couple weeks, I basically achieved perfection for such a utility. A standalone <code>largetype</code> command, in a single native code binary smaller than 4MB. And in under 80 lines of Go code:</p>
+            <p><img src="https://camo.githubusercontent.com/707db8e6d47c31ed90f0a65aeea1b805c718b1c18a2cd61b94e1ebb932b091af/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f4571616f4f324d584941454a4e4b323f666f726d61743d6a7067266e616d653d6c61726765" alt="largetype screenshot"></p>
+            <p>{% gist <a href="https://gist.github.com/progrium/cb967815b3ed21a77e65a4ad9b1dbdf6">https://gist.github.com/progrium/cb967815b3ed21a77e65a4ad9b1dbdf6</a> file=largetype.go %}</p>
+            <h3 id="building">Building</h3>
+            <p><em>Note: For now, Apple Silicon users need to be <a href="https://gist.github.com/progrium/b286cd8c82ce0825b2eb3b0b3a0720a0">set up for x86 mode</a></em></p>
+            <p>First, <a href="https://golang.org/dl/">download Go</a> or <code>brew install go</code>. Then, put <code>largetype.go</code> in a directory called <code>largetype</code> and from there run:</p>
+
+            <pre><code><div><div class="shj-numbers"><div></div><div></div></div><div>$ go mod init largetype
+$ go build</div></div>
+</code></pre>
+            <p>This will make you a 4MB binary called <code>largetype</code>. Now you can run it:</p>
+
+            <pre><code><div><div class="shj-numbers"><div></div></div><div>$ ./largetype "Hello world"</div></div>
+</code></pre>
+          </div>
+        </main>
       </div>
     </section>
     <footer class="bg-black py-16">

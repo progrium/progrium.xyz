@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
     <link href="/style.css" rel="stylesheet">
-    <title>Home - progrium.xyz</title>
+    <title>Apple API schemas for code generation and more - progrium.xyz</title>
   </head>
 
   <body class="bg-black">
@@ -34,17 +34,28 @@
     </header>
     <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
       <div class="mx-auto max-w-2xl">
-        <div>
-          <div class="flex gap-8">
-            <div>
-              <p class="my-4 text-3xl">Hello, I'm Jeff!</p>
-              <p class="my-4">I'm a creator and entrepreneur known for my work and ideas in open source developer tooling.</p>
-              <p class="my-4">I try to push the boundaries of computing as a magical tool and compiler for imagination.</p>
-              <p class="my-4">Otherwise I enjoy making indie games and producing music. Someday I'd like to make films.</p>
-            </div>
-            <div class="shrink-0 py-1"><img src="./photo2.jpeg" class="w-64 grayscale hover:grayscale-0 rounded-xl"></div>
+        <main class="mb-8 max-w-xl">
+          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2021-04-16</span>
+            <h1 class="mb-8">Apple API schemas for code generation and more</h1>
           </div>
-        </div>
+          <div class="blog-body mx-auto text-left text-gray-800">
+            <p>Schemas are pretty dope. My appreciation for API schemas as a toolmaker comes from a desire to build tools that can integrate with many systems, and open new avenues for people to use APIs.</p>
+            <p>For most, the use case that comes to mind for API schemas is generating documentation. Translating a machine-readable schema into a human friendly representation is a scalable, automated way to maintain solid reference documentation. Although many systems exist to generate documentation directly from code, having an intermediary representation is useful for other use cases.</p>
+            <p>Code generation is the other big one. It&#39;s common for companies like Google and Amazon to generate client libraries across languages for their many web APIs. Even some libraries for GitHub&#39;s API are generated because their API has gotten so big it would be untenable otherwise. This is particularly important in the open source community where maintainer time is a scarce resource. Schemas save a lot of time, but it&#39;s still pretty uncommon to find a schema for any given web API.</p>
+            <p>Even less common are schemas for non-web APIs. In 2016, <a href="https://www.electronjs.org/blog/api-docs-json-schema">Electron started releasing a JSON schema</a> of all their APIs that allowed me to build a bridge to use Electron APIs from Go. I had that prototype in mind when I started the <a href="https://github.com/progrium/macdriver">macdriver</a> project that was released a couple months ago. Right now we&#39;re manually wrapping Apple framework classes with Go types so you can write native Apple platform applications that look like this:</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5qspum8s6zvhbnzvw3le.png" alt="macdriver example"></p>
+            <p>These kinds of bindings used to be more supported by Apple as evidenced by bridgesupport files, which were XML schemas of their APIs. However, they aren&#39;t very well supported any longer. Moreover, bridgesupport files were more like headers and didn&#39;t provide much in the form of documentation. </p>
+            <p>So if we wanted to generate the APIs in macdriver, we could parse Objective-C headers, or maybe try to use what&#39;s available in bridgesupport files. But we&#39;d also like to generate human readable descriptions and ideally link to official docs. </p>
+            <p><strong>If schemas are used to generate documentation, there&#39;s no reason you can&#39;t generate schemas from documentation.</strong></p>
+            <p>So I built a tool that could parse Apple documentation into schemas. Since their docs also have the declarations for everything, we don&#39;t even need to use header files. The result is a nice JSON document describing their classes and other entities like this:</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0328ykp728ydnutra7r6.png" alt="macschema output"></p>
+            <p>From this we can start to automate the generation of wrapper types in macdriver, but as a standalone toolchain, the schemas it produces can be used to write bindings in languages other than Go as well. </p>
+            <p>Schemas like this can also be used in developer tooling for all sorts of things like autocompletion, or help create visual programming interfaces. </p>
+            <p>Today most &quot;no-code&quot; tools need to support integrations to stay competitive, but they&#39;re all writing and maintaining their own integrations. In fact, every application with user programmable integrations can benefit from schemas like this. So I&#39;d like to see more.</p>
+            <p>If this is interesting, take a look at the tool I built, <a href="https://github.com/progrium/macschema">macschema</a>, which is open source on GitHub. Right now it&#39;s just the toolchain, but in theory we could generate schemas for all of Apple&#39;s APIs and put them in a repo in such a way that can be updated by a combination of macschema and user contributed patches. I&#39;ll let somebody else do that though. </p>
+            <p>Thanks for reading, think about schemas more, and consider <a href="https://github.com/sponsors/progrium">sponsoring my work</a>!</p>
+          </div>
+        </main>
       </div>
     </section>
     <footer class="bg-black py-16">

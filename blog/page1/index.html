@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <script src="/vnd/tailwind-3.2.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
+    <link href="/style.css" rel="stylesheet">
+    <title>This is a title - progrium.xyz</title>
+  </head>
+
+  <body class="bg-black">
+    <header class="bg-white py-12">
+      <nav class="mx-auto max-w-2xl">
+        <div class="flex w-full items-center justify-between">
+          <div class="flex items-end"><a href="/" class="text-xl font-black decoration-solid">progrium.xyz</a>
+            <div style="padding-bottom:1px" class="space-x-8 ml-10"><a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">Blog</a><a href="https://progrium.com" target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500">Work<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" style="margin-bottom:3px" viewBox="0 0 16 16" class="inline ml-1">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"></path>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"></path>
+                </svg></a></div>
+          </div>
+          <div class="space-x-4 flex"><a href="https://twitter.com/progrium" class="hover:text-gray-500"><span class="sr-only">Twitter</span><svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6">
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+              </svg></a><a href="https://github.com/progrium" class="hover:text-gray-500"><span class="sr-only">GitHub</span><svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+              </svg></a><a href="https://www.youtube.com/c/progrium" style="margin-top: 2px;" class="hover:text-gray-500"><span class="sr-only">YouTube</span><svg fill="currentColor" viewBox="0 0 576 512" class="h-5 w-5">
+                <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
+              </svg></a><a href="https://www.twitch.tv/progrium" style="margin-top: 3px;" class="hover:text-gray-500"><span class="sr-only">Twitch</span><svg fill="currentColor" viewBox="0 0 512 512" class="h-5 w-5">
+                <path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z"></path>
+              </svg></a></div>
+        </div>
+      </nav>
+    </header>
+    <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
+      <div class="mx-auto max-w-2xl">
+        <main class="mb-8 max-w-xl">
+          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2023-01-01</span>
+            <h1 class="mb-8">This is a title</h1>
+          </div>
+          <div class="blog-body mx-auto text-left text-gray-800">
+            <p>Built to maximize versatility, control, and performance, <strong>Recursive</strong> is a five-axis variable font. This enables you to choose from a wide range of predefined styles, or dial in exactly what you want for each of its axes: <em>Monospace, Casual, Weight, Slant, and Cursive</em>. Taking full advantage of variable font technology, Recursive offers an unprecedented level of flexibility, all from a single font file.</p>
+
+            <pre><code class="lang-go"><div><div class="shj-numbers"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div><span class="shj-syn-kwd">package</span> main
+
+<span class="shj-syn-kwd">import</span> (
+    <span class="shj-syn-str">"context"</span>
+    <span class="shj-syn-str">"crypto/aes"</span>
+    <span class="shj-syn-str">"crypto/cipher"</span>
+    <span class="shj-syn-str">"crypto/hmac"</span>
+    <span class="shj-syn-str">"crypto/rand"</span>
+    <span class="shj-syn-str">"crypto/sha1"</span>
+    <span class="shj-syn-str">"flag"</span>
+    <span class="shj-syn-str">"fmt"</span>
+    <span class="shj-syn-str">"log"</span>
+    <span class="shj-syn-str">"strings"</span>
+    <span class="shj-syn-str">"time"</span>
+
+    <span class="shj-syn-str">"github.com/pkg/errors"</span>
+
+    <span class="shj-syn-str">"github.com/go-ble/ble"</span>
+    <span class="shj-syn-str">"github.com/go-ble/ble/darwin"</span>
+)
+
+<span class="shj-syn-kwd">type</span> <span class="shj-syn-class">LockitronLockStatus</span> byte
+
+<span class="shj-syn-kwd">const</span> (
+    <span class="shj-syn-class">UNLOCKED</span> <span class="shj-syn-class">LockitronLockStatus</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-num">0</span>
+    <span class="shj-syn-class">LOCKED</span>   <span class="shj-syn-class">LockitronLockStatus</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-num">1</span>
+)
+
+<span class="shj-syn-kwd">var</span> (
+    lock<span class="shj-syn-class">OrUnlock</span> <span class="shj-syn-class">LockitronLockStatus</span>
+
+    lock<span class="shj-syn-class">ID</span>  <span class="shj-syn-oper">=</span> flag<span class="shj-syn-oper">.</span><span class="shj-syn-func">String</span>(<span class="shj-syn-str">"id"</span>, <span class="shj-syn-str">""</span>, <span class="shj-syn-str">"lockitron peripheral id"</span>)
+    user<span class="shj-syn-class">Key</span> <span class="shj-syn-oper">=</span> flag<span class="shj-syn-oper">.</span><span class="shj-syn-func">String</span>(<span class="shj-syn-str">"key"</span>, <span class="shj-syn-str">""</span>, <span class="shj-syn-str">"lockitron user access key"</span>)
+
+    <span class="shj-syn-cmnt">// zero iv
+</span>    zero<span class="shj-syn-class">IV</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>([]byte, <span class="shj-syn-num">16</span>)
+
+    done <span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>(<span class="shj-syn-kwd">chan</span> <span class="shj-syn-kwd">struct</span>{})
+)
+
+<span class="shj-syn-cmnt">////////////////////////////
+</span>
+<span class="shj-syn-cmnt">// do the initial connection handshake (e.g. confirm we have user access key)
+</span><span class="shj-syn-kwd">func</span> <span class="shj-syn-func">prepareHandshakePayload</span>(req<span class="shj-syn-class">ID</span>, nonce []byte) []byte {
+    mac :<span class="shj-syn-oper">=</span> hmac<span class="shj-syn-oper">.</span><span class="shj-syn-func">New</span>(sha1<span class="shj-syn-oper">.</span><span class="shj-syn-class">New</span>, []<span class="shj-syn-func">byte</span>(<span class="shj-syn-kwd">*</span>user<span class="shj-syn-class">Key</span>))
+    mac<span class="shj-syn-oper">.</span><span class="shj-syn-func">Write</span>(nonce)
+    user<span class="shj-syn-class">KeyHMAC</span> :<span class="shj-syn-oper">=</span> mac<span class="shj-syn-oper">.</span><span class="shj-syn-func">Sum</span>(nil)
+
+    handshake :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>([]byte, <span class="shj-syn-num">4</span>)
+    handshake[<span class="shj-syn-num">0</span>] <span class="shj-syn-oper">=</span> <span class="shj-syn-num">0x50</span>     <span class="shj-syn-cmnt">// command = wakeup / authentication?
+</span>    handshake[<span class="shj-syn-num">1</span>] <span class="shj-syn-oper">=</span> req<span class="shj-syn-class">ID</span>[<span class="shj-syn-num">0</span>] <span class="shj-syn-cmnt">// 16-bit request ID
+</span>    handshake[<span class="shj-syn-num">2</span>] <span class="shj-syn-oper">=</span> req<span class="shj-syn-class">ID</span>[<span class="shj-syn-num">1</span>]
+    handshake[<span class="shj-syn-num">3</span>] <span class="shj-syn-oper">=</span> <span class="shj-syn-func">byte</span>(<span class="shj-syn-func">len</span>(user<span class="shj-syn-class">KeyHMAC</span>))
+    handshake <span class="shj-syn-oper">=</span> <span class="shj-syn-func">append</span>(handshake, user<span class="shj-syn-class">KeyHMAC</span><span class="shj-syn-oper">...</span>)
+
+    crc :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">getCRC16</span>(handshake)
+    handshake <span class="shj-syn-oper">=</span> <span class="shj-syn-func">append</span>(handshake, <span class="shj-syn-func">byte</span>((crc<span class="shj-syn-oper">&gt;&gt;</span><span class="shj-syn-num">8</span>)<span class="shj-syn-kwd">&#38;</span><span class="shj-syn-num">0xFF</span>), <span class="shj-syn-func">byte</span>(crc<span class="shj-syn-kwd">&#38;</span><span class="shj-syn-num">0xFF</span>))
+    <span class="shj-syn-kwd">return</span> handshake
+}
+
+<span class="shj-syn-cmnt">// 2-stage payload. internal payload is encrypted with userKey
+</span><span class="shj-syn-kwd">func</span> <span class="shj-syn-func">prepareLockChangePayload</span>(req<span class="shj-syn-class">ID</span> []byte, unlock<span class="shj-syn-class">Lock</span> bool, preprepared <span class="shj-syn-oper">...</span>[]byte) []byte {
+    <span class="shj-syn-cmnt">// 13 bytes of randomness, +1 byte for the on/off command
+</span>    change<span class="shj-syn-class">LockCommand</span> :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>([]byte, <span class="shj-syn-num">14</span>, <span class="shj-syn-num">16</span>)
+    <span class="shj-syn-kwd">if</span> <span class="shj-syn-func">len</span>(preprepared) <span class="shj-syn-oper">==</span> <span class="shj-syn-num">0</span> {
+        rand<span class="shj-syn-oper">.</span><span class="shj-syn-func">Read</span>(change<span class="shj-syn-class">LockCommand</span>)
+        <span class="shj-syn-kwd">if</span> unlock<span class="shj-syn-class">Lock</span> {
+            change<span class="shj-syn-class">LockCommand</span>[<span class="shj-syn-num">5</span>] <span class="shj-syn-oper">=</span> <span class="shj-syn-num">0</span>
+        } <span class="shj-syn-kwd">else</span> {
+            change<span class="shj-syn-class">LockCommand</span>[<span class="shj-syn-num">5</span>] <span class="shj-syn-oper">=</span> <span class="shj-syn-num">1</span>
+        }
+    } <span class="shj-syn-kwd">else</span> {
+        change<span class="shj-syn-class">LockCommand</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-func">append</span>(change<span class="shj-syn-class">LockCommand</span>[:<span class="shj-syn-num">0</span>], preprepared[<span class="shj-syn-num">0</span>][:<span class="shj-syn-num">14</span>]<span class="shj-syn-oper">...</span>)
+    }
+    <span class="shj-syn-cmnt">// +2 bytes CRC16 = 16 byte internal payload
+</span>    crc :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">getCRC16</span>(change<span class="shj-syn-class">LockCommand</span>)
+    change<span class="shj-syn-class">LockCommand</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-func">append</span>(change<span class="shj-syn-class">LockCommand</span>, <span class="shj-syn-func">byte</span>((crc<span class="shj-syn-oper">&gt;&gt;</span><span class="shj-syn-num">8</span>)<span class="shj-syn-kwd">&#38;</span><span class="shj-syn-num">0xFF</span>), <span class="shj-syn-func">byte</span>(crc<span class="shj-syn-kwd">&#38;</span><span class="shj-syn-num">0xFF</span>))
+
+    <span class="shj-syn-cmnt">// encrypt the internal payload with user key
+</span>    cipher<span class="shj-syn-class">Command</span> :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">encrypt</span>([]<span class="shj-syn-func">byte</span>(<span class="shj-syn-kwd">*</span>user<span class="shj-syn-class">Key</span>), change<span class="shj-syn-class">LockCommand</span>)
+    fmt<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"before: %x\nafter: %x\n"</span>, change<span class="shj-syn-class">LockCommand</span>, cipher<span class="shj-syn-class">Command</span>)
+
+    change<span class="shj-syn-class">LockState</span> :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>([]byte, <span class="shj-syn-num">4</span>, <span class="shj-syn-num">22</span>)
+    rand<span class="shj-syn-oper">.</span><span class="shj-syn-func">Read</span>(change<span class="shj-syn-class">LockState</span>)
+    change<span class="shj-syn-class">LockState</span>[<span class="shj-syn-num">0</span>] <span class="shj-syn-oper">=</span> <span class="shj-syn-num">0x1c</span>     <span class="shj-syn-cmnt">// command = change lock state
+</span>    change<span class="shj-syn-class">LockState</span>[<span class="shj-syn-num">1</span>] <span class="shj-syn-oper">=</span> req<span class="shj-syn-class">ID</span>[<span class="shj-syn-num">0</span>] <span class="shj-syn-cmnt">// requestID
+</span>    change<span class="shj-syn-class">LockState</span>[<span class="shj-syn-num">2</span>] <span class="shj-syn-oper">=</span> req<span class="shj-syn-class">ID</span>[<span class="shj-syn-num">1</span>]
+    change<span class="shj-syn-class">LockState</span>[<span class="shj-syn-num">3</span>] <span class="shj-syn-oper">=</span> <span class="shj-syn-func">byte</span>(<span class="shj-syn-func">len</span>(change<span class="shj-syn-class">LockCommand</span>)) <span class="shj-syn-cmnt">// payload count
+</span>
+    <span class="shj-syn-cmnt">// append the internal encrypted payload
+</span>    change<span class="shj-syn-class">LockState</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-func">append</span>(change<span class="shj-syn-class">LockState</span>, cipher<span class="shj-syn-class">Command</span><span class="shj-syn-oper">...</span>)
+
+    crc <span class="shj-syn-oper">=</span> <span class="shj-syn-func">getCRC16</span>(change<span class="shj-syn-class">LockState</span>)
+    change<span class="shj-syn-class">LockState</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-func">append</span>(change<span class="shj-syn-class">LockState</span>, <span class="shj-syn-func">byte</span>((crc<span class="shj-syn-oper">&gt;&gt;</span><span class="shj-syn-num">8</span>)<span class="shj-syn-kwd">&#38;</span><span class="shj-syn-num">0xFF</span>), <span class="shj-syn-func">byte</span>(crc<span class="shj-syn-kwd">&#38;</span><span class="shj-syn-num">0xFF</span>))
+    <span class="shj-syn-kwd">return</span> change<span class="shj-syn-class">LockState</span>
+}
+
+<span class="shj-syn-kwd">func</span> <span class="shj-syn-func">getCRC16</span>(data []byte) uint16 {
+    <span class="shj-syn-kwd">var</span> crc uint16
+    <span class="shj-syn-kwd">for</span> _, d :<span class="shj-syn-oper">=</span> <span class="shj-syn-kwd">range</span> data {
+        crc <span class="shj-syn-oper">=</span> <span class="shj-syn-func">uint16</span>(d) <span class="shj-syn-oper">^</span> crc
+        <span class="shj-syn-kwd">for</span> i :<span class="shj-syn-oper">=</span> <span class="shj-syn-num">0</span>; i <span class="shj-syn-oper">&lt;</span> <span class="shj-syn-num">8</span>; i<span class="shj-syn-oper">++</span> {
+            <span class="shj-syn-kwd">if</span> (crc <span class="shj-syn-kwd">&#38;</span> <span class="shj-syn-num">1</span>) <span class="shj-syn-oper">==</span> <span class="shj-syn-num">1</span> {
+                crc <span class="shj-syn-oper">=</span> ((crc <span class="shj-syn-oper">&gt;&gt;</span> <span class="shj-syn-num">1</span>) <span class="shj-syn-kwd">&#38;</span> <span class="shj-syn-num">0x7FFF</span>) <span class="shj-syn-oper">^</span> <span class="shj-syn-num">40961</span>
+            } <span class="shj-syn-kwd">else</span> {
+                crc <span class="shj-syn-oper">=</span> ((crc <span class="shj-syn-oper">&gt;&gt;</span> <span class="shj-syn-num">1</span>) <span class="shj-syn-kwd">&#38;</span> <span class="shj-syn-num">0x7FFF</span>)
+            }
+        }
+    }
+    <span class="shj-syn-kwd">return</span> crc
+}
+
+<span class="shj-syn-kwd">func</span> <span class="shj-syn-func">encrypt</span>(key, payload []byte) []byte {
+    aes<span class="shj-syn-class">Block</span>, err :<span class="shj-syn-oper">=</span> aes<span class="shj-syn-oper">.</span><span class="shj-syn-func">NewCipher</span>(key)
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        <span class="shj-syn-func">panic</span>(err)
+    }
+    stream :<span class="shj-syn-oper">=</span> cipher<span class="shj-syn-oper">.</span><span class="shj-syn-func">NewCBCEncrypter</span>(aes<span class="shj-syn-class">Block</span>, zero<span class="shj-syn-class">IV</span>)
+    result :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>([]byte, <span class="shj-syn-func">len</span>(payload))
+    stream<span class="shj-syn-oper">.</span><span class="shj-syn-func">CryptBlocks</span>(result, payload)
+    <span class="shj-syn-kwd">return</span> result
+}
+
+<span class="shj-syn-kwd">func</span> <span class="shj-syn-func">main</span>() {
+    flag<span class="shj-syn-oper">.</span><span class="shj-syn-func">Parse</span>()
+    <span class="shj-syn-kwd">switch</span> flag<span class="shj-syn-oper">.</span><span class="shj-syn-func">Arg</span>(<span class="shj-syn-num">0</span>) {
+    <span class="shj-syn-kwd">case</span> <span class="shj-syn-str">"lock"</span>:
+        lock<span class="shj-syn-class">OrUnlock</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-class">LOCKED</span>
+    <span class="shj-syn-kwd">case</span> <span class="shj-syn-str">"unlock"</span>:
+        lock<span class="shj-syn-class">OrUnlock</span> <span class="shj-syn-oper">=</span> <span class="shj-syn-class">UNLOCKED</span>
+    <span class="shj-syn-kwd">default</span>:
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatalln</span>(`last argument should be <span class="shj-syn-str">"lock"</span> or <span class="shj-syn-str">"unlock"</span>`)
+    }
+
+    d, err :<span class="shj-syn-oper">=</span> darwin<span class="shj-syn-oper">.</span><span class="shj-syn-func">NewDevice</span>()
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatalf</span>(<span class="shj-syn-str">"Failed to open device, err: %s\n"</span>, err)
+        <span class="shj-syn-kwd">return</span>
+    }
+    ble<span class="shj-syn-oper">.</span><span class="shj-syn-func">SetDefaultDevice</span>(d)
+
+    id :<span class="shj-syn-oper">=</span> strings<span class="shj-syn-oper">.</span><span class="shj-syn-func">Replace</span>(strings<span class="shj-syn-oper">.</span><span class="shj-syn-func">ToUpper</span>(<span class="shj-syn-kwd">*</span>lock<span class="shj-syn-class">ID</span>), <span class="shj-syn-str">"-"</span>, <span class="shj-syn-str">""</span>, <span class="shj-syn-oper">-</span><span class="shj-syn-num">1</span>)
+    log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Println</span>(<span class="shj-syn-str">"Scanning for"</span>, id, <span class="shj-syn-str">"..."</span>)
+    <span class="shj-syn-cmnt">//ctx := ble.WithSigHandler()
+</span>    ctx, _ :<span class="shj-syn-oper">=</span> context<span class="shj-syn-oper">.</span><span class="shj-syn-func">WithTimeout</span>(context<span class="shj-syn-oper">.</span><span class="shj-syn-func">Background</span>(), <span class="shj-syn-num">5</span><span class="shj-syn-kwd">*</span>time<span class="shj-syn-oper">.</span><span class="shj-syn-class">Second</span>)
+
+    c, err :<span class="shj-syn-oper">=</span> ble<span class="shj-syn-oper">.</span><span class="shj-syn-func">Connect</span>(ctx, <span class="shj-syn-kwd">func</span>(a ble<span class="shj-syn-oper">.</span><span class="shj-syn-class">Advertisement</span>) bool {
+        <span class="shj-syn-kwd">return</span> strings<span class="shj-syn-oper">.</span><span class="shj-syn-func">ToUpper</span>(a<span class="shj-syn-oper">.</span><span class="shj-syn-func">LocalName</span>()) <span class="shj-syn-oper">==</span> id
+    })
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatal</span>(err)
+    }
+    log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Println</span>(<span class="shj-syn-str">"CONNECTED"</span>)
+
+    <span class="shj-syn-kwd">if</span> _, err :<span class="shj-syn-oper">=</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-func">ExchangeMTU</span>(<span class="shj-syn-num">23</span>); err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatalf</span>(<span class="shj-syn-str">"Failed to set MTU, err: %s\n"</span>, err)
+    }
+
+    <span class="shj-syn-cmnt">// Discover services
+</span>    ss, err :<span class="shj-syn-oper">=</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-func">DiscoverServices</span>(nil)
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatalf</span>(<span class="shj-syn-str">"Failed to discover services, err: %s\n"</span>, err)
+    }
+
+    to<span class="shj-syn-class">Watch</span> :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>(<span class="shj-syn-kwd">map</span>[string]<span class="shj-syn-kwd">*</span>ble<span class="shj-syn-oper">.</span><span class="shj-syn-class">Characteristic</span>)
+    <span class="shj-syn-kwd">for</span> _, s :<span class="shj-syn-oper">=</span> <span class="shj-syn-kwd">range</span> ss {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Println</span>(<span class="shj-syn-str">"SERVICE:"</span>, s<span class="shj-syn-oper">.</span><span class="shj-syn-class">UUID</span>)
+        <span class="shj-syn-kwd">if</span> s<span class="shj-syn-oper">.</span><span class="shj-syn-class">UUID</span><span class="shj-syn-oper">.</span><span class="shj-syn-func">String</span>() <span class="shj-syn-oper">!=</span> <span class="shj-syn-str">"a1a51a187b7747d291db34a48dcd3de9"</span> {
+            <span class="shj-syn-kwd">continue</span>
+        }
+
+        <span class="shj-syn-cmnt">// Discover characteristics
+</span>        cs, err :<span class="shj-syn-oper">=</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-func">DiscoverCharacteristics</span>(nil, s)
+        <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+            log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"Failed to discover characteristics, err: %s\n"</span>, err)
+            <span class="shj-syn-kwd">continue</span>
+        }
+
+        <span class="shj-syn-kwd">for</span> _, c :<span class="shj-syn-oper">=</span> <span class="shj-syn-kwd">range</span> cs {
+            cname :<span class="shj-syn-oper">=</span> <span class="shj-syn-str">"unknown"</span>
+            <span class="shj-syn-kwd">switch</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-class">UUID</span><span class="shj-syn-oper">.</span><span class="shj-syn-func">String</span>() {
+            <span class="shj-syn-kwd">case</span> <span class="shj-syn-str">"1a53e10758f747e5a919acc9e05a908b"</span>:
+                cname <span class="shj-syn-oper">=</span> <span class="shj-syn-str">"CLCK"</span>
+            <span class="shj-syn-kwd">case</span> <span class="shj-syn-str">"c2bea3d2ae334e9fabeee05377f8623f"</span>:
+                cname <span class="shj-syn-oper">=</span> <span class="shj-syn-str">"STAT"</span>
+            <span class="shj-syn-kwd">case</span> <span class="shj-syn-str">"26397326157c4364acade7441b43e3fc"</span>:
+                cname <span class="shj-syn-oper">=</span> <span class="shj-syn-str">"CRYP"</span>
+            <span class="shj-syn-kwd">case</span> <span class="shj-syn-str">"562e4701c08e4547a7b0908823260df3"</span>: <span class="shj-syn-cmnt">// not readable...
+</span>                cname <span class="shj-syn-oper">=</span> <span class="shj-syn-str">"CMDS"</span>
+            <span class="shj-syn-kwd">default</span>:
+                <span class="shj-syn-kwd">continue</span>
+            }
+            log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Println</span>(cname, <span class="shj-syn-str">"==&gt;&gt;"</span>, c<span class="shj-syn-oper">.</span><span class="shj-syn-class">UUID</span>)
+            to<span class="shj-syn-class">Watch</span>[cname] <span class="shj-syn-oper">=</span> c
+        }
+    }
+
+    <span class="shj-syn-kwd">if</span> <span class="shj-syn-func">len</span>(to<span class="shj-syn-class">Watch</span>) <span class="shj-syn-oper">&lt;</span> <span class="shj-syn-num">3</span> {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatal</span>(to<span class="shj-syn-class">Watch</span>)
+    }
+    <span class="shj-syn-cmnt">//////////////////////////
+</span>
+    <span class="shj-syn-cmnt">// read the per-connection nonce
+</span>    nonce, err :<span class="shj-syn-oper">=</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-func">ReadCharacteristic</span>(to<span class="shj-syn-class">Watch</span>[<span class="shj-syn-str">"CRYP"</span>])
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatal</span>(<span class="shj-syn-str">"initial auth failed:"</span>, err)
+    }
+    log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"got handshake nonce: %x\n"</span>, nonce)
+
+    req<span class="shj-syn-class">IDBytes</span> :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">make</span>([]byte, <span class="shj-syn-num">2</span>)
+    rand<span class="shj-syn-oper">.</span><span class="shj-syn-func">Read</span>(req<span class="shj-syn-class">IDBytes</span>)
+    handshake :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">prepareHandshakePayload</span>(req<span class="shj-syn-class">IDBytes</span>, nonce)
+    log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"sending handshake: %x\n"</span>, handshake)
+
+    err <span class="shj-syn-oper">=</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-func">WriteCharacteristic</span>(to<span class="shj-syn-class">Watch</span>[<span class="shj-syn-str">"CMDS"</span>], handshake, true)
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatal</span>(<span class="shj-syn-str">"handshake failed:"</span>, err)
+    }
+    time<span class="shj-syn-oper">.</span><span class="shj-syn-func">Sleep</span>(time<span class="shj-syn-oper">.</span><span class="shj-syn-class">Second</span> <span class="shj-syn-kwd">*</span> <span class="shj-syn-num">2</span>)
+
+    resp, err :<span class="shj-syn-oper">=</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-func">ReadCharacteristic</span>(to<span class="shj-syn-class">Watch</span>[<span class="shj-syn-str">"CLCK"</span>])
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatal</span>(<span class="shj-syn-str">"handshake failed2:"</span>, err)
+    }
+    log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"handshake response: %x\n"</span>, resp)
+
+    time<span class="shj-syn-oper">.</span><span class="shj-syn-func">Sleep</span>(time<span class="shj-syn-oper">.</span><span class="shj-syn-class">Second</span> <span class="shj-syn-kwd">*</span> <span class="shj-syn-num">2</span>)
+    <span class="shj-syn-cmnt">// handshake complete
+</span>    <span class="shj-syn-cmnt">/////////////////////
+</span>
+    change<span class="shj-syn-class">LockState</span> :<span class="shj-syn-oper">=</span> <span class="shj-syn-func">prepareLockChangePayload</span>(req<span class="shj-syn-class">IDBytes</span>, lock<span class="shj-syn-class">OrUnlock</span> <span class="shj-syn-oper">==</span> <span class="shj-syn-class">UNLOCKED</span>)
+    err <span class="shj-syn-oper">=</span> c<span class="shj-syn-oper">.</span><span class="shj-syn-func">WriteCharacteristic</span>(to<span class="shj-syn-class">Watch</span>[<span class="shj-syn-str">"CMDS"</span>], change<span class="shj-syn-class">LockState</span>, true)
+    <span class="shj-syn-kwd">if</span> err <span class="shj-syn-oper">!=</span> nil {
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatal</span>(<span class="shj-syn-str">"lock change failed:"</span>, err)
+    }
+
+}
+
+<span class="shj-syn-kwd">func</span> <span class="shj-syn-func">chkErr</span>(err error) {
+    <span class="shj-syn-kwd">switch</span> errors<span class="shj-syn-oper">.</span><span class="shj-syn-func">Cause</span>(err) {
+    <span class="shj-syn-kwd">case</span> nil:
+    <span class="shj-syn-kwd">case</span> context<span class="shj-syn-oper">.</span><span class="shj-syn-class">DeadlineExceeded</span>:
+        fmt<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"timeout\n"</span>)
+    <span class="shj-syn-kwd">case</span> context<span class="shj-syn-oper">.</span><span class="shj-syn-class">Canceled</span>:
+        <span class="shj-syn-cmnt">//fmt.Printf("canceled\n")
+</span>    <span class="shj-syn-kwd">default</span>:
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Fatalf</span>(err<span class="shj-syn-oper">.</span><span class="shj-syn-func">Error</span>())
+    }
+}</div></div>
+</code></pre>
+            <p>Diam volutpat commodo sed egestas egestas fringilla. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Magna etiam tempor orci eu lobortis elementum nibh tellus. Vivamus arcu felis bibendum ut tristique et. Nisl vel pretium lectus quam id leo in vitae. Odio aenean sed adipiscing diam donec adipiscing tristique risus. Risus commodo viverra maecenas accumsan. Feugiat in fermentum posuere urna nec tincidunt. Fermentum odio eu feugiat pretium nibh. Varius sit amet mattis vulputate enim nulla aliquet porttitor. Tempor nec feugiat nisl pretium fusce. Vitae justo eget magna fermentum. Turpis nunc eget lorem dolor sed viverra ipsum. Iaculis urna id volutpat lacus laoreet non curabitur. Eu sem integer vitae justo eget magna fermentum iaculis. Id aliquet lectus proin nibh nisl. Id velit ut tortor pretium viverra suspendisse. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu.</p>
+            <p>Facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui. Enim nec dui nunc mattis enim. Vitae purus faucibus ornare suspendisse sed nisi lacus sed viverra. Sociis natoque penatibus et magnis. Ut sem nulla pharetra diam sit amet nisl. Eget est lorem ipsum dolor sit amet consectetur. Sit amet purus gravida quis blandit turpis cursus in. Ornare aenean euismod elementum nisi quis eleifend quam. Id semper risus in hendrerit. Mauris pharetra et ultrices neque ornare. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Scelerisque fermentum dui faucibus in ornare. Massa eget egestas purus viverra accumsan in. A diam maecenas sed enim ut sem viverra. Ipsum dolor sit amet consectetur adipiscing elit duis tristique sollicitudin.</p>
+            <p>Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Non odio euismod lacinia at. At consectetur lorem donec massa sapien. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a. Blandit volutpat maecenas volutpat blandit aliquam etiam erat. Nunc eget lorem dolor sed viverra. Ullamcorper malesuada proin libero nunc consequat. Sit amet risus nullam eget. Vitae justo eget magna fermentum. Enim facilisis gravida neque convallis a. Et netus et malesuada fames ac turpis egestas. Et leo duis ut diam quam nulla porttitor. Scelerisque purus semper eget duis at tellus at urna. Dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu. Mi tempus imperdiet nulla malesuada pellentesque. Blandit volutpat maecenas volutpat blandit aliquam etiam erat. Amet consectetur adipiscing elit ut aliquam purus sit. Nullam vehicula ipsum a arcu cursus. Auctor eu augue ut lectus arcu bibendum at.</p>
+          </div>
+        </main>
+      </div>
+    </section>
+    <footer class="bg-black py-16">
+      <div class="mx-auto max-w-2xl">
+        <div class="xl:grid xl:grid-cols-4 xl:gap-8"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 140 140" stroke="white" class="w-8 h-8">
+            <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"></path>
+            <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"></path>
+          </svg>
+          <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3 class="text-sm font-semibold leading-6 text-white">progrium.xyz</h3>
+                <ul role="list" class="mt-2">
+                  <li><a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">Home</a></li>
+                  <li><a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">Blog</a></li>
+                  <li><a href="https://progrium.com" class="text-sm leading-6 text-gray-300 hover:text-white">Work</a></li>
+                </ul>
+              </div>
+              <div class="mt-10 md:mt-0">
+                <h3 class="text-sm font-semibold leading-6 text-white">Follow</h3>
+                <ul role="list" class="mt-2">
+                  <li><a href="https://twitter.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Twitter</a></li>
+                  <li><a href="https://github.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">GitHub</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3 class="text-sm font-semibold leading-6 text-white">Content</h3>
+                <ul role="list" class="mt-2">
+                  <li><a href="https://www.youtube.com/c/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">YouTube</a></li>
+                  <li><a href="https://www.twitch.tv/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Twitch</a></li>
+                  <li><a href="https://soundcloud.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Soundcloud</a></li>
+                  <li><a href="https://progrium.itch.io/" class="text-sm leading-6 text-gray-300 hover:text-white">itch.io</a></li>
+                </ul>
+              </div>
+              <div class="mt-10 md:mt-0">
+                <h3 class="text-sm font-semibold leading-6 text-white">Contact</h3>
+                <ul role="list" class="mt-2">
+                  <li><a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">Email</a></li>
+                  <li><a href="https://discord.gg/JraBdNHuuP" class="text-sm leading-6 text-gray-300 hover:text-white">Discord</a></li>
+                  <li><a href="https://www.linkedin.com/in/progrium/" class="text-sm leading-6 text-gray-300 hover:text-white">LinkedIn</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+</html>
