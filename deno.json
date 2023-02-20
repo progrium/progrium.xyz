@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
-    "jsxFactory": "m",
+    "jsxFactory": "v",
   },
   "tasks": {
-    "generate": "deno eval --unstable 'import {generateAll} from \"./scripts/generate.ts\"; generateAll(\"./out\");'",
-    "serve": "deno run --unstable --allow-read --allow-net --watch scripts/serve.ts"
+    "tinygen": "echo \"import {run} from 'tinygen'; run();\" | deno run --unstable -A -",
+    "build": "deno task tinygen build",
+    "serve": "deno task tinygen serve",
+  },
+  "imports": {
+    "tinygen": "./tinygen.ts"
   }
 }

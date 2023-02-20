@@ -17,7 +17,7 @@ jobs:
 
       - name: Build
         run: |
-          deno task generate
+          deno task build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

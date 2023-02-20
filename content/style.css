@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Recursive';
+  src: url('/vnd/Recursive-VariableFont.ttf') format('truetype');
+}
+
+html {
+  font-size: 20px;
+}
+
+body {
+  font-family: "Rubik", "Recursive", sans-serif;
+}
+
+h1 {
+  font-size: 40px !important;
+  font-weight: 600 !important;
+}
+
+footer {
+  font-weight: 300;
+}
+
+.blog-body {
+  font-weight: 300;
+}
+.blog-body p {
+  margin-bottom: 1.5rem;
+}
+
+.\? {
+  border: 1px solid red;
+}
+
+.\?\? {
+  border: 1px solid green;
+}
+
+.\?\?\? {
+  border: 1px solid blue;
+}
+
+pre > code > div {
+  display: flex;
+  font-size: smaller;
+  overflow-x: scroll;
+  box-shadow: inset -4px -4px 6px -2px #ccc;
+}
