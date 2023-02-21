@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
     <link href="/style.css" rel="stylesheet">
-    <title>progrium.xyz</title>
+    <title>Cross-platform Native APIs Made Accessible with Apptron - progrium.xyz</title>
   </head>
 
   <body class="bg-black">
@@ -36,37 +36,33 @@
     </header>
     <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
       <div class="mx-auto max-w-2xl">
-        <main class="mb-8 mx-auto max-w-xl">
-          <div>
-            <h2 class="text-xl font-light"></h2>
-            <ul class="mb-8">
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24"></span><a href="/blog" class="underline"></a></li>
-            </ul>
+        <main class="mb-8 max-w-xl">
+          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2022-07-01</span>
+            <h1 class="mb-8">Cross-platform Native APIs Made Accessible with Apptron</h1>
           </div>
-          <div>
-            <h2 class="text-xl font-light">2022</h2>
-            <ul class="mb-8">
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-08-19</span><a href="/blog/2022/apptron-demo-html5-background-apps" class="underline">Apptron Demo: HTML5 Background Apps</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-08-05</span><a href="/blog/2022/apptron-demo-shell-scriptable-native-apis" class="underline">Apptron Demo: Shell Scriptable Native APIs</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-07-21</span><a href="/blog/2022/apptron-demo-zero-config-html5-native-apps" class="underline">Apptron Demo: Zero Config HTML5 Native Apps</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-07-08</span><a href="/blog/2022/apptron-demo-webview-window-building-block" class="underline">Apptron Demo: Webview Window Building Block</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-07-01</span><a href="/blog/2022/cross-platform-native-apis-made-accessible-with-apptron" class="underline">Cross-platform Native APIs Made Accessible with Apptron</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-03-15</span><a href="/blog/2022/progrium-technology-thesis" class="underline">Progrium Technology Thesis</a></li>
-            </ul>
-          </div>
-          <div>
-            <h2 class="text-xl font-light">2021</h2>
-            <ul class="mb-8">
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-08-24</span><a href="/blog/2021/making-programs-interact-using-qtalk" class="underline">Making programs interact using qtalk</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-07-05</span><a href="/blog/2021/towards-the-personal-potential-of-software" class="underline">Towards the Personal Potential of Software</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-05-27</span><a href="/blog/2021/building-your-own-ngrok-in-130-lines" class="underline">Building your own Ngrok in 130 lines</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-05-06</span><a href="/blog/2021/the-history-and-future-of-socket-level-multiplexing" class="underline">The History and Future of Socket-level Multiplexing</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-04-16</span><a href="/blog/2021/apple-api-schemas-for-code-generation-and-more" class="underline">Apple API schemas for code generation and more</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-03-30</span><a href="/blog/2021/customize-your-computer-screen-with-html" class="underline">Customize your computer screen with HTML and JavaScript</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-02-02</span><a href="/blog/2021/use-mac-apis-and-build-mac-apps-with-go" class="underline">Use Mac APIs and build Mac apps with Go</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-01-15</span><a href="/blog/2021/large-type-legacy-celebrated-in-80-line-go-program" class="underline">Large Type legacy celebrated in 80 line Go program</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-01-04</span><a href="/blog/2021/making-the-world-more-programmable" class="underline">Making the world more programmable</a></li>
-            </ul>
+          <div class="blog-body mx-auto text-left text-gray-800">
+            <p>I’m happy to announce the first major building block of the Tractor System: Apptron.</p>
+            <p>Apptron is a software primitive that lets you drive native platform APIs using the technologies you’re already familiar with, enabling cross-platform webview apps and more.</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7ihqyuhbatzm3wq9luqt.png" alt="Apptron Demo Screenshot"></p>
+            <p>Usable from any language, or even the command line, Apptron gives you webview windows and common platform APIs for your simple scripts, homebrew utilities, or full applications. Building cross-platform programs that leverage native functionality (menus, dialogs, notifications, global shortcuts, etc) has never been more accessible.</p>
+            <p>These APIs are packed into a single executable that can be used a number of different ways, making Apptron a simple but powerful software primitive.</p>
+            <h4 id="zero-config-native-apps-from-html">Zero Config Native Apps from HTML</h4>
+            <p>Turn an HTML file and any other web assets into a self-contained, cross-platform executable in a single command.</p>
+            <h4 id="language-agnostic-building-block">Language Agnostic Building Block</h4>
+            <p>Use the Apptron APIs like a library from any language without C extensions or tricky event loops. </p>
+            <h4 id="shell-scriptable-native-apis">Shell Scriptable Native APIs</h4>
+            <p>Use platform APIs from CLI commands to break shell scripting out of the terminal and into the desktop GUI.</p>
+            <p>These features and more will be showcased in a series of demos coming out over the next few weeks. Given all the different ways it can be used, Apptron is something you really have to see in action. Catch their <a href="https://www.twitch.tv/progrium/schedule?segmentID=97869319-25d1-428f-bedb-4b372ca0db6a">premieres on Twitch</a>, or <a href="https://www.youtube.com/c/progrium">subscribe on YouTube</a> so you don&#39;t miss them.</p>
+            <h2 id="early-access">Early Access</h2>
+            <p>In the meantime, we&#39;re opening up Early Access via the Apptron website:</p>
+            <p><a href="https://tractor.dev/apptron">https://tractor.dev/apptron</a></p>
+            <p>By joining early access, you&#39;ll be invited to the currently private GitHub repository where you can try Apptron out, submit issues, and help bring Apptron to a stable 1.0 release and become public open source software.</p>
+            <h2 id="help-wanted">Help Wanted</h2>
+            <p>I&#39;ve been using Apptron in some form with the rest of the Tractor System for over a year now, but to make this a solid standalone primitive I&#39;ll need your help. Please consider joining early access to play around with it and give feedback. </p>
+            <p>Anybody interested in contributing or helping drive this project should definitely request access and get involved. This is one of many projects I have in the pipeline and I can only do so much. </p>
+            <h2 id="thanks">Thanks</h2>
+            <p>A huge thanks to my <a href="https://github.com/sponsors/progrium">sponsors</a>, who I depend on to fund this early R&amp;D work on the Tractor System. As long as it&#39;s sustainable, I look forward to releasing more powerful open source primitives.</p>
+            <p>Excited to tell you more next week with the first Apptron demo! </p>
           </div>
         </main>
       </div>

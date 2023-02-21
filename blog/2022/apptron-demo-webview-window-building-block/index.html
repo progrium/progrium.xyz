@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
     <link href="/style.css" rel="stylesheet">
-    <title>progrium.xyz</title>
+    <title>Apptron Demo: Webview Window Building Block - progrium.xyz</title>
   </head>
 
   <body class="bg-black">
@@ -36,37 +36,22 @@
     </header>
     <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
       <div class="mx-auto max-w-2xl">
-        <main class="mb-8 mx-auto max-w-xl">
-          <div>
-            <h2 class="text-xl font-light"></h2>
-            <ul class="mb-8">
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24"></span><a href="/blog" class="underline"></a></li>
-            </ul>
+        <main class="mb-8 max-w-xl">
+          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2022-07-08</span>
+            <h1 class="mb-8">Apptron Demo: Webview Window Building Block</h1>
           </div>
-          <div>
-            <h2 class="text-xl font-light">2022</h2>
-            <ul class="mb-8">
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-08-19</span><a href="/blog/2022/apptron-demo-html5-background-apps" class="underline">Apptron Demo: HTML5 Background Apps</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-08-05</span><a href="/blog/2022/apptron-demo-shell-scriptable-native-apis" class="underline">Apptron Demo: Shell Scriptable Native APIs</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-07-21</span><a href="/blog/2022/apptron-demo-zero-config-html5-native-apps" class="underline">Apptron Demo: Zero Config HTML5 Native Apps</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-07-08</span><a href="/blog/2022/apptron-demo-webview-window-building-block" class="underline">Apptron Demo: Webview Window Building Block</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-07-01</span><a href="/blog/2022/cross-platform-native-apis-made-accessible-with-apptron" class="underline">Cross-platform Native APIs Made Accessible with Apptron</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2022-03-15</span><a href="/blog/2022/progrium-technology-thesis" class="underline">Progrium Technology Thesis</a></li>
-            </ul>
-          </div>
-          <div>
-            <h2 class="text-xl font-light">2021</h2>
-            <ul class="mb-8">
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-08-24</span><a href="/blog/2021/making-programs-interact-using-qtalk" class="underline">Making programs interact using qtalk</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-07-05</span><a href="/blog/2021/towards-the-personal-potential-of-software" class="underline">Towards the Personal Potential of Software</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-05-27</span><a href="/blog/2021/building-your-own-ngrok-in-130-lines" class="underline">Building your own Ngrok in 130 lines</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-05-06</span><a href="/blog/2021/the-history-and-future-of-socket-level-multiplexing" class="underline">The History and Future of Socket-level Multiplexing</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-04-16</span><a href="/blog/2021/apple-api-schemas-for-code-generation-and-more" class="underline">Apple API schemas for code generation and more</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-03-30</span><a href="/blog/2021/customize-your-computer-screen-with-html" class="underline">Customize your computer screen with HTML and JavaScript</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-02-02</span><a href="/blog/2021/use-mac-apis-and-build-mac-apps-with-go" class="underline">Use Mac APIs and build Mac apps with Go</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-01-15</span><a href="/blog/2021/large-type-legacy-celebrated-in-80-line-go-program" class="underline">Large Type legacy celebrated in 80 line Go program</a></li>
-              <li class="flex space-x-2 my-2"><span class="text-gray-400 w-24">2021-01-04</span><a href="/blog/2021/making-the-world-more-programmable" class="underline">Making the world more programmable</a></li>
-            </ul>
+          <div class="blog-body mx-auto text-left text-gray-800">
+            <p>{% embed <a href="https://www.youtube.com/watch?v=XU-vrmA7j4U">https://www.youtube.com/watch?v=XU-vrmA7j4U</a> %}</p>
+            <p>In this demo, I use the <a href="https://progrium.com/blog/apptron-announcement/">Apptron</a> API from Go to build a simple birthday card application defined by HTML and CSS. I also explore the architectural approach of Apptron compared to directly working with platform native APIs.</p>
+            <p>To expand on the demo, in this post I&#39;ll discuss some of the motivation behind this project. There are a few reasons why I made Apptron.</p>
+            <p>I&#39;ve always loved the option of using HTML5 in webviews to build cross-platform native app UIs. Native controls definitely have their benefit, but become tricky to do consistently across platforms. Rendering the UI the way a game would with a GPU accelerated render frame is consistent across platforms, but usually means you have to invent your GUI paradigm from the ground up. Using a webview gets you general consistency across platforms, while also getting a well known paradigm for building user interfaces. It also comes with the largest ecosystem of frameworks and pre-built components that can generally be used together, and is constantly improving as the web evolves. It&#39;s not always the best approach, but it&#39;s a nice option to have.</p>
+            <p>Using a webview for desktop UI is not new, but was not a well known practice until Electron. I&#39;m pretty sure significant chunks of UI in Windows as far back as Windows 95 were actually webviews. Recently, I was surprised to discover some parts of macOS today are actually using webviews. But Electron popularized it by focusing on the cross-platform benefit and riding on the initial success of Node.js, empowering JavaScripters to do more than they ever could before.</p>
+            <p>Today, Node.js is considered by many, including its author, a bit of a mistake. This is a complex thing to explain, but for me it has a lot to do with the culture of dependencies and complexity in that ecosystem. So if you explicitly don&#39;t want to use JavaScript, or maybe just avoid Node.js and NPM, you don&#39;t have much choice when it comes to easily making webview based apps.</p>
+            <p>Luckily, we&#39;ve been seeing alternative frameworks for a couple different languages recently. Unfortunately, any language-specific framework is limited to that language. This has always frustrated me as a polyglot programmer. Broad approaches to software design shouldn&#39;t be silo&#39;d off to specific languages, even though obviously you have to pick one for an implementation.</p>
+            <p>It&#39;s also frustrating to see how complex these full service frameworks become. At their core, they&#39;re just re-exposing platform APIs, but they end up being full-fledged platforms of their own. Keep in mind, it&#39;s not just webviews and windows, there are a bunch of platform APIs for features across all major platforms that you might want to use. Native menus, dialogs, notifications, etc. If you wanted to use one of these in a script or simple program, Electron immediately feels like overkill.</p>
+            <p>Depending on your language, you may find one-off libraries for these cross-platform native features. A library for webviews, a library for desktop notifications, etc. The problem there is when you want to combine them. Not only are these libraries usually going to be fairly inconsistent in their design, if they even exist, but because of the nature of platform APIs, they often need to set up an event loop and take over the main thread. This makes them difficult if not impossible to use together. </p>
+            <p>With all this in mind, it seemed the only option was to build a language-agnostic bridge to cross-platform APIs. Apptron uniquely sits somewhere between a full framework like Electron or Tauri, and small one-off libraries you might find for specific APIs. It can be used like a library, a tool, or a micro-framework, but it&#39;s small and self-contained. This is why I describe it as a software primitive or building block. </p>
+            <p>I hope Apptron is compelling, and I&#39;d like to invite you to <a href="https://tractor.dev/apptron/">try it out in early access</a>. In the meantime, more demos are on the way.</p>
           </div>
         </main>
       </div>
