@@ -16,24 +16,20 @@ import {default as pretty} from "npm:pretty";
 
 const merge = (a, b) => Object.assign({}, a, b);
 const extractFrontMatter = createExtractor({ [Format.YAML]: parseYAML as Parser });
-
-function exists(pathname: string): boolean {
+const exists = (pathname: string): boolean => {
   try {
     return Deno.statSync(pathname).isFile;
   } catch(e) {
-    if (e instanceof Deno.errors.NotFound)
-      return false;
+    if (e instanceof Deno.errors.NotFound) return false;
     throw e;
   }
-}
-
-function mkdirAll(path: string) {
+};
+const mkdirAll = (path: string) => {
   try {
     Deno.mkdirSync(path, { recursive: true });
   } catch {}
-}
-
-async function parseMarkdown(s: string): string {
+};
+const parseMarkdown = async (s: string): string => {
   let [ctx, i] = [{}, 0];
   // hack to get around markdown library not supporting async hightlighting
   Marked.setOptions({highlight: (code, lang) => {i++; const key = `{{${i}}}`; ctx[key] = {code, lang}; return key; }});
@@ -42,7 +38,7 @@ async function parseMarkdown(s: string): string {
     out.content = out.content.replace(key, await highlightText(ctx[key].code, ctx[key].lang));
   }
   return out.content;
-}
+};
 
 export {m as v}
 
@@ -109,6 +105,19 @@ export class Generator {
     return Deno.realPathSync(normalize(this.config.dest));
   }
 
+  ignorePath(path: string): boolean {
+    if (path.startsWith(this.destDir)) {
+      return true;
+    }
+    const filename = basename(path);
+    if (["site.ts", "deno.json", "deno.lock"].includes(filename) 
+          || filename.startsWith("_")
+          || filename.startsWith(".")) {
+      return true;
+    }
+    return false;
+  }
+
   async layout(name?: string): any {
     let layoutPath = `${this.srcDir}/_layout.tsx`;
     if (name) {
@@ -121,53 +130,43 @@ export class Generator {
     return {view: ({children}) => children};
   }
 
-  async load(path: string) {
-    let relpath = path.replace(this.srcDir, "")
-      .replace(extname(path), "")
-      .replace(/\/index$/, "");
-    if (!relpath) {
-      relpath = "/";
-    }
-    let layout = await this.layout();
-    switch (extname(path)) {
-      case ".md":
-        const file = extractFrontMatter(await Deno.readTextFile(path));
-        const content = await parseMarkdown(file.body);
-        layout = await this.layout(file.attrs.layout);
-        delete file.attrs.layout;
-        this.pages.push(merge({
-          src: path,
-          path: relpath,
-          view: () => m(layout, merge(file.attrs, this.config.global), m.trust(content))
-        }, file.attrs));
-        break;
-      case ".tsx":
-        const mod = await import(path);
-        this.pages.push({
-          src: path,
-          path: relpath,
-          view: () => m(mod.default, merge({layout}, this.config.global))
-        });
-        break;
-      // case ".json":
-      //   break;
-    }
-  }
-
   async loadAll() {
     for await(const e of walk(this.srcDir, {
       includeDirs: false,
     })) {
-      if (e.path.startsWith(this.destDir)) {
+      if (this.ignorePath(e.path)) {
         continue;
       }
-      const filename = basename(e.path);
-      if (["site.ts", "deno.json"].includes(filename) 
-            || filename.startsWith("_")
-            || filename.startsWith(".")) {
-        continue;
+      let relpath = e.path.replace(this.srcDir, "")
+        .replace(extname(e.path), "")
+        .replace(/\/index$/, "");
+      if (!relpath) {
+        relpath = "/";
       }
-      await this.load(e.path);
+      let layout = await this.layout();
+      switch (extname(e.path)) {
+        case ".md":
+          const file = extractFrontMatter(await Deno.readTextFile(e.path));
+          const content = await parseMarkdown(file.body);
+          layout = await this.layout(file.attrs.layout);
+          delete file.attrs.layout;
+          this.pages.push(merge({
+            src: e.path,
+            path: relpath,
+            view: () => m(layout, merge(file.attrs, this.config.global), m.trust(content))
+          }, file.attrs));
+          break;
+        case ".tsx":
+          const mod = await import(e.path);
+          this.pages.push({
+            src: e.path,
+            path: relpath,
+            view: () => m(mod.default, merge({layout}, this.config.global))
+          });
+          break;
+        // case ".json":
+        //   break;
+      }
     }
   }
 
@@ -184,14 +183,7 @@ export class Generator {
     for await(const e of walk(this.srcDir, {
       includeDirs: false,
     })) {
-      if (e.path.startsWith(this.destDir)) {
-        continue;
-      }
-      const filename = basename(e.path);
-      if (["site.ts", "deno.json"].includes(filename)) {
-        continue;
-      }
-      if (filename.startsWith("_") || filename.startsWith(".")) {
+      if (this.ignorePath(e.path)) {
         continue;
       }
       const page = this.pages.find(p => p.src === e.path);
