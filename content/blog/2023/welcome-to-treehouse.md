@@ -40,7 +40,7 @@ Out of the box we have a full-text search that doesn't require a backend. Howeve
 
 ### Built-in Backends
 
-"Bring your own backend" is a critical part of the design of this project, but Treehouse also needs to be usable by people that aren't willing to *build* their own backend. Our prototype release is planned to include a handful of built-in backends to get started with.
+"Bring your own backend" is a critical part of the design of this project, but Treehouse also needs to be usable by people who prefer not to *build* their own backend. Our prototype release is planned to include a handful of built-in backends to get started with.
 
 Our preview demo is using a localStorage backend, which works for development and special use cases. Of course, we will have a simple local filesystem backend for desktop scenarios, similar to Obsidian.
 
@@ -64,10 +64,10 @@ The project is actively being developed but we keep a [preview demo](https://tre
 
 ## Coming Soon
 
-I'm excited to give you a deeper look at the project stack in a future post. For now keep an eye out for the next post digging into the influences for Treehouse. We'll also try to answer "why another note-taking tool", and tease some long-term ideas for the future.
+I'm excited to give you a deeper look at the project stack in a future post. For now, keep an eye out for the next post digging into the influences for Treehouse. We'll also try to answer "why another note-taking tool", and tease some long-term ideas for the future.
 
 Lastly, I want to mention the project is being developed in the open, not just with the code on GitHub, but most of my work is streamed and archived on [Twitch](https://www.twitch.tv/progrium). Feel free to come and co-work with me.
 
 Thanks for reading, and a big thanks to my [sponsors](https://github.com/sponsors/progrium/) for supporting this kind of open source work. 
 
-*Check out more at [treehouse.sh](https://treehouse.sh)!*
+*Check out more at [treehouse.sh](https://treehouse.sh) or [subscribe to our mailing list](http://eepurl.com/iluc5v) for updates!*
