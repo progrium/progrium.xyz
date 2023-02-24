@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
     <link href="/style.css" rel="stylesheet">
-    <title>Apple API schemas for code generation and more - progrium.xyz</title>
+    <title>Welcome to Treehouse - progrium.xyz</title>
   </head>
 
   <body class="bg-black">
@@ -37,25 +37,43 @@
     <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
       <div class="mx-auto max-w-2xl">
         <main class="blog mb-8 max-w-xl">
-          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2021-04-16</span>
-            <h1 class="mb-8">Apple API schemas for code generation and more</h1>
+          <div class="text-center"><span class="text-gray-400 text-sm font-bold">2023-02-23</span>
+            <h1 class="mb-8">Welcome to Treehouse</h1>
           </div>
           <div class="body mx-auto text-left text-gray-800">
-            <p>Schemas are pretty dope. My appreciation for API schemas as a toolmaker comes from a desire to build tools that can integrate with many systems, and open new avenues for people to use APIs.</p>
-            <p>For most, the use case that comes to mind for API schemas is generating documentation. Translating a machine-readable schema into a human friendly representation is a scalable, automated way to maintain solid reference documentation. Although many systems exist to generate documentation directly from code, having an intermediary representation is useful for other use cases.</p>
-            <p>Code generation is the other big one. It&#39;s common for companies like Google and Amazon to generate client libraries across languages for their many web APIs. Even some libraries for GitHub&#39;s API are generated because their API has gotten so big it would be untenable otherwise. This is particularly important in the open source community where maintainer time is a scarce resource. Schemas save a lot of time, but it&#39;s still pretty uncommon to find a schema for any given web API.</p>
-            <p>Even less common are schemas for non-web APIs. In 2016, <a href="https://www.electronjs.org/blog/api-docs-json-schema">Electron started releasing a JSON schema</a> of all their APIs that allowed me to build a bridge to use Electron APIs from Go. I had that prototype in mind when I started the <a href="https://github.com/progrium/macdriver">macdriver</a> project that was released a couple months ago. Right now we&#39;re manually wrapping Apple framework classes with Go types so you can write native Apple platform applications that look like this:</p>
-            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5qspum8s6zvhbnzvw3le.png" alt="macdriver example"></p>
-            <p>These kinds of bindings used to be more supported by Apple as evidenced by bridgesupport files, which were XML schemas of their APIs. However, they aren&#39;t very well supported any longer. Moreover, bridgesupport files were more like headers and didn&#39;t provide much in the form of documentation. </p>
-            <p>So if we wanted to generate the APIs in macdriver, we could parse Objective-C headers, or maybe try to use what&#39;s available in bridgesupport files. But we&#39;d also like to generate human readable descriptions and ideally link to official docs. </p>
-            <p><strong>If schemas are used to generate documentation, there&#39;s no reason you can&#39;t generate schemas from documentation.</strong></p>
-            <p>So I built a tool that could parse Apple documentation into schemas. Since their docs also have the declarations for everything, we don&#39;t even need to use header files. The result is a nice JSON document describing their classes and other entities like this:</p>
-            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0328ykp728ydnutra7r6.png" alt="macschema output"></p>
-            <p>From this we can start to automate the generation of wrapper types in macdriver, but as a standalone toolchain, the schemas it produces can be used to write bindings in languages other than Go as well. </p>
-            <p>Schemas like this can also be used in developer tooling for all sorts of things like autocompletion, or help create visual programming interfaces. </p>
-            <p>Today most &quot;no-code&quot; tools need to support integrations to stay competitive, but they&#39;re all writing and maintaining their own integrations. In fact, every application with user programmable integrations can benefit from schemas like this. So I&#39;d like to see more.</p>
-            <p>If this is interesting, take a look at the tool I built, <a href="https://github.com/progrium/macschema">macschema</a>, which is open source on GitHub. Right now it&#39;s just the toolchain, but in theory we could generate schemas for all of Apple&#39;s APIs and put them in a repo in such a way that can be updated by a combination of macschema and user contributed patches. I&#39;ll let somebody else do that though. </p>
-            <p>Thanks for reading, think about schemas more, and consider <a href="https://github.com/sponsors/progrium">sponsoring my work</a>!</p>
+            <p>I&#39;m excited to announce the start of a new major project that I&#39;ll be sharing the journey of on this fancy new blog. The project is called <a href="https://treehouse.sh/">Treehouse</a>, which is starting as an open source note-taking frontend and will evolve into something much more.</p>
+            <p><img src="https://treehouse.sh/photos/hero-image.png" alt="Treehouse screenshot"></p>
+            <p>We&#39;re creating a simple, hackable kernel of a note-taking tool as a web frontend that can be extended and customized by developers. Then we&#39;ll use that frontend to build a new kind of note-taking product. Today we have an early preview of our first minimum viable prototype of the frontend, and we&#39;ll be finishing up this release in the open on GitHub.</p>
+            <p>The <a href="https://github.com/treehousedev/treehouse">open source project</a> is a functional app frontend that you can deploy and back in various ways. For developers, this &quot;bring your own backend&quot; approach makes Treehouse a great starting point to build your own note-taking tool, just as we intend to do. We also have pre-made backends for those who want to use it with little-to-no programming. Either way, you&#39;ll always own your data, and now the system presenting it to you as well. </p>
+            <p>In this post, I&#39;m going to talk about our minimum viable prototype and the approach we&#39;re taking with Treehouse as an open source project.</p>
+            <h2 id="out-of-the-box">Out of the Box</h2>
+            <p>While inspired by powerful tools like <a href="https://www.notion.so/">Notion</a>, <a href="https://tana.inc/">Tana</a>, and <a href="https://obsidian.md/">Obsidian</a>, we wanted to boil our initial goal down to the essentials while still being usable enough to use ourselves. As we continue to plan our prototype release milestone, we&#39;d love to hear what you think is essential for you to have in a tool and platform like this, but here is what to expect as a baseline.</p>
+            <h3 id="outliner-with-markdown-pages">Outliner with Markdown Pages</h3>
+            <p>At the heart of Treehouse is a graph-like system I&#39;ve been developing called Manifold. This will play a big part in the long-term extensibility of Treehouse, which I&#39;ll talk more about in the future. For now, this maps very cleanly to the outliner model popularized by Workflowy, Tana, and others.</p>
+            <p>However, I&#39;m also a fan of Notion-style pages and Obsidian&#39;s commitment to working with plain Markdown files. The Manifold system allows us to make certain nodes into Markdown pages. This hybrid model gets us the best of both worlds with room for even more possibilities later on.</p>
+            <h3 id="quick-add-and-daily-notes">Quick Add and Daily Notes</h3>
+            <p>Being able to quickly get thoughts and information into the system has been a key aspect of every good note-taking system. This can be exposed a number of ways from browser extensions to desktop shortcuts, but what makes any &quot;quick add&quot; functionality quick is not having to think about where it will be organized.</p>
+            <p>Luckily, &quot;daily notes&quot; has become such a common pattern that many recent tools have managed daily notes built-in. This typical gives you a &quot;today&quot; note that is automatically organized into a calendar-like structure. This conveniently becomes the perfect destination for &quot;quick add&quot; notes.</p>
+            <h3 id="full-text-search">Full-text Search</h3>
+            <p>Whether you are an obsessive organizer or are too busy to take the time, solid full-text search is basically a necessity. It&#39;s how we quickly get to our data. </p>
+            <p>Out of the box we have a full-text search that doesn&#39;t require a backend. However, our pluggable backend will allow you to power search in a number of ways, and also opens up the ability to search into external systems that are important to you.</p>
+            <h3 id="built-in-backends">Built-in Backends</h3>
+            <p>&quot;Bring your own backend&quot; is a critical part of the design of this project, but Treehouse also needs to be usable by people that aren&#39;t willing to <em>build</em> their own backend. Our prototype release is planned to include a handful of built-in backends to get started with.</p>
+            <p>Our preview demo is using a localStorage backend, which works for development and special use cases. Of course, we will have a simple local filesystem backend for desktop scenarios, similar to Obsidian.</p>
+            <p>However, we&#39;re most excited for the GitHub backend. This functions similarly to the local filesystem backend, but it would be versioned in a central repository on your GitHub account and be accessible on any online platform.</p>
+            <p>Backends will not only let you extend storage, search, and authentication, but other aspects in the future. </p>
+            <h2 id="project-overview">Project Overview</h2>
+            <p>The Treehouse codebase and open source project is as much the product as its features. The entire user and developer experience is being designed around simplicity and human ergonomics.</p>
+            <p>The Treehouse frontend is built with web technologies intended for use across web, mobile, and desktop platforms. The project is written in TypeScript using <a href="https://deno.land/">Deno</a> as its JavaScript toolchain.</p>
+            <p>The JavaScript ecosystem is a mess, but Deno provides a forward-looking, self-contained toolchain that&#39;s easy to love. We actually have a zero Node.js policy and avoid NPM modules as much as possible.</p>
+            <p>With minimal dependencies and an ongoing effort to keep the codebase small, it will always be easy to understand the entire Treehouse system. This will be further supported with a focus on documentation, both API docs and guides.</p>
+            <p>We&#39;re using a permissive open source license, allowing you to use or change our code as you see fit. Contribution and participation is welcome, but so is simply consuming downstream. </p>
+            <p>The project is actively being developed but we keep a <a href="https://treehouse.sh/demo/">preview demo</a> running off the main branch that should always be in working order.</p>
+            <h2 id="coming-soon">Coming Soon</h2>
+            <p>I&#39;m excited to give you a deeper look at the project stack in a future post. For now keep an eye out for the next post digging into the influences for Treehouse. We&#39;ll also try to answer &quot;why another note-taking tool&quot;, and tease some long-term ideas for the future.</p>
+            <p>Lastly, I want to mention the project is being developed in the open, not just with the code on GitHub, but most of my work is streamed and archived on <a href="https://www.twitch.tv/progrium">Twitch</a>. Feel free to come and co-work with me.</p>
+            <p>Thanks for reading, and a big thanks to my <a href="https://github.com/sponsors/progrium/">sponsors</a> for supporting this kind of open source work. </p>
+            <p><em>Check out more at <a href="https://treehouse.sh">treehouse.sh</a>!</em></p>
           </div>
         </main>
       </div>

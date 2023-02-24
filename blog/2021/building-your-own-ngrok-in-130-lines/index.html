@@ -36,11 +36,11 @@
     </header>
     <section style="min-height:50vh" class="bg-white flex flex-col justify-center pb-16">
       <div class="mx-auto max-w-2xl">
-        <main class="mb-8 max-w-xl">
+        <main class="blog mb-8 max-w-xl">
           <div class="text-center"><span class="text-gray-400 text-sm font-bold">2021-05-27</span>
             <h1 class="mb-8">Building your own Ngrok in 130 lines</h1>
           </div>
-          <div class="blog-body mx-auto text-left text-gray-800">
+          <div class="body mx-auto text-left text-gray-800">
             <p>Running a local development server for your app is pretty common, but what if you wanted somebody else to access it? Maybe for a demo, or maybe to debug webhook integrations. If you&#39;ve ever used <a href="https://ngrok.com/">Ngrok</a> (or perhaps the original <a href="https://github.com/progrium/localtunnel">localtunnel</a>), you know what I&#39;m talking about. </p>
             <p>Today we&#39;re going to make a system that emulates the core functionality of Ngrok, exposing a localhost HTTP server via a public URL. </p>
             <p>Just to make sure we&#39;re clear on how this all works, let me explain the problem. Normally when you run a server on your computer it can only be accessed by other computers on the same local network. However, many development servers will bind to <code>127.0.0.1</code>, or <code>localhost</code>, which means only a client or browser on your computer can access it. Either way, there are times when you might want another party to access it temporarily, but it&#39;s simply not addressable from the public Internet.</p>
@@ -210,16 +210,14 @@ log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<
           </svg>
           <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
             <div class="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 class="text-sm font-semibold leading-6 text-white">progrium.xyz</h3>
+              <div><span class="text-sm font-semibold leading-6 text-white">progrium.xyz</span>
                 <ul role="list" class="mt-2">
                   <li><a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">Home</a></li>
                   <li><a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">Blog</a></li>
                   <li><a href="https://progrium.com" class="text-sm leading-6 text-gray-300 hover:text-white">Work</a></li>
                 </ul>
               </div>
-              <div class="mt-10 md:mt-0">
-                <h3 class="text-sm font-semibold leading-6 text-white">Follow</h3>
+              <div class="mt-10 md:mt-0"><span class="text-sm font-semibold leading-6 text-white">Follow</span>
                 <ul role="list" class="mt-2">
                   <li><a href="https://mas.to/@progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Mastodon</a></li>
                   <li><a href="https://twitter.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Twitter</a></li>
@@ -228,8 +226,7 @@ log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<
               </div>
             </div>
             <div class="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 class="text-sm font-semibold leading-6 text-white">Content</h3>
+              <div><span class="text-sm font-semibold leading-6 text-white">Content</span>
                 <ul role="list" class="mt-2">
                   <li><a href="https://www.youtube.com/c/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">YouTube</a></li>
                   <li><a href="https://www.twitch.tv/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Twitch</a></li>
@@ -237,8 +234,7 @@ log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<
                   <li><a href="https://progrium.itch.io/" class="text-sm leading-6 text-gray-300 hover:text-white">itch.io</a></li>
                 </ul>
               </div>
-              <div class="mt-10 md:mt-0">
-                <h3 class="text-sm font-semibold leading-6 text-white">Contact</h3>
+              <div class="mt-10 md:mt-0"><span class="text-sm font-semibold leading-6 text-white">Contact</span>
                 <ul role="list" class="mt-2">
                   <li><a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">Email</a></li>
                   <li><a href="https://discord.gg/JraBdNHuuP" class="text-sm leading-6 text-gray-300 hover:text-white">Discord</a></li>
