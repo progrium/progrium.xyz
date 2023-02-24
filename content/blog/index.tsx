@@ -4,7 +4,7 @@ export default view({}, () => (
   <main class="mb-8 mx-auto max-w-xl">
     {groupByYear(pages("blog")).map(([year, pages]) =>
     <div>
-      <h2 class="text-xl font-light">{year}</h2>
+      <h3>{year}</h3>
       <ul class="mb-8">
         {pages.sort(byDate).map(p => 
           <li class="flex space-x-2 my-2">
@@ -14,6 +14,7 @@ export default view({}, () => (
         )}
       </ul>
     </div>
-    )}    
+    )}
+    <em>Older posts coming soon!</em>
   </main>
 ));

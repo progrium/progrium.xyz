@@ -62,7 +62,7 @@ export function pages(path?: string): Page[] {
   if (path) {
     prefix += "/"+path;
   }
-  return instance.pages.filter(p => p.src.startsWith(prefix));
+  return Object.values(instance.pages).filter(p => p.src.startsWith(prefix));
 }
 
 interface Config {
@@ -84,7 +84,7 @@ interface Page {
 let instance = undefined;
 export class Generator {
   config: Config;
-  pages: Page[];
+  pages: Record<string,Page>;
 
   constructor(config: Config) {
     this.config = merge({
@@ -92,7 +92,7 @@ export class Generator {
       dest: "./out",
       port: 9090
     }, config);
-    this.pages = [];
+    this.pages = {};
     instance = this;
   }
 
@@ -130,6 +130,48 @@ export class Generator {
     return {view: ({children}) => children};
   }
 
+  pagePath(srcPath: string): string {
+    let path = srcPath.replace(this.srcDir, "")
+      .replace(extname(srcPath), "")
+      .replace(/\/index$/, "");
+    if (!path) {
+      path = "/";
+    }
+    return path;
+  }
+
+  async loadPage(srcPath: string): Page|null {
+    let layout = await this.layout();
+    let path = this.pagePath(srcPath);
+    let page = null;
+    switch (extname(srcPath)) {
+      case ".md":
+        const file = extractFrontMatter(await Deno.readTextFile(srcPath));
+        const content = await parseMarkdown(file.body);
+        layout = await this.layout(file.attrs.layout);
+        delete file.attrs.layout;
+        page = merge({
+          src: srcPath,
+          path: path,
+          view: () => m(layout, merge(file.attrs, this.config.global), m.trust(content))
+        }, file.attrs);
+        this.pages[path] = page;
+        break;
+      case ".tsx":
+        const mod = await import(srcPath);
+        page = {
+          src: srcPath,
+          path: path,
+          view: () => m(mod.default, merge({layout}, this.config.global))
+        };
+        this.pages[path] = page;
+        break;
+      // case ".json":
+      //   break;
+    }
+    return page;
+  }
+
   async loadAll() {
     for await(const e of walk(this.srcDir, {
       includeDirs: false,
@@ -137,47 +179,23 @@ export class Generator {
       if (this.ignorePath(e.path)) {
         continue;
       }
-      let relpath = e.path.replace(this.srcDir, "")
-        .replace(extname(e.path), "")
-        .replace(/\/index$/, "");
-      if (!relpath) {
-        relpath = "/";
-      }
-      let layout = await this.layout();
-      switch (extname(e.path)) {
-        case ".md":
-          const file = extractFrontMatter(await Deno.readTextFile(e.path));
-          const content = await parseMarkdown(file.body);
-          layout = await this.layout(file.attrs.layout);
-          delete file.attrs.layout;
-          this.pages.push(merge({
-            src: e.path,
-            path: relpath,
-            view: () => m(layout, merge(file.attrs, this.config.global), m.trust(content))
-          }, file.attrs));
-          break;
-        case ".tsx":
-          const mod = await import(e.path);
-          this.pages.push({
-            src: e.path,
-            path: relpath,
-            view: () => m(mod.default, merge({layout}, this.config.global))
-          });
-          break;
-        // case ".json":
-        //   break;
-      }
+      await this.loadPage(e.path);
     }
   }
 
-  async build(path: string): string|null {
-    const page = this.pages.find(p => p.path === path);
+  async rebuild(path: string): string|null {
+    const page = this.pages[path];
     if (!page) {
       return null;
     }
+    const reloaded = await this.loadPage(page.src);
+    return this.render(reloaded);
+  }
+
+  async render(page: Page): string {
     return "<!DOCTYPE html>\n"+pretty(render.sync(m(page)));
   }
-  
+
   async buildAll() {
     await this.loadAll();
     for await(const e of walk(this.srcDir, {
@@ -186,9 +204,9 @@ export class Generator {
       if (this.ignorePath(e.path)) {
         continue;
       }
-      const page = this.pages.find(p => p.src === e.path);
+      const page = this.pages[this.pagePath(e.path)];
       if (page) {
-        const out = await this.build(page.path);
+        const out = await this.render(page);
         if (out) {
           const target = `${this.destDir}${page.path}/index.html`;
           mkdirAll(dirname(target));
@@ -212,7 +230,9 @@ export class Generator {
     await this.loadAll();
     await serve(async (req) => {
       const res = middleware(req);
-      if (res) return res;
+      if (res) {
+        return res;
+      }
     
       let pathname = new URL(req.url).pathname;
     
@@ -222,8 +242,8 @@ export class Generator {
           urlRoot: ""
         });
       }
-    
-      const out = await this.build(pathname);
+      
+      const out = await this.rebuild(pathname);
       if (out) {
         return new Response(out, {
           status: 200,

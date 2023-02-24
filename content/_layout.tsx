@@ -85,7 +85,7 @@ export default view({}, ({title, site, dev}, children) => (
         <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
           <div class="md:grid md:grid-cols-2 md:gap-8">
             <div>
-              <h3 class="text-sm font-semibold leading-6 text-white">progrium.xyz</h3>
+              <span class="text-sm font-semibold leading-6 text-white">progrium.xyz</span>
               <ul role="list" class="mt-2">
                 <li>
                   <a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">Home</a>
@@ -109,7 +109,7 @@ export default view({}, ({title, site, dev}, children) => (
               </ul>
             </div>
             <div class="mt-10 md:mt-0">
-              <h3 class="text-sm font-semibold leading-6 text-white">Follow</h3>
+              <span class="text-sm font-semibold leading-6 text-white">Follow</span>
               <ul role="list" class="mt-2">
                 <li>
                   <a href="https://mas.to/@progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Mastodon</a>
@@ -128,7 +128,7 @@ export default view({}, ({title, site, dev}, children) => (
           </div>
           <div class="md:grid md:grid-cols-2 md:gap-8">
             <div>
-              <h3 class="text-sm font-semibold leading-6 text-white">Content</h3>
+              <span class="text-sm font-semibold leading-6 text-white">Content</span>
               <ul role="list" class="mt-2">
                 <li>
                   <a href="https://www.youtube.com/c/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">YouTube</a>
@@ -149,7 +149,7 @@ export default view({}, ({title, site, dev}, children) => (
               </ul>
             </div>
             <div class="mt-10 md:mt-0">
-              <h3 class="text-sm font-semibold leading-6 text-white">Contact</h3>
+              <span class="text-sm font-semibold leading-6 text-white">Contact</span>
               <ul role="list" class="mt-2">
                 <li>
                   <a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">Email</a>
