@@ -11,7 +11,7 @@ export default view({}, ({title, site, dev, description, path, date, cover_image
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@progrium" />
     <meta property="og:locale" content="en" />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content={date?"article":"website"} />
     <meta property="og:site_name" content={site} />
     <meta property="og:title" content={title||"Jeff Lindsay"} />
     <meta property="og:description" content={description} />
