@@ -2,7 +2,8 @@
 export default {
   src: "./content",
   global: {
-    site: "progrium.xyz"
+    site: "progrium.xyz",
+    cover_image: "https://progrium.xyz/photo_wide.png"
   }
 }
 
