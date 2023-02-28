@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&amp;display=swap" rel="stylesheet" type="text/css">
     <link href="/style.css" rel="stylesheet">
-    <title>Building your own Ngrok in 130 lines - progrium.xyz</title>
+    <title>Building your own Ngrok in 130 lines :: progrium.xyz</title>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@progrium">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="progrium.xyz">
+    <meta property="og:title" content="Building your own Ngrok in 130 lines">
+    <meta property="og:description" content="Remote port forwarding as a service">
+    <meta property="og:url" content="https://progrium.xyz/blog/2021/building-your-own-ngrok-in-130-lines">
+    <meta name="twitter:image" content="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k9bkp9l2mtdao7y7a29p.png">
+    <meta property="og:image" content="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k9bkp9l2mtdao7y7a29p.png">
+    <meta property="og:image:width" content="2048">
+    <meta property="og:image:height" content="1024">
+    <meta property="article:published_time" content="2021-05-27 00:00:00 &amp;#43;0000 UTC">
   </head>
 
   <body class="bg-black">
@@ -159,16 +172,16 @@ log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<
     ml, err :<span class="shj-syn-oper">=</span> vmux<span class="shj-syn-oper">.</span><span class="shj-syn-func">Listen</span>(net<span class="shj-syn-oper">.</span><span class="shj-syn-func">JoinHostPort</span>(host, port))
     <span class="shj-syn-func">fatal</span>(err)
     srv :<span class="shj-syn-oper">=</span> <span class="shj-syn-kwd">&#38;</span>http<span class="shj-syn-oper">.</span><span class="shj-syn-class">Server</span>{<span class="shj-syn-class">Handler</span>: http<span class="shj-syn-oper">.</span><span class="shj-syn-func">HandlerFunc</span>(<span class="shj-syn-kwd">func</span>(w http<span class="shj-syn-oper">.</span><span class="shj-syn-class">ResponseWriter</span>, r <span class="shj-syn-kwd">*</span>http<span class="shj-syn-oper">.</span><span class="shj-syn-class">Request</span>) {
-        public<span class="shj-syn-class">Host</span> :<span class="shj-syn-oper">=</span> strings<span class="shj-syn-oper">.</span><span class="shj-syn-func">TrimSuffix</span>(net<span class="shj-syn-oper">.</span><span class="shj-syn-func">JoinHostPort</span>(<span class="shj-syn-func">newSubdomain</span>()<span class="shj-syn-oper">+</span>host, port), <span class="shj-syn-str">":80"</span>)
-        pl, err :<span class="shj-syn-oper">=</span> vmux<span class="shj-syn-oper">.</span><span class="shj-syn-func">Listen</span>(public<span class="shj-syn-class">Host</span>)
+        publicHost :<span class="shj-syn-oper">=</span> strings<span class="shj-syn-oper">.</span><span class="shj-syn-func">TrimSuffix</span>(net<span class="shj-syn-oper">.</span><span class="shj-syn-func">JoinHostPort</span>(<span class="shj-syn-func">newSubdomain</span>()<span class="shj-syn-oper">+</span>host, port), <span class="shj-syn-str">":80"</span>)
+        pl, err :<span class="shj-syn-oper">=</span> vmux<span class="shj-syn-oper">.</span><span class="shj-syn-func">Listen</span>(publicHost)
         <span class="shj-syn-func">fatal</span>(err)
-        w<span class="shj-syn-oper">.</span><span class="shj-syn-func">Header</span>()<span class="shj-syn-oper">.</span><span class="shj-syn-func">Add</span>(<span class="shj-syn-str">"X-Public-Host"</span>, public<span class="shj-syn-class">Host</span>)
+        w<span class="shj-syn-oper">.</span><span class="shj-syn-func">Header</span>()<span class="shj-syn-oper">.</span><span class="shj-syn-func">Add</span>(<span class="shj-syn-str">"X-Public-Host"</span>, publicHost)
         w<span class="shj-syn-oper">.</span><span class="shj-syn-func">Header</span>()<span class="shj-syn-oper">.</span><span class="shj-syn-func">Add</span>(<span class="shj-syn-str">"Connection"</span>, <span class="shj-syn-str">"close"</span>)
         w<span class="shj-syn-oper">.</span><span class="shj-syn-func">WriteHeader</span>(http<span class="shj-syn-oper">.</span><span class="shj-syn-class">StatusOK</span>)
         conn, _, _ :<span class="shj-syn-oper">=</span> w<span class="shj-syn-oper">.</span>(http<span class="shj-syn-oper">.</span><span class="shj-syn-class">Hijacker</span>)<span class="shj-syn-oper">.</span><span class="shj-syn-func">Hijack</span>()
         sess :<span class="shj-syn-oper">=</span> session<span class="shj-syn-oper">.</span><span class="shj-syn-func">New</span>(conn)
         <span class="shj-syn-kwd">defer</span> sess<span class="shj-syn-oper">.</span><span class="shj-syn-func">Close</span>()
-        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"%s: start session"</span>, public<span class="shj-syn-class">Host</span>)
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"%s: start session"</span>, publicHost)
         <span class="shj-syn-kwd">go</span> <span class="shj-syn-kwd">func</span>() {
             <span class="shj-syn-kwd">for</span> {
                 conn, err :<span class="shj-syn-oper">=</span> pl<span class="shj-syn-oper">.</span><span class="shj-syn-func">Accept</span>()
@@ -185,7 +198,7 @@ log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<
             }
         }()
         sess<span class="shj-syn-oper">.</span><span class="shj-syn-func">Wait</span>()
-        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"%s: end session"</span>, public<span class="shj-syn-class">Host</span>)
+        log<span class="shj-syn-oper">.</span><span class="shj-syn-func">Printf</span>(<span class="shj-syn-str">"%s: end session"</span>, publicHost)
     })}
     srv<span class="shj-syn-oper">.</span><span class="shj-syn-func">Serve</span>(ml)
 }</div></div>
