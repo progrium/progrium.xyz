@@ -159,7 +159,7 @@ export class Generator {
         page = merge({
           src: srcPath,
           path: path,
-          view: () => m(layout, merge(file.attrs, {path}, this.config.global), m.trust(content))
+          view: () => m(layout, merge(this.config.global, file.attrs, {path}), m.trust(content))
         }, file.attrs);
         this.pages[path] = page;
         break;
@@ -168,7 +168,7 @@ export class Generator {
         page = {
           src: srcPath,
           path: path,
-          view: () => m(mod.default, merge({layout}, {path}, this.config.global))
+          view: () => m(mod.default, merge(this.config.global, {layout, path}))
         };
         this.pages[path] = page;
         break;
