@@ -1,7 +1,7 @@
 import {v,view} from "tinygen";
 export default view({
   description: "Personal homepage for Jeff Lindsay",
-  cover_image: "https://progrium.xyz/photo2.jpeg"
+  cover_image: "https://progrium.xyz/photo_wide.png"
 }, () => (
   <div>
     <div class="flex gap-8">
