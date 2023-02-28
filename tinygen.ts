@@ -14,7 +14,10 @@ import {default as m} from "npm:mithril@^2.0.3";
 import {default as render} from "npm:mithril-node-render";
 import {default as pretty} from "npm:pretty";
 
-const merge = (a, b) => Object.assign({}, a, b);
+
+// INTERNAL HELPERS
+
+const merge = (...objs) => Object.assign({}, ...objs);
 const extractFrontMatter = createExtractor({ [Format.YAML]: parseYAML as Parser });
 const exists = (pathname: string): boolean => {
   try {
@@ -39,6 +42,9 @@ const parseMarkdown = async (s: string): string => {
   }
   return out.content;
 };
+
+
+// PUBLIC API
 
 export {m as v}
 
@@ -65,20 +71,18 @@ export function pages(path?: string): Page[] {
   return Object.values(instance.pages).filter(p => p.src.startsWith(prefix));
 }
 
-interface Config {
+export interface Config {
   src: string;
   dest: string;
   port: number;
   global: Object;
-  //use: Function;
 }
 
-interface Page {
+export interface Page {
   src: string;
   path: string;
-  body?: string;
-  view: Object;
-  // ...
+  view: any;
+  // +frontmatter data
 }
 
 let instance = undefined;
@@ -127,11 +131,13 @@ export class Generator {
       const layoutMod = await import(layoutPath);
       return layoutMod.default;
     }
+    // passthrough layout
     return {view: ({children}) => children};
   }
 
   pagePath(srcPath: string): string {
-    let path = srcPath.replace(this.srcDir, "")
+    let path = srcPath
+      .replace(this.srcDir, "")
       .replace(extname(srcPath), "")
       .replace(/\/index$/, "");
     if (!path) {
@@ -153,7 +159,7 @@ export class Generator {
         page = merge({
           src: srcPath,
           path: path,
-          view: () => m(layout, merge(file.attrs, this.config.global), m.trust(content))
+          view: () => m(layout, merge(file.attrs, {path}, this.config.global), m.trust(content))
         }, file.attrs);
         this.pages[path] = page;
         break;
@@ -162,7 +168,7 @@ export class Generator {
         page = {
           src: srcPath,
           path: path,
-          view: () => m(mod.default, merge({layout}, this.config.global))
+          view: () => m(mod.default, merge({layout}, {path}, this.config.global))
         };
         this.pages[path] = page;
         break;
@@ -265,6 +271,8 @@ export class Generator {
     }, { port: this.config.port });
   }
 }
+
+// CLI
 
 export async function run() {
   const config = await import(`${Deno.cwd()}/site.ts`);

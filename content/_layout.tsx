@@ -1,5 +1,5 @@
 import {v,view} from "tinygen";
-export default view({}, ({title, site, dev}, children) => (
+export default view({}, ({title, site, dev, description, path, date, cover_image}, children) => (
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -7,10 +7,22 @@ export default view({}, ({title, site, dev}, children) => (
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet" type="text/css"></link>
     <link href="/style.css" rel="stylesheet"></link>
-    <title>{title?`${title} - ${site}`:site}</title>
+    <title>{title?`${title} :: ${site}`:`${site} :: Jeff Lindsay`}</title>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@progrium" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content={site} />
+    <meta property="og:title" content={title||"Jeff Lindsay"} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`https://progrium.xyz${path}`} />
+    {cover_image && <meta name="twitter:image" content={cover_image} />}
+    {cover_image && <meta property="og:image" content={cover_image} />}
+    {cover_image && <meta property="og:image:width" content="2048" />}
+    {cover_image && <meta property="og:image:height" content="1024" />}
+    {date && <meta property="article:published_time" content={`${date} 00:00:00 &#43;0000 UTC`} />}
   </head>
   <body class="bg-black">
-
   <header class="bg-white py-12">
     <nav class="mx-auto max-w-2xl">
       <div class="flex w-full items-center justify-between">

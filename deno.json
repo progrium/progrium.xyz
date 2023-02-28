@@ -3,7 +3,7 @@
     "jsxFactory": "v",
   },
   "tasks": {
-    "tinygen": "echo \"import {run} from 'tinygen'; run();\" | deno run --unstable -A -",
+    "tinygen": "echo \"import {run} from 'tinygen'; run();\" | deno run --unstable -A --watch -",
     "build": "deno task tinygen build",
     "serve": "deno task tinygen serve",
   },
