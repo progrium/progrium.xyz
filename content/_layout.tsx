@@ -4,6 +4,7 @@ export default view({}, ({title, site, dev, description, path, date, cover_image
   <head>
     <meta charset="UTF-8" />
     <script src="/vnd/tailwind-3.2.4.min.js"></script>
+    <link rel="icon" href="/glider.svg"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet" type="text/css"></link>
     <link href="/style.css" rel="stylesheet"></link>
