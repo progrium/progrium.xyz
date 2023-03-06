@@ -14,7 +14,6 @@ import {default as m} from "npm:mithril@^2.0.3";
 import {default as render} from "npm:mithril-node-render";
 import {default as pretty} from "npm:pretty";
 
-
 // INTERNAL HELPERS
 
 const merge = (...objs) => Object.assign({}, ...objs);
@@ -122,7 +121,9 @@ export class Generator {
     return false;
   }
 
-  async layout(name?: string): any {
+  async layout(name?: string|null): any {
+    const passthrough = {view: ({children}) => children};
+    if (name === null) return passthrough;
     let layoutPath = `${this.srcDir}/_layout.tsx`;
     if (name) {
       layoutPath = `${this.srcDir}/${name}/_layout.tsx`
@@ -131,8 +132,7 @@ export class Generator {
       const layoutMod = await import(layoutPath);
       return layoutMod.default;
     }
-    // passthrough layout
-    return {view: ({children}) => children};
+    return passthrough;
   }
 
   pagePath(srcPath: string): string {
@@ -199,7 +199,13 @@ export class Generator {
   }
 
   async render(page: Page): string {
-    return "<!DOCTYPE html>\n"+pretty(render.sync(m(page)));
+    const output = pretty(render.sync(m(page)));
+    switch (extname(page.path)) {
+      case ".xml":
+        return `<?xml version="1.0" encoding="UTF-8" ?>\n${output}`;
+      default:
+        return "<!DOCTYPE html>\n"+output;
+    }
   }
 
   async buildAll() {
@@ -214,7 +220,8 @@ export class Generator {
       if (page) {
         const out = await this.render(page);
         if (out) {
-          const target = `${this.destDir}${page.path}/index.html`;
+          const path = (extname(page.path)?page.path:`${page.path}/index.html`)
+          const target = `${this.destDir}${path}`;
           mkdirAll(dirname(target));
           await Deno.writeTextFile(target, out);
         }
