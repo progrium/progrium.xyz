@@ -62,3 +62,7 @@ pre > code > div {
   overflow-x: scroll;
   box-shadow: inset -4px -4px 6px -2px #ccc;
 }
+
+pre {
+  margin-bottom: 1rem !important;
+}
