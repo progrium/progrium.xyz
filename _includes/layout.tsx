@@ -1,4 +1,4 @@
-export default ({title, site, description, date, cover_image, children}, filters) => (
+export default ({title, site, description, url, date, cover_image, children}, filters) => (
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -15,7 +15,7 @@ export default ({title, site, description, date, cover_image, children}, filters
     <meta property="og:site_name" content={site} />
     <meta property="og:title" content={title||"Jeff Lindsay"} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={`https://progrium.xyz${filters.url(".")}`} />
+    <meta property="og:url" content={`https://progrium.xyz${url}`} />
     {cover_image && <meta name="twitter:image" content={cover_image} />}
     {cover_image && <meta property="og:image" content={cover_image} />}
     {cover_image && <meta property="og:image:width" content="2048" />}
