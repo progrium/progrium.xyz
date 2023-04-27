@@ -1,6 +1,6 @@
 ---
 title: Use Mac APIs and build Mac apps with Go
-layout: blog
+layout: blog.njk
 date: "2021-02-02"
 description: An Objective-C bridge for Go with bindings to common Mac APIs
 tags: go, showdev, productivity, mac

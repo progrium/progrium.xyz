@@ -1,6 +1,6 @@
 ---
 title: Apple API schemas for code generation and more
-layout: blog
+layout: blog.njk
 date: "2021-04-16"
 description: Why I love API schemas and built a tool to generate schemas from Apple documentation.
 tags: programming, showdev, go

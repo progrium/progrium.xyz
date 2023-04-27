@@ -1,6 +1,6 @@
 ---
 title: Cross-platform Native APIs Made Accessible with Apptron
-layout: blog
+layout: blog.njk
 date: "2022-07-01"
 description: Apptron is a software primitive that lets you drive native platform APIs using the technologies you’re already familiar with, enabling cross-platform webview apps and more.
 tags: showdev, programming, opensource

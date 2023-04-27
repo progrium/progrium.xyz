@@ -1,6 +1,6 @@
 ---
 title: Making the world more programmable
-layout: blog
+layout: blog.njk
 date: "2021-01-04"
 description: A draft talk I made 5 years ago trying to communicate my mission
 tags: devlog, ptc, progrium, talk

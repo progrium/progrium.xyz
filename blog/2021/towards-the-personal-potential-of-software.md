@@ -1,6 +1,6 @@
 ---
 title: Towards the Personal Potential of Software
-layout: blog
+layout: blog.njk
 date: "2021-07-05"
 description: A midyear review and preview of what's coming.
 tags: programming, devlog, software

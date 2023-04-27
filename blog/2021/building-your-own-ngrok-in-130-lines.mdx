@@ -1,11 +1,12 @@
 ---
 title: Building your own Ngrok in 130 lines
-layout: blog
+layout: blog.njk
 date: "2021-05-27"
 description: Remote port forwarding as a service
 tags: programming, showdev, go
 cover_image: https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k9bkp9l2mtdao7y7a29p.png
 ---
+
 Running a local development server for your app is pretty common, but what if you wanted somebody else to access it? Maybe for a demo, or maybe to debug webhook integrations. If you've ever used [Ngrok](https://ngrok.com/) (or perhaps the original [localtunnel](https://github.com/progrium/localtunnel)), you know what I'm talking about. 
 
 Today we're going to make a system that emulates the core functionality of Ngrok, exposing a localhost HTTP server via a public URL. 

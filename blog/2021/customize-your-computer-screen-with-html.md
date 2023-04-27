@@ -1,6 +1,6 @@
 ---
 title: Customize your computer screen with HTML and JavaScript
-layout: blog
+layout: blog.njk
 date: "2021-03-30"
 description: A local webpage screen overlay for customizing your computing experience
 tags: webdev, showdev, go, mac

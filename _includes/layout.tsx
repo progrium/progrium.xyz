@@ -1,11 +1,10 @@
-import {v,view} from "tinygen";
-export default view({}, ({title, site, dev, description, path, date, cover_image}, children) => (
+export default ({title, site, description, date, cover_image, children}, filters) => (
 <html>
   <head>
     <meta charset="UTF-8" />
     <script src="/vnd/tailwind-3.2.4.min.js"></script>
     <link rel="icon" href="/glider.svg"></link>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet" type="text/css"></link>
     <link href="/style.css" rel="stylesheet"></link>
     <title>{title?`${title} :: ${site}`:`${site} :: Jeff Lindsay`}</title>
@@ -16,12 +15,12 @@ export default view({}, ({title, site, dev, description, path, date, cover_image
     <meta property="og:site_name" content={site} />
     <meta property="og:title" content={title||"Jeff Lindsay"} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={`https://progrium.xyz${path}`} />
+    <meta property="og:url" content={`https://progrium.xyz${filters.url(".")}`} />
     {cover_image && <meta name="twitter:image" content={cover_image} />}
     {cover_image && <meta property="og:image" content={cover_image} />}
     {cover_image && <meta property="og:image:width" content="2048" />}
     {cover_image && <meta property="og:image:height" content="1024" />}
-    {date && <meta property="article:published_time" content={`${date} 00:00:00 &#43;0000 UTC`} />}
+    <meta property="article:published_time" content={filters.date(date, "ATOM")} />
   </head>
   <body class="bg-black">
   <header class="bg-white py-12">
@@ -183,16 +182,6 @@ export default view({}, ({title, site, dev, description, path, date, cover_image
     </div>
   </footer>
 
-  {(dev)?<script src="https://deno.land/x/refresh/client.js"></script>:null}
   </body>
 </html>
-));
-{/* <div class="-ml-12 h-20 w-20 brightness-125 grayscale hover:grayscale-0 rounded-full hidden lg:block" 
-              title="Jeff Lindsay"
-              style={{
-                background: "url(/photo.jpeg)",
-                backgroundSize: "115%",
-                backgroundPosition: "-5px -6px"
-              }}>
-              
-            </div> */}
+)

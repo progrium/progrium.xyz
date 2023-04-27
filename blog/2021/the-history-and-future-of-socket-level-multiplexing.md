@@ -1,6 +1,6 @@
 ---
 title: The History and Future of Socket-level Multiplexing
-layout: blog
+layout: blog.njk
 date: "2021-05-06"
 description: Towards a socket API with builtin stream muxing
 tags: programming, architecture, api

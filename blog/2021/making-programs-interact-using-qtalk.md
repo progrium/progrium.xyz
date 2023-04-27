@@ -1,6 +1,6 @@
 ---
 title: Making programs interact using qtalk
-layout: blog
+layout: blog.njk
 date: "2021-08-24"
 description: qtalk-go is a versatile IPC/RPC library for Go
 tags: programming, showdev, go

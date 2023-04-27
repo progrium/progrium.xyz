@@ -1,6 +1,6 @@
 ---
 title: Progrium Technology Thesis
-layout: blog
+layout: blog.njk
 date: "2022-03-15"
 description: How and why I'm building the "Photoshop of software" out of generative building blocks.
 tags: showdev, programming, opensource

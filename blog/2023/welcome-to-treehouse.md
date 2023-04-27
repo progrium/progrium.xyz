@@ -1,6 +1,6 @@
 ---
 title: Welcome to Treehouse
-layout: blog
+layout: blog.njk
 date: "2023-02-23"
 description: Announcing Treehouse, an open source note-taking frontend and will evolve into something much more.
 tags: devlog, treehouse, opensource

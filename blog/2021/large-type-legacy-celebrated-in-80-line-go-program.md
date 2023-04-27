@@ -1,6 +1,6 @@
 ---
 title: Large Type legacy celebrated in 80 line Go program
-layout: blog
+layout: blog.njk
 date: "2021-01-15"
 description: A tiny, standalone largetype command-line utility
 tags: go, showdev, productivity, programming,

@@ -1,0 +1,19 @@
+---
+layout: "layout.tsx"
+---
+<main class="mb-8 mx-auto max-w-xl">
+  {% for year in nav.menu("/blog/").children | reverse %}
+  <div>
+    <h3>{{ year.slug }}</h3>
+    <ul class="mb-8">
+      {% for post in year.children %}
+        <li class="flex space-x-2 my-2">
+          <span class="text-gray-400 w-24">{{post.data.date | date("DATE") }}</span>
+          <a class="underline" href="/blog/{{ year.slug }}/{{ post.slug }}">{{post.data.title}}</a>
+        </li>
+      {% endfor %}  
+    </ul>
+  </div>
+  {% endfor %}
+  <em>Older posts coming soon!</em>
+</main>

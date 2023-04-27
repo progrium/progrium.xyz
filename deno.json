@@ -1,13 +1,14 @@
 {
-  "compilerOptions": {
-    "jsxFactory": "v",
-  },
   "tasks": {
-    "tinygen": "echo \"import {run} from 'tinygen'; run();\" | deno run --unstable -A --watch -",
-    "build": "deno task tinygen build",
-    "serve": "deno task tinygen serve",
+    "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
+    "build": "deno task lume",
+    "serve": "deno task lume -s"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:preact"
   },
   "imports": {
-    "tinygen": "./tinygen.ts"
+    "lume/": "https://deno.land/x/lume@v1.16.2/"
   }
 }
