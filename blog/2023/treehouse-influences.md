@@ -5,7 +5,7 @@ date: "2023-04-27"
 tags: devlog, treehouse, opensource
 description: "A quick tour of some of the influences for the Treehouse frontend and where it fits in the ecosystem."
 ---
-12
+
 Over the past few months, we've built the [Treehouse frontend framework](https://treehouse.sh) into an elegant, quality outliner that's open source, extensible, and gives you control of your data. I’d like to share some of the design influences for the Treehouse frontend, which should give a sense of the unique direction Treehouse is going from here. 
 
 The biggest influences for Treehouse are Tana, Notion, and Obsidian. These three represent the state of the art of personal and collaborative information management, sometimes simplified as note-taking tools. However, "note-taking tools" sells them short as they go beyond note-taking and information management. For lack of a better descriptor, many consider them [tools for thought](https://www.forthought.tools/).
