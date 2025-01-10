@@ -1,0 +1,11 @@
+package layouts
+
+import "progrium.xyz/model"
+
+templ Blog(view model.View) {
+    @Main(view) {
+        <main>
+            { children... }
+        </main>
+    }
+}

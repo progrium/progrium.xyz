@@ -1,0 +1,21 @@
+---
+title: "INDEX"
+layout: "main"
+---
+<main class="mb-8 mx-auto max-w-xl">
+{{- range nav "blog" | reverse }}
+  <div>
+    <h3>{{ .Slug }}</h3>
+    <ul class="mb-8">
+    {{- range .Children | reverse }}
+        <li class="flex space-x-2 my-2">
+          <span class="text-gray-400 w-24">{{ .Date }}</span>
+          <a class="underline" href="{{ .Path }}">{{ .Title }}</a>
+        </li>
+    {{- end }}  
+    </ul>
+  </div>
+{{- end }}
+
+  <em>Older posts coming soon!</em>
+</main>
