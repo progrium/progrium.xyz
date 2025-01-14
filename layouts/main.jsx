@@ -1,14 +1,4 @@
-package layouts
-
-import "progrium.xyz/model"
-
-templ Main(view model.View) {
-    // var title string
-    // if view.Title != "" {
-    //     title = fmt.Sprintf("%s :: %s", view.Title, view.Site)
-    // } else {
-    //     title = fmt.Sprintf("%s :: Jeff Lindsay", view.Site)
-    // }
+const Component = (view, content) => (
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +11,7 @@ templ Main(view model.View) {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@progrium" />
     <meta property="og:locale" content="en" />
-    <!--<meta property="og:type" content={date?"article":"website"} />
+    {/*<meta property="og:type" content={date?"article":"website"} />
     <meta property="og:site_name" content={site} />
     <meta property="og:title" content={title||"Jeff Lindsay"} />
     <meta property="og:description" content={description} />
@@ -30,7 +20,7 @@ templ Main(view model.View) {
     {cover_image && <meta property="og:image" content={cover_image} />}
     {cover_image && <meta property="og:image:width" content="2048" />}
     {cover_image && <meta property="og:image:height" content="1024" />}
-    <meta property="article:published_time" content={filters.date(date, "ATOM")} />-->
+    <meta property="article:published_time" content={filters.date(date, "ATOM")} />*/}
   </head>
   <body class="bg-black">
   <header class="bg-white py-12">
@@ -42,8 +32,8 @@ templ Main(view model.View) {
           </a>
           <div class="space-x-8 ml-10" style="padding-bottom: 1px;">
             <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">Blog</a>
-            <!-- <a href="/talks" class="text-base decoration-solid font-normal hover:text-gray-500">Talks</a>
-            <a href="/about" class="text-base decoration-solid font-normal hover:text-gray-400">About</a> -->
+            {/*<a href="/talks" class="text-base decoration-solid font-normal hover:text-gray-500">Talks</a>
+            <a href="/about" class="text-base decoration-solid font-normal hover:text-gray-400">About</a> */}
             <a href="https://progrium.com" target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500">
               Work
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="inline ml-1" style="margin-bottom: 3px;" viewBox="0 0 16 16">
@@ -93,7 +83,7 @@ templ Main(view model.View) {
 
   <section class="bg-white flex flex-col justify-center pb-16" style="min-height: 50vh;">
     <div class="mx-auto max-w-2xl">
-      { children... }
+      { content }
     </div>
   </section>
 
@@ -117,13 +107,13 @@ templ Main(view model.View) {
                   <a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">Blog</a>
                 </li>
 
-                <!-- <li>
+                {/*<li>
                   <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Talks</a>
                 </li> 
 
                 <li>
                   <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About</a>
-                </li> -->
+                </li> */}
 
                 <li>
                   <a href="https://progrium.com" class="text-sm leading-6 text-gray-300 hover:text-white">Work</a>
@@ -194,4 +184,4 @@ templ Main(view model.View) {
 
   </body>
 </html>
-}
+)

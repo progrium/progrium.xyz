@@ -5,7 +5,6 @@ package main
 
 import (
 	"bytes"
-	"context"
 	"fmt"
 	"html/template"
 	"io"
@@ -22,16 +21,15 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/a-h/templ"
 	"github.com/magefile/mage/sh"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting"
 	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/renderer/html"
 	"go.abhg.dev/goldmark/frontmatter"
 	"gopkg.in/yaml.v3"
-	"progrium.xyz/layouts"
+	"progrium.xyz/jsxtemplate"
 	"progrium.xyz/model"
-	"tractor.dev/toolkit-go/engine/fs/watchfs"
 )
 
 const (
@@ -243,28 +241,47 @@ type PageGenerator interface {
 // Implement generators for markdown and template files
 type MarkdownGenerator struct{}
 type TemplateGenerator struct{}
+type JsxGenerator struct{}
 
 // Map file extensions to their generators
 var generators = map[string]PageGenerator{
-	"md":       &MarkdownGenerator{},
-	"template": &TemplateGenerator{},
+	"md":          &MarkdownGenerator{},
+	"template":    &TemplateGenerator{},
+	"jsxtemplate": &JsxGenerator{},
 }
 
-// Common rendering logic for both generators
-func renderWithLayout(meta model.View, contents templ.Component, w io.Writer) error {
-	ctx := templ.WithChildren(context.Background(), contents)
-	layout, err := layouts.Get(meta.Layout)
+func com(name string, args ...any) (template.HTML, error) {
+	filename := fmt.Sprintf("./components/%s.jsx", name)
+	module, err := jsxtemplate.NewModule(name).ParseFile(filename)
 	if err != nil {
-		return err
+		return "", err
 	}
-	return layout(meta).Render(ctx, w)
+	var buf bytes.Buffer
+	err = module.Execute(&buf, nil, args...)
+	if err != nil {
+		return "", err
+	}
+	return template.HTML(buf.String()), nil
 }
 
 func (mg *MarkdownGenerator) Generate(b []byte, w io.Writer, path string) error {
-	md := goldmark.New(goldmark.WithExtensions(highlighting.Highlighting, &frontmatter.Extender{}))
+	var preprocessed bytes.Buffer
+	tmpl, err := template.New(path).Funcs(template.FuncMap{
+		"com": com,
+	}).Parse(string(b))
+	if err != nil {
+		return err
+	}
+	if err := tmpl.Execute(&preprocessed, nil); err != nil {
+		return err
+	}
+
+	md := goldmark.New(goldmark.WithExtensions(highlighting.Highlighting, &frontmatter.Extender{}), goldmark.WithRendererOptions(
+		html.WithUnsafe(),
+	))
 	mdCtx := parser.NewContext()
 	var buf bytes.Buffer
-	if err := md.Convert(b, &buf, parser.WithContext(mdCtx)); err != nil {
+	if err := md.Convert(preprocessed.Bytes(), &buf, parser.WithContext(mdCtx)); err != nil {
 		return err
 	}
 
@@ -274,12 +291,7 @@ func (mg *MarkdownGenerator) Generate(b []byte, w io.Writer, path string) error 
 		return err
 	}
 
-	contents := templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
-		_, err := buf.WriteTo(w)
-		return err
-	})
-
-	return renderWithLayout(meta, contents, w)
+	return renderWithJSXLayout(meta, buf, w)
 }
 
 func (tg *TemplateGenerator) Generate(b []byte, w io.Writer, path string) error {
@@ -289,19 +301,60 @@ func (tg *TemplateGenerator) Generate(b []byte, w io.Writer, path string) error 
 		return err
 	}
 
-	contents := templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
-		tmpl, err := template.New(path).Funcs(template.FuncMap{
-			"upper":   strings.ToUpper,
-			"nav":     nav,
-			"reverse": reverseSlice,
-		}).Parse(string(parts[2]))
+	var contents bytes.Buffer
+	tmpl, err := template.New(path).Funcs(template.FuncMap{
+		"upper":   strings.ToUpper,
+		"nav":     nav,
+		"reverse": reverseSlice,
+	}).Parse(string(parts[2]))
+	if err != nil {
+		return err
+	}
+	if err := tmpl.Execute(&contents, meta); err != nil {
+		return err
+	}
+
+	return renderWithJSXLayout(meta, contents, w)
+}
+
+func (jg *JsxGenerator) Generate(b []byte, w io.Writer, path string) error {
+	module, err := jsxtemplate.NewModule(path).Parse(string(b))
+	if err != nil {
+		return err
+	}
+
+	meta := model.DefaultView()
+
+	var contents bytes.Buffer
+	err = module.Execute(&contents, &meta, meta)
+	if err != nil {
+		return err
+	}
+
+	return renderWithJSXLayout(meta, contents, w)
+}
+
+func renderWithJSXLayout(meta model.View, contents bytes.Buffer, w io.Writer) error {
+	layoutName := meta.Layout
+	filename := fmt.Sprintf("./layouts/%s.jsx", meta.Layout)
+	module, err := jsxtemplate.NewModule(filename).ParseFile(filename)
+	if err != nil {
+		return err
+	}
+	var buf bytes.Buffer
+	err = module.Execute(&buf, &meta, meta, contents.String())
+	if err != nil {
+		return err
+	}
+	if meta.Layout != "" && meta.Layout != layoutName {
+		return renderWithJSXLayout(meta, buf, w)
+	} else {
+		_, err = w.Write(buf.Bytes())
 		if err != nil {
 			return err
 		}
-		return tmpl.Execute(w, meta)
-	})
-
-	return renderWithLayout(meta, contents, w)
+	}
+	return nil
 }
 
 // Simplified generatePage function
@@ -310,7 +363,7 @@ func generatePage(path string, w io.Writer) error {
 	var b []byte
 	var err error
 
-	for _, suffix := range []string{".md", ".template", "/index.md", "/index.template"} {
+	for _, suffix := range []string{".md", ".template", ".jsxtemplate", "/index.md", "/index.template", "/index.jsxtemplate"} {
 		b, err = os.ReadFile(path + suffix)
 		if err == nil {
 			format = strings.TrimPrefix(filepath.Ext(suffix), ".")
@@ -346,24 +399,6 @@ func Serve() error {
 	if err != nil {
 		panic(err)
 	}
-
-	go func() {
-		fsys := watchfs.New(os.DirFS("/").(fs.StatFS))
-		w, err := fsys.Watch(strings.TrimPrefix(wd, "/"), &watchfs.Config{
-			Recursive: true,
-		})
-		if err != nil {
-			panic(err)
-		}
-		for event := range w.Iter() {
-			if filepath.Ext(event.Path) != ".templ" {
-				continue
-			}
-			if err := sh.Run("templ", "generate"); err != nil {
-				fmt.Println(err)
-			}
-		}
-	}()
 
 	staticDir := os.DirFS(path.Join(wd, "static"))
 
