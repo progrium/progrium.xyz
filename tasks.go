@@ -18,9 +18,11 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+	"sync"
 	"syscall"
 	"time"
 
+	"github.com/gorilla/websocket"
 	"github.com/magefile/mage/sh"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting"
@@ -30,6 +32,7 @@ import (
 	"gopkg.in/yaml.v3"
 	"progrium.xyz/jsxtemplate"
 	"progrium.xyz/model"
+	"tractor.dev/toolkit-go/engine/fs/watchfs"
 )
 
 const (
@@ -392,6 +395,8 @@ func quickExit() {
 	}()
 }
 
+var reloaders sync.Map
+
 func Serve() error {
 	quickExit()
 
@@ -402,9 +407,37 @@ func Serve() error {
 
 	staticDir := os.DirFS(path.Join(wd, "static"))
 
+	go func() {
+		wfs := watchfs.New(os.DirFS("/").(fs.StatFS))
+		w, err := wfs.Watch(strings.TrimPrefix(wd, "/"), &watchfs.Config{
+			Recursive: true,
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		for event := range w.Iter() {
+			if strings.HasSuffix(event.Path, ".md") ||
+				strings.HasSuffix(event.Path, ".jsx") ||
+				strings.HasSuffix(event.Path, ".template") {
+
+				reloaders.Range(func(key, value any) bool {
+					if conn, ok := key.(*websocket.Conn); ok {
+						conn.Close()
+					}
+					return true
+				})
+			}
+		}
+	}()
+
 	http.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/favicon.ico" {
 			http.Error(w, "Not found", http.StatusNotFound)
+			return
+		}
+
+		if r.URL.Path == "/.live-reload" {
+			handleWebSocket(w, r)
 			return
 		}
 
@@ -417,11 +450,27 @@ func Serve() error {
 			}
 		}
 
-		err = generatePage(fmt.Sprintf("./content/%s", strings.TrimPrefix(r.URL.Path, "/")), w)
+		w.Header().Set("Content-Type", "text/html")
+
+		var buf bytes.Buffer
+		err = generatePage(fmt.Sprintf("./content/%s", strings.TrimPrefix(r.URL.Path, "/")), &buf)
 		if err != nil {
 			log.Println("generate:", err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
+
+		htmlContent := buf.String()
+		headEndIndex := strings.Index(strings.ToLower(htmlContent), "</body>")
+		if headEndIndex == -1 {
+			http.Error(w, "Malformed HTML file: missing </body> tag.", http.StatusInternalServerError)
+			return
+		}
+		part1 := htmlContent[:headEndIndex]
+		part2 := htmlContent[headEndIndex:]
+		w.Write([]byte(part1))
+		w.Write([]byte(`<script>(new WebSocket("/.live-reload")).onclose = () => window.location.reload();</script>`))
+		w.Write([]byte(part2))
+
 	}))
 	fmt.Println("serving on http://localhost:8088 ...")
 	if err := http.ListenAndServe(":8088", nil); err != nil {
@@ -431,3 +480,30 @@ func Serve() error {
 }
 
 // var Default = Install
+
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true // Adjust this to match your needs
+	},
+}
+
+func handleWebSocket(w http.ResponseWriter, r *http.Request) {
+	conn, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println("upgrade:", err)
+		return
+	}
+
+	reloaders.Store(conn, true)
+	defer func() {
+		reloaders.Delete(conn)
+		conn.Close()
+	}()
+
+	// Keep the connection open
+	for {
+		if _, _, err := conn.NextReader(); err != nil {
+			break
+		}
+	}
+}

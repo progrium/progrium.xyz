@@ -6,7 +6,8 @@ description: "In this demo I use the Apptron build command to create an executab
 tags: showdev, html, webdev
 cover_image: https://i3.ytimg.com/vi/7zsCQGOEBRU/maxresdefault.jpg
 ---
-<comp.Youtube id="7zsCQGOEBRU" />
+
+{{ com "Youtube" "7zsCQGOEBRU" }}
 
 In this demo I use the [Apptron](https://progrium.com/blog/apptron-announcement/) build command to create an executable from a single HTML file. No setup, no configuration. If you want to change how the window looks, you can add a meta tag to your HTML file. It's not only simple, it's fast.
 

@@ -7,7 +7,7 @@ tags: showdev, html, webdev
 cover_image: https://i3.ytimg.com/vi/i9nNUOHF7G4/hqdefault.jpg
 ---
 
-<comp.Youtube id="i9nNUOHF7G4" />
+{{ com "Youtube" "i9nNUOHF7G4" }}
 
 In this week's demo I built a background application using HTML and [Apptron](https://progrium.com/blog/apptron-announcement/). It may seem weird to involve a webview at all for a background app, which is why this was not a use case I had planned, but I was pleasantly surprised to discover how this turned out.
 

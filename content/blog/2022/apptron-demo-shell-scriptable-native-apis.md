@@ -6,7 +6,8 @@ description: "In this demo I show off the rest of the Apptron CLI, which exposes
 tags: showdev, html, devops
 cover_image: "https://i3.ytimg.com/vi/UHFS4STFYXM/maxresdefault.jpg"
 ---
-<comp.Youtube id="UHFS4STFYXM" />
+
+{{ com "Youtube" "UHFS4STFYXM" }}
 
 In this demo I show off the rest of the [Apptron](https://progrium.com/blog/apptron-announcement/) CLI, which exposes most of the cross-platform APIs as commands. These commands make great shell scriptable utilities, and you can see how they've been designed to facilitate this. By the end, we'll have created an app indicator (systray) icon and menu that's created and driven by a shell script.
 

@@ -7,7 +7,8 @@ tags: showdev, html, golang, webdev
 cover_image: https://i3.ytimg.com/vi/XU-vrmA7j4U/maxresdefault.jpg
 # Use a ratio of 100:42 for best results.
 ---
-<comp.Youtube id="XU-vrmA7j4U" />
+
+{{ com "Youtube" "XU-vrmA7j4U" }}
 
 In this demo, I use the [Apptron](https://progrium.com/blog/apptron-announcement/) API from Go to build a simple birthday card application defined by HTML and CSS. I also explore the architectural approach of Apptron compared to directly working with platform native APIs.
 
