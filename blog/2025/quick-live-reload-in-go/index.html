@@ -3,13 +3,13 @@
     <meta charset="UTF-8"/>
     <script src="/assets/vnd/tailwind-3.2.4.min.js"></script>
     <link rel="icon" href="/assets/glider.svg"></link>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"></link>
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css" rel="stylesheet"></link>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"></link>
     <link href="/assets/style.css" rel="stylesheet"></link>
     <title>
-      Welcome to Treehouse :: progrium.xyz
+      Quick Live Reload in Go :: progrium.xyz
     </title>
-    <meta name="twitter:card" content="summary_large_image"/>
+    <meta content="summary_large_image" name="twitter:card"/>
     <meta content="@progrium" name="twitter:creator"/>
     <meta property="og:locale" content="en"/>
   </head>
@@ -22,14 +22,14 @@
               progrium.xyz
             </a>
             <div class="space-x-8 ml-10" style="padding-bottom: 1px;">
-              <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">
+              <a class="text-base decoration-solid font-normal hover:text-gray-500" href="/blog">
                 Blog
               </a>
-              <a target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500" href="https://progrium.com">
+              <a href="https://progrium.com" target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500">
                 Work
-                <svg height="12" fill="currentColor" class="inline ml-1" style="margin-bottom: 3px;" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="12">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="inline ml-1" style="margin-bottom: 3px;" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                  <path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" fill-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
                 </svg>
               </a>
             </div>
@@ -59,7 +59,7 @@
                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
               </svg>
             </a>
-            <a href="https://www.youtube.com/c/progrium" class="hover:text-gray-500" style="margin-top: 2px;">
+            <a style="margin-top: 2px;" href="https://www.youtube.com/c/progrium" class="hover:text-gray-500">
               <span class="sr-only">
                 YouTube
               </span>
@@ -84,161 +84,15 @@
         <main class="blog mb-8 max-w-xl">
           <div class="text-center">
             <span class="text-gray-400 text-sm font-bold">
-              2023-02-23
+              2025-01-22
             </span>
             <h1 class="mb-8">
-              Welcome to Treehouse
+              Quick Live Reload in Go
             </h1>
           </div>
           <div class="body mx-auto text-left text-gray-800">
             <p>
-              I'm excited to announce the start of a new major project that I'll be sharing the journey of on this fancy new blog. The project is called
-              <a href="https://treehouse.sh/">
-                Treehouse
-              </a>
-              , which is starting as an open source note-taking frontend and will evolve into something much more.
-            </p>
-            <p>
-              <img src="https://treehouse.sh/photos/hero-image.png" alt="Treehouse screenshot">
-            </p>
-            <p>
-              We're creating a simple, hackable kernel of a note-taking tool as a web frontend that can be extended and customized by developers. Then we'll use that frontend to build a new kind of note-taking product. Today we have an early preview of our first minimum viable prototype of the frontend, and we'll be finishing up this release in the open on GitHub.
-            </p>
-            <p>
-              The
-              <a href="https://github.com/treehousedev/treehouse">
-                open source project
-              </a>
-              is a functional app frontend that you can deploy and back in various ways. For developers, this &quot;bring your own backend&quot; approach makes Treehouse a great starting point to build your own note-taking tool, just as we intend to do. We also have pre-made backends for those who want to use it with little-to-no programming. Either way, you'll always own your data, and now the system presenting it to you as well.
-            </p>
-            <p>
-              In this post, I'm going to talk about our minimum viable prototype and the approach we're taking with Treehouse as an open source project.
-            </p>
-            <h2>
-              Out of the Box
-            </h2>
-            <p>
-              While inspired by powerful tools like
-              <a href="https://www.notion.so/">
-                Notion
-              </a>
-              ,
-              <a href="https://tana.inc/">
-                Tana
-              </a>
-              , and
-              <a href="https://obsidian.md/">
-                Obsidian
-              </a>
-              , we wanted to boil our initial goal down to the essentials while still being usable enough to use ourselves. As we continue to plan our prototype release milestone, we'd love to hear what you think is essential for you to have in a tool and platform like this, but here is what to expect as a baseline.
-            </p>
-            <h3>
-              Outliner with Markdown Pages
-            </h3>
-            <p>
-              At the heart of Treehouse is a graph-like system I've been developing called Manifold. This will play a big part in the long-term extensibility of Treehouse, which I'll talk more about in the future. For now, this maps very cleanly to the outliner model popularized by Workflowy, Tana, and others.
-            </p>
-            <p>
-              However, I'm also a fan of Notion-style pages and Obsidian's commitment to working with plain Markdown files. The Manifold system allows us to make certain nodes into Markdown pages. This hybrid model gets us the best of both worlds with room for even more possibilities later on.
-            </p>
-            <h3>
-              Quick Add and Daily Notes
-            </h3>
-            <p>
-              Being able to quickly get thoughts and information into the system has been a key aspect of every good note-taking system. This can be exposed a number of ways from browser extensions to desktop shortcuts, but what makes any &quot;quick add&quot; functionality quick is not having to think about where it will be organized.
-            </p>
-            <p>
-              Luckily, &quot;daily notes&quot; has become such a common pattern that many recent tools have managed daily notes built-in. This typical gives you a &quot;today&quot; note that is automatically organized into a calendar-like structure. This conveniently becomes the perfect destination for &quot;quick add&quot; notes.
-            </p>
-            <h3>
-              Full-text Search
-            </h3>
-            <p>
-              Whether you are an obsessive organizer or are too busy to take the time, solid full-text search is basically a necessity. It's how we quickly get to our data.
-            </p>
-            <p>
-              Out of the box we have a full-text search that doesn't require a backend. However, our pluggable backend will allow you to power search in a number of ways, and also opens up the ability to search into external systems that are important to you.
-            </p>
-            <h3>
-              Built-in Backends
-            </h3>
-            <p>
-              &quot;Bring your own backend&quot; is a critical part of the design of this project, but Treehouse also needs to be usable by people who prefer not to
-              <em>
-                build
-              </em>
-              their own backend. Our prototype release is planned to include a handful of built-in backends to get started with.
-            </p>
-            <p>
-              Our preview demo is using a localStorage backend, which works for development and special use cases. Of course, we will have a simple local filesystem backend for desktop scenarios, similar to Obsidian.
-            </p>
-            <p>
-              However, we're most excited for the GitHub backend. This functions similarly to the local filesystem backend, but it would be versioned in a central repository on your GitHub account and be accessible on any online platform.
-            </p>
-            <p>
-              Backends will not only let you extend storage, search, and authentication, but other aspects in the future.
-            </p>
-            <h2>
-              Project Overview
-            </h2>
-            <p>
-              The Treehouse codebase and open source project is as much the product as its features. The entire user and developer experience is being designed around simplicity and human ergonomics.
-            </p>
-            <p>
-              The Treehouse frontend is built with web technologies intended for use across web, mobile, and desktop platforms. The project is written in TypeScript using
-              <a href="https://deno.land/">
-                Deno
-              </a>
-              as its JavaScript toolchain.
-            </p>
-            <p>
-              The JavaScript ecosystem is a mess, but Deno provides a forward-looking, self-contained toolchain that's easy to love. We actually have a zero Node.js policy and avoid NPM modules as much as possible.
-            </p>
-            <p>
-              With minimal dependencies and an ongoing effort to keep the codebase small, it will always be easy to understand the entire Treehouse system. This will be further supported with a focus on documentation, both API docs and guides.
-            </p>
-            <p>
-              We're using a permissive open source license, allowing you to use or change our code as you see fit. Contribution and participation is welcome, but so is simply consuming downstream.
-            </p>
-            <p>
-              The project is actively being developed but we keep a
-              <a href="https://treehouse.sh/demo/">
-                preview demo
-              </a>
-              running off the main branch that should always be in working order.
-            </p>
-            <h2>
-              Coming Soon
-            </h2>
-            <p>
-              I'm excited to give you a deeper look at the project stack in a future post. For now, keep an eye out for the next post digging into the influences for Treehouse. We'll also try to answer &quot;why another note-taking tool&quot;, and tease some long-term ideas for the future.
-            </p>
-            <p>
-              Lastly, I want to mention the project is being developed in the open, not just with the code on GitHub, but most of my work is streamed and archived on
-              <a href="https://www.twitch.tv/progrium">
-                Twitch
-              </a>
-              . Feel free to come and co-work with me.
-            </p>
-            <p>
-              Thanks for reading, and a big thanks to my
-              <a href="https://github.com/sponsors/progrium/">
-                sponsors
-              </a>
-              for supporting this kind of open source work.
-            </p>
-            <p>
-              <em>
-                Check out more at
-                <a href="https://treehouse.sh">
-                  treehouse.sh
-                </a>
-                or
-                <a href="http://eepurl.com/iluc5v">
-                  subscribe to our mailing list
-                </a>
-                for updates!
-              </em>
+              Hello world
             </p>
           </div>
         </main>
@@ -247,7 +101,7 @@
     <footer class="bg-black py-16">
       <div class="mx-auto max-w-2xl">
         <div class="xl:grid xl:grid-cols-4 xl:gap-8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140" stroke="white">
+          <svg stroke="white" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140">
             <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"/>
             <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"/>
           </svg>
@@ -257,7 +111,7 @@
                 <span class="text-sm font-semibold leading-6 text-white">
                   progrium.xyz
                 </span>
-                <ul role="list" class="mt-2">
+                <ul class="mt-2" role="list">
                   <li>
                     <a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Home
@@ -315,7 +169,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://soundcloud.com/progrium">
+                    <a href="https://soundcloud.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Soundcloud
                     </a>
                   </li>
@@ -337,7 +191,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="https://discord.gg/JraBdNHuuP" class="text-sm leading-6 text-gray-300 hover:text-white">
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://discord.gg/JraBdNHuuP">
                       Discord
                     </a>
                   </li>
