@@ -2,6 +2,7 @@
 title: "VSCode Web"
 date: "2025-04-01"
 tags: devlog
+draft: true
 ---
 
 # vscode-web
