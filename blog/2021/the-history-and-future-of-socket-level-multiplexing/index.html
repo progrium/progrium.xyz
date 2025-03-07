@@ -3,7 +3,7 @@
     <meta charset="UTF-8"/>
     <link rel="alternate" type="application/rss+xml" title="progrium.xyz RSS" href="https://progrium.xyz/blog/feed.xml"></link>
     <script src="/assets/vnd/tailwind-3.2.4.min.js"></script>
-    <link rel="icon" href="/assets/glider.svg"></link>
+    <link href="/assets/glider.svg" rel="icon"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"></link>
     <link href="/assets/style.css" rel="stylesheet"></link>
@@ -18,9 +18,9 @@
     <meta property="og:title" content="The History and Future of Socket-level Multiplexing"/>
     <meta property="og:description" content="Towards a socket API with builtin stream muxing"/>
     <meta property="og:url" content="https://progrium.xyz/blog/2021/the-history-and-future-of-socket-level-multiplexing"/>
-    <meta name="twitter:image" content="https://progrium.xyz/photo_wide.png"/>
+    <meta content="https://progrium.xyz/photo_wide.png" name="twitter:image"/>
     <meta property="og:image" content="https://progrium.xyz/photo_wide.png"/>
-    <meta content="2048" property="og:image:width"/>
+    <meta property="og:image:width" content="2048"/>
     <meta property="og:image:height" content="1024"/>
     <meta property="article:published_time" content="2021-05-06T00:00:00+00:00"/>
   </head>
@@ -32,7 +32,7 @@
             <a href="/" class="text-xl font-black decoration-solid">
               progrium.xyz
             </a>
-            <div class="space-x-8 ml-10" style="padding-bottom: 1px;">
+            <div style="padding-bottom: 1px;" class="space-x-8 ml-10">
               <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">
                 Blog
               </a>
@@ -50,15 +50,15 @@
               <span class="sr-only">
                 Mastodon
               </span>
-              <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" style="transform: translateX(2px) translateY(2px);"/>
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path style="transform: translateX(2px) translateY(2px);" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"/>
               </svg>
             </a>
             <a href="https://twitter.com/progrium" class="hover:text-gray-500">
               <span class="sr-only">
                 Twitter
               </span>
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6" fill="currentColor">
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
               </svg>
             </a>
@@ -67,7 +67,7 @@
                 GitHub
               </span>
               <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" fill-rule="evenodd"/>
               </svg>
             </a>
             <a href="https://www.youtube.com/c/progrium" class="hover:text-gray-500" style="margin-top: 2px;">
@@ -82,7 +82,7 @@
               <span class="sr-only">
                 Twitch
               </span>
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 512 512">
+              <svg viewBox="0 0 512 512" class="h-5 w-5" fill="currentColor">
                 <path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z"/>
               </svg>
             </a>
@@ -245,8 +245,8 @@
       <div class="mx-auto max-w-2xl">
         <div class="xl:grid xl:grid-cols-4 xl:gap-8">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140" stroke="white">
-            <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"/>
-            <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"/>
+            <path stroke-dasharray="2,38" d="m9,70h122M70,9v122" stroke-width="122"/>
+            <path stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0" stroke-width="33"/>
           </svg>
           <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
             <div class="md:grid md:grid-cols-2 md:gap-8">
@@ -261,7 +261,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="/blog">
                       Blog
                     </a>
                   </li>
@@ -278,17 +278,17 @@
                 </span>
                 <ul role="list" class="mt-2">
                   <li>
-                    <a href="https://mas.to/@progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://mas.to/@progrium">
                       Mastodon
                     </a>
                   </li>
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://twitter.com/progrium">
+                    <a href="https://twitter.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Twitter
                     </a>
                   </li>
                   <li>
-                    <a href="https://github.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://github.com/progrium">
                       GitHub
                     </a>
                   </li>
@@ -327,9 +327,9 @@
                 <span class="text-sm font-semibold leading-6 text-white">
                   Contact
                 </span>
-                <ul role="list" class="mt-2">
+                <ul class="mt-2" role="list">
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="mailto:progrium+web@gmail.com">
+                    <a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Email
                     </a>
                   </li>
