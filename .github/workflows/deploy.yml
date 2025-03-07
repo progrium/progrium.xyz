@@ -21,8 +21,6 @@ jobs:
 
       - name: Build
         run: |
-          pwd
-          ls -la
           taragen build
 
       - name: Deploy
