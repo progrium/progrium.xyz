@@ -1,18 +1,28 @@
 <html>
   <head>
     <meta charset="UTF-8"/>
-    <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="https://progrium.xyz/blog/feed.xml"></link>
+    <link title="progrium.xyz RSS" href="https://progrium.xyz/blog/feed.xml" rel="alternate" type="application/rss+xml"></link>
     <script src="/assets/vnd/tailwind-3.2.4.min.js"></script>
     <link rel="icon" href="/assets/glider.svg"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"></link>
-    <link href="/assets/style.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="/assets/style.css"></link>
     <title>
       Making programs interact using qtalk :: progrium.xyz
     </title>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@progrium"/>
     <meta property="og:locale" content="en"/>
+    <meta content="article" property="og:type"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:title" content="Making programs interact using qtalk"/>
+    <meta property="og:description" content="qtalk-go is a versatile IPC/RPC library for Go"/>
+    <meta content="https://progrium.xyz/blog/2021/making-programs-interact-using-qtalk" property="og:url"/>
+    <meta name="twitter:image" content="https://progrium.xyz/photo_wide.png"/>
+    <meta property="og:image" content="https://progrium.xyz/photo_wide.png"/>
+    <meta property="og:image:width" content="2048"/>
+    <meta property="og:image:height" content="1024"/>
+    <meta property="article:published_time" content="2021-08-24T00:00:00+00:00"/>
   </head>
   <body class="bg-black">
     <header class="bg-white py-12">
@@ -23,12 +33,12 @@
               progrium.xyz
             </a>
             <div class="space-x-8 ml-10" style="padding-bottom: 1px;">
-              <a class="text-base decoration-solid font-normal hover:text-gray-500" href="/blog">
+              <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">
                 Blog
               </a>
               <a href="https://progrium.com" target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500">
                 Work
-                <svg height="12" fill="currentColor" class="inline ml-1" style="margin-bottom: 3px;" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="12">
+                <svg class="inline ml-1" style="margin-bottom: 3px;" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
                   <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
                 </svg>
@@ -48,7 +58,7 @@
               <span class="sr-only">
                 Twitter
               </span>
-              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6" fill="currentColor">
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
               </svg>
             </a>
@@ -56,11 +66,11 @@
               <span class="sr-only">
                 GitHub
               </span>
-              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6" fill="currentColor">
+              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6">
                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
               </svg>
             </a>
-            <a style="margin-top: 2px;" href="https://www.youtube.com/c/progrium" class="hover:text-gray-500">
+            <a href="https://www.youtube.com/c/progrium" class="hover:text-gray-500" style="margin-top: 2px;">
               <span class="sr-only">
                 YouTube
               </span>
@@ -72,7 +82,7 @@
               <span class="sr-only">
                 Twitch
               </span>
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 512 512">
+              <svg fill="currentColor" viewBox="0 0 512 512" class="h-5 w-5">
                 <path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z"/>
               </svg>
             </a>
@@ -478,7 +488,7 @@
       <div class="mx-auto max-w-2xl">
         <div class="xl:grid xl:grid-cols-4 xl:gap-8">
           <svg stroke="white" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140">
-            <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"/>
+            <path d="m9,70h122M70,9v122" stroke-width="122" stroke-dasharray="2,38"/>
             <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"/>
           </svg>
           <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
@@ -494,7 +504,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="/blog">
+                    <a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Blog
                     </a>
                   </li>
@@ -533,9 +543,9 @@
                 <span class="text-sm font-semibold leading-6 text-white">
                   Content
                 </span>
-                <ul role="list" class="mt-2">
+                <ul class="mt-2" role="list">
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://www.youtube.com/c/progrium">
+                    <a href="https://www.youtube.com/c/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
                       YouTube
                     </a>
                   </li>
@@ -562,7 +572,7 @@
                 </span>
                 <ul role="list" class="mt-2">
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="mailto:progrium+web@gmail.com">
+                    <a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Email
                     </a>
                   </li>
@@ -572,7 +582,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.linkedin.com/in/progrium/" class="text-sm leading-6 text-gray-300 hover:text-white">
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://www.linkedin.com/in/progrium/">
                       LinkedIn
                     </a>
                   </li>
