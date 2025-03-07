@@ -2,26 +2,26 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="alternate" type="application/rss+xml" title="Blog RSS" href={`${site_url}/blog/feed.xml`}></link>
+    <link rel="alternate" type="application/rss+xml" title={`${site_title} RSS`} href={`${site_url}/blog/feed.xml`} />
     <script src="/assets/vnd/tailwind-3.2.4.min.js"></script>
-    <link rel="icon" href="/assets/glider.svg"></link>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"></link>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"></link>
-    <link href="/assets/style.css" rel="stylesheet"></link>
+    <link rel="icon" href="/assets/glider.svg" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link href="/assets/style.css" rel="stylesheet"/>
     <title>{ page.title } :: { site_title }</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@progrium" />
     <meta property="og:locale" content="en" />
-    {/*<meta property="og:type" content={date?"article":"website"} />
-    <meta property="og:site_name" content={site} />
-    <meta property="og:title" content={title||"Jeff Lindsay"} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={`https://progrium.xyz${url}`} />
+    <meta property="og:type" content={page.date?"article":"website"} />
+    <meta property="og:site_name" content={site_title} />
+    <meta property="og:title" content={page.title||site_title} />
+    <meta property="og:description" content={page.description||site_description} />
+    <meta property="og:url" content={`${site_url}${page.path}`} />
     {site_cover && <meta name="twitter:image" content={site_cover} />}
     {site_cover && <meta property="og:image" content={site_cover} />}
     {site_cover && <meta property="og:image:width" content="2048" />}
     {site_cover && <meta property="og:image:height" content="1024" />}
-    <meta property="article:published_time" content={filters.date(date, "ATOM")} />*/}
+    {page.date && <meta property="article:published_time" content={`${page.date}T00:00:00+00:00`} />}
   </head>
   <body class="bg-black">
   <header class="bg-white py-12">
