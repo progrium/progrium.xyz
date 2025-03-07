@@ -1,11 +1,12 @@
 <html>
   <head>
     <meta charset="UTF-8"/>
+    <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="https://progrium.xyz/blog/feed.xml"></link>
     <script src="/assets/vnd/tailwind-3.2.4.min.js"></script>
     <link rel="icon" href="/assets/glider.svg"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"></link>
-    <link rel="stylesheet" href="/assets/style.css"></link>
+    <link href="/assets/style.css" rel="stylesheet"></link>
     <title>
       Making programs interact using qtalk :: progrium.xyz
     </title>
@@ -22,7 +23,7 @@
               progrium.xyz
             </a>
             <div class="space-x-8 ml-10" style="padding-bottom: 1px;">
-              <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">
+              <a class="text-base decoration-solid font-normal hover:text-gray-500" href="/blog">
                 Blog
               </a>
               <a href="https://progrium.com" target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500">
@@ -39,15 +40,15 @@
               <span class="sr-only">
                 Mastodon
               </span>
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" style="transform: translateX(2px) translateY(2px);"/>
+              <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
+                <path style="transform: translateX(2px) translateY(2px);" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"/>
               </svg>
             </a>
             <a href="https://twitter.com/progrium" class="hover:text-gray-500">
               <span class="sr-only">
                 Twitter
               </span>
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6">
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
               </svg>
             </a>
@@ -79,7 +80,7 @@
         </div>
       </nav>
     </header>
-    <section style="min-height: 50vh;" class="bg-white flex flex-col justify-center pb-16">
+    <section class="bg-white flex flex-col justify-center pb-16" style="min-height: 50vh;">
       <div class="mx-auto max-w-2xl">
         <main class="blog mb-8 max-w-xl">
           <div class="text-center">
@@ -476,7 +477,7 @@
     <footer class="bg-black py-16">
       <div class="mx-auto max-w-2xl">
         <div class="xl:grid xl:grid-cols-4 xl:gap-8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140" stroke="white">
+          <svg stroke="white" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140">
             <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"/>
             <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"/>
           </svg>
@@ -488,12 +489,12 @@
                 </span>
                 <ul role="list" class="mt-2">
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="/">
+                    <a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Home
                     </a>
                   </li>
                   <li>
-                    <a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="/blog">
                       Blog
                     </a>
                   </li>
@@ -508,14 +509,14 @@
                 <span class="text-sm font-semibold leading-6 text-white">
                   Follow
                 </span>
-                <ul class="mt-2" role="list">
+                <ul role="list" class="mt-2">
                   <li>
                     <a href="https://mas.to/@progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Mastodon
                     </a>
                   </li>
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://twitter.com/progrium">
+                    <a href="https://twitter.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
                       Twitter
                     </a>
                   </li>
@@ -559,9 +560,9 @@
                 <span class="text-sm font-semibold leading-6 text-white">
                   Contact
                 </span>
-                <ul class="mt-2" role="list">
+                <ul role="list" class="mt-2">
                   <li>
-                    <a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="mailto:progrium+web@gmail.com">
                       Email
                     </a>
                   </li>
