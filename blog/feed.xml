@@ -1,5 +1,186 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"><channel><title>progrium.xyz</title><link>https://progrium.xyz</link><atom:link href="https://progrium.xyz/blog/feed.xml" rel="self" type="application/rss+xml"></atom:link><description>Homepage and blog of hacker/builder Jeff Lindsay, aka progrium</description><lastBuildDate>Fri, 07 Mar 2025 02:25:05 GMT</lastBuildDate><language>en</language><generator>Taragen 0.1</generator><item><title>Treehouse Influences</title><link>https://progrium.xyz/blog/2023/treehouse-influences</link><guid isPermaLink="false">https://progrium.xyz/blog/2023/treehouse-influences</guid><description>A quick tour of some of the influences for the Treehouse frontend and where it fits in the ecosystem.</description><content:encoded><![CDATA[<p>Over the past few months, we've built the <a href="https://treehouse.sh">Treehouse frontend framework</a> into an elegant, quality outliner that's open source, extensible, and gives you control of your data. I’d like to share some of the design influences for the Treehouse frontend, which should give a sense of the unique direction Treehouse is going from here.</p>
+<rss xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>progrium.xyz</title><link>https://progrium.xyz</link><atom:link href="https://progrium.xyz/blog/feed.xml" rel="self" type="application/rss+xml"></atom:link><description>Homepage and blog of hacker/builder Jeff Lindsay, aka progrium</description><lastBuildDate>Fri, 28 Mar 2025 21:15:56 GMT</lastBuildDate><language>en</language><generator>Taragen 0.1</generator><item><title>State of Tractor 2025</title><link>https://progrium.xyz/blog/2025/state-of-tractor-2025</link><guid isPermaLink="false">https://progrium.xyz/blog/2025/state-of-tractor-2025</guid><description></description><content:encoded><![CDATA[<p>Hey everybody, welcome to 2025! Belated as it may be. For the past 5 years I've
+been heads down on an epic journey to find new and better (read: simpler) ways
+to build software. Three years ago I posted a <a href="https://www.youtube.com/watch?v=yKZ15O7zeHY">kind of thesis video</a> for this
+work and gave the journey a name: Tractor. Today I want to share a progress report.</p>
+<p>Tractor is not a single project, but a growing toolkit and developing philosophy
+around building software. However, documenting the specifics of this has not been
+an immediate priority. The vision is so big and abstract that just writing about it,
+especially so early, seemed less efficient (and less fun) than just building.
+Plus, for me it feels impossible to talk about new ideas without being able to
+reference tangible examples and let people process them interactively.</p>
+<p>This year seems to be a turning point. I have enough building blocks that they
+are starting to come together in interesting ways. I've also collected a bunch of
+bite sized developer tips along the way. For these reasons, I've decided to start
+posting publicly more. Hold me to it!</p>
+<h2>Process and Aims</h2>
+<p>Like all of my work, I'm driven by an interactive process of idealized design,
+speculative primitive disaggregation, and bottom-up exploration. There is an
+evolving vision of how making software could be, which is reified into an imaginary
+toolset and paradigm. This is then broken down into the fewest primitives needed
+to build that toolset and paradigm. Each primitive is imagined and validated against
+two criteria: how easily it enables the vision, and how many <em>other</em> possibilities
+it enables.</p>
+<p>Put succinctly: I'm collecting and building powerful software primitives and
+design patterns that will enable the future of software and computing.</p>
+<p>If people don't do this, nothing changes. In fact, by default, things get worse.
+In this case, the &quot;future&quot; is a stand-in for &quot;something better&quot;, which I understand
+is quite relative and is a good reason I should write some kind of manifesto. In
+the meantime, here are a few ideas I'm aiming for:</p>
+<ul>
+<li>Minimize the number of steps to get to <em>any</em> software from 0</li>
+<li>Remain polyglot, the answer is not one langugage</li>
+<li>Align with emerging technologies that matter (ie CRDTs not blockchain)</li>
+<li>Be a platform for many visions, the answer is not one vision</li>
+<li>Close gap between builder and user of software with live malleability</li>
+<li>Explore malleability through virtualization of development tools</li>
+<li>Bridge worlds and simplify, the answer is not one perspective/paradigm</li>
+<li>Start with plumbing, build bottom-up (after idealizing top-down)</li>
+</ul>
+<p>This is a long journey, but it should pay dividends for everyone.</p>
+<h2>2024 in Review</h2>
+<p>Last year we got a lot done. We had some important releases, solved some hard
+problems, and started the process of getting feedback from peers on key technologies
+now that they've been baking a few years.</p>
+<h3>Wanix</h3>
+<p>Wanix started around October 2023 as a standalone experiment that would be
+<a href="https://www.youtube.com/watch?v=KJcd9IckJj8">fun to talk about</a>. The experiment showed promise, so I collaborated with a
+friend to explore further. About this time last year, we put out a <a href="https://github.com/tractordev/wanix/releases/tag/v0.2">0.2 release</a>
+and got to <a href="https://www.youtube.com/watch?v=cj8FvNM14T4">show it off at WASM I/O</a>.</p>
+<p>Wanix started as an homage to early Unix, seeing what fewest elements are needed
+to build a general purpose computing environment capable of self-hosting its own
+development. Except this time, starting in the browser and building around
+WebAssembly.</p>
+<p>By the 0.2 release, Wanix was a good demo, but not terribly useful. It was also
+somewhat impractical being a 60MB asset for the web, and not easy to get running
+locally for development. However, a few things I think it validated:</p>
+<ul>
+<li>WebAssembly is exciting, but still quite early</li>
+<li>A CRDT-based multiuser filesystem is compelling, even if &quot;slow&quot;</li>
+<li>It's a lot of work recreating a Unixy userland</li>
+</ul>
+<p>I also came away convinced Plan 9 was onto something, but disappointed this
+iteration of Wanix wasn't able to capture that magic. I was also a bit bummed
+I wasn't able to get VSCode to run in Wanix, as it would have greatly improved
+the UX of using Wanix as a development environment.</p>
+<h3>DarwinKit</h3>
+<p>DarwinKit is an ambitious yet boring project to make Apple APIs usable in Go.
+After deciding Electron was not going to be the answer in Tractor for cross-platform
+webview apps, I started a cross-platform library in Go focusing more on the
+desktop APIs exposed by Electron. This meant working with Apple APIs, and at the
+time there were no Go bindings.</p>
+<p>The desktop API library only needed a few basic Apple APIs, but the challenge of making
+high-quality, idiomatic bindings for <em>every</em> Apple API (one of the largest API
+surface areas, rouhgly 1/4 the size of AWS) was compelling. It would have to be automated.
+If we could do it for Apple, we could do it for any API, which would come in handy
+in the future.</p>
+<p>Back in 2023, I re-wrote the whole system, getting us an order of magnitude more coverage,
+from maybe 150 symbols represented to over 30k symbols. Still far from total
+coverage, but enough that it seemed possible someday. Not only was this a rewrite,
+but a rename, so it was initially released as a preview to give time for people to
+prepare for a new repository name and backwards incompatible API.</p>
+<p>In July 2024, we finally released <a href="https://github.com/progrium/darwinkit/releases/tag/v0.5.0">DarwinKit 0.5</a>.
+Other than Wanix, DarwinKit has been the only project since 2020
+to find a regular trickle of organic discovery. This is somewhat annoying because
+it's also at the bottom of one of the deepest Tractor yak shaves and does not
+contribute much to the development of the system. Though I have found it useful in
+developing techniques to generate these kinds of bindings, which I <a href="https://www.youtube.com/watch?v=wBzHOTOf0wU">documented in
+this talk</a>.</p>
+<h3>Manifold</h3>
+<p>Manifold is one of the key technologies of the Tractor system, providing a sort
+of universal structure to assemble software systems on. As such, it's been allowed
+the most time to cook. It's been re-written at least 5 times by now and I went
+into it knowing that would probably be necessary.</p>
+<p>Last October it was finally demonstrated publicly at <a href="https://2025.splashcon.org/">SPLASH</a>
+(previously known as OOPSLA). Unfortunately, trying to pack so much into a 20
+minute talk probably left most people confused. I did get kudos from a
+Smalltalker for making Go more like Smalltalk.</p>
+<p>It was a one-day workshop packed with dense talks and demos. By my slot my brain
+was nearly fried, so it was also not one of my best performances. The win, though,
+was just getting it out there, and I've been able to have some good conversations
+about it since.</p>
+<h3>New Apptron</h3>
+<p>If Apptron is a familiar name, be prepared to unlearn what it is. Going back to the
+Electron-inspired desktop API, it was originally packaged up as a standalone primitive
+that could be used a bunch of ways, from any language, and could even be used in
+shell scripts. It originally had a name as boring as the technology was, Hostbridge,
+but that name turned out to be trademarked. Brainstorming led to Apptron, which was
+less descriptive, but definitely more cool, and even sounded like Electron.</p>
+<p>With all these projects, I'm not one to push something more than there is signal for
+it. The response to Apptron was lackluster. Maybe because it was sponsor-walled,
+or maybe because people had an Electron API at home, but it doesn't matter that
+much. I made a great component for Tractor and I knew these early foundational
+projects would be hard sells, even just for attention.</p>
+<p>Eventually the code for what was once called Apptron was rolled into a package
+simply called &quot;desktop&quot;, freeing up Apptron to be used for something more
+deserving of a cool name.</p>
+<p>After the Wanix 0.2 release, I went hard on &quot;VSCode in the browser.&quot; After 9
+months off and on, I finally had VSCode running in the browser with a full Linux
+development environment that was actually usable. I'm not sure how many people
+have achieved this. I might be one of the first. Yes, cloud IDEs are a thing, but
+they run the Linux environment, usually Docker, in the cloud. They usually even run
+the VSCode backend in the cloud.</p>
+<p>I started to envision a possible product. Not quite &quot;Tractor Studio&quot; but definitely
+something resembling it that could iterate towards it. I'll save specifics for later
+but we started using the name Apptron for this. In fact, there is a &quot;tech demo&quot;
+version online today at <a href="https://apptron.dev/">apptron.dev</a>. Check it out!</p>
+<p>There's a pretty good story about this side quest that involves some of
+these other projects in the next section. Hopefully I'll get to sharing it soon.</p>
+<h3>Other projects</h3>
+<p>Most of these aren't documented yet and will probably come up in future posts, but
+here are some other project repositories and some forks that went up last year:</p>
+<ul>
+<li><a href="https://github.com/progrium/env86">https://github.com/progrium/env86</a></li>
+<li><a href="https://github.com/progrium/httpfs">https://github.com/progrium/httpfs</a></li>
+<li><a href="https://github.com/progrium/vscode-web">https://github.com/progrium/vscode-web</a></li>
+<li><a href="https://github.com/progrium/go-vscode">https://github.com/progrium/go-vscode</a></li>
+<li><a href="https://github.com/progrium/go-netstack">https://github.com/progrium/go-netstack</a></li>
+<li><a href="https://github.com/progrium/sys-wasm">https://github.com/progrium/sys-wasm</a></li>
+</ul>
+<h2>2025 in Preview</h2>
+<p>This year I plan to write more and share more publicly here on my blog. This
+could even include some kind of manifesto or at least an updated thesis. However,
+what I have most in my writing queue are just quick helpful bits. Patterns and
+conventions I use in my projects. Simple DIY alternatives to using complex tools.
+Shorter, more useful posts.</p>
+<p>I'm also trying to be more social. More importantly, I'm trying to get back into
+community building. I have my eye on doing in-person events again, but for now
+I'm warming up with online events in the Discord or on Twitch. And if you have
+any favorite conferences or in-person meetups, coworking groups, or anything like
+that, please let me know! I'm mostly back in the SF bay area these days.</p>
+<p>In terms of Tractor projects, there are a few important releases coming up. After
+that my forward energy will probably go into the new Apptron. However, I'm very
+open to collaborations, especially projects relevant to my roadmap. As an example:</p>
+<h3>Taragen</h3>
+<p>Besides Wanix, over the last few months I've been working with a friend on a
+Revolutionary, Extraordinary ... static site generator. No really. Actually,
+I'm pretty thrilled about it. It's minimalistic, but extremely capable. It's
+written in Go but uses JSX for templates. I've already ported my website to it.</p>
+<p>In fact, planning to blog more is what motivated me to finish it up. I'm that
+unsatisfied with existing options. Finally, though! Something I'm making that
+will finally be relevant to you. You have a static site, right?</p>
+<h3>Wanix</h3>
+<p>This is pretty big to me. Since the beginning of the year, we've been re-building
+Wanix up from scratch. This time, focusing on the Plan 9 architecture, making it
+more production ready, and all kinds of exciting things.</p>
+<p>We've made a kind of stream series about it all called <a href="https://www.youtube.com/playlist?list=PLw1XoTpvjktiMPzIMPawJpJCUr4MCpsU2">Wanix From Scratch</a>. Every
+week we'd do 1 or 2 Twitch streams about 2 hours long. Usually the first hour
+going over everything that happened since the last one. Then the second hour we
+try to get some work done. There will be 20 days or 20 videos after the final
+DEMO DAY happening live on Twitch <a href="https://www.twitch.tv/progrium/schedule?segmentID=121a6dcb-78a1-4030-a41c-33b3c939c09d">this Wednesday the 2nd at 11am pacific</a>!</p>
+<p>Then after that a preview release will be up. Loads to talk about, but I'll save
+it for later. I'm very excited, even though it's still just plumbing and most
+people won't see obvious use cases for it, I think something special is going on.</p>
+<h2>How to Help</h2>
+<p>You made it this far. Now you want to, what, stay informed? Join the community?
+Spread the word? First, thanks for reading. Second, any kind of participation would
+be huge.</p>
+<p>More posts are coming, so get subscribed here if you want. As I mentioned, we're
+doing more events and coworking in the Discord, so feel free to join us there too.</p>
+<p>You can also participate on GitHub with any of the fine projects mentioned. Finally,
+thanks to my <a href="https://github.com/sponsors/progrium">GitHub Sponsors</a> as usual,
+and a big thanks to my friends that have been helping out more recently.</p>
+]]></content:encoded><pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate></item><item><title>Treehouse Influences</title><link>https://progrium.xyz/blog/2023/treehouse-influences</link><guid isPermaLink="false">https://progrium.xyz/blog/2023/treehouse-influences</guid><description>A quick tour of some of the influences for the Treehouse frontend and where it fits in the ecosystem.</description><content:encoded><![CDATA[<p>Over the past few months, we've built the <a href="https://treehouse.sh">Treehouse frontend framework</a> into an elegant, quality outliner that's open source, extensible, and gives you control of your data. I’d like to share some of the design influences for the Treehouse frontend, which should give a sense of the unique direction Treehouse is going from here.</p>
 <p>The biggest influences for Treehouse are Tana, Notion, and Obsidian. These three represent the state of the art of personal and collaborative information management, sometimes simplified as note-taking tools. However, &quot;note-taking tools&quot; sells them short as they go beyond note-taking and information management. For lack of a better descriptor, many consider them <a href="https://www.forthought.tools/">tools for thought</a>.</p>
 <h2>From Notes to Tools for Thought</h2>
 <p>For most, note-taking brings to mind simple apps like Apple Notes and Google Keep, or even just a text file editor. These work well for people because they're already there and focus on quick and easy plain text capture. We could call this casual note-taking.</p>
