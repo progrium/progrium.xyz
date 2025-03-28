@@ -1,7 +1,7 @@
 ---
 title: "State of Tractor 2025"
-date: "2025-04-01"
-tags: devlog
+date: "2025-03-28"
+tags: devlog, tractor
 ---
 
 Hey everybody, welcome to 2025! Belated as it may be. For the past 5 years I've
