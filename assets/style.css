@@ -66,3 +66,13 @@ pre > code > div {
 pre {
   margin-bottom: 1rem !important;
 }
+
+ul {
+  list-style-type: disc !important;
+  margin-left: 2rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+li {
+  margin-bottom: 0.5rem !important;
+}
