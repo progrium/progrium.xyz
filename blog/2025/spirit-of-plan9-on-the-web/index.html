@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <link title="progrium.xyz RSS" href="https://progrium.xyz/blog/feed.xml" rel="alternate" type="application/rss+xml"/>
+    <script src="/assets/vnd/tailwind-3.2.4.min.js"></script>
+    <link rel="icon" href="/assets/glider.svg"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link href="/assets/style.css" rel="stylesheet"/>
+    <title>The Spirit of Plan 9 on the Web :: progrium.xyz</title>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:locale" content="en"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:title" content="The Spirit of Plan 9 on the Web"/>
+    <meta property="og:description" content="Homepage and blog of hacker/builder Jeff Lindsay, aka progrium"/>
+    <meta property="og:url" content="https://progrium.xyz/blog/2025/spirit-of-plan9-on-the-web"/>
+    <meta name="twitter:image" content="https://progrium.xyz/photo_wide.png"/>
+    <meta content="https://progrium.xyz/photo_wide.png" property="og:image"/>
+    <meta property="og:image:width" content="2048"/>
+    <meta property="og:image:height" content="1024"/>
+    <meta property="article:published_time" content="2025-05-05T00:00:00+00:00"/>
+  </head>
+  <body class="bg-black">
+    <header class="bg-white py-12">
+      <nav class="mx-auto max-w-2xl">
+        <div class="flex w-full items-center justify-between">
+          <div class="flex items-end">
+            <a href="/" class="text-xl font-black decoration-solid">progrium.xyz</a>
+            <div class="space-x-8 ml-10" style="padding-bottom: 1px;">
+              <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">Blog</a>
+              <a href="https://progrium.com" target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500">
+                Work
+                <svg style="margin-bottom: 3px;" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="inline ml-1">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"></path>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="space-x-4 flex">
+            <a href="https://mas.to/@progrium" class="hover:text-gray-500">
+              <span class="sr-only">Mastodon</span>
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" style="transform: translateX(2px) translateY(2px);"></path>
+              </svg>
+            </a>
+            <a href="https://twitter.com/progrium" class="hover:text-gray-500">
+              <span class="sr-only">Twitter</span>
+              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6">
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+              </svg>
+            </a>
+            <a href="https://github.com/progrium" class="hover:text-gray-500">
+              <span class="sr-only">GitHub</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6" fill="currentColor">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+              </svg>
+            </a>
+            <a class="hover:text-gray-500" style="margin-top: 2px;" href="https://www.youtube.com/c/progrium">
+              <span class="sr-only">YouTube</span>
+              <svg fill="currentColor" viewBox="0 0 576 512" class="h-5 w-5">
+                <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
+              </svg>
+            </a>
+            <a style="margin-top: 3px;" href="https://www.twitch.tv/progrium" class="hover:text-gray-500">
+              <span class="sr-only">Twitch</span>
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 512 512">
+                <path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="bg-white flex flex-col justify-center pb-16" style="min-height: 50vh;">
+      <div class="mx-auto max-w-2xl">
+        <main class="blog mb-8 max-w-xl">
+          <div class="text-center">
+            <span class="text-gray-400 text-sm font-bold">2025-05-05</span>
+            <h1 class="mb-8">The Spirit of Plan 9 on the Web</h1>
+          </div>
+          <div class="body mx-auto text-left text-gray-800">
+            <p>
+              If you go back to the 
+              <a href="https://www.slideshare.net/slideshow/web-hooks/263894">first talk ever given on webhooks,</a>
+              it opens on the
+              commnand-line. Specifically the Unix shell, focusing on one of its defining
+              features: pipes. The idea was that pipes brought a new level of compositionality
+              to programs, and webhooks could bring a new level of compositionality to web
+              apps. Perhaps you could say I was trying to bring the spirit of Unix to the web.
+            </p>
+            <p>
+              With this 
+              <a href="https://github.com/tractordev/wanix/releases/tag/v0.3-preview">last release of Wanix,</a>
+              I'm at it again. This time with the successor
+              to Unix, a little known operating system called 
+              <a href="https://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs">Plan 9 from Bell Labs</a>
+              .
+            </p>
+            <p>
+              Plan 9 has been on my mind for quite a while. In fact,
+              around the time of that first talk on webhooks, the team behind Unix and
+              Plan 9 was being re-assembled to create the Go programming language. I pretty
+              instantly fell in love with the Go worldview, which turns out to be an outgrowth
+              of the Unix and Plan 9 values of simplicity, pragmatism, economy, and ultimately
+              compositionality.
+            </p>
+            <p>
+              Like Unix, the Plan 9 environment is really made for programmers and system
+              operators. I'll leave a deeper explanation of what makes Plan 9 great for
+              another post, but I do get into it a bit in the demo video for Wanix:
+            </p>
+            <iframe class="w-full aspect-video mb-4" src="https://www.youtube.com/embed/kGBeT8lwbo0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <p>
+              While I wanted to incorporate Plan 9 ideas into Wanix from the beginning, it
+              wasn't until we rebuilt it from scratch with that intention that the magic
+              really starts to come through. That's what this preview release is about.
+            </p>
+            <p>
+              Wanix is a whole new beast now. It's no longer a singular computing environment
+              that runs in the browser. It's now a primitive for building environments in
+              general. The demo shows a shell environment, but this environment is not the
+              point. It's just a way to bootstrap Wanix so you can use and explore it
+              interactively.
+            </p>
+            <p>
+              The point of this preview release is to get this primitive out there. I have my
+              uses for Wanix, and I plan to share them with the final 0.3 release, but until
+              then I wanted to let it all percolate. Maybe inspire people to get creative
+              with their own use cases.
+            </p>
+            <p>Here's a quick rundown of Wanix features in this release:</p>
+            <dl>
+            <dt>Plan 9 inspired design</dt>
+            <dd>With the original intention to enable exploring Plan 9 ideas on modern platforms, we've ended up with a radically simple architecture around per-process namespaces composed of file service capabilities using similar design patterns to those found in Plan 9.</dd>
+            <dt>Single executable toolchain</dt>
+            <dd>The <code>wanix</code> executable includes everything needed to produce Wanix environments.</dd>
+            <dt>Filesystem is the only API</dt>
+            <dd>The Wanix microkernel is now simply a VFS module with several built-in file services exposed via a standard filesystem API. This ends up making the module itself a file service.</dd>
+            <dt>Built-in Linux shell</dt>
+            <dd>Using the built-in file service primitives, Wanix can bootstrap a Linux-compatible shell based on Busybox. It comes with several helper commands for working with built-in file services.</dd>
+            <dt>Tasks and namespaces</dt>
+            <dd>The Wanix unit of compute is a task, which is equivalent and compatible with POSIX processes but allows for different execution strategies. Each task has its own "namespace," which is the customizable filesystem exposed to the task.</dd>
+            <dt>Core file services</dt>
+            <dd>Wanix includes two singleton file services: one to manage tasks (similar to procfs), and one to manage "capabilities" which are user allocated file services. Built-in capabilities include: tarfs, tmpfs, and loopback.</dd>
+            <dt>Web file services</dt>
+            <dd>
+              With future non-browser deployments in mind, all web related file services are packaged in a web module, which is also built-in but not considered core. This module includes these work-in-progress file services:
+              <ul>
+                <li>
+                  <strong>opfs</strong>: For working with the 
+                  <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system">OPFS</a>
+                  browser storage API
+                </li>
+                <li><strong>dom</strong>: For inspecting and manipulating the DOM</li>
+                <li>
+                  <strong>worker</strong>: For managing 
+                  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">web workers</a>
+                </li>
+                <li><strong>pickerfs</strong>: Capability wrapping the <code>window.showDirectoryPicker()</code> method (not available yet in Safari and Firefox)</li>
+                <li><strong>ws</strong>: Capability for working with WebSocket connections</li>
+                <li>
+                  <strong>sw</strong>: For configuring the 
+                  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">service worker</a>
+                  , which is used by the system now to cache all resources needed to run Wanix allowing offline usage, as well as exposing virtual URLs to the root namespace.
+                </li>
+              </ul>
+            </dd>
+            <p>
+              Go programmers might also appreciate the filesystem toolkit we've been working on
+              since before Wanix. It builds on the <code>fs.FS</code> abstraction in the standard library
+              and gives you DSL-like utilities for defining virtual filesystems like the
+              file services in Wanix. More on that in a dedicated post as well.
+            </p>
+            <p>
+              So far, the feedback has been really positive. I appreciate everybody taking the
+              time to process it. There's still lots to do. Wanix is itself its own universe,
+              but it's just one layer of the Tractor project. After a little vacation I'll be
+              back to continue work on both fronts. As usual, I'd love help.
+            </p>
+            <p>
+              Speaking of help, shout-out to <a href="https://joel.franusic.com/">Joël Franusic</a> for
+              the help and support. And as usual, big thanks to my 
+              <a href="https://github.com/sponsors/progrium">GitHub sponsors</a>
+              for
+              making this possible.
+            </p>
+          </div>
+        </main>
+      </div>
+    </section>
+    <footer class="bg-black py-16">
+      <div class="mx-auto max-w-2xl">
+        <div class="xl:grid xl:grid-cols-4 xl:gap-8">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140" stroke="white">
+            <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"></path>
+            <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"></path>
+          </svg>
+          <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <span class="text-sm font-semibold leading-6 text-white">progrium.xyz</span>
+                <ul role="list" class="mt-2">
+                  <li>
+                    <a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">Home</a>
+                  </li>
+                  <li>
+                    <a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">Blog</a>
+                  </li>
+                  <li>
+                    <a href="https://progrium.com" class="text-sm leading-6 text-gray-300 hover:text-white">Work</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-10 md:mt-0">
+                <span class="text-sm font-semibold leading-6 text-white">Follow</span>
+                <ul role="list" class="mt-2">
+                  <li>
+                    <a href="https://mas.to/@progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Mastodon</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Twitter</a>
+                  </li>
+                  <li>
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://github.com/progrium">GitHub</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <span class="text-sm font-semibold leading-6 text-white">Content</span>
+                <ul role="list" class="mt-2">
+                  <li>
+                    <a href="https://www.youtube.com/c/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">YouTube</a>
+                  </li>
+                  <li>
+                    <a href="https://www.twitch.tv/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Twitch</a>
+                  </li>
+                  <li>
+                    <a href="https://soundcloud.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Soundcloud</a>
+                  </li>
+                  <li>
+                    <a href="https://progrium.itch.io/" class="text-sm leading-6 text-gray-300 hover:text-white">itch.io</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-10 md:mt-0">
+                <span class="text-sm font-semibold leading-6 text-white">Contact</span>
+                <ul role="list" class="mt-2">
+                  <li>
+                    <a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">Email</a>
+                  </li>
+                  <li>
+                    <a href="https://discord.gg/JraBdNHuuP" class="text-sm leading-6 text-gray-300 hover:text-white">Discord</a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/in/progrium/" class="text-sm leading-6 text-gray-300 hover:text-white">LinkedIn</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,44 +1,39 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8"/>
-    <link href="https://progrium.xyz/blog/feed.xml" rel="alternate" type="application/rss+xml" title="progrium.xyz RSS"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz RSS" href="https://progrium.xyz/blog/feed.xml"/>
     <script src="/assets/vnd/tailwind-3.2.4.min.js"></script>
     <link rel="icon" href="/assets/glider.svg"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap"/>
     <link href="/assets/style.css" rel="stylesheet"/>
-    <title>
-      Building your own Ngrok in 130 lines :: progrium.xyz
-    </title>
+    <title>Building your own Ngrok in 130 lines :: progrium.xyz</title>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@progrium"/>
-    <meta property="og:locale" content="en"/>
+    <meta content="en" property="og:locale"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta content="progrium.xyz" property="og:site_name"/>
     <meta property="og:title" content="Building your own Ngrok in 130 lines"/>
     <meta property="og:description" content="Remote port forwarding as a service"/>
     <meta property="og:url" content="https://progrium.xyz/blog/2021/building-your-own-ngrok-in-130-lines"/>
     <meta name="twitter:image" content="https://progrium.xyz/photo_wide.png"/>
-    <meta property="og:image" content="https://progrium.xyz/photo_wide.png"/>
-    <meta content="2048" property="og:image:width"/>
+    <meta content="https://progrium.xyz/photo_wide.png" property="og:image"/>
+    <meta property="og:image:width" content="2048"/>
     <meta property="og:image:height" content="1024"/>
-    <meta content="2021-05-27T00:00:00+00:00" property="article:published_time"/>
+    <meta property="article:published_time" content="2021-05-27T00:00:00+00:00"/>
   </head>
   <body class="bg-black">
     <header class="bg-white py-12">
       <nav class="mx-auto max-w-2xl">
         <div class="flex w-full items-center justify-between">
           <div class="flex items-end">
-            <a href="/" class="text-xl font-black decoration-solid">
-              progrium.xyz
-            </a>
+            <a class="text-xl font-black decoration-solid" href="/">progrium.xyz</a>
             <div class="space-x-8 ml-10" style="padding-bottom: 1px;">
-              <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">
-                Blog
-              </a>
-              <a href="https://progrium.com" target="_blank" class="text-base decoration-solid font-normal hover:text-gray-500">
+              <a href="/blog" class="text-base decoration-solid font-normal hover:text-gray-500">Blog</a>
+              <a class="text-base decoration-solid font-normal hover:text-gray-500" href="https://progrium.com" target="_blank">
                 Work
-                <svg width="12" height="12" fill="currentColor" class="inline ml-1" style="margin-bottom: 3px;" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="inline ml-1" style="margin-bottom: 3px;" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"></path>
                   <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"></path>
                 </svg>
@@ -47,41 +42,31 @@
           </div>
           <div class="space-x-4 flex">
             <a href="https://mas.to/@progrium" class="hover:text-gray-500">
-              <span class="sr-only">
-                Mastodon
-              </span>
-              <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
+              <span class="sr-only">Mastodon</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6">
                 <path style="transform: translateX(2px) translateY(2px);" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"></path>
               </svg>
             </a>
             <a href="https://twitter.com/progrium" class="hover:text-gray-500">
-              <span class="sr-only">
-                Twitter
-              </span>
+              <span class="sr-only">Twitter</span>
               <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
               </svg>
             </a>
             <a href="https://github.com/progrium" class="hover:text-gray-500">
-              <span class="sr-only">
-                GitHub
-              </span>
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <span class="sr-only">GitHub</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6" fill="currentColor">
                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
               </svg>
             </a>
             <a href="https://www.youtube.com/c/progrium" class="hover:text-gray-500" style="margin-top: 2px;">
-              <span class="sr-only">
-                YouTube
-              </span>
+              <span class="sr-only">YouTube</span>
               <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 576 512">
                 <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
               </svg>
             </a>
             <a href="https://www.twitch.tv/progrium" class="hover:text-gray-500" style="margin-top: 3px;">
-              <span class="sr-only">
-                Twitch
-              </span>
+              <span class="sr-only">Twitch</span>
               <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 512 512">
                 <path d="M391.17,103.47H352.54v109.7h38.63ZM285,103H246.37V212.75H285ZM120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0ZM449.07,237.75l-77.22,73.12H294.61l-67.6,64v-64H140.14V36.58H449.07Z"></path>
               </svg>
@@ -90,155 +75,64 @@
         </div>
       </nav>
     </header>
-    <section style="min-height: 50vh;" class="bg-white flex flex-col justify-center pb-16">
+    <section class="bg-white flex flex-col justify-center pb-16" style="min-height: 50vh;">
       <div class="mx-auto max-w-2xl">
         <main class="blog mb-8 max-w-xl">
           <div class="text-center">
-            <span class="text-gray-400 text-sm font-bold">
-              2021-05-27
-            </span>
-            <h1 class="mb-8">
-              Building your own Ngrok in 130 lines
-            </h1>
+            <span class="text-gray-400 text-sm font-bold">2021-05-27</span>
+            <h1 class="mb-8">Building your own Ngrok in 130 lines</h1>
           </div>
           <div class="body mx-auto text-left text-gray-800">
             <p>
-              Running a local development server for your app is pretty common, but what if you wanted somebody else to access it? Maybe for a demo, or maybe to debug webhook integrations. If you've ever used
-              <a href="https://ngrok.com/">
-                Ngrok
-              </a>
-              (or perhaps the original
-              <a href="https://github.com/progrium/localtunnel">
-                localtunnel
-              </a>
+              Running a local development server for your app is pretty common, but what if you wanted somebody else to access it? Maybe for a demo, or maybe to debug webhook integrations. If you've ever used <a href="https://ngrok.com/">Ngrok</a> (or perhaps the original 
+              <a href="https://github.com/progrium/localtunnel">localtunnel</a>
               ), you know what I'm talking about.
             </p>
+            <p>Today we're going to make a system that emulates the core functionality of Ngrok, exposing a localhost HTTP server via a public URL.</p>
+            <p>Just to make sure we're clear on how this all works, let me explain the problem. Normally when you run a server on your computer it can only be accessed by other computers on the same local network. However, many development servers will bind to <code>127.0.0.1</code>, or <code>localhost</code>, which means only a client or browser on your computer can access it. Either way, there are times when you might want another party to access it temporarily, but it's simply not addressable from the public Internet.</p>
             <p>
-              Today we're going to make a system that emulates the core functionality of Ngrok, exposing a localhost HTTP server via a public URL.
-            </p>
-            <p>
-              Just to make sure we're clear on how this all works, let me explain the problem. Normally when you run a server on your computer it can only be accessed by other computers on the same local network. However, many development servers will bind to
-              <code>
-                127.0.0.1
-              </code>
-              , or
-              <code>
-                localhost
-              </code>
-              , which means only a client or browser on your computer can access it. Either way, there are times when you might want another party to access it temporarily, but it's simply not addressable from the public Internet.
-            </p>
-            <p>
-              In the olden days, this could only be achieved if you had access to a server running SSH. You could configure SSH to have publicly addressable ports on that server be &quot;forwarded&quot; to a local port on your computer over an SSH connection. This is called
-              <a href="https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding">
-                remote port forwarding
-              </a>
+              In the olden days, this could only be achieved if you had access to a server running SSH. You could configure SSH to have publicly addressable ports on that server be &quot;forwarded&quot; to a local port on your computer over an SSH connection. This is called 
+              <a href="https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding">remote port forwarding</a>
               or sometimes SSH tunneling. Assuming SSH is configured properly, the command to set this up looks like this:
             </p>
             <pre><code>$ ssh -R 8080:localhost:3000 your-ssh-server.com
 </code></pre>
-            <p>
-              This would allow somebody to point their browser to
-              <code>
-                your-ssh-server.com:8080
-              </code>
-              and get your localhost server running on port
-              <code>
-                3000
-              </code>
-              as long as this command was running. Around 2009, I noticed how useful this is (especially in the context of webhooks), but was annoyed you had to have an SSH server properly configured for it before you could even do it. Even then, I always found the SSH command difficult to remember how to use for forwarding. I envisioned a command as simple as:
-            </p>
+            <p>This would allow somebody to point their browser to <code>your-ssh-server.com:8080</code> and get your localhost server running on port <code>3000</code> as long as this command was running. Around 2009, I noticed how useful this is (especially in the context of webhooks), but was annoyed you had to have an SSH server properly configured for it before you could even do it. Even then, I always found the SSH command difficult to remember how to use for forwarding. I envisioned a command as simple as:</p>
             <pre><code>$ localtunnel 3000
 </code></pre>
             <p>
-              So I set about making this happen. My
-              <a href="https://github.com/progrium/localtunnel/tree/prototype">
-                first attempt
-              </a>
-              at building a system with Twisted Python failed because I didn't quite grok
-              <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">
-                multiplexing
-              </a>
-              . So I ended up wrapping SSH. I wrote a
-              <code>
-                localtunnel
-              </code>
-              client in Ruby that behind the scenes would just run the above SSH command using a server I had set up. The only difference being that I didn't give you a port like
-              <code>
-                8080
-              </code>
-              to connect to, I wanted you to get a generated subdomain. Instead of
-              <code>
-                localtunnel.com:8080
-              </code>
-              , you'd get
-              <code>
-                wxyz.localtunnel.com
-              </code>
-              , which was unique to your tunnel as it was intended as a public service.
+              So I set about making this happen. My 
+              <a href="https://github.com/progrium/localtunnel/tree/prototype">first attempt</a>
+              at building a system with Twisted Python failed because I didn't quite grok 
+              <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">multiplexing</a>
+              . So I ended up wrapping SSH. I wrote a <code>localtunnel</code> client in Ruby that behind the scenes would just run the above SSH command using a server I had set up. The only difference being that I didn't give you a port like <code>8080</code> to connect to, I wanted you to get a generated subdomain. Instead of <code>localtunnel.com:8080</code>, you'd get <code>wxyz.localtunnel.com</code>, which was unique to your tunnel as it was intended as a public service.
             </p>
-            <p>
-              To achieve that, I just ran a Twisted web server with the SSH server that would figure out which port to use based on the subdomain and proxy to it. This would only work with HTTP because the idea of virtual hosts was actually invented for HTTP. Normally when you get a TCP connection you have no idea what hostname is used.
-            </p>
+            <p>To achieve that, I just ran a Twisted web server with the SSH server that would figure out which port to use based on the subdomain and proxy to it. This would only work with HTTP because the idea of virtual hosts was actually invented for HTTP. Normally when you get a TCP connection you have no idea what hostname is used.</p>
             <p>
               So I had something like this:
               <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wwljug8u9scfmlk1qutg.png" alt="Localtunnel Topology">
             </p>
             <p>
-              And it worked! It became rather popular. However, due to the slight complexity (Ruby+Python+OpenSSH) and the fact I was too busy to maintain the service, people started cloning it. One jackass even called
-              <a href="https://theboroer.github.io/localtunnel-www/">
-                his clone
-              </a>
+              And it worked! It became rather popular. However, due to the slight complexity (Ruby+Python+OpenSSH) and the fact I was too busy to maintain the service, people started cloning it. One jackass even called 
+              <a href="https://theboroer.github.io/localtunnel-www/">his clone</a>
               &quot;localtunnel&quot;.
             </p>
+            <p>Another jackass, who was less of a jackass and more my friend and coworker, decided to clone it as a way to learn Go. He called it Ngrok and decided to commercialize it. This bothered me for a number of reasons I won't get into, but eventually decided it was fine since he really improved on the idea and would at least listen to me if I had anything to say about it.</p>
+            <p><em>Anyway</em>, today we're exploring a toy recreation of this system that we'll call groktunnel. It removes SSH from the setup and using two libraries lets us build the whole thing in about 130 lines of Go. You'd still need a server to run this on, so it's not as convenient as a hosted service, but this is more for educational purposes. After all, groktunnel is actually a demo for qmux, one of the libraries I mentioned. Let me explain these libraries.</p>
             <p>
-              Another jackass, who was less of a jackass and more my friend and coworker, decided to clone it as a way to learn Go. He called it Ngrok and decided to commercialize it. This bothered me for a number of reasons I won't get into, but eventually decided it was fine since he really improved on the idea and would at least listen to me if I had anything to say about it.
-            </p>
-            <p>
-              <em>
-                Anyway
-              </em>
-              , today we're exploring a toy recreation of this system that we'll call groktunnel. It removes SSH from the setup and using two libraries lets us build the whole thing in about 130 lines of Go. You'd still need a server to run this on, so it's not as convenient as a hosted service, but this is more for educational purposes. After all, groktunnel is actually a demo for qmux, one of the libraries I mentioned. Let me explain these libraries.
-            </p>
-            <p>
-              What
-              <a href="https://github.com/progrium/qmux">
-                qmux
-              </a>
-              does is give us a subset of the SSH protocol to multiplex many connections over a single connection. It was the missing piece of my original Twisted prototype. You can read more about how there aren't a lot of these protocols (but perhaps with QUIC are also the future of the Internet) in my
-              <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">
-                previous post
-              </a>
+              What 
+              <a href="https://github.com/progrium/qmux">qmux</a>
+              does is give us a subset of the SSH protocol to multiplex many connections over a single connection. It was the missing piece of my original Twisted prototype. You can read more about how there aren't a lot of these protocols (but perhaps with QUIC are also the future of the Internet) in my 
+              <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">previous post</a>
               .
             </p>
             <p>
-              The other library is actually by the author of Ngrok. Called
-              <a href="https://github.com/inconshreveable/go-vhost">
-                go-vhost
-              </a>
+              The other library is actually by the author of Ngrok. Called 
+              <a href="https://github.com/inconshreveable/go-vhost">go-vhost</a>
               , it helps with the problem of virtual hosts. Ideally when a connection comes in to be forwarded down the tunnel we can hand it off wholesale. This way the other end can just start reading off the connection as if received directly. But in order to figure out the hostname used, we have to start reading off the connection up to the Host header. Then we have to hand it off prepended with what was read. What Alan wrote is an abstraction that gives you a virtual listener that lets you accept new connections for a particular virtual host and get the connection as if it hadn't been read yet. A lot of this is due to the interface based approach of the Go standard library.
             </p>
-            <p>
-              This brings us to the main utility function we'll be writing for this system. A TCP connection established between two peers cannot (easily) be handed off between programs, let alone hosts. We don't literally &quot;forward&quot; the connection, we sit in the middle and relay the bytes. This is how every proxy, load balancer, gateway, or tunnel works. It sort of welds two sockets together. I call this socket joining. And if you
-              <em>
-                can
-              </em>
-              avoid doing any protocol level stuff, building a proxy just becomes opening a connection to the backend when a connection comes in and then joining them.
-            </p>
-            <p>
-              Since Go models connections using the interfaces of the
-              <code>
-                io
-              </code>
-              package, we can use
-              <code>
-                io.Copy
-              </code>
-              to simplify reading off bytes from one connection into another until an
-              <code>
-                EOF
-              </code>
-              . A two-way copy like this that closes when finished looks like this:
-            </p>
+            <p>This brings us to the main utility function we'll be writing for this system. A TCP connection established between two peers cannot (easily) be handed off between programs, let alone hosts. We don't literally &quot;forward&quot; the connection, we sit in the middle and relay the bytes. This is how every proxy, load balancer, gateway, or tunnel works. It sort of welds two sockets together. I call this socket joining. And if you <em>can</em> avoid doing any protocol level stuff, building a proxy just becomes opening a connection to the backend when a connection comes in and then joining them.</p>
+            <p>Since Go models connections using the interfaces of the <code>io</code> package, we can use <code>io.Copy</code> to simplify reading off bytes from one connection into another until an <code>EOF</code>. A two-way copy like this that closes when finished looks like this:</p>
             <pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">join</span>(a io.ReadWriteCloser, b io.ReadWriteCloser) {
 </span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">go</span> io.<span style="color:#900;font-weight:bold">Copy</span>(b, a)
 </span></span><span style="display:flex;"><span>	io.<span style="color:#900;font-weight:bold">Copy</span>(a, b)
@@ -246,40 +140,8 @@
 </span></span><span style="display:flex;"><span>	b.<span style="color:#900;font-weight:bold">Close</span>()
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre>
-            <p>
-              This minimal approach benefits from setting a deadline on the connections in case one end doesn't hang up. You can see we copy bytes from
-              <code>
-                a
-              </code>
-              to
-              <code>
-                b
-              </code>
-              in the background, then wait for copying bytes from
-              <code>
-                b
-              </code>
-              to
-              <code>
-                a
-              </code>
-              before making sure both sides are closed once
-              <code>
-                b
-              </code>
-              gets an
-              <code>
-                EOF
-              </code>
-              .
-            </p>
-            <p>
-              We'll also define a helper to generate random subdomains. In a production service this is a big deal. You'd want an incredibly large space of possible subdomains, but here we generate 10 random alphanumeric characters using
-              <code>
-                crypto/rand
-              </code>
-              :
-            </p>
+            <p>This minimal approach benefits from setting a deadline on the connections in case one end doesn't hang up. You can see we copy bytes from <code>a</code> to <code>b</code> in the background, then wait for copying bytes from <code>b</code> to <code>a</code> before making sure both sides are closed once <code>b</code> gets an <code>EOF</code>.</p>
+            <p>We'll also define a helper to generate random subdomains. In a production service this is a big deal. You'd want an incredibly large space of possible subdomains, but here we generate 10 random alphanumeric characters using <code>crypto/rand</code>:</p>
             <pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">newSubdomain</span>() <span style="color:#458;font-weight:bold">string</span> {
 </span></span><span style="display:flex;"><span>	b <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">byte</span>, <span style="color:#099">10</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> _, err <span style="color:#000;font-weight:bold">:=</span> rand.<span style="color:#900;font-weight:bold">Read</span>(b); err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
@@ -293,57 +155,21 @@
 </span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">string</span>(r) <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;.&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre>
-            <p>
-              Another quick utility to define that's common in simple Go programs is a fatal function. This helps simplify all the error checking.
-            </p>
+            <p>Another quick utility to define that's common in simple Go programs is a fatal function. This helps simplify all the error checking.</p>
             <pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">fatal</span>(err <span style="color:#458;font-weight:bold">error</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
 </span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Fatal</span>(err)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre>
-            <p>
-              Now we can get started in our
-              <code>
-                main()
-              </code>
-              which will contain both client and server modes. However, first we'll define some flags useful to both:
-            </p>
+            <p>Now we can get started in our <code>main()</code> which will contain both client and server modes. However, first we'll define some flags useful to both:</p>
             <pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">var</span> port = flag.<span style="color:#900;font-weight:bold">String</span>(<span style="color:#d14">&#34;p&#34;</span>, <span style="color:#d14">&#34;9999&#34;</span>, <span style="color:#d14">&#34;server port to use&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">var</span> host = flag.<span style="color:#900;font-weight:bold">String</span>(<span style="color:#d14">&#34;h&#34;</span>, <span style="color:#d14">&#34;vcap.me&#34;</span>, <span style="color:#d14">&#34;server hostname to use&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">var</span> addr = flag.<span style="color:#900;font-weight:bold">String</span>(<span style="color:#d14">&#34;b&#34;</span>, <span style="color:#d14">&#34;127.0.0.1&#34;</span>, <span style="color:#d14">&#34;ip to bind [server only]&#34;</span>)
 </span></span><span style="display:flex;"><span>flag.<span style="color:#900;font-weight:bold">Parse</span>()
 </span></span></code></pre>
-            <p>
-              The default hostname of
-              <code>
-                vcap.me
-              </code>
-              is a way to make the server easy to run locally. Since
-              <code>
-                localhost
-              </code>
-              doesn't allow subdomains, but any domain can resolve to
-              <code>
-                127.0.0.1
-              </code>
-              , there are a few public domains that have wildcard subdomains all resolving to
-              <code>
-                127.0.0.1
-              </code>
-              . If we ran this on a real server, we'd need a domain with wildcard subdomains resolving to the server IP, and we'd probably use port
-              <code>
-                80
-              </code>
-              instead of
-              <code>
-                9999
-              </code>
-              .
-            </p>
-            <p>
-              Now we'll start with the client, which is quite simple. It's activated when there is an argument specifying the local port to expose publicly.
-            </p>
+            <p>The default hostname of <code>vcap.me</code> is a way to make the server easy to run locally. Since <code>localhost</code> doesn't allow subdomains, but any domain can resolve to <code>127.0.0.1</code>, there are a few public domains that have wildcard subdomains all resolving to <code>127.0.0.1</code>. If we ran this on a real server, we'd need a domain with wildcard subdomains resolving to the server IP, and we'd probably use port <code>80</code> instead of <code>9999</code>.</p>
+            <p>Now we'll start with the client, which is quite simple. It's activated when there is an argument specifying the local port to expose publicly.</p>
             <pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// client usage: groktunnel [-h=&lt;server hostname&gt;] &lt;local port&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">if</span> flag.<span style="color:#900;font-weight:bold">Arg</span>(<span style="color:#099">0</span>) <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#34;&#34;</span> {
 </span></span><span style="display:flex;"><span>	conn, err <span style="color:#000;font-weight:bold">:=</span> net.<span style="color:#900;font-weight:bold">Dial</span>(<span style="color:#d14">&#34;tcp&#34;</span>, net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(<span style="color:#000;font-weight:bold">*</span>host, <span style="color:#000;font-weight:bold">*</span>port))
@@ -368,26 +194,10 @@
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre>
-            <p>
-              Here we set up the tunnel over HTTP since we'll be serving HTTP anyway, and we need a way to tell the client what the generated public host is to display a URL to the user. You can see we get the hostname from a response header.
-            </p>
-            <p>
-              We're manually creating an HTTP request with
-              <code>
-                httputil.NewClientConn
-              </code>
-              because it lets us hijack the connection. This simply means it stops processing as HTTP and treats it like a raw TCP connection. Alternatively we could upgrade to WebSocket for this, but this simply works just as well with fewer dependencies.
-            </p>
-            <p>
-              After hijacking we create a qmux session to start multiplexing virtual connections, or channels, over this connection. This is the tunnel. We don't open channels, we just sit in a loop waiting for incoming channels and assume they want to be joined with a connection to our localhost server. That's it.
-            </p>
-            <p>
-              Now the server. First we set everything up using our flags, including a TCP listener, which we wrap in a virtual host muxer. The meat of our server is in
-              <code>
-                serve()
-              </code>
-              but that runs asynchronously as we listen for vhost muxing errors until shutdown.
-            </p>
+            <p>Here we set up the tunnel over HTTP since we'll be serving HTTP anyway, and we need a way to tell the client what the generated public host is to display a URL to the user. You can see we get the hostname from a response header.</p>
+            <p>We're manually creating an HTTP request with <code>httputil.NewClientConn</code> because it lets us hijack the connection. This simply means it stops processing as HTTP and treats it like a raw TCP connection. Alternatively we could upgrade to WebSocket for this, but this simply works just as well with fewer dependencies.</p>
+            <p>After hijacking we create a qmux session to start multiplexing virtual connections, or channels, over this connection. This is the tunnel. We don't open channels, we just sit in a loop waiting for incoming channels and assume they want to be joined with a connection to our localhost server. That's it.</p>
+            <p>Now the server. First we set everything up using our flags, including a TCP listener, which we wrap in a virtual host muxer. The meat of our server is in <code>serve()</code> but that runs asynchronously as we listen for vhost muxing errors until shutdown.</p>
             <pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// server usage: groktunnel [-h=&lt;hostname&gt;] [-b=&lt;bind ip&gt;]
 </span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>l, err <span style="color:#000;font-weight:bold">:=</span> net.<span style="color:#900;font-weight:bold">Listen</span>(<span style="color:#d14">&#34;tcp&#34;</span>, net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(<span style="color:#000;font-weight:bold">*</span>addr, <span style="color:#000;font-weight:bold">*</span>port))
 </span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">fatal</span>(err)
@@ -406,13 +216,7 @@
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre>
-            <p>
-              Now the heart of this system in
-              <code>
-                serve()
-              </code>
-              :
-            </p>
+            <p>Now the heart of this system in <code>serve()</code>:</p>
             <pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">serve</span>(vmux <span style="color:#000;font-weight:bold">*</span>vhost.HTTPMuxer, host, port <span style="color:#458;font-weight:bold">string</span>) {
 </span></span><span style="display:flex;"><span>	ml, err <span style="color:#000;font-weight:bold">:=</span> vmux.<span style="color:#900;font-weight:bold">Listen</span>(net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(host, port))
 </span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">fatal</span>(err)
@@ -448,68 +252,24 @@
 </span></span><span style="display:flex;"><span>	srv.<span style="color:#900;font-weight:bold">Serve</span>(ml)
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre>
+            <p>Here we create a new listener using the vhost muxer passed in to listen for connections on the naked domain (<code>vcap.me</code>). Then we make an HTTP handler that sets up a new tunnel. First it generates a new hostname and tells our vhost muxer to start listening on it. We'll hold on to that listener.</p>
+            <p>Then we start writing headers. Remember this is how we tell the client what our generated hostname is. We also use <code>Connection: close</code> to tell the other end we're going to be done and normally hang up, but after we flush the headers with a <code>200 OK</code> status, we hijack the connection like we know is going to happen on the other end. We make a new qmux session and start a new goroutine.</p>
+            <p>This goroutine handles connections coming in from our new vhost listener. All this does is sit in a loop accepting new connections, then using our qmux session opens a channel, then joins the new connection with that channel.</p>
+            <p>Back in our HTTP handler, we call <code>Wait()</code> on our session, which will just block until the connection breaks. This handler has been put into an HTTP server instance set to serve on our original vhost listener for the naked <code>vcap.me</code> domain.</p>
             <p>
-              Here we create a new listener using the vhost muxer passed in to listen for connections on the naked domain (
-              <code>
-                vcap.me
-              </code>
-              ). Then we make an HTTP handler that sets up a new tunnel. First it generates a new hostname and tells our vhost muxer to start listening on it. We'll hold on to that listener.
-            </p>
-            <p>
-              Then we start writing headers. Remember this is how we tell the client what our generated hostname is. We also use
-              <code>
-                Connection: close
-              </code>
-              to tell the other end we're going to be done and normally hang up, but after we flush the headers with a
-              <code>
-                200 OK
-              </code>
-              status, we hijack the connection like we know is going to happen on the other end. We make a new qmux session and start a new goroutine.
-            </p>
-            <p>
-              This goroutine handles connections coming in from our new vhost listener. All this does is sit in a loop accepting new connections, then using our qmux session opens a channel, then joins the new connection with that channel.
-            </p>
-            <p>
-              Back in our HTTP handler, we call
-              <code>
-                Wait()
-              </code>
-              on our session, which will just block until the connection breaks. This handler has been put into an HTTP server instance set to serve on our original vhost listener for the naked
-              <code>
-                vcap.me
-              </code>
-              domain.
-            </p>
-            <p>
-              Now we can try it out. You can follow the instructions in the
-              <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel#readme">
-                groktunnel README
-              </a>
+              Now we can try it out. You can follow the instructions in the 
+              <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel#readme">groktunnel README</a>
               to see it in action.
             </p>
+            <p>This little program gives us a client and server that recreates the original localtunnel system. It showcases the use case of tunneling for connection multiplexing, but also how easily you can wire things up in Go using mostly the standard library.</p>
             <p>
-              This little program gives us a client and server that recreates the original localtunnel system. It showcases the use case of tunneling for connection multiplexing, but also how easily you can wire things up in Go using mostly the standard library.
-            </p>
-            <p>
-              If you wanted to tunnel normal TCP connections, not HTTP connections, this program gets even simpler. However, that's an exercise for the reader. You can see the
-              <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel">
-                full groktunnel source
-              </a>
-              in the demos directory of the
-              <a href="https://github.com/progrium/qmux">
-                qmux
-              </a>
+              If you wanted to tunnel normal TCP connections, not HTTP connections, this program gets even simpler. However, that's an exercise for the reader. You can see the 
+              <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel">full groktunnel source</a>
+              in the demos directory of the 
+              <a href="https://github.com/progrium/qmux">qmux</a>
               project. Hope you were inspired to build something cool!
             </p>
-            <p>
-              <em>
-                For more posts like this sent directly to your inbox and to find out what all I'm up to, get on the list at
-                <a href="http://progrium.com">
-                  progrium.com
-                </a>
-                ✌️
-              </em>
-            </p>
+            <p><em>For more posts like this sent directly to your inbox and to find out what all I'm up to, get on the list at <a href="http://progrium.com">progrium.com</a> ✌️</em></p>
           </div>
         </main>
       </div>
@@ -517,104 +277,70 @@
     <footer class="bg-black py-16">
       <div class="mx-auto max-w-2xl">
         <div class="xl:grid xl:grid-cols-4 xl:gap-8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewbox="0 0 140 140" stroke="white">
-            <path stroke-dasharray="2,38" d="m9,70h122M70,9v122" stroke-width="122"></path>
-            <path stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0" stroke-width="33"></path>
+          <svg class="w-8 h-8" viewbox="0 0 140 140" stroke="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="m9,70h122M70,9v122" stroke-width="122" stroke-dasharray="2,38"></path>
+            <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"></path>
           </svg>
           <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
             <div class="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <span class="text-sm font-semibold leading-6 text-white">
-                  progrium.xyz
-                </span>
-                <ul role="list" class="mt-2">
+                <span class="text-sm font-semibold leading-6 text-white">progrium.xyz</span>
+                <ul class="mt-2" role="list">
                   <li>
-                    <a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Home
-                    </a>
+                    <a href="/" class="text-sm leading-6 text-gray-300 hover:text-white">Home</a>
                   </li>
                   <li>
-                    <a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Blog
-                    </a>
+                    <a href="/blog" class="text-sm leading-6 text-gray-300 hover:text-white">Blog</a>
                   </li>
                   <li>
-                    <a href="https://progrium.com" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Work
-                    </a>
+                    <a href="https://progrium.com" class="text-sm leading-6 text-gray-300 hover:text-white">Work</a>
                   </li>
                 </ul>
               </div>
               <div class="mt-10 md:mt-0">
-                <span class="text-sm font-semibold leading-6 text-white">
-                  Follow
-                </span>
+                <span class="text-sm font-semibold leading-6 text-white">Follow</span>
                 <ul role="list" class="mt-2">
                   <li>
-                    <a href="https://mas.to/@progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Mastodon
-                    </a>
+                    <a href="https://mas.to/@progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Mastodon</a>
                   </li>
                   <li>
-                    <a href="https://twitter.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Twitter
-                    </a>
+                    <a href="https://twitter.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Twitter</a>
                   </li>
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://github.com/progrium">
-                      GitHub
-                    </a>
+                    <a href="https://github.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">GitHub</a>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <span class="text-sm font-semibold leading-6 text-white">
-                  Content
-                </span>
+                <span class="text-sm font-semibold leading-6 text-white">Content</span>
                 <ul role="list" class="mt-2">
                   <li>
-                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://www.youtube.com/c/progrium">
-                      YouTube
-                    </a>
+                    <a href="https://www.youtube.com/c/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">YouTube</a>
                   </li>
                   <li>
-                    <a href="https://www.twitch.tv/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Twitch
-                    </a>
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://www.twitch.tv/progrium">Twitch</a>
                   </li>
                   <li>
-                    <a href="https://soundcloud.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Soundcloud
-                    </a>
+                    <a href="https://soundcloud.com/progrium" class="text-sm leading-6 text-gray-300 hover:text-white">Soundcloud</a>
                   </li>
                   <li>
-                    <a href="https://progrium.itch.io/" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      itch.io
-                    </a>
+                    <a href="https://progrium.itch.io/" class="text-sm leading-6 text-gray-300 hover:text-white">itch.io</a>
                   </li>
                 </ul>
               </div>
               <div class="mt-10 md:mt-0">
-                <span class="text-sm font-semibold leading-6 text-white">
-                  Contact
-                </span>
-                <ul class="mt-2" role="list">
+                <span class="text-sm font-semibold leading-6 text-white">Contact</span>
+                <ul role="list" class="mt-2">
                   <li>
-                    <a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Email
-                    </a>
+                    <a href="mailto:progrium+web@gmail.com" class="text-sm leading-6 text-gray-300 hover:text-white">Email</a>
                   </li>
                   <li>
-                    <a href="https://discord.gg/JraBdNHuuP" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      Discord
-                    </a>
+                    <a href="https://discord.gg/JraBdNHuuP" class="text-sm leading-6 text-gray-300 hover:text-white">Discord</a>
                   </li>
                   <li>
-                    <a href="https://www.linkedin.com/in/progrium/" class="text-sm leading-6 text-gray-300 hover:text-white">
-                      LinkedIn
-                    </a>
+                    <a class="text-sm leading-6 text-gray-300 hover:text-white" href="https://www.linkedin.com/in/progrium/">LinkedIn</a>
                   </li>
                 </ul>
               </div>
