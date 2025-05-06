@@ -3,6 +3,7 @@ title: "The Spirit of Plan 9 on the Web"
 date: "2025-05-05"
 tags: devlog, tractor, wanix
 comment_url: https://github.com/progrium/progrium.xyz/discussions/1#issue-comment-box
+cover_image: https://img.youtube.com/vi/kGBeT8lwbo0/sddefault.jpg
 ---
 
 If you go back to the [first talk ever given on webhooks,][1] it opens on the

@@ -17,8 +17,8 @@
     <meta property="og:title" content={page.title||site_title} />
     <meta property="og:description" content={page.description||site_description} />
     <meta property="og:url" content={`${site_url}${page.path}`} />
-    {site_cover && <meta name="twitter:image" content={site_cover} />}
-    {site_cover && <meta property="og:image" content={site_cover} />}
+    {site_cover && <meta name="twitter:image" content={page.cover_image||site_cover} />}
+    {site_cover && <meta property="og:image" content={page.cover_image||site_cover} />}
     {site_cover && <meta property="og:image:width" content="2048" />}
     {site_cover && <meta property="og:image:height" content="1024" />}
     {page.date && <meta property="article:published_time" content={`${page.date}T00:00:00+00:00`} />}
