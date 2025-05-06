@@ -7,4 +7,11 @@
         <div class="body mx-auto text-left text-gray-800">
             { content }
         </div>
+        { page.comment_url && (
+            <div class="mt-8 underline">
+                <a href={ page.comment_url }>
+                    Comment on this post
+                </a>
+            </div>
+        )}
     </main>

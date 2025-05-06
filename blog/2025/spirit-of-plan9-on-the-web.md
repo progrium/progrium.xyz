@@ -2,10 +2,11 @@
 title: "The Spirit of Plan 9 on the Web"
 date: "2025-05-05"
 tags: devlog, tractor, wanix
+comment_url: https://github.com/progrium/progrium.xyz/discussions/1#issue-comment-box
 ---
 
 If you go back to the [first talk ever given on webhooks,][1] it opens on the
-commnand-line. Specifically the Unix shell, focusing on one of its defining
+command-line. Specifically the Unix shell, focusing on one of its defining
 features: pipes. The idea was that pipes brought a new level of compositionality
 to programs, and webhooks could bring a new level of compositionality to web 
 apps. Perhaps you could say I was trying to bring the spirit of Unix to the web.

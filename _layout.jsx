@@ -82,9 +82,25 @@
     </nav>
   </header>
 
-  <section class="bg-white flex flex-col justify-center pb-16" style="min-height: 50vh;">
+  <section class="bg-white flex flex-col justify-center pb-8" style="min-height: 50vh;">
     <div class="mx-auto max-w-2xl">
       { content }
+    </div>
+  </section>
+
+  <section class="bg-gray-100 flex flex-col justify-center pb-16" style="min-height: 20vh;">
+    <div class="mx-auto max-w-2xl">
+      <p class="mt-8 text-lg leading-6 text-gray-500">
+        Subscribe to the mailing list so you don't miss the next blog post.
+      </p>
+      <form action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" class="mt-8 justify-center sm:flex">
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1" value="" /></div>
+        <label for="email-address" class="sr-only">Email address</label>
+        <input id="email-address" name="EMAIL" type="email" autocomplete="email" required="" class="w-full px-5 py-3 placeholder-gray-400 sm:max-w-xs rounded-md bg-white" placeholder="Enter your email" />
+        <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+          <button type="submit" class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-500 hover:text-white focus:outline-none glow focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Subscribe</button>
+        </div>
+      </form>
     </div>
   </section>
 
