@@ -91,7 +91,7 @@
   <section class="bg-gray-100 flex flex-col justify-center pb-16" style="min-height: 20vh;">
     <div class="mx-auto max-w-2xl">
       <p class="mt-8 text-lg leading-6 text-gray-500">
-        Subscribe to the mailing list so you don't miss the next blog post.
+        Subscribe so you don't miss the next blog post.
       </p>
       <form action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" class="mt-8 justify-center sm:flex">
         <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1" value="" /></div>
