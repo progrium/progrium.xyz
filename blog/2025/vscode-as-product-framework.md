@@ -3,6 +3,7 @@ title: "Turning VS Code into a Product Framework"
 html_title: "Turning VS Code into a <br />Product Framework"
 date: "2025-06-30"
 tags: devlog, tractor, apptron
+comment_url: https://github.com/progrium/progrium.xyz/discussions/2
 cover_image: https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fw273llqfnzo9kfrgv2k5.jpeg
 ---
 Visual Studio Code is no longer just a developer tool. It’s now a highly malleable and embeddable product platform. Looking at it beyond a code editor, it's actually a general-purpose application shell with a familiar UI, plugin system, command framework, and cross-platform runtime. Recently it's been used as the platform for several major AI products, but more quietly it's also been used for much more, from cloud IDEs to domain-specific editors and internal dev tools.
