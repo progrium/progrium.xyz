@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"/>
     <link href="/assets/style.css" rel="stylesheet"/>
-    <title>{ page.title } ::: { site_title }</title>
+    <title>{ page.title } :: { site_title }</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@progrium" />
     <meta property="og:locale" content="en" />
