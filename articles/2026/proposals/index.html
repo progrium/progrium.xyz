@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Proposals, Not Milestones · progrium</title>
+    <meta name="description" content="I&#39;ve started a new primitive called hyper9, initially as an experiment to see how far I could push working with coding agents."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2026/proposals.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2026/proposals"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Proposals, Not Milestones"/>
+    <meta property="og:description" content="I&#39;ve started a new primitive called hyper9, initially as an experiment to see how far I could push working with coding agents."/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2026/proposals"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2026/proposals.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2026-11-04T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>Proposals, Not Milestones</h1>
+          <div class="byline">
+            <time datetime="2026-11-04">2026-11-04</time>
+            · 7 min · <span class="tags"><a href="/tags/ai">ai</a></span>
+          </div>
+          <div class="body">
+            <p>
+              I've started a new primitive called 
+              <a href="https://github.com/progrium/hyper9">hyper9</a>
+              , initially as an experiment to see how far I could push working with coding agents. It's ambitious and exciting, and right now it's in a pretty good place. Though, maybe halfway to a real v0.1 release. Getting to this point with it forced me to finally solve a problem I've had with projects like this for a long time.
+            </p>
+            <p>
+              For day-to-day work we have todos, milestones and sprints, and those work fine when we're actively in that mode. But open source projects with larger arcs, and ideas that need a lot of thought before I can build them (let alone anybody else), have always been missing something. I'm talking about a written proposal process, sometimes called 
+              <a href="https://martinfowler.com/bliki/ArchitectureDecisionRecord.html">ADRs</a>
+              . As with most human collaboration technologies, they've been very effective working with coding agents, but also, having coding agents has finally made the process practical for me.
+            </p>
+            <h2>The usual loop</h2>
+            <p>Working with coding agents, I've settled into a plan-then-implement rhythm. I'll write a rough sketch prompt, then have the LLM turn it into a PLAN that's sort of like a spec. I review it, modify it, and then tell the agent to implement it.</p>
+            <p>From there it usually drifts out of sync, because there's no formal process. Sometimes when things are roughly done, I'll have the agent convert the PLAN into an updated DESIGN or SPEC that lives with the code, so there's some kind of design documentation and history. Other times I don't even keep the PLAN around. I just make commits and iterate forward.</p>
+            <p>For most projects so far that's been okay. Many open source projects, and some of my bigger projects usually ask you to &quot;submit an issue before a PR&quot; so there's a chance to talk about the design first. That's a hint at what's missing: a place for the design to be discussed and decided before anyone writes code. Not just initially, but throughout development.</p>
+            <h2>How hyper9 started</h2>
+            <p>hyper9 began the way most of my projects do lately: chatting with ChatGPT on my phone, notebook in hand. I put the idea together in my head, did research, and validated assumptions. Eventually I said &quot;draft a design doc,&quot; and that became the working design document until implementation started.</p>
+            <p>The project was too big for a single plan, so the doc broke it into milestones. Each milestone was a collection of things. The early ones were small, but they got bigger and bigger. Though, you wouldn't notice it by looking at the words.</p>
+            <p>I should have seen the problem coming when I started doing &quot;milestone prep.&quot; Before taking on M3, I'd ask what needed to happen first. That turned into a planning step of its own, full of unlisted work: set up a test harness, do some prerequisite work, answer some open questions. Once that was done, I could usually turn the milestone over to the agent to implement on its own.</p>
+            <h2>Stuck in research mode</h2>
+            <p>As the project grew, the milestones I'd defined upfront grew too. Sometimes after prep and planning, the agent would just read files and look things up for 30 minutes. One time I left it for over two hours, and it still hadn't written anything. It was all reading source and researching, which does go into its context and makes for a better implementation.</p>
+            <p>It was funny, it was like a new junior programmer too afraid to start because they don't feel prepared. Safer to just keep learning.</p>
+            <p>The real issue was that the milestones were too big. They were one-liners like &quot;M4: this, this, this, and this. Should be able to X.&quot; Each of those &quot;this&quot; items probably deserved its own plan.</p>
+            <h2>Patching the process</h2>
+            <p>This time I did one thing right: I had the agent keep the overall plan, which had become DESIGN, up to date. Whenever planning or implementing a milestone surfaced something that would change or add to the design, the agent updated the doc. It also added a short entry to a Milestone Changelog section, recording what changed and why, grouped by milestone.</p>
+            <p>That worked, but then dependencies showed up. Dependencies were how the milestones got ordered in the first place, and new discoveries could change that order.</p>
+            <p>Then I started running work in parallel. A milestone plan would lay out steps, and if one could be done independently, I'd have another agent session take it. They usually touched different files, and occasional overlap was fine. But the DESIGN doc and its changelog became a shared hotspot that every session wanted to edit.</p>
+            <p>I originally had M0 through M10 milestones. I assumed the early ones would be the hardest, with all the setup and foundation work, and later ones would get easier as &quot;just features.&quot; The opposite happened. The project got bigger and more complex, and the later milestones listed a bunch of pretty big things.</p>
+            <p>So I stopped at M4. It was a good point for validation and demos that showed, yes, this will work. And then I had the agent help me come up with a new process.</p>
+            <h2>Enter proposals</h2>
+            <p>I've always wanted to run a project on a written proposal system. The idea goes back to internet protocols and RFCs (Requests for Comments). Python has PEPs (Python Enhancement Proposals), and Go has its own proposal process. You get a written record of how an idea evolved: its design and its plan for implementation. You can collect comments and revise before approving and building it. And it lines up neatly with the plan-then-implement loop you already want with coding agents.</p>
+            <p>
+              So I based hyper9's new process on Go's, with some modifications. Fittingly, the first proposal was for the proposal system itself: 
+              <a href="https://github.com/progrium/hyper9/blob/main/design/proposals.md">proposals.md</a>
+              explains the motivation, how it works, and how we migrated to it. The rules live in the 
+              <a href="https://github.com/progrium/hyper9/blob/main/design/README.md">design README</a>
+              .
+            </p>
+            <p>The short version:</p>
+            <ul>
+              <li><strong>No more milestones.</strong> Each piece of work is its own proposal, a Markdown file in <code>design/</code> covering design and planning.</li>
+              <li><strong>Dependencies in frontmatter.</strong> Each proposal lists what it <code>depends</code> on, along with status and other bookkeeping. The order of work comes from the dependency graph, not a numbered sequence.</li>
+              <li><strong>A clear workflow.</strong> A sketch becomes an initial proposal with open questions. Then there's room for discussion, a final comment period, and formal approval.</li>
+              <li><strong>A tool that knows what's ready.</strong> It reports when a proposal is accepted and all its dependencies are implemented, so it's ready to build. It also validates the graph in CI and regenerates a status table in the project README.</li>
+              <li><strong>GitHub issues for discussion.</strong> Filing a proposal opens an issue for open discussion and tracking. Revisions happen as commits to the doc.</li>
+              <li><strong>DESIGN stays current.</strong> DESIGN.md now describes only what exists. The PR that finishes a proposal updates it.</li>
+              <li><strong>A human signs off.</strong> Agents can help write proposals, but a named person has to direct, review, and sign the work.</li>
+            </ul>
+            <p>The old M0 through M4 became a single &quot;baseline&quot; proposal marked implemented. The remaining milestones were split by feature into separate drafts.</p>
+            <h2>Why it works</h2>
+            <p>This solves the pre-development design process. It documents the thinking and the original plan, and it keeps the main design doc up to date as a current spec rather than a pile of plans.</p>
+            <p>It also makes open contributions easier, both for design and for the question &quot;what's ready that I can help with?&quot; And that applies to agents too. I can point an agent at a proposal to flesh it out, challenge it, or at another to implement it. I can point several agents at different proposals without them getting in each other's way on design, prep, and planning. Actual implementation happens in branches when needed.</p>
+            <p>This setup makes agent assisted human contribution easy, too. You can do the same thing I do: point your coding agent at a proposal, keep a loose eye on what it does, and review what it completes. Though, if you didn't write the proposal, it's probably a good idea to talk through it with the agent to better understand it.</p>
+            <p>The best part is that the formalisms, the design and customization of this workflow, but more importantly the work of actually following it are suddenly not overwhelming. Agents carry most of that load. A process like this would have felt like bureaucracy for a small project before. Now it's mostly free.</p>
+            <h2>A real roadmap</h2>
+            <p>
+              hyper9 now has a real roadmap: proposals at various stages, each with a 
+              <a href="https://github.com/progrium/hyper9/issues">GitHub issue</a>
+              . Some are ready to start, and some are longer-term ideas still being developed. There are also a few unnumbered sketches in the <code>design/</code> directory that don't have issues yet. A table in the project README, kept up to date by a tool, makes it easy to see what's ready to work on.
+            </p>
+            <p>I can think through a bunch of ideas, load them in as proposals, and let them simmer and develop until I think they're ready to be implemented. It's not quite a software factory, but it definitely feels like an augmented assembly line. One where feel in control of the design, and make better design decisions.</p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send out a newsletter with a little of everything: new articles, the best of the logs, useful resources, and a few surprises.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2025/vscode-as-product-framework" class="prev"><span class="pn-k">← previous</span>Turning VS Code into a Product Framework</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2026/proposals.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.bsky.social">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>
+            last tended 2026-11-13 ·
+            <span class="built">
+              built with 
+              <a href="https://progrium.github.io/taragen/">taragen</a>
+            </span>
+          </span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>
