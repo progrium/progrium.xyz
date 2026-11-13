@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Logs from July 2022 · progrium</title>
+    <meta name="description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/logs/2022/07.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/logs/2022/07"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Logs from July 2022"/>
+    <meta property="og:description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <meta property="og:url" content="https://progrium.xyz/logs/2022/07"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/logs/2022/07.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles">articles</a><a href="/logs" aria-current="page">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <div class="journal">
+          <h2 class="sec jm">
+            <a class="permalink" href="/logs/2022/07">july 2022</a>
+          </h2>
+          <article class="e e-log">
+            <div class="meta">
+              <a class="permalink" href="/logs/2022/07-19">2022-07-19</a>
+            </div>
+            <div class="e-body">
+              <p>In this demo I use the <a href="/logs/2022/07-01">Apptron</a> build command to create an executable from a single HTML file. No setup, no configuration. If you want to change how the window looks, you can add a meta tag to your HTML file. It’s not only simple, it’s fast.</p>
+              <p>
+                <a class="vid" href="https://www.youtube.com/watch?v=7zsCQGOEBRU" data-yt="7zsCQGOEBRU" data-title="Apptron Demo: Zero Config HTML5 Native Apps" aria-label="Play video: Apptron Demo: Zero Config HTML5 Native Apps"><span class="play" aria-hidden="true"></span><span class="vt">Apptron Demo: Zero Config HTML5 Native Apps</span><span class="vs">youtube · loads when you press play</span></a>
+              </p>
+              <p>The way this works is actually similar to the last demo where we built a simple Go application to host our webview app, except Apptron is building it for us. Unlike all other commands of Apptron, this build command does have a dependency, which is the Go compiler. Luckily, this compiler is also a self-contained tool that’s easy to install on any platform.</p>
+              <p>At some point, I’d like to try embedding the Go compiler with Apptron, but this does introduce some complexity I don’t want to take on just yet. However, if anybody is interested in making this happen, please join early access so you can help us make Apptron great.</p>
+              <p>Speaking of help, this demo avoids talking about something that’s somewhat necessary on modern platforms: signing. If you’ve ever downloaded an executable on Windows, I’m sure you’ve gotten a giant alert asking if you really want to run it. This is because it’s an unsigned executable, which means it can’t be proven to not be tampered with by a non-author. Platforms are getting stricter and stricter about this.</p>
+              <p>On Mac, you have to not only sign but notarize your executable before another Mac will be allowed to run it. This is a tricky process that can be done on your own with an Apptron built executable, but I have preliminary tooling to help with the process. The same tooling can also bundle up your executable into a Mac app bundle.</p>
+              <p>However, I need help getting these last mile features in. So please consider <a href="https://tractor.dev/apptron/">joining early access</a>, not only to try Apptron, but if you have the experience, to help us finish these core features before it debuts as a public open source project.</p>
+              <p>See you with the next demo!</p>
+              <p>-jeff</p>
+            </div>
+          </article>
+          <article class="e e-log">
+            <div class="meta">
+              <a class="permalink" href="/logs/2022/07-05">2022-07-05</a>
+            </div>
+            <div class="e-body">
+              <p>In this demo, I use the <a href="/logs/2022/07-01">Apptron</a> API from Go to build a simple birthday card application defined by HTML and CSS. I also explore the architectural approach of Apptron compared to directly working with platform native APIs.</p>
+              <p>
+                <a class="vid" href="https://www.youtube.com/watch?v=XU-vrmA7j4U" data-yt="XU-vrmA7j4U" data-title="Apptron Demo: Webview Window Building Block" aria-label="Play video: Apptron Demo: Webview Window Building Block"><span class="play" aria-hidden="true"></span><span class="vt">Apptron Demo: Webview Window Building Block</span><span class="vs">youtube · loads when you press play</span></a>
+              </p>
+              <p>To expand on the demo, in this post I’ll discuss some of the motivation behind this project. There are a few reasons why I made Apptron.</p>
+              <p>I’ve always loved the option of using HTML5 in webviews to build cross-platform native app UIs. Native controls definitely have their benefit, but become tricky to do consistently across platforms. Rendering the UI the way a game would with a GPU accelerated render frame is consistent across platforms, but usually means you have to invent your GUI paradigm from the ground up. Using a webview gets you general consistency across platforms, while also getting a well known paradigm for building user interfaces. It also comes with the largest ecosystem of frameworks and pre-built components that can generally be used together, and is constantly improving as the web evolves. It’s not always the best approach, but it’s a nice option to have.</p>
+              <p>Using a webview for desktop UI is not new, but was not a well known practice until Electron. I’m pretty sure significant chunks of UI in Windows as far back as Windows 95 were actually webviews. Recently, I was surprised to discover some parts of macOS today are actually using webviews. But Electron popularized it by focusing on the cross-platform benefit and riding on the initial success of Node.js, empowering JavaScripters to do more than they ever could before.</p>
+              <p>Today, Node.js is considered by many, including its author, a bit of a mistake. This is a complex thing to explain, but for me it has a lot to do with the culture of dependencies and complexity in that ecosystem. So if you explicitly don’t want to use JavaScript, or maybe just avoid Node.js and NPM, you don’t have much choice when it comes to easily making webview based apps.</p>
+              <p>Luckily, we’ve been seeing alternative frameworks for a couple different languages recently. Unfortunately, any language-specific framework is limited to that language. This has always frustrated me as a polyglot programmer. Broad approaches to software design shouldn’t be silo’d off to specific languages, even though obviously you have to pick one for an implementation.</p>
+              <p>It’s also frustrating to see how complex these full service frameworks become. At their core, they’re just re-exposing platform APIs, but they end up being full-fledged platforms of their own. Keep in mind, it’s not just webviews and windows, there are a bunch of platform APIs for features across all major platforms that you might want to use. Native menus, dialogs, notifications, etc. If you wanted to use one of these in a script or simple program, Electron immediately feels like overkill.</p>
+              <p>Depending on your language, you may find one-off libraries for these cross-platform native features. A library for webviews, a library for desktop notifications, etc. The problem there is when you want to combine them. Not only are these libraries usually going to be fairly inconsistent in their design, if they even exist, but because of the nature of platform APIs, they often need to set up an event loop and take over the main thread. This makes them difficult if not impossible to use together.</p>
+              <p>With all this in mind, it seemed the only option was to build a language-agnostic bridge to cross-platform APIs. Apptron uniquely sits somewhere between a full framework like Electron or Tauri, and small one-off libraries you might find for specific APIs. It can be used like a library, a tool, or a micro-framework, but it’s small and self-contained. This is why I describe it as a software primitive or building block.</p>
+              <p>I hope Apptron is compelling, and I’d like to invite you to <a href="https://tractor.dev/apptron/">try it out in early access</a>. In the meantime, more demos are on the way.</p>
+              <p>-jeff</p>
+            </div>
+          </article>
+          <article class="e e-log">
+            <div class="meta">
+              <a class="permalink" href="/logs/2022/07-01">2022-07-01</a>
+            </div>
+            <div class="e-body">
+              <p>I’m happy to announce the first major building block of the Tractor System: Apptron.</p>
+              <p>Apptron is a software primitive that lets you drive native platform APIs using the technologies you’re already familiar with, enabling cross-platform webview apps and more.</p>
+              <p>
+                <img src="/_assets/images/apptron-announcement.png" alt="Apptron Demo Screenshot">
+              </p>
+              <p>Usable from any language, or even the command line, Apptron gives you webview windows and common platform APIs for your simple scripts, homebrew utilities, or full applications. Building cross-platform programs that leverage native functionality (menus, dialogs, notifications, global shortcuts, etc) has never been more accessible.</p>
+              <p>These APIs are packed into a single executable that can be used a number of different ways, making Apptron a simple but powerful software primitive.</p>
+              <h4>Zero Config Native Apps from HTML</h4>
+              <p>Turn an HTML file and any other web assets into a self-contained, cross-platform executable in a single command.</p>
+              <h4>Language Agnostic Building Block</h4>
+              <p>Use the Apptron APIs like a library from any language without C extensions or tricky event loops.</p>
+              <h4>Shell Scriptable Native APIs</h4>
+              <p>Use platform APIs from CLI commands to break shell scripting out of the terminal and into the desktop GUI.</p>
+              <p>
+                These features and more will be showcased in a series of demos coming out over the next few weeks. Given all the different ways it can be used, Apptron is something you really have to see in action. Catch their 
+                <a href="https://www.twitch.tv/progrium/schedule?segmentID=97869319-25d1-428f-bedb-4b372ca0db6a">premieres on Twitch</a>
+                , or 
+                <a href="https://www.youtube.com/c/progrium">subscribe on YouTube</a>
+                so you don’t miss them.
+              </p>
+              <h2>Early Access</h2>
+              <p>In the meantime, we’re opening up Early Access via the Apptron website:</p>
+              <p><a href="https://tractor.dev/apptron">https://tractor.dev/apptron</a></p>
+              <p>By joining early access, you’ll be invited to the currently private GitHub repository where you can try Apptron out, submit issues, and help bring Apptron to a stable 1.0 release and become public open source software.</p>
+              <h2>Help Wanted</h2>
+              <p>I’ve been using Apptron in some form with the rest of the Tractor System for over a year now, but to make this a solid standalone primitive I’ll need your help. Please consider joining early access to play around with it and give feedback.</p>
+              <p>Anybody interested in contributing or helping drive this project should definitely request access and get involved. This is one of many projects I have in the pipeline and I can only do so much.</p>
+              <h2>Thanks</h2>
+              <p>
+                A huge thanks to my 
+                <a href="https://github.com/sponsors/progrium">sponsors</a>
+                , who I depend on to fund this early R&amp;D work on the Tractor System. As long as it’s sustainable, I look forward to releasing more powerful open source primitives.
+              </p>
+              <p>Excited to tell you more next week with the first Apptron demo!</p>
+              <p>-jeff</p>
+            </div>
+          </article>
+        </div>
+        <p class="more"><a href="/logs/2022/08">← August 2022</a></p>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/logs/2022/07.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.bsky.social">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>
+            last tended 2026-11-13 ·
+            <span class="built">
+              built with 
+              <a href="https://progrium.github.io/taragen/">taragen</a>
+            </span>
+          </span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

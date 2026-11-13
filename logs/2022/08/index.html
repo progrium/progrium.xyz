@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Logs from August 2022 · progrium</title>
+    <meta name="description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/logs/2022/08.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/logs/2022/08"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Logs from August 2022"/>
+    <meta property="og:description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <meta property="og:url" content="https://progrium.xyz/logs/2022/08"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/logs/2022/08.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles">articles</a><a href="/logs" aria-current="page">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <div class="journal">
+          <h2 class="sec jm">
+            <a class="permalink" href="/logs/2022/08">august 2022</a>
+          </h2>
+          <article class="e e-log">
+            <div class="meta">
+              <a class="permalink" href="/logs/2022/08-16">2022-08-16</a>
+            </div>
+            <div class="e-body">
+              <p>In this week’s demo I built a background application using HTML and <a href="/logs/2022/07-01">Apptron</a>. It may seem weird to involve a webview at all for a background app, which is why this was not a use case I had planned, but I was pleasantly surprised to discover how this turned out.</p>
+              <p>
+                <a class="vid" href="https://www.youtube.com/watch?v=i9nNUOHF7G4" data-yt="i9nNUOHF7G4" data-title="Apptron Demo: HTML5 Background Apps" aria-label="Play video: Apptron Demo: HTML5 Background Apps"><span class="play" aria-hidden="true"></span><span class="vt">Apptron Demo: HTML5 Background Apps</span><span class="vs">youtube · loads when you press play</span></a>
+              </p>
+              <p>In the last demo, we made an app indicator background utility as a shell script. This week we re-create it using JavaScript in an HTML file. With <code>apptron build</code> we can make it into a standalone executable. This workflow was originally intended for quick webview apps, but because we can let the JavaScript of the page run while the window is hidden, we effectively get a background application.</p>
+              <p>Apptron wasn’t made just for webview apps. I wanted to expose other native APIs that let you hook into more pre-built UI elements the operating system provides. For now this covers the common ones like app indicators, dialogs, and desktop notifications. In the future I’d like to expose APIs to let you add new items to system menus, control panels, and other places the OS lets developers hook into. These are important to make scriptable so you can easily leverage them for simple workflow hacks. When it’s easy to throw that kind of thing together, you don’t need to find “an app for that,” you can just imagine what would work for you and make it happen.</p>
+              <p>If this is also a world you want to see, <a href="https://tractor.dev/apptron/">join Apptron early access</a> and help us get this thing out. See you next demo!</p>
+              <p>-jeff</p>
+            </div>
+          </article>
+          <article class="e e-log">
+            <div class="meta">
+              <a class="permalink" href="/logs/2022/08-03">2022-08-03</a>
+            </div>
+            <div class="e-body">
+              <p>In this demo I show off the rest of the <a href="/logs/2022/07-01">Apptron</a> CLI, which exposes most of the cross-platform APIs as commands. These commands make great shell scriptable utilities, and you can see how they’ve been designed to facilitate this. By the end, we’ll have created an app indicator (systray) icon and menu that’s created and driven by a shell script.</p>
+              <p>
+                <a class="vid" href="https://www.youtube.com/watch?v=UHFS4STFYXM" data-yt="UHFS4STFYXM" data-title="Apptron Demo: Shell Scriptable Native APIs" aria-label="Play video: Apptron Demo: Shell Scriptable Native APIs"><span class="play" aria-hidden="true"></span><span class="vt">Apptron Demo: Shell Scriptable Native APIs</span><span class="vs">youtube · loads when you press play</span></a>
+              </p>
+              <p>There is a whole class of power users that doesn’t always want to take the time to “write a program,” let alone learn how. Since the functionality is right there, why not expose it in a way that’s useful for these folks? Sysadmins and devops engineers often spend most of their time at a command prompt, so this feature goes out to all of them.</p>
+              <p>It turns out having a CLI interface to the APIs also makes it easy to do basic regression testing for the project. It also provides a kind of accessible listing of functionality. And! It helps with our polyglot primitive goal, working as a stopgap before having native library support for a language, since nearly all languages can “shell out”.</p>
+              <p>As I mentioned in the video, this is a strategy I like to use when making generative primitives: maximize utility by providing multiple ways to access features. Like being language agnostic, this helps meet users where they are, and reach users you might not otherwise. There’s also often a dominant context people think of for some functionality, so showing it in a new or surprising context helps break people out of existing thought patterns and imagine new possibilities.</p>
+              <p>Let’s see what possibilities open up with the next demo! In the meantime, <a href="https://tractor.dev/apptron/">join early access</a> to explore Apptron on your own.</p>
+              <p>-jeff</p>
+            </div>
+          </article>
+        </div>
+        <p class="more"><a href="/logs/2022/10">← October 2022</a> · <a href="/logs/2022/07">July 2022 →</a></p>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/logs/2022/08.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.bsky.social">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>
+            last tended 2026-11-13 ·
+            <span class="built">
+              built with 
+              <a href="https://progrium.github.io/taragen/">taragen</a>
+            </span>
+          </span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

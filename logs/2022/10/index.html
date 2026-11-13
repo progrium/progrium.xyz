@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Logs from October 2022 · progrium</title>
+    <meta name="description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/logs/2022/10.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/logs/2022/10"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Logs from October 2022"/>
+    <meta property="og:description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <meta property="og:url" content="https://progrium.xyz/logs/2022/10"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/logs/2022/10.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles">articles</a><a href="/logs" aria-current="page">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <div class="journal">
+          <h2 class="sec jm">
+            <a class="permalink" href="/logs/2022/10">october 2022</a>
+          </h2>
+          <article class="e e-log">
+            <div class="meta">
+              <a class="permalink" href="/logs/2022/10-06">2022-10-06</a>
+            </div>
+            <div class="e-body">
+              <p>In this demo I show an experimental feature of <a href="/logs/2022/07-01">Apptron</a> that lets you customize the window frame using HTML and CSS. This allows us to create re-usable themes. Apptron even comes with a few builtin.</p>
+              <p>
+                <a class="vid" href="https://www.youtube.com/watch?v=4fjblMTvVh0" data-yt="4fjblMTvVh0" data-title="Apptron Demo: CSS Themed Windows" aria-label="Play video: Apptron Demo: CSS Themed Windows"><span class="play" aria-hidden="true"></span><span class="vt">Apptron Demo: CSS Themed Windows</span><span class="vs">youtube · loads when you press play</span></a>
+              </p>
+              <p>Being able to customize the frame of your window is not new. With Electron you can create a “frameless” window, giving you a blank frame to populate with your webview. However, now you have to make sure you have all the basic window controls users expect. It also ties that window frame to the rest of your UI web code. What this Apptron feature does is make the window frame a separate HTML context that you can define or set with a pre-existing theme.</p>
+              <p>As I mentioned, this is experimental. Right now it requires and uses an iframe in the theme HTML to show what you normally expect in your webview. We can replace this with a separate native webview positioned where the iframe would normally be. I’d love it if somebody wanted to help make this happen.</p>
+              <p>However, there are other ways you can contribute. I’d love to have more built-in themes for users to play with. They don’t have to be retro throwbacks, but more of those are welcome, too!</p>
+              <p><a href="http://tractor.dev/apptron/">Sign up to join early access</a> if you’re interested in using or contributing to the project. This is the last demo for now, but I’ll be back soon with not only more Apptron, but more exciting projects.</p>
+              <p>-jeff</p>
+            </div>
+          </article>
+        </div>
+        <p class="more"><a href="/logs/2026/03">← March 2026</a> · <a href="/logs/2022/08">August 2022 →</a></p>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/logs/2022/10.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.bsky.social">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>
+            last tended 2026-11-13 ·
+            <span class="built">
+              built with 
+              <a href="https://progrium.github.io/taragen/">taragen</a>
+            </span>
+          </span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>
