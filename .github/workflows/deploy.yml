@@ -20,6 +20,10 @@ jobs:
           check-latest: true
 
       - name: Install Taragen
+        # Fetch from GitHub, not the module proxy, which can serve a stale
+        # commit for @main for a while after a push.
+        env:
+          GOPROXY: direct
         run: go install github.com/progrium/taragen/cmd/taragen@main
 
       - name: Build
