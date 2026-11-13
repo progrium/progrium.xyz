@@ -6,7 +6,7 @@ data({ title: "Not found", outputs: false });
     'cat: /articles/spirit-of-plan-10: file does not exist</span>',
     '% ls /',
     '<a href="/articles">articles/</a>  <a href="/logs">logs/</a>  <a href="/projects">projects/</a>  <a href="/about">about</a>',
-    '% <span class="cur">▍</span></pre>',
+    '% </pre>',
   ].join("\n"))}
   <script>{`(function(){var p=location.pathname.replace(/\\/$/,"")||"/";var e=document.getElementById("lost");if(e&&p!=="/404.html")e.textContent="% cat "+p+"\\ncat: "+p+": file does not exist"})()`}</script>
 </div>
