@@ -14,7 +14,7 @@
   );
   return (
     <form class="nl nl-box" action={newsletterAction} method="post" aria-label="Newsletter">
-      <p class="nl-lead">Once a month I send a letter with a little of everything: new articles, the best of the logs, and whatever else I've been making.</p>
+      <p class="nl-lead">Once a month I send out a newsletter with a little of everything: new articles, the best of the logs, useful resources, and a few surprises.</p>
       <div class="nl-row"><label for={id} class="sr">Email address</label>{fields}</div>
     </form>
   );
