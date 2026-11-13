@@ -1,0 +1,7 @@
+isobox: Run a command in a sandbox, with the same flags on every OS
+2026-11-02 · link · https://github.com/can1357/isobox
+
+isobox is a Go CLI that compiles one sandbox policy to each OS's native mechanism: Seatbelt on macOS, gVisor on Linux, and AppContainer on Windows. Instead of pretending every backend is equal, it uses an explicit capability model that flags where enforcement falls short, and a strict mode that refuses anything that isn't portable.
+
+-- 
+https://progrium.xyz/logs/2026/11-02
