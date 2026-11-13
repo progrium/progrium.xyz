@@ -82,9 +82,9 @@ img { height: auto; }
 
 /* ---------- frame ---------- */
 .site {
-  max-width: 44em;
-  margin: 0;
-  padding: 44px 20px 0 clamp(20px, 7cqi, 72px);
+  max-width: calc(34em + 40px);
+  margin: 0 auto;
+  padding: 44px 20px 0;
 }
 main { max-width: 34em; }
 
@@ -194,7 +194,7 @@ main { max-width: 34em; }
 
 /* margin notes: inline on narrow screens, in the margin when there's room */
 .sn { display: block; font-size: 14.5px; line-height: 1.45; color: var(--dim); margin: 1em 0; padding-left: 12px; border-left: 1px solid var(--hair); }
-@container (min-width: 860px) {
+@container (min-width: 1200px) {
   .sn { position: absolute; right: -15.5em; width: 13em; margin: 0; padding-left: 0; border: 0; transform: translateY(-4.6em); }
 }
 
