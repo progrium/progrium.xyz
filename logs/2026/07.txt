@@ -1,4 +1,4 @@
-Logs from undefined undefined
+Logs from July 2026
 log
 
 params(() => pages("logs/**").filter(isEntry).map(p => ({ year: p.date.slice(0, 4), month: p.date.slice(5, 7) })));
