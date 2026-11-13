@@ -18,7 +18,7 @@ elsewhere = [
   ["email", "mailto:progrium+web@gmail.com"],
   ["github", "https://github.com/progrium"],
   ["mastodon", "https://mas.to/@progrium"],
-  ["bsky", "https://bsky.app/profile/progrium.xyz"],
+  ["bsky", "https://bsky.app/profile/progrium.bsky.social"],
   ["x", "https://x.com/progrium"],
 ];
 
