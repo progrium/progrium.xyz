@@ -239,9 +239,11 @@ iframe.vid { border: 0; cursor: auto; }
   padding: 4px 12px;
   cursor: pointer;
 }
-.key:hover, .nl button:hover { transform: translateY(1px); border-bottom-width: 2px; }
+/* press: the ledge gives 1px back to padding, so the box keeps its size and nothing around it moves */
+.key:hover, .nl button:hover { transform: translateY(1px); border-bottom-width: 2px; padding-bottom: 5px; }
 .key:focus-visible, .nl button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .key.small { padding: 1px 8px; }
+.key.small:hover { padding-bottom: 2px; }
 
 /* ---------- end of a post ---------- */
 .reply-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-top: 32px; }
