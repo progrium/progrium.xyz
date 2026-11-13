@@ -1,0 +1,3 @@
+params(() => [...new Set(pages({ path: ["articles/**", "logs/**", "docs/**"] }).filter(isEntry).flatMap(p => p.tags || []))].map(tag => ({ tag })));
+data({ title: `Tagged ${page.params.tag}` });
+<span></span>

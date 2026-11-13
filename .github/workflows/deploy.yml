@@ -1,5 +1,8 @@
 name: Build and Deploy
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
 permissions:
   contents: write
 jobs:
@@ -23,7 +26,9 @@ jobs:
         run: |
           taragen build
 
+      # Only main deploys. Other branches and pull requests just check that the site builds.
       - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _public
