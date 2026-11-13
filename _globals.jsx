@@ -22,45 +22,15 @@ elsewhere = [
   ["x", "https://x.com/progrium"],
 ];
 
-// Projects. `page: true` means there's a hand-written page at /projects/<slug>.
-// `tag` is the tag whose entries show up on that page (defaults to the slug).
-projects = [
-  { group: "now", slug: "h9", g: "🐇", name: "h9", years: "2026–", status: "preview soon",
-    d: "Native 9front executables on host hypervisors.", tags: ["plan9"] },
-  { group: "now", slug: "wanix", g: "🧩", name: "Wanix", years: "2023–", status: "in preview",
-    d: "A Plan 9 inspired primitive for building environments in the browser.",
-    source: "https://github.com/tractordev/wanix", tags: ["plan9", "tractor"] },
-  { group: "now", slug: "apptron", g: "🪟", name: "Apptron", years: "2022–",
-    d: "Native APIs and an app shell for software built with web tech.",
-    website: "https://apptron.dev/", tags: ["tractor"] },
-  { group: "now", slug: "tractor", g: "🚜", name: "Tractor", years: "2020–",
-    d: "The long project all of the above belongs to: simpler ways to build software.",
-    website: "https://tractor.dev/" },
-  { group: "earlier", slug: "treehouse", g: "🌳", name: "Treehouse", years: "2023",
-    d: "An open source, hackable outliner frontend.",
-    website: "https://treehouse.sh/", source: "https://github.com/treehousedev/treehouse" },
-  { group: "earlier", slug: "qtalk", g: "💬", name: "qtalk", years: "2021",
-    d: "Making programs talk to each other over one connection.",
-    source: "https://github.com/progrium/qtalk-go" },
-  { group: "earlier", slug: "macdriver", g: "🍎", name: "macdriver", years: "2021",
-    d: "Mac APIs and native Mac apps from Go.",
-    source: "https://github.com/progrium/macdriver" },
-  { group: "earlier", slug: "dokku", g: "🐳", name: "Dokku", years: "2013",
-    d: "The smallest PaaS you've ever seen. A Docker-powered mini-Heroku.",
-    website: "https://dokku.com/", source: "https://github.com/dokku/dokku" },
-  { group: "earlier", slug: "localtunnel", g: "🚇", name: "localtunnel", years: "2010",
-    d: "Expose localhost to the world. The original.",
-    source: "https://github.com/progrium/localtunnel" },
-  { group: "earlier", slug: "webhooks", g: "🪝", name: "Webhooks", years: "2007",
-    d: "An idea more than a project. Pipes for the web." },
-  { group: "not code", slug: "music", g: "🎹", name: "Music",
-    d: "Tracks on SoundCloud.", website: "https://soundcloud.com/progrium" },
-  { group: "not code", slug: "games", g: "🎮", name: "Games",
-    d: "Small indie games on itch.io.", website: "https://progrium.itch.io/" },
-  { group: "not code", slug: "communities", g: "🏠", name: "SuperHappyDevHouse, Hacker Dojo",
-    d: "Communities I helped start." },
-];
-projectBySlug = (slug) => projects.find(p => p.slug === slug);
+// Projects live in projects/<slug>.md. Frontmatter is the entry on /projects;
+// a file with a body also gets its own page. Callers pass the listing in:
+// projectList(pages("projects"))
+projectGroups = ["now", "earlier", "not code"];
+hasStory = (p) => stripTags(p.body).trim() !== "";
+startYear = (p) => Number(String(p.years || "").slice(0, 4)) || 0;
+projectList = (list) => list.filter(p => !p.isDir && p.group)
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0) || startYear(b) - startYear(a) || a.title.localeCompare(b.title));
+projectHref = (p) => hasStory(p) ? p.path : `/projects#${p.slug}`;
 
 // ---------- dates ----------
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
