@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: |
           taragen build
+          # GitHub Pages runs Jekyll unless told not to, and Jekyll drops
+          # underscore paths like /_assets and /_redirects.
+          touch _public/.nojekyll
 
       # Only main deploys. Other branches and pull requests just check that the site builds.
       - name: Deploy
