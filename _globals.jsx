@@ -25,7 +25,7 @@ elsewhere = [
 // Projects live in projects/<slug>.md. Frontmatter is the entry on /projects;
 // a file with a body also gets its own page. Callers pass the listing in:
 // projectList(pages("projects"))
-projectGroups = ["now", "earlier", "not code"];
+projectGroups = ["now", "earlier", "communities", "other"];
 hasStory = (p) => stripTags(p.body).trim() !== "";
 startYear = (p) => Number(String(p.years || "").slice(0, 4)) || 0;
 projectList = (list) => list.filter(p => !p.isDir && p.group)
