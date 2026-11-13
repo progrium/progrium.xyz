@@ -2,11 +2,18 @@ data({ title: "Logs", description: "Short, untitled journal entries. What I'm do
 {(() => {
   const all = entries(pages({ path: ["logs/**"] }));
   if (!all.length) return <p class="casual">Nothing logged yet. Soon.</p>;
-  const ym = all[0].date.slice(0, 7);
-  const month = all.filter(p => p.date.startsWith(ym));
-  const older = all.find(p => !p.date.startsWith(ym));
+  // Show this month and last month, as of the build. If either has no
+  // entries, fall back to the two most recent months that do.
+  const now = today().slice(0, 7);
+  const [y, m] = now.split("-").map(Number);
+  const prev = m === 1 ? `${y - 1}-12` : `${y}-${String(m - 1).padStart(2, "0")}`;
+  const has = (ym) => all.some(p => p.date.startsWith(ym));
+  const shown = has(now) && has(prev) ? [now, prev] : [...new Set(all.map(p => p.date.slice(0, 7)))].slice(0, 2);
+  const list = all.filter(p => shown.includes(p.date.slice(0, 7)));
+  const oldest = shown[shown.length - 1];
+  const older = all.find(p => p.date.slice(0, 7) < oldest);
   return <>
-    {partial("_partials/journal", month)}
+    {partial("_partials/journal", list)}
     {older && <p class="more"><a href={`/logs/${older.date.slice(0, 4)}/${older.date.slice(5, 7)}`}>{monthName(older.date.slice(5, 7))} {older.date.slice(0, 4)} →</a></p>}
   </>;
 })()}
