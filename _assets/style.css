@@ -359,3 +359,10 @@ iframe.vid { border: 0; cursor: auto; }
   .nl-home input, .nl-row input { flex: 1 1 0; }
   .nl button { flex: none; }
 }
+
+/* On narrow screens the footer rows stack, so give them room to breathe. */
+@container (max-width: 620px) {
+  .foot { row-gap: 12px; }
+  .elsewhere { gap: 4px 1.4em; }
+  .tended { margin-top: 6px; row-gap: 14px; }
+}
