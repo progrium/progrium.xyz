@@ -1,0 +1,17 @@
+data({ title: "Articles", description: "Everything I've written that needed a title." });
+<div class="compact">
+  {groupByYear(entries(pages({ path: ["articles/**"] }))).map(g =>
+    <div class="yeargroup">
+      <div class="yr">{g.year}</div>
+      <div class="stream">
+        {g.items.map(p =>
+          <article class="e e-article">
+            <div class="meta"><time datetime={p.date}>{shortDate(p.date)}</time></div>
+            <div class="e-body"><h3><a href={p.path}>{p.title}</a></h3></div>
+          </article>
+        )}
+      </div>
+    </div>
+  )}
+</div>
+<p class="more"><a href="/articles/feed.xml">articles feed</a> · <a href="/tags">tags</a></p>

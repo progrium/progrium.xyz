@@ -1,0 +1,11 @@
+data({ title: "Feeds", description: "Ways to follow along." });
+<div class="body">
+  <p>Pick how much you want.</p>
+  <dl class="dl">
+    <dt><a href="/feed.xml">/feed.xml</a></dt><dd>everything: articles, logs and links</dd>
+    <dt><a href="/articles/feed.xml">/articles/feed.xml</a></dt><dd>articles only</dd>
+    <dt><a href="/logs/feed.xml">/logs/feed.xml</a></dt><dd>logs and links only</dd>
+    <dt><a href="/newsletter">newsletter</a></dt><dd>once a month, a little of everything</dd>
+  </dl>
+  <p>Every page also has a plain text twin. Add <code>.txt</code> to its address, or use the txt link at the bottom.</p>
+</div>

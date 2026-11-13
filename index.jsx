@@ -1,24 +1,10 @@
-data({
-  title: "Jeff Lindsay",
-  description: "Personal homepage for Jeff Lindsay",
-  cover_image: "https://progrium.xyz/assets/photo_wide.png",
-});
-<div>
-  <div class="flex gap-8">
-    <div>
-      <p class="my-4 text-3xl">Hello, I'm Jeff!</p>
-      <p class="my-4">
-      I'm a creator and entrepreneur known for my work and ideas in open source developer tooling.
-      </p>
-      <p class="my-4">
-      I try to push the boundaries of the computer as a magical tool and compiler for the imagination.
-      </p>
-      <p class="my-4">
-      Otherwise I enjoy making indie games and producing music. Someday I'd like to make films.
-      </p>
-    </div>
-    <div class="shrink-0 py-1">
-      <img class="w-64 grayscale hover:grayscale-0 rounded-xl" src="/assets/photo2.jpeg" />
-    </div>
-  </div>
+data({ title: "Jeff Lindsay", description: "Jeff Lindsay, aka progrium. I make simple tools that make computers more programmable." });
+<div class="intro">
+  <p>Hi, I'm Jeff. I make simple tools that make computers more programmable, and I try to treat the computer as an instrument for the imagination.</p>
+  <p>I'm known for webhooks, localtunnel and Dokku. Lately it's Plan 9 ideas on modern machines.</p>
 </div>
+{now && <div class="now"><span class="now-k">now</span> <span>{now}</span></div>}
+{partial("_partials/newsletter", "home", "nl-home-email")}
+<h2 class="sec">recently</h2>
+{partial("_partials/stream", entries(pages({ path: ["articles/**", "logs/**"] })).slice(0, 12))}
+<p class="more"><a href="/articles">all articles</a> · <a href="/logs">all logs</a> · <a href="/feeds">feeds</a></p>

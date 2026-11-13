@@ -1,0 +1,3 @@
+# Old /blog URLs. Posts and the feed get theirs from articles/_defaults.jsx.
+/blog           /articles
+/blog/archive   /articles
