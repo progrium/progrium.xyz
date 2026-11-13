@@ -346,3 +346,9 @@ iframe.vid { border: 0; cursor: auto; }
 .backlinks ul { margin: 8px 0 0; padding: 0; list-style: none; }
 .backlinks li a { color: var(--soft); }
 .byline .tags a + a::before { content: ", "; color: var(--soft); display: inline-block; white-space: pre; text-decoration: none; }
+
+/* On narrow screens titles wrap, so tighten each title and open up the gaps between them. */
+@container (max-width: 620px) {
+  .compact .stream { gap: 14px; }
+  .compact h3 { line-height: 1.3; }
+}
