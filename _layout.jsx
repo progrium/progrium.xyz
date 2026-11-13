@@ -18,7 +18,9 @@
     <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml" />
     <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml" />
     {page.outputs?.txt && <link rel="alternate" type="text/plain" href={page.outputs.txt} />}
-    <link rel="canonical" href={`${page.siteURL}${page.path}`} />
+    <link rel="canonical" href={`${page.siteURL}${page.redirectTo ? page.redirectTo.replace(/#.*$/, "") : page.path}`} />
+    {page.redirectTo && <meta http-equiv="refresh" content={`0; url=${page.redirectTo}`} />}
+    {page.redirectTo && <meta name="robots" content="noindex" />}
     <meta property="og:site_name" content={siteTitle} />
     <meta property="og:type" content={kind === "article" ? "article" : "website"} />
     <meta property="og:title" content={page.path === "/" ? "Jeff Lindsay" : (page.title || entryTitle(page))} />
