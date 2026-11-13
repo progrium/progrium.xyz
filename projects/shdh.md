@@ -3,5 +3,6 @@ title: "SuperHappyDevHouse"
 emoji: "🏠"
 group: "communities"
 order: 1
-description: "A party for hackers and thinkers"
+website: "https://superhappydevhouse.org"
+description: "A party for hackers and thinkers."
 ---
