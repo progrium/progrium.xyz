@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Welcome to Treehouse · progrium</title>
+    <meta name="description" content="Announcing Treehouse, an open source note-taking frontend and will evolve into something much more."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2023/welcome-to-treehouse.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2023/welcome-to-treehouse"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Welcome to Treehouse"/>
+    <meta property="og:description" content="Announcing Treehouse, an open source note-taking frontend and will evolve into something much more."/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2023/welcome-to-treehouse"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2023/welcome-to-treehouse.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2023-02-23T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>Welcome to Treehouse</h1>
+          <div class="byline">
+            <time datetime="2023-02-23">2023-02-23</time>
+            · 4 min · <span class="tags"><a href="/tags/devlog">devlog</a><a href="/tags/treehouse">treehouse</a><a href="/tags/opensource">opensource</a></span>
+          </div>
+          <div class="body">
+            <p>I'm excited to announce the start of a new major project that I'll be sharing the journey of on this fancy new blog. The project is called <a href="https://treehouse.sh/">Treehouse</a>, which is starting as an open source note-taking frontend and will evolve into something much more.</p>
+            <p>
+              <img src="https://treehouse.sh/photos/hero-image.png" alt="Treehouse screenshot">
+            </p>
+            <p>We're creating a simple, hackable kernel of a note-taking tool as a web frontend that can be extended and customized by developers. Then we'll use that frontend to build a new kind of note-taking product. Today we have an early preview of our first minimum viable prototype of the frontend, and we'll be finishing up this release in the open on GitHub.</p>
+            <p>
+              The 
+              <a href="https://github.com/treehousedev/treehouse">open source project</a>
+              is a functional app frontend that you can deploy and back in various ways. For developers, this &quot;bring your own backend&quot; approach makes Treehouse a great starting point to build your own note-taking tool, just as we intend to do. We also have pre-made backends for those who want to use it with little-to-no programming. Either way, you'll always own your data, and now the system presenting it to you as well.
+            </p>
+            <p>In this post, I'm going to talk about our minimum viable prototype and the approach we're taking with Treehouse as an open source project.</p>
+            <h2>Out of the Box</h2>
+            <p>While inspired by powerful tools like <a href="https://www.notion.so/">Notion</a>, <a href="https://tana.inc/">Tana</a>, and <a href="https://obsidian.md/">Obsidian</a>, we wanted to boil our initial goal down to the essentials while still being usable enough to use ourselves. As we continue to plan our prototype release milestone, we'd love to hear what you think is essential for you to have in a tool and platform like this, but here is what to expect as a baseline.</p>
+            <h3>Outliner with Markdown Pages</h3>
+            <p>At the heart of Treehouse is a graph-like system I've been developing called Manifold. This will play a big part in the long-term extensibility of Treehouse, which I'll talk more about in the future. For now, this maps very cleanly to the outliner model popularized by Workflowy, Tana, and others.</p>
+            <p>However, I'm also a fan of Notion-style pages and Obsidian's commitment to working with plain Markdown files. The Manifold system allows us to make certain nodes into Markdown pages. This hybrid model gets us the best of both worlds with room for even more possibilities later on.</p>
+            <h3>Quick Add and Daily Notes</h3>
+            <p>Being able to quickly get thoughts and information into the system has been a key aspect of every good note-taking system. This can be exposed a number of ways from browser extensions to desktop shortcuts, but what makes any &quot;quick add&quot; functionality quick is not having to think about where it will be organized.</p>
+            <p>Luckily, &quot;daily notes&quot; has become such a common pattern that many recent tools have managed daily notes built-in. This typical gives you a &quot;today&quot; note that is automatically organized into a calendar-like structure. This conveniently becomes the perfect destination for &quot;quick add&quot; notes.</p>
+            <h3>Full-text Search</h3>
+            <p>Whether you are an obsessive organizer or are too busy to take the time, solid full-text search is basically a necessity. It's how we quickly get to our data.</p>
+            <p>Out of the box we have a full-text search that doesn't require a backend. However, our pluggable backend will allow you to power search in a number of ways, and also opens up the ability to search into external systems that are important to you.</p>
+            <h3>Built-in Backends</h3>
+            <p>&quot;Bring your own backend&quot; is a critical part of the design of this project, but Treehouse also needs to be usable by people who prefer not to <em>build</em> their own backend. Our prototype release is planned to include a handful of built-in backends to get started with.</p>
+            <p>Our preview demo is using a localStorage backend, which works for development and special use cases. Of course, we will have a simple local filesystem backend for desktop scenarios, similar to Obsidian.</p>
+            <p>However, we're most excited for the GitHub backend. This functions similarly to the local filesystem backend, but it would be versioned in a central repository on your GitHub account and be accessible on any online platform.</p>
+            <p>Backends will not only let you extend storage, search, and authentication, but other aspects in the future.</p>
+            <h2>Project Overview</h2>
+            <p>The Treehouse codebase and open source project is as much the product as its features. The entire user and developer experience is being designed around simplicity and human ergonomics.</p>
+            <p>The Treehouse frontend is built with web technologies intended for use across web, mobile, and desktop platforms. The project is written in TypeScript using <a href="https://deno.land/">Deno</a> as its JavaScript toolchain.</p>
+            <p>The JavaScript ecosystem is a mess, but Deno provides a forward-looking, self-contained toolchain that's easy to love. We actually have a zero Node.js policy and avoid NPM modules as much as possible.</p>
+            <p>With minimal dependencies and an ongoing effort to keep the codebase small, it will always be easy to understand the entire Treehouse system. This will be further supported with a focus on documentation, both API docs and guides.</p>
+            <p>We're using a permissive open source license, allowing you to use or change our code as you see fit. Contribution and participation is welcome, but so is simply consuming downstream.</p>
+            <p>The project is actively being developed but we keep a <a href="https://treehouse.sh/demo/">preview demo</a> running off the main branch that should always be in working order.</p>
+            <h2>Coming Soon</h2>
+            <p>I'm excited to give you a deeper look at the project stack in a future post. For now, keep an eye out for the next post digging into the influences for Treehouse. We'll also try to answer &quot;why another note-taking tool&quot;, and tease some long-term ideas for the future.</p>
+            <p>
+              Lastly, I want to mention the project is being developed in the open, not just with the code on GitHub, but most of my work is streamed and archived on 
+              <a href="https://www.twitch.tv/progrium">Twitch</a>
+              . Feel free to come and co-work with me.
+            </p>
+            <p>
+              Thanks for reading, and a big thanks to my 
+              <a href="https://github.com/sponsors/progrium/">sponsors</a>
+              for supporting this kind of open source work.
+            </p>
+            <p><em>Check out more at <a href="https://treehouse.sh">treehouse.sh</a> or <a href="http://eepurl.com/iluc5v">subscribe to our mailing list</a> for updates!</em></p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send a letter with a little of everything: new articles, the best of the logs, and whatever else I've been making.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2022/cross-platform-native-apis-made-accessible-with-apptron" class="prev"><span class="pn-k">← previous</span>Cross-platform Native APIs Made Accessible with Apptron</a>
+            <a href="/articles/2023/treehouse-influences" class="next"><span class="pn-k">next →</span>Treehouse Influences</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2023/welcome-to-treehouse.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.xyz">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>last tended 2026-11-13</span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

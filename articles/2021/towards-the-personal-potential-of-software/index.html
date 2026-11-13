@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Towards the Personal Potential of Software · progrium</title>
+    <meta name="description" content="A midyear review and preview of what&#39;s coming."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2021/towards-the-personal-potential-of-software.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2021/towards-the-personal-potential-of-software"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Towards the Personal Potential of Software"/>
+    <meta property="og:description" content="A midyear review and preview of what&#39;s coming."/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2021/towards-the-personal-potential-of-software"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2021/towards-the-personal-potential-of-software.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2021-07-05T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>Towards the Personal Potential of Software</h1>
+          <div class="byline">
+            <time datetime="2021-07-05">2021-07-05</time>
+            · 4 min · <span class="tags"><a href="/tags/programming">programming</a><a href="/tags/devlog">devlog</a><a href="/tags/software">software</a></span>
+          </div>
+          <div class="body">
+            <p>Since starting work under <a href="http://progrium.com">Progrium Technology Company</a>, I've had a single objective: to build a system called Tractor. It's what I've been slowly approaching in my dense 22 year career as an independent programmer. The Tractor System is still hard for me to describe at this stage, but its goal is to make building production-grade personal software systems like building with Legos: fast and fun.</p>
+            <p>After a difficult year heads-down in 2020, I started posting here in January with the intention of sharing and officially releasing components I've been working on that are building up to Tractor. Besides warming up for when I'd eventually talk about Tractor, I wanted people to see how I make independently useful building blocks towards an ideal. That's a core part of the Tractor philosophy.</p>
+            <p>Let's review what I've shared so far, and then set up what's coming in the next 6 months.</p>
+            <p>
+              <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k38vrxqkzvmr9ek72l3i.gif" alt="MacDriver">
+            </p>
+            <p>
+              The first big release of the year was the 
+              <a href="https://github.com/progrium/macdriver">macdriver</a>
+              project, which got a significant response on Hacker News. It gives us Objective-C and Apple framework bindings for Go, letting you build simple Apple apps entirely from Go. That wasn't possible before, so it was a little exciting, but it was early. The native Go APIs included for commonly used Foundation and Cocoa classes were far from complete. They could still be used if you knew what you were doing, but with an ideal of total coverage of Apple frameworks, that wouldn't be enough. There were also unresolved issues just deciding how to best manage memory and pointers, which I knew would fall on me to figure out and take some time.
+            </p>
+            <p>
+              Luckily I've since gotten a colleague involved in the company, and he's been helping push 
+              <a href="https://github.com/progrium/macdriver">macdriver</a>
+              towards a real beta. Part of this was made possible by a project I spun out of macdriver and 
+              <a href="https://dev.to/progrium/apple-api-schemas-for-code-generation-and-more-1phj">posted about</a>
+              , though again in a very early state. That project was 
+              <a href="https://github.com/progrium/macschema">macschema</a>
+              .
+            </p>
+            <p>
+              With the 
+              <a href="https://github.com/progrium/macschema">macschema</a>
+              toolchain, you can generate API schemas about any Apple framework, class, function, etc based on their documentation and header declarations. This is useful for us in generating framework bindings in macdriver, but it would be useful for any project doing similar work, such as bindings for other languages. This sort of approach will play a big part in how Tractor will integrate with &quot;whatever we want&quot; down the line.
+            </p>
+            <p>
+              <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/plpudhz4v7dponsucy91.gif" alt="topframe">
+            </p>
+            <p>
+              Along the way, I released a few demos for macdriver to make clear the possibilities and provide reference examples. One of them I spun off into a standalone project called 
+              <a href="https://github.com/progrium/topframe">topframe</a>
+              , which is also serving as a test bed for how we are doing cross-platform support. More on that in a moment.
+            </p>
+            <p>
+              <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/c2xo2fuvpkt30kfsrprr.jpeg" alt="Multiplexing">
+            </p>
+            <p>
+              Unrelated to macdriver, I released a protocol called 
+              <a href="https://github.com/progrium/qmux">qmux</a>
+              with 
+              <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">a post</a>
+              explaining why this (but really any) muxing protocol, including and especially QUIC, is such a great primitive for network programming. The project came with two implementations, Go and TypeScript, with more on the way. The post about it was the first explainer article I'd done in a while and people liked it. This was important because the idea behind it was really more valuable than the protocol itself, but regardless we still need implementations of it to exist. To show the idea in action, I built a 
+              <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel">130 line version of Ngrok</a>
+              , which turned into 
+              <a href="https://dev.to/progrium/building-your-own-ngrok-in-130-lines-2lif">a great post</a>
+              walking through how it works.
+            </p>
+            <p>That brings us to today, half way through 2021. Let's talk about what's coming.</p>
+            <p>More exciting than qmux is what we built on top of it, which is called <em>qtalk</em>. This is my meticulously designed, re-written-several-times network/IPC programming stack. While not <em>that</em> different from just JSON-RPC with pluggable codecs, its two unique features are callbacks and streams. Callbacks means its bi-directional, either side can expose or call methods. Just that alone is something rare in existing RPC stacks, but necessary for callbacks. And while streaming RPC is not new, our streams are full virtual connections, so you can stream more RPC results, arbitrary byte streams, or tunnel something else like a database connection. I'll share more about the possibilities when it's released.</p>
+            <p>So in the second half of 2021, we'll see qtalk, we'll see a major update to macdriver, and then with those two parts we can release <em>shelldriver</em>. This is a cross platform API to platform specific resources like windows, dialogs, menus, etc. It's about native GUI shell integration, it's not about having every native UI component. In fact, for app UI it really focuses on windows and webviews, a la Electron. Unlike Electron, it can be used from any language that has a qmux and qtalk implementation. The result should be a simple &quot;Electron but as a library&quot; that you can use from Go and other languages.</p>
+            <p>
+              <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y7qq2kea7hvdk83ughuk.png" alt="shelldriver">
+            </p>
+            <p>Once shelldriver is out I will be able to finally start talking about the first <em>real</em> piece of the Tractor system: Tractor Toolkit. I hope to have at least a public demo by the end of the year. The Toolkit is already being shown to friends and sponsors. The work I've shared so far is just the tip of the iceberg.</p>
+            <p>Which reminds me ...</p>
+            <p>
+              I really, really have to thank my 
+              <a href="https://github.com/sponsors/progrium">sponsors</a>
+              . As things are ramping up, I'm starting to work with more people and this is all self funded. Not only does sponsorship support all this open source work, but sponsors get early access to Tractor Toolkit <em>and</em> see more of what I'm up to.
+            </p>
+            <p>Also to you, thanks for reading and following along. I'll be back soon with more releases.</p>
+            <p><em>For more posts like this sent directly to your inbox and to stay on top of what I'm up to, get on the list at <a href="http://progrium.com">progrium.com</a> ✌️</em></p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send a letter with a little of everything: new articles, the best of the logs, and whatever else I've been making.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2021/building-your-own-ngrok-in-130-lines" class="prev"><span class="pn-k">← previous</span>Building your own Ngrok in 130 lines</a>
+            <a href="/articles/2021/making-programs-interact-using-qtalk" class="next"><span class="pn-k">next →</span>Making programs interact using qtalk</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2021/towards-the-personal-potential-of-software.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.xyz">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>last tended 2026-11-13</span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

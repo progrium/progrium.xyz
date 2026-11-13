@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>The Spirit of Plan 9 on the Web · progrium</title>
+    <meta name="description" content="If you go back to the first talk ever given on webhooks, it opens on the
+command-line."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2025/spirit-of-plan9-on-the-web.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2025/spirit-of-plan9-on-the-web"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="The Spirit of Plan 9 on the Web"/>
+    <meta property="og:description" content="If you go back to the first talk ever given on webhooks, it opens on the
+command-line."/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2025/spirit-of-plan9-on-the-web"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2025/spirit-of-plan9-on-the-web.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2025-05-05T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>The Spirit of Plan 9 on the Web</h1>
+          <div class="byline">
+            <time datetime="2025-05-05">2025-05-05</time>
+            · 4 min · <span class="tags"><a href="/tags/devlog">devlog</a><a href="/tags/tractor">tractor</a><a href="/tags/wanix">wanix</a></span>
+          </div>
+          <div class="body">
+            <p>
+              If you go back to the 
+              <a href="https://www.slideshare.net/slideshow/web-hooks/263894">first talk ever given on webhooks,</a>
+              it opens on the
+              command-line. Specifically the Unix shell, focusing on one of its defining
+              features: pipes. The idea was that pipes brought a new level of compositionality
+              to programs, and webhooks could bring a new level of compositionality to web
+              apps. Perhaps you could say I was trying to bring the spirit of Unix to the web.
+            </p>
+            <p>
+              With this 
+              <a href="https://github.com/tractordev/wanix/releases/tag/v0.3-preview">last release of Wanix,</a>
+              I'm at it again. This time with the successor
+              to Unix, a little known operating system called 
+              <a href="https://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs">Plan 9 from Bell Labs</a>
+              .
+            </p>
+            <p>
+              Plan 9 has been on my mind for quite a while. In fact,
+              around the time of that first talk on webhooks, the team behind Unix and
+              Plan 9 was being re-assembled to create the Go programming language. I pretty
+              instantly fell in love with the Go worldview, which turns out to be an outgrowth
+              of the Unix and Plan 9 values of simplicity, pragmatism, economy, and ultimately
+              compositionality.
+            </p>
+            <p>
+              Like Unix, the Plan 9 environment is really made for programmers and system
+              operators. I'll leave a deeper explanation of what makes Plan 9 great for
+              another post, but I do get into it a bit in the demo video for Wanix:
+            </p>
+            <p>
+              <a class="vid" href="https://www.youtube.com/watch?v=kGBeT8lwbo0" data-yt="kGBeT8lwbo0" aria-label="Play video"><span class="play" aria-hidden="true"></span><span class="vs">youtube · loads when you press play</span></a>
+            </p>
+            <p>
+              While I wanted to incorporate Plan 9 ideas into Wanix from the beginning, it
+              wasn't until we rebuilt it from scratch with that intention that the magic
+              really starts to come through. That's what this preview release is about.
+            </p>
+            <p>
+              Wanix is a whole new beast now. It's no longer a singular computing environment
+              that runs in the browser. It's now a primitive for building environments in
+              general. The demo shows a shell environment, but this environment is not the
+              point. It's just a way to bootstrap Wanix so you can use and explore it
+              interactively.
+            </p>
+            <p>
+              The point of this preview release is to get this primitive out there. I have my
+              uses for Wanix, and I plan to share them with the final 0.3 release, but until
+              then I wanted to let it all percolate. Maybe inspire people to get creative
+              with their own use cases.
+            </p>
+            <p>Here's a quick rundown of Wanix features in this release:</p>
+            <dl>
+            <dt>Plan 9 inspired design</dt>
+            <dd>With the original intention to enable exploring Plan 9 ideas on modern platforms, we've ended up with a radically simple architecture around per-process namespaces composed of file service capabilities using similar design patterns to those found in Plan 9.</dd>
+            <dt>Single executable toolchain</dt>
+            <dd>The <code>wanix</code> executable includes everything needed to produce Wanix environments.</dd>
+            <dt>Filesystem is the only API</dt>
+            <dd>The Wanix microkernel is now simply a VFS module with several built-in file services exposed via a standard filesystem API. This ends up making the module itself a file service.</dd>
+            <dt>Built-in Linux shell</dt>
+            <dd>Using the built-in file service primitives, Wanix can bootstrap a Linux-compatible shell based on Busybox. It comes with several helper commands for working with built-in file services.</dd>
+            <dt>Tasks and namespaces</dt>
+            <dd>The Wanix unit of compute is a task, which is equivalent and compatible with POSIX processes but allows for different execution strategies. Each task has its own "namespace," which is the customizable filesystem exposed to the task.</dd>
+            <dt>Core file services</dt>
+            <dd>Wanix includes two singleton file services: one to manage tasks (similar to procfs), and one to manage "capabilities" which are user allocated file services. Built-in capabilities include: tarfs, tmpfs, and loopback.</dd>
+            <dt>Web file services</dt>
+            <dd>
+              With future non-browser deployments in mind, all web related file services are packaged in a web module, which is also built-in but not considered core. This module includes these work-in-progress file services:
+              <ul>
+                <li>
+                  <strong>opfs</strong>: For working with the 
+                  <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system">OPFS</a>
+                  browser storage API
+                </li>
+                <li><strong>dom</strong>: For inspecting and manipulating the DOM</li>
+                <li>
+                  <strong>worker</strong>: For managing 
+                  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">web workers</a>
+                </li>
+                <li><strong>pickerfs</strong>: Capability wrapping the <code>window.showDirectoryPicker()</code> method (not available yet in Safari and Firefox)</li>
+                <li><strong>ws</strong>: Capability for working with WebSocket connections</li>
+                <li>
+                  <strong>sw</strong>: For configuring the 
+                  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">service worker</a>
+                  , which is used by the system now to cache all resources needed to run Wanix allowing offline usage, as well as exposing virtual URLs to the root namespace.
+                </li>
+              </ul>
+            </dd>
+            <p>
+              Go programmers might also appreciate the filesystem toolkit we've been working on
+              since before Wanix. It builds on the <code>fs.FS</code> abstraction in the standard library
+              and gives you DSL-like utilities for defining virtual filesystems like the
+              file services in Wanix. More on that in a dedicated post as well.
+            </p>
+            <p>
+              So far, the feedback has been really positive. I appreciate everybody taking the
+              time to process it. There's still lots to do. Wanix is itself its own universe,
+              but it's just one layer of the Tractor project. After a little vacation I'll be
+              back to continue work on both fronts. As usual, I'd love help.
+            </p>
+            <p>
+              Speaking of help, shout-out to <a href="https://joel.franusic.com/">Joël Franusic</a> for
+              the help and support. And as usual, big thanks to my 
+              <a href="https://github.com/sponsors/progrium">GitHub sponsors</a>
+              for
+              making this possible.
+            </p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions/1#issue-comment-box">reply on GitHub ↗</a>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send a letter with a little of everything: new articles, the best of the logs, and whatever else I've been making.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2025/state-of-tractor-2025" class="prev"><span class="pn-k">← previous</span>State of Tractor 2025</a>
+            <a href="/articles/2025/vscode-as-product-framework" class="next"><span class="pn-k">next →</span>Turning VS Code into a Product Framework</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2025/spirit-of-plan9-on-the-web.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.xyz">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>last tended 2026-11-13</span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

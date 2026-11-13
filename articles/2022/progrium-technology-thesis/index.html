@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Progrium Technology Thesis · progrium</title>
+    <meta name="description" content="How and why I&#39;m building the &#34;Photoshop of software&#34; out of generative building blocks."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2022/progrium-technology-thesis.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2022/progrium-technology-thesis"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Progrium Technology Thesis"/>
+    <meta property="og:description" content="How and why I&#39;m building the &#34;Photoshop of software&#34; out of generative building blocks."/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2022/progrium-technology-thesis"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2022/progrium-technology-thesis.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2022-03-15T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>Progrium Technology Thesis</h1>
+          <div class="byline">
+            <time datetime="2022-03-15">2022-03-15</time>
+            · 8 min · <span class="tags"><a href="/tags/showdev">showdev</a><a href="/tags/programming">programming</a><a href="/tags/opensource">opensource</a></span>
+          </div>
+          <div class="body">
+            <p>Creating software is too complicated. Our options are overwhelming, our tooling is too bloated, and things rarely ever &quot;just work&quot;.</p>
+            <p>8 years ago, the late Joe Armstrong, co-creator of Erlang, gave one of his last talks at the 2014 Strange Loop conference. It was titled &quot;The Mess We're In&quot; and talked about the increasing over-complexity of software. &quot;Software entropy increases with time,&quot; he said, &quot;we need to reverse entropy.&quot; He said in his conclusion:</p>
+            <p>&quot;Computing was about controlling complexity, and we have failed miserably.&quot;</p>
+            <p>An echo of what Djikstra said in the <em>90s</em>: &quot;It is time to unmask the computing community as a Secret Society for the Creation and Preservation of Artificial Complexity.&quot;</p>
+            <p>Alan Kay, another computing pioneer, has a great word for this &quot;artificial complexity&quot;: complication.</p>
+            <p>&quot;The amount of complication [in software today] can be 100s, maybe 1000s of times more than the inherent complexity.&quot;</p>
+            <p>For 25 years, Kay has been giving talks saying, &quot;The computer revolution hasn't happened yet!&quot; I believe that this is true, in part, because complication has gotten in the way.</p>
+            <p>
+              The risks with complexity, complication, and bloat are also only growing. It's 2022 and we’re still deploying software with logging libraries that let attackers run arbitrary code. We barely understand our own software systems, let alone the tools we use to make them. And yet, underneath this mess is probably the most powerful and constructive tool humanity has ever seen.
+              <br>
+
+              Building software today <em>could</em> be as fast and intuitive as we made desktop publishing by the 1990s. Suddenly designers could sit with a client in front of the computer and just execute an idea, making iterations together in real-time. Watching the designer use these intuitive tools, the client might think, &quot;Oh, I could do that&quot;.
+            </p>
+            <p>To get there with building software we need to reduce the complexity, and especially the complications, of making modern software. It's not just about user friendliness or making the process more visual. And it’s not about adding more. If anything, it’s about revisiting the idea of doing more with less.</p>
+            <p>Recently, tools falling under the label of &quot;nocode&quot; have shown the demand for non-programmers to be able to just make what they need, with &quot;no code&quot;. It does sort of hint at what a photoshop of software might be. But every nocode tool is a facade, another layer of complication. They exist for a particular market, offered as a service, with no path to a more general means of making software.</p>
+            <p>These tools have their place, the same way image macro generators have their place when Photoshop and Canva exist. I think if “nocode” tools could really save us, you'd be able to build a nocode tool with itself. They lack the true generativity of programming.</p>
+            <p>That said, I am all for <em>anything</em> that can be used as a building block in a software system. Whether it’s a library or a web API or a tool repurposed because you like its workflow. The less you have to build yourself, the better.</p>
+            <p>My experience has shown me time and again that there is a powerful strategy or guiding principle in what I call &quot;generative building blocks.&quot;</p>
+            <p>
+              This philosophy applies to more than libraries and web APIs. I design everything as a building block, and everything out of building blocks. This is about more than just modularity, it's about <em>high-leverage generativity</em>.
+              <br>
+
+              I've worked on a number of projects and technologies trying to bring out this particular generative building block approach and there are a couple of standout hits that I'll use as examples.
+            </p>
+            <p>In 2006 I was working on a hosted source control web app (like GitHub) trying to expose repository hooks. These are shell scripts triggered by your local source control tool that can be used to customize and extend your workflow, almost like registering a callback for an event. Running user code in a web app, especially shell scripts, was not safe or practical. However, imagining if somehow it was, a flood of possibilities hit me. If only web apps could have extension points! Without over formalizing it, I called this &quot;webhooks&quot; and started giving talks about what we could have if we added webhooks to our apps. Throwing a PHP script online was an easy and common activity for web developers then, so functioning as &quot;hook&quot; script with a URL, you just needed to have web apps let you register it and then hit it on certain events.</p>
+            <p>Webhooks did end up making web apps more extensible and integratable, increasing their value and potential as building blocks. It also allowed for new kinds of API building blocks to emerge like Twilio, where the initial core product was built around webhooks to integrate with telephony and SMS. Webhooks also started creating a demand for what would later manifest as AWS Lambda for event handling, which quickly inspired &quot;serverless&quot; architecture. The concept of functions as a service was something I was pioneering in 2009 because of webhooks.</p>
+            <p>Later I found myself helping to prototype and conceptualize Docker, which turned software into a kind of standard unit, hence the shipping container metaphor. Although many interpreted it as a lightweight VM to throw whole systems into, I was in love with microservices designed to be run in tiny containers, configured by APIs instead of files, acting more like a little appliance than traditionally managed software. More like a simple building block.</p>
+            <p>Docker itself became a building block, opening up a whole new generation of platforms and developer tooling. One of my initial use cases for it was as a primitive to create a simple, hackable version of Heroku. Sure enough, using Docker and a few other components I made, I was able to &quot;throw together&quot; a simple Docker-powered Heroku alternative in 90 lines of Bash. This was called Dokku.</p>
+            <p>
+              Dokku was a bit of a revelation. An expensive, top-tier platform valued in the hundreds of millions of dollars recreated with the right primitives in a weekend as a free Bash script...
+              <br>
+
+              I want to have the primitives to create more software like Dokku--extremely simple, hackable alternatives to the world's best software. The resulting software isn't really the important part, though. The resulting building blocks are. Why use Figma if you could somewhat easily throw together your ideal figma?
+            </p>
+            <p>Building simpler alternatives by disaggregating into new primitives expands the adjacent possibility space of what can be thrown together, while also simplifying and commoditizing what it takes to build great software. It actually is a sort of reversing of entropy! Repacking down our abstractions, engineering for generativity.</p>
+            <p>What I love is how &quot;building blocks&quot; brings to mind a sort of ideal vision we have of building software. Like LEGO, we snap together little components to realize something new. But this metaphor also points out how far that ideal is from reality. LEGO is fun. Building software really <em>isn't</em> most of the time. And I think trying to express the reality through this metaphor is helpful:</p>
+            <p>While ALL our software is made of many small bricks or components or modules, most come to us fully assembled with the bricks glued in place and painted over. We can't change it or even get a sense of how it was composed. Most apps come as an opaque &quot;turn-key solution&quot; to a specific problem because... that’s how you sell things.</p>
+            <p>
+              Perhaps there’s nothing wrong with that, but we can at least try to find ways to build more software like LEGO kits, where the focus is on good, re-usable, re-combinable building blocks and showcasing what you can do with them. In the long term, I believe this is the way that provides the most value.
+              <br>
+
+              A few years ago I realized that I need to build a single cohesive system that lets me express all these ideas, and really show the potential I've been talking about. I need to create my own LEGO system for software that would be an umbrella for all my work and let me build the way I want to build, while being at the very least a useful example to others...
+            </p>
+            <p>So I'm announcing the Tractor System. It's not one project, but a system of projects building towards a malleable software environment and ecosystem. It is my take on a &quot;Photoshop of software&quot;.</p>
+            <p>Tractor is a system of building blocks and pragmatic ways of building centered around simplicity and generativity. It’s not a new language, it helps glue languages together. It’s not just an app builder, it’s a systems playground. Much of the tool is made with itself, out of the same primitives you use in it. It's designed to be as simple and understandable as it can be, top to bottom, inside and out.</p>
+            <p>
+              The aim is to blur the line between user and developer. The computer is a computer because it can be <em>programmed</em>. The rushed, over-productization of shrink-wrapped software, pandering to enterprise organizations and the computer illiterate, has created so much complication it would seem we NEED big companies to build our software. But we don't. I'm constantly surprised how simple things really are or can be. With Tractor, eventually we'll just have operators: people that can use the computer in its full potential to solve problems, create systems, play, learn, work, and have fun.
+              <br>
+
+              Some say we live in a post PC era, but the original idea of the PC, the <em>personal</em> computer, is and will always be significant because it puts a magical form of <em>leverage</em> into the hands of <em>individuals</em> for their own use. But instead of this becoming more obvious with time, this generative power has been centralized and sterilized into &quot;pop computing&quot;. Today we consume and are defined by software that benefits engines of capitalism more than engines of equity. You could say, instead of being able to program our own leverage, we are being programmed by those that can.
+            </p>
+            <p>Luckily, underneath all the apps, social media, and enterprise &quot;solutions&quot;, there is still an <em>imagination compiler</em>. This is what I focus on. This is what I'd love to dust off, polish up, and see where that takes us in the proper hands.</p>
+            <p>
+              Even if that doesn't happen, I'd love to just get some better building blocks. Perhaps just find simpler, more enjoyable ways to build software.
+              <br>
+
+              As an independent creator, I depend on people like you to help fund this work, and I'd love you to come along and help make the Tractor System a reality by 
+              <a href="https://github.com/sponsors/progrium">becoming a sponsor</a>
+              .
+            </p>
+            <hr>
+            <p>
+              <em>
+                Originally posted on 
+                <a href="https://progrium.com/blog/progrium-technology-thesis/">progrium.com</a>
+                and 
+                <a href="https://www.youtube.com/watch?v=yKZ15O7zeHY">YouTube</a>
+              </em>
+            </p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send a letter with a little of everything: new articles, the best of the logs, and whatever else I've been making.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2021/making-programs-interact-using-qtalk" class="prev"><span class="pn-k">← previous</span>Making programs interact using qtalk</a>
+            <a href="/articles/2022/cross-platform-native-apis-made-accessible-with-apptron" class="next"><span class="pn-k">next →</span>Cross-platform Native APIs Made Accessible with Apptron</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2022/progrium-technology-thesis.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.xyz">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>last tended 2026-11-13</span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

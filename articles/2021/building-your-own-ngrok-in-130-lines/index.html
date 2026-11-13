@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Building your own Ngrok in 130 lines · progrium</title>
+    <meta name="description" content="Remote port forwarding as a service"/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2021/building-your-own-ngrok-in-130-lines.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2021/building-your-own-ngrok-in-130-lines"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Building your own Ngrok in 130 lines"/>
+    <meta property="og:description" content="Remote port forwarding as a service"/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2021/building-your-own-ngrok-in-130-lines"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2021/building-your-own-ngrok-in-130-lines.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2021-05-27T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>Building your own Ngrok in 130 lines</h1>
+          <div class="byline">
+            <time datetime="2021-05-27">2021-05-27</time>
+            · 9 min · <span class="tags"><a href="/tags/programming">programming</a><a href="/tags/showdev">showdev</a><a href="/tags/go">go</a></span>
+          </div>
+          <div class="body">
+            <p>
+              Running a local development server for your app is pretty common, but what if you wanted somebody else to access it? Maybe for a demo, or maybe to debug webhook integrations. If you've ever used <a href="https://ngrok.com/">Ngrok</a> (or perhaps the original 
+              <a href="https://github.com/progrium/localtunnel">localtunnel</a>
+              ), you know what I'm talking about.
+            </p>
+            <p>Today we're going to make a system that emulates the core functionality of Ngrok, exposing a localhost HTTP server via a public URL.</p>
+            <p>Just to make sure we're clear on how this all works, let me explain the problem. Normally when you run a server on your computer it can only be accessed by other computers on the same local network. However, many development servers will bind to <code>127.0.0.1</code>, or <code>localhost</code>, which means only a client or browser on your computer can access it. Either way, there are times when you might want another party to access it temporarily, but it's simply not addressable from the public Internet.</p>
+            <p>
+              In the olden days, this could only be achieved if you had access to a server running SSH. You could configure SSH to have publicly addressable ports on that server be &quot;forwarded&quot; to a local port on your computer over an SSH connection. This is called 
+              <a href="https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding">remote port forwarding</a>
+              or sometimes SSH tunneling. Assuming SSH is configured properly, the command to set this up looks like this:
+            </p>
+            <pre><code>$ ssh -R 8080:localhost:3000 your-ssh-server.com
+</code></pre>
+            <p>This would allow somebody to point their browser to <code>your-ssh-server.com:8080</code> and get your localhost server running on port <code>3000</code> as long as this command was running. Around 2009, I noticed how useful this is (especially in the context of webhooks), but was annoyed you had to have an SSH server properly configured for it before you could even do it. Even then, I always found the SSH command difficult to remember how to use for forwarding. I envisioned a command as simple as:</p>
+            <pre><code>$ localtunnel 3000
+</code></pre>
+            <p>
+              So I set about making this happen. My 
+              <a href="https://github.com/progrium/localtunnel/tree/prototype">first attempt</a>
+              at building a system with Twisted Python failed because I didn't quite grok 
+              <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">multiplexing</a>
+              . So I ended up wrapping SSH. I wrote a <code>localtunnel</code> client in Ruby that behind the scenes would just run the above SSH command using a server I had set up. The only difference being that I didn't give you a port like <code>8080</code> to connect to, I wanted you to get a generated subdomain. Instead of <code>localtunnel.com:8080</code>, you'd get <code>wxyz.localtunnel.com</code>, which was unique to your tunnel as it was intended as a public service.
+            </p>
+            <p>To achieve that, I just ran a Twisted web server with the SSH server that would figure out which port to use based on the subdomain and proxy to it. This would only work with HTTP because the idea of virtual hosts was actually invented for HTTP. Normally when you get a TCP connection you have no idea what hostname is used.</p>
+            <p>
+              So I had something like this:
+              <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wwljug8u9scfmlk1qutg.png" alt="Localtunnel Topology">
+            </p>
+            <p>
+              And it worked! It became rather popular. However, due to the slight complexity (Ruby+Python+OpenSSH) and the fact I was too busy to maintain the service, people started cloning it. One jackass even called 
+              <a href="https://theboroer.github.io/localtunnel-www/">his clone</a>
+              &quot;localtunnel&quot;.
+            </p>
+            <p>Another jackass, who was less of a jackass and more my friend and coworker, decided to clone it as a way to learn Go. He called it Ngrok and decided to commercialize it. This bothered me for a number of reasons I won't get into, but eventually decided it was fine since he really improved on the idea and would at least listen to me if I had anything to say about it.</p>
+            <p><em>Anyway</em>, today we're exploring a toy recreation of this system that we'll call groktunnel. It removes SSH from the setup and using two libraries lets us build the whole thing in about 130 lines of Go. You'd still need a server to run this on, so it's not as convenient as a hosted service, but this is more for educational purposes. After all, groktunnel is actually a demo for qmux, one of the libraries I mentioned. Let me explain these libraries.</p>
+            <p>
+              What 
+              <a href="https://github.com/progrium/qmux">qmux</a>
+              does is give us a subset of the SSH protocol to multiplex many connections over a single connection. It was the missing piece of my original Twisted prototype. You can read more about how there aren't a lot of these protocols (but perhaps with QUIC are also the future of the Internet) in my 
+              <a href="https://dev.to/progrium/the-history-and-future-of-socket-level-multiplexing-1d5n">previous post</a>
+              .
+            </p>
+            <p>
+              The other library is actually by the author of Ngrok. Called 
+              <a href="https://github.com/inconshreveable/go-vhost">go-vhost</a>
+              , it helps with the problem of virtual hosts. Ideally when a connection comes in to be forwarded down the tunnel we can hand it off wholesale. This way the other end can just start reading off the connection as if received directly. But in order to figure out the hostname used, we have to start reading off the connection up to the Host header. Then we have to hand it off prepended with what was read. What Alan wrote is an abstraction that gives you a virtual listener that lets you accept new connections for a particular virtual host and get the connection as if it hadn't been read yet. A lot of this is due to the interface based approach of the Go standard library.
+            </p>
+            <p>This brings us to the main utility function we'll be writing for this system. A TCP connection established between two peers cannot (easily) be handed off between programs, let alone hosts. We don't literally &quot;forward&quot; the connection, we sit in the middle and relay the bytes. This is how every proxy, load balancer, gateway, or tunnel works. It sort of welds two sockets together. I call this socket joining. And if you <em>can</em> avoid doing any protocol level stuff, building a proxy just becomes opening a connection to the backend when a connection comes in and then joining them.</p>
+            <p>Since Go models connections using the interfaces of the <code>io</code> package, we can use <code>io.Copy</code> to simplify reading off bytes from one connection into another until an <code>EOF</code>. A two-way copy like this that closes when finished looks like this:</p>
+            <pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">join</span><span class="p">(</span><span class="nx">a</span> <span class="nx">io</span><span class="p">.</span><span class="nx">ReadWriteCloser</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">io</span><span class="p">.</span><span class="nx">ReadWriteCloser</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">a</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre>
+            <p>This minimal approach benefits from setting a deadline on the connections in case one end doesn't hang up. You can see we copy bytes from <code>a</code> to <code>b</code> in the background, then wait for copying bytes from <code>b</code> to <code>a</code> before making sure both sides are closed once <code>b</code> gets an <code>EOF</code>.</p>
+            <p>We'll also define a helper to generate random subdomains. In a production service this is a big deal. You'd want an incredibly large space of possible subdomains, but here we generate 10 random alphanumeric characters using <code>crypto/rand</code>:</p>
+            <pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">newSubdomain</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">letters</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">rune</span><span class="p">(</span><span class="s">&#34;abcdefghijklmnopqrstuvwxyz1234567890&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">rune</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">r</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">r</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">letters</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="nx">letters</span><span class="p">)</span><span class="o">/</span><span class="mi">256</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre>
+            <p>Another quick utility to define that's common in simple Go programs is a fatal function. This helps simplify all the error checking.</p>
+            <pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre>
+            <p>Now we can get started in our <code>main()</code> which will contain both client and server modes. However, first we'll define some flags useful to both:</p>
+            <pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">port</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;p&#34;</span><span class="p">,</span> <span class="s">&#34;9999&#34;</span><span class="p">,</span> <span class="s">&#34;server port to use&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">host</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;h&#34;</span><span class="p">,</span> <span class="s">&#34;vcap.me&#34;</span><span class="p">,</span> <span class="s">&#34;server hostname to use&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">addr</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="s">&#34;ip to bind [server only]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">flag</span><span class="p">.</span><span class="nf">Parse</span><span class="p">()</span>
+</span></span></code></pre>
+            <p>The default hostname of <code>vcap.me</code> is a way to make the server easy to run locally. Since <code>localhost</code> doesn't allow subdomains, but any domain can resolve to <code>127.0.0.1</code>, there are a few public domains that have wildcard subdomains all resolving to <code>127.0.0.1</code>. If we ran this on a real server, we'd need a domain with wildcard subdomains resolving to the server IP, and we'd probably use port <code>80</code> instead of <code>9999</code>.</p>
+            <p>Now we'll start with the client, which is quite simple. It's activated when there is an argument specifying the local port to expose publicly.</p>
+            <pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// client usage: groktunnel [-h=&lt;server hostname&gt;] &lt;local port&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="o">*</span><span class="nx">host</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">client</span> <span class="o">:=</span> <span class="nx">httputil</span><span class="p">.</span><span class="nf">NewClientConn</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">conn</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">req</span><span class="p">.</span><span class="nx">Host</span> <span class="p">=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="o">*</span><span class="nx">host</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">client</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">resp</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;port %s http available at:\n&#34;</span><span class="p">,</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;http://%s\n&#34;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;X-Public-Host&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Hijack</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sess</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1:&#34;</span><span class="o">+</span><span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="nf">join</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span> <span class="nx">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre>
+            <p>Here we set up the tunnel over HTTP since we'll be serving HTTP anyway, and we need a way to tell the client what the generated public host is to display a URL to the user. You can see we get the hostname from a response header.</p>
+            <p>We're manually creating an HTTP request with <code>httputil.NewClientConn</code> because it lets us hijack the connection. This simply means it stops processing as HTTP and treats it like a raw TCP connection. Alternatively we could upgrade to WebSocket for this, but this simply works just as well with fewer dependencies.</p>
+            <p>After hijacking we create a qmux session to start multiplexing virtual connections, or channels, over this connection. This is the tunnel. We don't open channels, we just sit in a loop waiting for incoming channels and assume they want to be joined with a connection to our localhost server. That's it.</p>
+            <p>Now the server. First we set everything up using our flags, including a TCP listener, which we wrap in a virtual host muxer. The meat of our server is in <code>serve()</code> but that runs asynchronously as we listen for vhost muxing errors until shutdown.</p>
+            <pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// server usage: groktunnel [-h=&lt;hostname&gt;] [-b=&lt;bind ip&gt;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">l</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="o">*</span><span class="nx">addr</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">defer</span> <span class="nx">l</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">vmux</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vhost</span><span class="p">.</span><span class="nf">NewHTTPMuxer</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">go</span> <span class="nf">serve</span><span class="p">(</span><span class="nx">vmux</span><span class="p">,</span> <span class="o">*</span><span class="nx">host</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;groktunnel server [%s] ready!\n&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">host</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vmux</span><span class="p">.</span><span class="nf">NextError</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">conn</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre>
+            <p>Now the heart of this system in <code>serve()</code>:</p>
+            <pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">serve</span><span class="p">(</span><span class="nx">vmux</span> <span class="o">*</span><span class="nx">vhost</span><span class="p">.</span><span class="nx">HTTPMuxer</span><span class="p">,</span> <span class="nx">host</span><span class="p">,</span> <span class="nx">port</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ml</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vmux</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="nx">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">srv</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span><span class="nx">Handler</span><span class="p">:</span> <span class="nx">http</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">publicHost</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">TrimSuffix</span><span class="p">(</span><span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="nf">newSubdomain</span><span class="p">()</span><span class="o">+</span><span class="nx">host</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span> <span class="s">&#34;:80&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">pl</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vmux</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;X-Public-Host&#34;</span><span class="p">,</span> <span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;Connection&#34;</span><span class="p">,</span> <span class="s">&#34;close&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">w</span><span class="p">.</span><span class="nf">WriteHeader</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">w</span><span class="p">.(</span><span class="nx">http</span><span class="p">.</span><span class="nx">Hijacker</span><span class="p">).</span><span class="nf">Hijack</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sess</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">defer</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s: start session&#34;</span><span class="p">,</span> <span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">pl</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="k">go</span> <span class="nf">join</span><span class="p">(</span><span class="nx">ch</span><span class="p">,</span> <span class="nx">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sess</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s: end session&#34;</span><span class="p">,</span> <span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">srv</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">ml</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre>
+            <p>Here we create a new listener using the vhost muxer passed in to listen for connections on the naked domain (<code>vcap.me</code>). Then we make an HTTP handler that sets up a new tunnel. First it generates a new hostname and tells our vhost muxer to start listening on it. We'll hold on to that listener.</p>
+            <p>Then we start writing headers. Remember this is how we tell the client what our generated hostname is. We also use <code>Connection: close</code> to tell the other end we're going to be done and normally hang up, but after we flush the headers with a <code>200 OK</code> status, we hijack the connection like we know is going to happen on the other end. We make a new qmux session and start a new goroutine.</p>
+            <p>This goroutine handles connections coming in from our new vhost listener. All this does is sit in a loop accepting new connections, then using our qmux session opens a channel, then joins the new connection with that channel.</p>
+            <p>Back in our HTTP handler, we call <code>Wait()</code> on our session, which will just block until the connection breaks. This handler has been put into an HTTP server instance set to serve on our original vhost listener for the naked <code>vcap.me</code> domain.</p>
+            <p>
+              Now we can try it out. You can follow the instructions in the 
+              <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel#readme">groktunnel README</a>
+              to see it in action.
+            </p>
+            <p>This little program gives us a client and server that recreates the original localtunnel system. It showcases the use case of tunneling for connection multiplexing, but also how easily you can wire things up in Go using mostly the standard library.</p>
+            <p>
+              If you wanted to tunnel normal TCP connections, not HTTP connections, this program gets even simpler. However, that's an exercise for the reader. You can see the 
+              <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel">full groktunnel source</a>
+              in the demos directory of the 
+              <a href="https://github.com/progrium/qmux">qmux</a>
+              project. Hope you were inspired to build something cool!
+            </p>
+            <p><em>For more posts like this sent directly to your inbox and to find out what all I'm up to, get on the list at <a href="http://progrium.com">progrium.com</a> ✌️</em></p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send a letter with a little of everything: new articles, the best of the logs, and whatever else I've been making.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2021/the-history-and-future-of-socket-level-multiplexing" class="prev"><span class="pn-k">← previous</span>The History and Future of Socket-level Multiplexing</a>
+            <a href="/articles/2021/towards-the-personal-potential-of-software" class="next"><span class="pn-k">next →</span>Towards the Personal Potential of Software</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2021/building-your-own-ngrok-in-130-lines.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · <a href="/newsletter">newsletter</a> ]
+        </span>
+        <span class="elsewhere">
+          <a href="mailto:progrium+web@gmail.com">email</a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.xyz">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" title="9/ux isn&#39;t ready yet: soon you&#39;ll be able to browse this site as files" disabled>🖥️ boot 9/ux</button>
+          </span>
+          <span>last tended 2026-11-13</span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

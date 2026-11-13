@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/"><channel><title>progrium.xyz</title><link>https://progrium.xyz</link><atom:link type="application/rss+xml" href="https://progrium.xyz/blog/feed.xml" rel="self"></atom:link><description>Homepage and blog of hacker/builder Jeff Lindsay, aka progrium</description><lastBuildDate>Wed, 17 Sep 2025 19:35:16 GMT</lastBuildDate><language>en</language><generator>Taragen 0.1</generator><item><title>Turning VS Code into a Product Framework</title><link>https://progrium.xyz/blog/2025/vscode-as-product-framework</link><guid isPermaLink="false">https://progrium.xyz/blog/2025/vscode-as-product-framework</guid><description></description><content:encoded><![CDATA[<p>Visual Studio Code is no longer just a developer tool. It’s now a highly malleable and embeddable product platform. Looking at it beyond a code editor, it's actually a general-purpose application shell with a familiar UI, plugin system, command framework, and cross-platform runtime. Recently it's been used as the platform for several major AI products, but more quietly it's also been used for much more, from cloud IDEs to domain-specific editors and internal dev tools.</p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>progrium.xyz: articles</title><link>https://progrium.xyz</link><atom:link href="https://progrium.xyz/articles/feed.xml" rel="self" type="application/rss+xml"></atom:link><description>Jeff Lindsay, aka progrium. Simple tools that make computers more programmable.</description><language>en</language><item><title>Turning VS Code into a Product Framework</title><link>https://progrium.xyz/articles/2025/vscode-as-product-framework</link><guid isPermaLink="true">https://progrium.xyz/articles/2025/vscode-as-product-framework</guid><pubDate>Mon, 30 Jun 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p>Visual Studio Code is no longer just a developer tool. It’s now a highly malleable and embeddable product platform. Looking at it beyond a code editor, it's actually a general-purpose application shell with a familiar UI, plugin system, command framework, and cross-platform runtime. Recently it's been used as the platform for several major AI products, but more quietly it's also been used for much more, from cloud IDEs to domain-specific editors and internal dev tools.</p>
 <p>In this series of posts, I’ll show how I’ve been turning VS Code into a reusable module; something you can embed, extend, and ship as part of your own product.</p>
 <h2>Why VS Code as a Platform?</h2>
 <p>I never thought the developer ecosystem would embrace a single editor as much as it has VS Code. Its dominance as a general-purpose coding environment is undeniable. This popularity and familiarity is one reason to build on it, but there are other attributes that make it a solid building block:</p>
@@ -49,7 +49,7 @@
 </ul>
 <p>It becomes trivial enough to embed as a built-in editor for whatever application you're building. And it's extensible and malleable enough to become any number of different non-code editors, like a DAW for audio, or a CAD tool, or a game engine editor.</p>
 <p>In the following posts for this series, we'll build a cross-platform desktop code editor in Go using this approach. Effectively a clone of VS Code that you can use as a foundation for your own application, without all the baggage of building directly on a fork of the VS Code project.</p>
-]]></content:encoded><pubDate>Mon, 30 Jun 2025 00:00:00 GMT</pubDate></item><item><title>The Spirit of Plan 9 on the Web</title><link>https://progrium.xyz/blog/2025/spirit-of-plan9-on-the-web</link><guid isPermaLink="false">https://progrium.xyz/blog/2025/spirit-of-plan9-on-the-web</guid><description></description><content:encoded><![CDATA[<p>If you go back to the <a href="https://www.slideshare.net/slideshow/web-hooks/263894">first talk ever given on webhooks,</a> it opens on the
+]]></content:encoded></item><item><title>The Spirit of Plan 9 on the Web</title><link>https://progrium.xyz/articles/2025/spirit-of-plan9-on-the-web</link><guid isPermaLink="true">https://progrium.xyz/articles/2025/spirit-of-plan9-on-the-web</guid><pubDate>Mon, 05 May 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p>If you go back to the <a href="https://www.slideshare.net/slideshow/web-hooks/263894">first talk ever given on webhooks,</a> it opens on the
 command-line. Specifically the Unix shell, focusing on one of its defining
 features: pipes. The idea was that pipes brought a new level of compositionality
 to programs, and webhooks could bring a new level of compositionality to web
@@ -65,7 +65,7 @@ compositionality.</p>
 <p>Like Unix, the Plan 9 environment is really made for programmers and system
 operators. I'll leave a deeper explanation of what makes Plan 9 great for
 another post, but I do get into it a bit in the demo video for Wanix:</p>
-<iframe allowfullscreen class="w-full aspect-video mb-4" src="https://www.youtube.com/embed/kGBeT8lwbo0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+<p><a class="vid" href="https://www.youtube.com/watch?v=kGBeT8lwbo0" data-yt="kGBeT8lwbo0" aria-label="Play video"><span class="play" aria-hidden="true"></span><span class="vs">youtube · loads when you press play</span></a></p>
 <p>While I wanted to incorporate Plan 9 ideas into Wanix from the beginning, it
 wasn't until we rebuilt it from scratch with that intention that the magic
 really starts to come through. That's what this preview release is about.</p>
@@ -114,7 +114,7 @@ back to continue work on both fronts. As usual, I'd love help.</p>
 <p>Speaking of help, shout-out to <a href="https://joel.franusic.com/">Joël Franusic</a> for
 the help and support. And as usual, big thanks to my <a href="https://github.com/sponsors/progrium">GitHub sponsors</a> for
 making this possible.</p>
-]]></content:encoded><pubDate>Mon, 05 May 2025 00:00:00 GMT</pubDate></item><item><title>State of Tractor 2025</title><link>https://progrium.xyz/blog/2025/state-of-tractor-2025</link><guid isPermaLink="false">https://progrium.xyz/blog/2025/state-of-tractor-2025</guid><description></description><content:encoded><![CDATA[<p>Hey everybody, welcome to 2025! Belated as it may be. For the past 5 years I've
+]]></content:encoded></item><item><title>State of Tractor 2025</title><link>https://progrium.xyz/articles/2025/state-of-tractor-2025</link><guid isPermaLink="true">https://progrium.xyz/articles/2025/state-of-tractor-2025</guid><pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p>Hey everybody, welcome to 2025! Belated as it may be. For the past 5 years I've
 been heads down on an epic journey to find new and better (read: simpler) ways
 to build software. Three years ago I posted a <a href="https://www.youtube.com/watch?v=yKZ15O7zeHY">kind of thesis video</a> for this
 work and gave the journey a name: Tractor. Today I want to share a progress report.</p>
@@ -295,7 +295,7 @@ doing more events and coworking in the Discord, so feel free to join us there to
 <p>You can also participate on GitHub with any of the fine projects mentioned. Finally,
 thanks to my <a href="https://github.com/sponsors/progrium">GitHub Sponsors</a> as usual,
 and a big thanks to my friends that have been helping out more recently.</p>
-]]></content:encoded><pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate></item><item><title>Treehouse Influences</title><link>https://progrium.xyz/blog/2023/treehouse-influences</link><guid isPermaLink="false">https://progrium.xyz/blog/2023/treehouse-influences</guid><description>A quick tour of some of the influences for the Treehouse frontend and where it fits in the ecosystem.</description><content:encoded><![CDATA[<p>Over the past few months, we've built the <a href="https://treehouse.sh">Treehouse frontend framework</a> into an elegant, quality outliner that's open source, extensible, and gives you control of your data. I’d like to share some of the design influences for the Treehouse frontend, which should give a sense of the unique direction Treehouse is going from here.</p>
+]]></content:encoded></item><item><title>Treehouse Influences</title><link>https://progrium.xyz/articles/2023/treehouse-influences</link><guid isPermaLink="true">https://progrium.xyz/articles/2023/treehouse-influences</guid><pubDate>Thu, 27 Apr 2023 00:00:00 GMT</pubDate><description>A quick tour of some of the influences for the Treehouse frontend and where it fits in the ecosystem.</description><content:encoded><![CDATA[<p>Over the past few months, we've built the <a href="https://treehouse.sh">Treehouse frontend framework</a> into an elegant, quality outliner that's open source, extensible, and gives you control of your data. I’d like to share some of the design influences for the Treehouse frontend, which should give a sense of the unique direction Treehouse is going from here.</p>
 <p>The biggest influences for Treehouse are Tana, Notion, and Obsidian. These three represent the state of the art of personal and collaborative information management, sometimes simplified as note-taking tools. However, &quot;note-taking tools&quot; sells them short as they go beyond note-taking and information management. For lack of a better descriptor, many consider them <a href="https://www.forthought.tools/">tools for thought</a>.</p>
 <h2>From Notes to Tools for Thought</h2>
 <p>For most, note-taking brings to mind simple apps like Apple Notes and Google Keep, or even just a text file editor. These work well for people because they're already there and focus on quick and easy plain text capture. We could call this casual note-taking.</p>
@@ -319,7 +319,7 @@ and a big thanks to my friends that have been helping out more recently.</p>
 <h2>Coming Soon</h2>
 <p>In the next post, I'll start getting technical and share details on the Treehouse project stack and architecture. If you can't wait, we do have <a href="https://treehouse.sh/docs/dev/">documentation</a> for you to check out.</p>
 <p>Thanks for reading, and a big thanks to my <a href="https://github.com/sponsors/progrium">sponsors</a> for supporting this kind of open source work. Share your thoughts and favorite note-taking tools in the <a href="https://github.com/treehousedev/treehouse/discussions/95">discussion thread</a> for this post.</p>
-]]></content:encoded><pubDate>Thu, 27 Apr 2023 00:00:00 GMT</pubDate></item><item><title>Welcome to Treehouse</title><link>https://progrium.xyz/blog/2023/welcome-to-treehouse</link><guid isPermaLink="false">https://progrium.xyz/blog/2023/welcome-to-treehouse</guid><description>Announcing Treehouse, an open source note-taking frontend and will evolve into something much more.</description><content:encoded><![CDATA[<p>I'm excited to announce the start of a new major project that I'll be sharing the journey of on this fancy new blog. The project is called <a href="https://treehouse.sh/">Treehouse</a>, which is starting as an open source note-taking frontend and will evolve into something much more.</p>
+]]></content:encoded></item><item><title>Welcome to Treehouse</title><link>https://progrium.xyz/articles/2023/welcome-to-treehouse</link><guid isPermaLink="true">https://progrium.xyz/articles/2023/welcome-to-treehouse</guid><pubDate>Thu, 23 Feb 2023 00:00:00 GMT</pubDate><description>Announcing Treehouse, an open source note-taking frontend and will evolve into something much more.</description><content:encoded><![CDATA[<p>I'm excited to announce the start of a new major project that I'll be sharing the journey of on this fancy new blog. The project is called <a href="https://treehouse.sh/">Treehouse</a>, which is starting as an open source note-taking frontend and will evolve into something much more.</p>
 <p><img src="https://treehouse.sh/photos/hero-image.png" alt="Treehouse screenshot"></p>
 <p>We're creating a simple, hackable kernel of a note-taking tool as a web frontend that can be extended and customized by developers. Then we'll use that frontend to build a new kind of note-taking product. Today we have an early preview of our first minimum viable prototype of the frontend, and we'll be finishing up this release in the open on GitHub.</p>
 <p>The <a href="https://github.com/treehousedev/treehouse">open source project</a> is a functional app frontend that you can deploy and back in various ways. For developers, this &quot;bring your own backend&quot; approach makes Treehouse a great starting point to build your own note-taking tool, just as we intend to do. We also have pre-made backends for those who want to use it with little-to-no programming. Either way, you'll always own your data, and now the system presenting it to you as well.</p>
@@ -352,7 +352,7 @@ and a big thanks to my friends that have been helping out more recently.</p>
 <p>Lastly, I want to mention the project is being developed in the open, not just with the code on GitHub, but most of my work is streamed and archived on <a href="https://www.twitch.tv/progrium">Twitch</a>. Feel free to come and co-work with me.</p>
 <p>Thanks for reading, and a big thanks to my <a href="https://github.com/sponsors/progrium/">sponsors</a> for supporting this kind of open source work.</p>
 <p><em>Check out more at <a href="https://treehouse.sh">treehouse.sh</a> or <a href="http://eepurl.com/iluc5v">subscribe to our mailing list</a> for updates!</em></p>
-]]></content:encoded><pubDate>Thu, 23 Feb 2023 00:00:00 GMT</pubDate></item><item><title>Cross-platform Native APIs Made Accessible with Apptron</title><link>https://progrium.xyz/blog/2022/cross-platform-native-apis-made-accessible-with-apptron</link><guid isPermaLink="false">https://progrium.xyz/blog/2022/cross-platform-native-apis-made-accessible-with-apptron</guid><description>Apptron is a software primitive that lets you drive native platform APIs using the technologies you’re already familiar with, enabling cross-platform webview apps and more.</description><content:encoded><![CDATA[<p>I’m happy to announce the first major building block of the Tractor System: Apptron.</p>
+]]></content:encoded></item><item><title>Cross-platform Native APIs Made Accessible with Apptron</title><link>https://progrium.xyz/articles/2022/cross-platform-native-apis-made-accessible-with-apptron</link><guid isPermaLink="true">https://progrium.xyz/articles/2022/cross-platform-native-apis-made-accessible-with-apptron</guid><pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate><description>Apptron is a software primitive that lets you drive native platform APIs using the technologies you’re already familiar with, enabling cross-platform webview apps and more.</description><content:encoded><![CDATA[<p>I’m happy to announce the first major building block of the Tractor System: Apptron.</p>
 <p>Apptron is a software primitive that lets you drive native platform APIs using the technologies you’re already familiar with, enabling cross-platform webview apps and more.</p>
 <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7ihqyuhbatzm3wq9luqt.png" alt="Apptron Demo Screenshot"></p>
 <p>Usable from any language, or even the command line, Apptron gives you webview windows and common platform APIs for your simple scripts, homebrew utilities, or full applications. Building cross-platform programs that leverage native functionality (menus, dialogs, notifications, global shortcuts, etc) has never been more accessible.</p>
@@ -374,7 +374,7 @@ and a big thanks to my friends that have been helping out more recently.</p>
 <h2>Thanks</h2>
 <p>A huge thanks to my <a href="https://github.com/sponsors/progrium">sponsors</a>, who I depend on to fund this early R&amp;D work on the Tractor System. As long as it's sustainable, I look forward to releasing more powerful open source primitives.</p>
 <p>Excited to tell you more next week with the first Apptron demo!</p>
-]]></content:encoded><pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate></item><item><title>Progrium Technology Thesis</title><link>https://progrium.xyz/blog/2022/progrium-technology-thesis</link><guid isPermaLink="false">https://progrium.xyz/blog/2022/progrium-technology-thesis</guid><description>How and why I'm building the "Photoshop of software" out of generative building blocks.</description><content:encoded><![CDATA[<p>Creating software is too complicated. Our options are overwhelming, our tooling is too bloated, and things rarely ever &quot;just work&quot;.</p>
+]]></content:encoded></item><item><title>Progrium Technology Thesis</title><link>https://progrium.xyz/articles/2022/progrium-technology-thesis</link><guid isPermaLink="true">https://progrium.xyz/articles/2022/progrium-technology-thesis</guid><pubDate>Tue, 15 Mar 2022 00:00:00 GMT</pubDate><description>How and why I'm building the "Photoshop of software" out of generative building blocks.</description><content:encoded><![CDATA[<p>Creating software is too complicated. Our options are overwhelming, our tooling is too bloated, and things rarely ever &quot;just work&quot;.</p>
 <p>8 years ago, the late Joe Armstrong, co-creator of Erlang, gave one of his last talks at the 2014 Strange Loop conference. It was titled &quot;The Mess We're In&quot; and talked about the increasing over-complexity of software. &quot;Software entropy increases with time,&quot; he said, &quot;we need to reverse entropy.&quot; He said in his conclusion:</p>
 <p>&quot;Computing was about controlling complexity, and we have failed miserably.&quot;</p>
 <p>An echo of what Djikstra said in the <em>90s</em>: &quot;It is time to unmask the computing community as a Secret Society for the Creation and Preservation of Artificial Complexity.&quot;</p>
@@ -416,94 +416,94 @@ Some say we live in a post PC era, but the original idea of the PC, the <em>pers
 As an independent creator, I depend on people like you to help fund this work, and I'd love you to come along and help make the Tractor System a reality by <a href="https://github.com/sponsors/progrium">becoming a sponsor</a>.</p>
 <hr>
 <p><em>Originally posted on <a href="https://progrium.com/blog/progrium-technology-thesis/">progrium.com</a> and <a href="https://www.youtube.com/watch?v=yKZ15O7zeHY">YouTube</a></em></p>
-]]></content:encoded><pubDate>Tue, 15 Mar 2022 00:00:00 GMT</pubDate></item><item><title>Making programs interact using qtalk</title><link>https://progrium.xyz/blog/2021/making-programs-interact-using-qtalk</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/making-programs-interact-using-qtalk</guid><description>qtalk-go is a versatile IPC/RPC library for Go</description><content:encoded><![CDATA[<p>Today I'm releasing a beta of <a href="https://github.com/progrium/qtalk-go">qtalk-go</a>, a versatile IPC/RPC library for Go. I've been using and iterating on it for 5 years to get it as simple and clear as possible.</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// client.go
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">package</span> main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;context&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;log&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/talk&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
-</span></span><span style="display:flex;"><span>	ctx <span style="color:#000;font-weight:bold">:=</span> context.<span style="color:#900;font-weight:bold">Background</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// use talk.Dial to get a client
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	client, err <span style="color:#000;font-weight:bold">:=</span> talk.<span style="color:#900;font-weight:bold">Dial</span>(<span style="color:#d14">&#34;tcp&#34;</span>, <span style="color:#d14">&#34;localhost:9999&#34;</span>, codec.JSONCodec{})
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Fatal</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">defer</span> client.<span style="color:#900;font-weight:bold">Close</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// call Upper and print the string return value
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	<span style="color:#000;font-weight:bold">var</span> ret <span style="color:#458;font-weight:bold">string</span>
-</span></span><span style="display:flex;"><span>	_, err = client.<span style="color:#900;font-weight:bold">Call</span>(ctx, <span style="color:#d14">&#34;Upper&#34;</span>, fn.Args{<span style="color:#d14">&#34;hello world&#34;</span>}, <span style="color:#000;font-weight:bold">&amp;</span>ret)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Fatal</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	log.<span style="color:#900;font-weight:bold">Println</span>(ret)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// call Error and expect err to be the returned error
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	_, err = client.<span style="color:#900;font-weight:bold">Call</span>(ctx, <span style="color:#d14">&#34;Error&#34;</span>, fn.Args{<span style="color:#d14">&#34;user error&#34;</span>}, <span style="color:#000;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>	log.<span style="color:#900;font-weight:bold">Println</span>(err)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// Output:
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	<span style="color:#998;font-style:italic">// HELLO WORLD
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	<span style="color:#998;font-style:italic">// remote: user error [/Error]
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>}
-</span></span><span style="display:flex;"><span>
+]]></content:encoded></item><item><title>Making programs interact using qtalk</title><link>https://progrium.xyz/articles/2021/making-programs-interact-using-qtalk</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/making-programs-interact-using-qtalk</guid><pubDate>Tue, 24 Aug 2021 00:00:00 GMT</pubDate><description>qtalk-go is a versatile IPC/RPC library for Go</description><content:encoded><![CDATA[<p>Today I'm releasing a beta of <a href="https://github.com/progrium/qtalk-go">qtalk-go</a>, a versatile IPC/RPC library for Go. I've been using and iterating on it for 5 years to get it as simple and clear as possible.</p>
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// client.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;context&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/talk&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// use talk.Dial to get a client
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">client</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">talk</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;localhost:9999&#34;</span><span class="p">,</span> <span class="nx">codec</span><span class="p">.</span><span class="nx">JSONCodec</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// call Upper and print the string return value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">ret</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;Upper&#34;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">Args</span><span class="p">{</span><span class="s">&#34;hello world&#34;</span><span class="p">},</span> <span class="o">&amp;</span><span class="nx">ret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">ret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// call Error and expect err to be the returned error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;Error&#34;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">Args</span><span class="p">{</span><span class="s">&#34;user error&#34;</span><span class="p">},</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Output:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// HELLO WORLD
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// remote: user error [/Error]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
 </span></span></code></pre><p>qtalk is based on over a decade of building and cataloging approaches, patterns, anti-patterns, and best practices in network programming. My interest goes all the way back to high school when I first started playing with Winsock attempting to make massively multiplayer games. Then as a young web developer, pushing the limits of HTTP, discovering how to stream real-time to the browser years before Websocket was dreamed up. Then further abusing HTTP to model other protocols like DNS and IMAP. I pioneered distributed callbacks with webhooks, which got me working at early Twilio where I started going deep on scalable, highly-available messaging architectures. This led me into distributed systems: discovery, coordination, scheduling, etc. I've seen a lot.</p>
 <p>I originally wanted to release qtalk with a paper describing all the significant choices to consider when building a stack like this: message framing, data formats, transports, security mechanisms, protocol flows, queuing, multiplexing, batching, layering, schemas, IDLs, symmetrical vs asymmetrical, stateful vs stateless, TCP vs UDP, etc. It would be a sort of guide for building your own stack. I'd still like to write that at some point, but this post will have to suffice for now.</p>
 <p><strong>qtalk makes no significant claims other than being the most bang for buck in simplicity and versatility.</strong> I've made a full walkthrough of various ways it can be used on the <a href="https://github.com/progrium/qtalk-go/wiki/Examples">wiki</a>, but I'll share a taste here.</p>
 <p>Here is the server to the client code from above for you to try. Together they show qtalk being used in the simplest case, traditional RPC:</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// server.go
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">package</span> main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;fmt&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;log&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;net&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;strings&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/rpc&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> service <span style="color:#000;font-weight:bold">struct</span>{}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> (svc <span style="color:#000;font-weight:bold">*</span>service) <span style="color:#900;font-weight:bold">Upper</span>(s <span style="color:#458;font-weight:bold">string</span>) <span style="color:#458;font-weight:bold">string</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">return</span> strings.<span style="color:#900;font-weight:bold">ToUpper</span>(s)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// methods can opt-in to receive the call as last argument.
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// also, errors can be returned to be received as remote errors.
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> (svc <span style="color:#000;font-weight:bold">*</span>service) <span style="color:#900;font-weight:bold">Error</span>(s <span style="color:#458;font-weight:bold">string</span>, c <span style="color:#000;font-weight:bold">*</span>rpc.Call) <span style="color:#458;font-weight:bold">error</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">return</span> fmt.<span style="color:#900;font-weight:bold">Errorf</span>(<span style="color:#d14">&#34;%s [%s]&#34;</span>, s, c.Selector)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// create a tcp listener
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	l, err <span style="color:#000;font-weight:bold">:=</span> net.<span style="color:#900;font-weight:bold">Listen</span>(<span style="color:#d14">&#34;tcp&#34;</span>, <span style="color:#d14">&#34;localhost:9999&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Fatal</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// setup a server using fn.HandlerFrom to
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	<span style="color:#998;font-style:italic">// handle methods from the service type
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	srv <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&amp;</span>rpc.Server{
-</span></span><span style="display:flex;"><span>		Codec:   codec.JSONCodec{},
-</span></span><span style="display:flex;"><span>		Handler: fn.<span style="color:#900;font-weight:bold">HandlerFrom</span>(<span style="color:#0086b3">new</span>(service)),
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// serve until the listener closes
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	srv.<span style="color:#900;font-weight:bold">Serve</span>(l)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// server.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;net&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/rpc&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">service</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">svc</span> <span class="o">*</span><span class="nx">service</span><span class="p">)</span> <span class="nf">Upper</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">ToUpper</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// methods can opt-in to receive the call as last argument.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// also, errors can be returned to be received as remote errors.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">svc</span> <span class="o">*</span><span class="nx">service</span><span class="p">)</span> <span class="nf">Error</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Call</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;%s [%s]&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Selector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// create a tcp listener
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">l</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;localhost:9999&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// setup a server using fn.HandlerFrom to
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// handle methods from the service type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">srv</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Codec</span><span class="p">:</span>   <span class="nx">codec</span><span class="p">.</span><span class="nx">JSONCodec</span><span class="p">{},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Handler</span><span class="p">:</span> <span class="nx">fn</span><span class="p">.</span><span class="nf">HandlerFrom</span><span class="p">(</span><span class="nb">new</span><span class="p">(</span><span class="nx">service</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// serve until the listener closes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">srv</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
 </span></span></code></pre><h2>Features</h2>
 <p>Some basic features of qtalk-go are:</p>
 <ul>
@@ -528,146 +528,146 @@ As an independent creator, I depend on people like you to help fund this work, a
 <h2>State Synchronization</h2>
 <p>State synchronization isn't a feature but a common pattern you can easily implement in a number of ways with qtalk. While many people think about pubsub with messaging, which you can also implement with qtalk, I've learned you usually actually want state synchronization instead. Below is a simple example.</p>
 <p>Our server will have a list of usernames connected, which is our state. When a client connects, it calls Join to add its username to the list. This also registers the client to receive a callback passing the list of usernames whenever it changes. The client can then call Leave, or if it disconnects abruptly it will be unregistered with the next update.</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// server.go
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">package</span> main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;context&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;log&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;net&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;sync&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/rpc&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// State contains a map of usernames to callers,
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// which are used as a callback client to that user
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">type</span> State <span style="color:#000;font-weight:bold">struct</span> {
-</span></span><span style="display:flex;"><span>	users sync.Map
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Users gets a list of usernames from the keys of the sync.Map
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> (s <span style="color:#000;font-weight:bold">*</span>State) <span style="color:#900;font-weight:bold">Users</span>() (users []<span style="color:#458;font-weight:bold">string</span>) {
-</span></span><span style="display:flex;"><span>	s.users.<span style="color:#900;font-weight:bold">Range</span>(<span style="color:#000;font-weight:bold">func</span>(k, v <span style="color:#000;font-weight:bold">interface</span>{}) <span style="color:#458;font-weight:bold">bool</span> {
-</span></span><span style="display:flex;"><span>		users = <span style="color:#0086b3">append</span>(users, k.(<span style="color:#458;font-weight:bold">string</span>))
-</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span>
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Join adds a username and caller using the injected rpc.Call
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// value, then broadcasts the change
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> (s <span style="color:#000;font-weight:bold">*</span>State) <span style="color:#900;font-weight:bold">Join</span>(username <span style="color:#458;font-weight:bold">string</span>, c <span style="color:#000;font-weight:bold">*</span>rpc.Call) {
-</span></span><span style="display:flex;"><span>	s.users.<span style="color:#900;font-weight:bold">Store</span>(username, c.Caller)
-</span></span><span style="display:flex;"><span>	s.<span style="color:#900;font-weight:bold">broadcast</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Leave removes the user from the sync.Map and broadcasts
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> (s <span style="color:#000;font-weight:bold">*</span>State) <span style="color:#900;font-weight:bold">Leave</span>(username <span style="color:#458;font-weight:bold">string</span>) {
-</span></span><span style="display:flex;"><span>	s.users.<span style="color:#900;font-weight:bold">Delete</span>(username)
-</span></span><span style="display:flex;"><span>	s.<span style="color:#900;font-weight:bold">broadcast</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// broadcast uses the rpc.Caller values to perform a callback
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// with the &#34;state&#34; selector, passing the current list of
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// usernames. any callers that return an error are added to
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// gone and then removed with Leave
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> (s <span style="color:#000;font-weight:bold">*</span>State) <span style="color:#900;font-weight:bold">broadcast</span>() {
-</span></span><span style="display:flex;"><span>	users <span style="color:#000;font-weight:bold">:=</span> s.<span style="color:#900;font-weight:bold">Users</span>()
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">var</span> gone []<span style="color:#458;font-weight:bold">string</span>
-</span></span><span style="display:flex;"><span>	s.users.<span style="color:#900;font-weight:bold">Range</span>(<span style="color:#000;font-weight:bold">func</span>(k, v <span style="color:#000;font-weight:bold">interface</span>{}) <span style="color:#458;font-weight:bold">bool</span> {
-</span></span><span style="display:flex;"><span>		_, err <span style="color:#000;font-weight:bold">:=</span> v.(rpc.Caller).<span style="color:#900;font-weight:bold">Call</span>(context.<span style="color:#900;font-weight:bold">Background</span>(), <span style="color:#d14">&#34;state&#34;</span>, users, <span style="color:#000;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>			log.<span style="color:#900;font-weight:bold">Println</span>(k.(<span style="color:#458;font-weight:bold">string</span>), err)
-</span></span><span style="display:flex;"><span>			gone = <span style="color:#0086b3">append</span>(gone, k.(<span style="color:#458;font-weight:bold">string</span>))
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">for</span> _, u <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> gone {
-</span></span><span style="display:flex;"><span>		s.<span style="color:#900;font-weight:bold">Leave</span>(u)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// create a tcp listener
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	l, err <span style="color:#000;font-weight:bold">:=</span> net.<span style="color:#900;font-weight:bold">Listen</span>(<span style="color:#d14">&#34;tcp&#34;</span>, <span style="color:#d14">&#34;localhost:9999&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Fatal</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// setup a server using fn.HandlerFrom to
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	<span style="color:#998;font-style:italic">// handle methods from the state value
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	srv <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&amp;</span>rpc.Server{
-</span></span><span style="display:flex;"><span>		Codec:   codec.JSONCodec{},
-</span></span><span style="display:flex;"><span>		Handler: fn.<span style="color:#900;font-weight:bold">HandlerFrom</span>(<span style="color:#0086b3">new</span>(State)),
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// serve until the listener closes
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	srv.<span style="color:#900;font-weight:bold">Serve</span>(l)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// server.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;context&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;net&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;sync&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/rpc&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// State contains a map of usernames to callers,
+</span></span></span><span class="line"><span class="cl"><span class="c1">// which are used as a callback client to that user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">State</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">users</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Map</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Users gets a list of usernames from the keys of the sync.Map
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">State</span><span class="p">)</span> <span class="nf">Users</span><span class="p">()</span> <span class="p">(</span><span class="nx">users</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">users</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">users</span><span class="p">,</span> <span class="nx">k</span><span class="p">.(</span><span class="kt">string</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Join adds a username and caller using the injected rpc.Call
+</span></span></span><span class="line"><span class="cl"><span class="c1">// value, then broadcasts the change
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">State</span><span class="p">)</span> <span class="nf">Join</span><span class="p">(</span><span class="nx">username</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Call</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">Store</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Caller</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nf">broadcast</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Leave removes the user from the sync.Map and broadcasts
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">State</span><span class="p">)</span> <span class="nf">Leave</span><span class="p">(</span><span class="nx">username</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">Delete</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nf">broadcast</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// broadcast uses the rpc.Caller values to perform a callback
+</span></span></span><span class="line"><span class="cl"><span class="c1">// with the &#34;state&#34; selector, passing the current list of
+</span></span></span><span class="line"><span class="cl"><span class="c1">// usernames. any callers that return an error are added to
+</span></span></span><span class="line"><span class="cl"><span class="c1">// gone and then removed with Leave
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">State</span><span class="p">)</span> <span class="nf">broadcast</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">users</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">Users</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">gone</span> <span class="p">[]</span><span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">v</span><span class="p">.(</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Caller</span><span class="p">).</span><span class="nf">Call</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="s">&#34;state&#34;</span><span class="p">,</span> <span class="nx">users</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">k</span><span class="p">.(</span><span class="kt">string</span><span class="p">),</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">gone</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">gone</span><span class="p">,</span> <span class="nx">k</span><span class="p">.(</span><span class="kt">string</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">u</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">gone</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span><span class="p">.</span><span class="nf">Leave</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// create a tcp listener
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">l</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;localhost:9999&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// setup a server using fn.HandlerFrom to
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// handle methods from the state value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">srv</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Codec</span><span class="p">:</span>   <span class="nx">codec</span><span class="p">.</span><span class="nx">JSONCodec</span><span class="p">{},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Handler</span><span class="p">:</span> <span class="nx">fn</span><span class="p">.</span><span class="nf">HandlerFrom</span><span class="p">(</span><span class="nb">new</span><span class="p">(</span><span class="nx">State</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// serve until the listener closes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">srv</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
 </span></span></code></pre><p>The Call pointer that handlers can receive has a reference to a Caller, which is a client to make calls back to the caller, allowing callbacks.</p>
 <p>Our client is straightforward. After setting up a connection and a handler to receive and display an updated username listing, we call Join with a username, wait for SIGINT, and call Leave before exiting.</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// client.go
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">package</span> main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;context&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;flag&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;fmt&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;log&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;os&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;os/signal&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/rpc&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#d14">&#34;github.com/progrium/qtalk-go/talk&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">fatal</span>(err <span style="color:#458;font-weight:bold">error</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Fatal</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
-</span></span><span style="display:flex;"><span>	flag.<span style="color:#900;font-weight:bold">Parse</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// establish connection to server
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	client, err <span style="color:#000;font-weight:bold">:=</span> talk.<span style="color:#900;font-weight:bold">Dial</span>(<span style="color:#d14">&#34;tcp&#34;</span>, <span style="color:#d14">&#34;localhost:9999&#34;</span>, codec.JSONCodec{})
-</span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// state callback handler that redraws the user list
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	client.<span style="color:#900;font-weight:bold">Handle</span>(<span style="color:#d14">&#34;state&#34;</span>, rpc.<span style="color:#900;font-weight:bold">HandlerFunc</span>(<span style="color:#000;font-weight:bold">func</span>(r rpc.Responder, c <span style="color:#000;font-weight:bold">*</span>rpc.Call) {
-</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">var</span> users <span style="color:#000;font-weight:bold">interface</span>{}
-</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">:=</span> c.<span style="color:#900;font-weight:bold">Receive</span>(<span style="color:#000;font-weight:bold">&amp;</span>users); err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>			log.<span style="color:#900;font-weight:bold">Println</span>(err)
-</span></span><span style="display:flex;"><span>			<span style="color:#000;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// the nonsense are terminal escape codes
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>		<span style="color:#998;font-style:italic">// to return to the last line and clear it
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>		fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;\u001B[1A\u001B[K&#34;</span>, users)
-</span></span><span style="display:flex;"><span>	}))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// respond to incoming calls
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	<span style="color:#000;font-weight:bold">go</span> client.<span style="color:#900;font-weight:bold">Respond</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// call Join passing a username from arguments
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	_, err = client.<span style="color:#900;font-weight:bold">Call</span>(context.<span style="color:#900;font-weight:bold">Background</span>(), <span style="color:#d14">&#34;Join&#34;</span>, fn.Args{flag.<span style="color:#900;font-weight:bold">Arg</span>(<span style="color:#099">0</span>)}, <span style="color:#000;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// wait until we get SIGINT
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	ch <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>(<span style="color:#000;font-weight:bold">chan</span> os.Signal)
-</span></span><span style="display:flex;"><span>	signal.<span style="color:#900;font-weight:bold">Notify</span>(ch, os.Interrupt)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">&amp;</span>lt;<span style="color:#000;font-weight:bold">-</span>ch
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// call Leave before finishing
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	_, err = client.<span style="color:#900;font-weight:bold">Call</span>(context.<span style="color:#900;font-weight:bold">Background</span>(), <span style="color:#d14">&#34;Leave&#34;</span>, fn.Args{flag.<span style="color:#900;font-weight:bold">Arg</span>(<span style="color:#099">0</span>)}, <span style="color:#000;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// client.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;context&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;flag&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os/signal&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/codec&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/fn&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/rpc&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/progrium/qtalk-go/talk&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">flag</span><span class="p">.</span><span class="nf">Parse</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// establish connection to server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">client</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">talk</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;localhost:9999&#34;</span><span class="p">,</span> <span class="nx">codec</span><span class="p">.</span><span class="nx">JSONCodec</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// state callback handler that redraws the user list
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">client</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;state&#34;</span><span class="p">,</span> <span class="nx">rpc</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">r</span> <span class="nx">rpc</span><span class="p">.</span><span class="nx">Responder</span><span class="p">,</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Call</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">var</span> <span class="nx">users</span> <span class="kd">interface</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Receive</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">users</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// the nonsense are terminal escape codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// to return to the last line and clear it
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\u001B[1A\u001B[K&#34;</span><span class="p">,</span> <span class="nx">users</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// respond to incoming calls
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">go</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Respond</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// call Join passing a username from arguments
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="s">&#34;Join&#34;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">Args</span><span class="p">{</span><span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">)},</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// wait until we get SIGINT
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">signal</span><span class="p">.</span><span class="nf">Notify</span><span class="p">(</span><span class="nx">ch</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;-</span><span class="nx">ch</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// call Leave before finishing
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="s">&#34;Leave&#34;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">Args</span><span class="p">{</span><span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">)},</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
 </span></span></code></pre><p>See the <a href="https://github.com/progrium/qtalk-go/wiki/Examples">Examples wiki page</a> for more code examples, including tunnels and proxies, selector routing, and streaming responses.</p>
 <h2>Roadmap</h2>
 <p>I'm trying to get to a 1.0 for <a href="https://github.com/progrium/qtalk-go">qtalk-go</a>, so I'd like more people to use and review its code. I also haven't actually gotten around to <a href="https://github.com/progrium/qtalk-go/issues/2">putting in QUIC</a> as a usable base layer, which I think should be in a 1.0 release. It's in the name, qtalk was started with QUIC in mind. Not only will QUIC improve performance, resolve head of line blocking, and eventually be native to browsers, but being UDP-based means that hole punching can be used to establish peer-to-peer qtalk connections. I'd like to one day be able to use qtalk directly between machines behind NAT.</p>
@@ -675,7 +675,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>That's it for now. A big thanks to my <a href="https://github.com/sponsors/progrium">sponsors</a> for making this happen and thanks to you for reading!</p>
 <hr>
 <p><em>For more great posts like this sent directly to your inbox and to find out what all I'm up to, get on the list at <a href="http://progrium.com">progrium.com</a> ✌️</em></p>
-]]></content:encoded><pubDate>Tue, 24 Aug 2021 00:00:00 GMT</pubDate></item><item><title>Towards the Personal Potential of Software</title><link>https://progrium.xyz/blog/2021/towards-the-personal-potential-of-software</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/towards-the-personal-potential-of-software</guid><description>A midyear review and preview of what's coming.</description><content:encoded><![CDATA[<p>Since starting work under <a href="http://progrium.com">Progrium Technology Company</a>, I've had a single objective: to build a system called Tractor. It's what I've been slowly approaching in my dense 22 year career as an independent programmer. The Tractor System is still hard for me to describe at this stage, but its goal is to make building production-grade personal software systems like building with Legos: fast and fun.</p>
+]]></content:encoded></item><item><title>Towards the Personal Potential of Software</title><link>https://progrium.xyz/articles/2021/towards-the-personal-potential-of-software</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/towards-the-personal-potential-of-software</guid><pubDate>Mon, 05 Jul 2021 00:00:00 GMT</pubDate><description>A midyear review and preview of what's coming.</description><content:encoded><![CDATA[<p>Since starting work under <a href="http://progrium.com">Progrium Technology Company</a>, I've had a single objective: to build a system called Tractor. It's what I've been slowly approaching in my dense 22 year career as an independent programmer. The Tractor System is still hard for me to describe at this stage, but its goal is to make building production-grade personal software systems like building with Legos: fast and fun.</p>
 <p>After a difficult year heads-down in 2020, I started posting here in January with the intention of sharing and officially releasing components I've been working on that are building up to Tractor. Besides warming up for when I'd eventually talk about Tractor, I wanted people to see how I make independently useful building blocks towards an ideal. That's a core part of the Tractor philosophy.</p>
 <p>Let's review what I've shared so far, and then set up what's coming in the next 6 months.</p>
 <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k38vrxqkzvmr9ek72l3i.gif" alt="MacDriver"></p>
@@ -695,7 +695,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>I really, really have to thank my <a href="https://github.com/sponsors/progrium">sponsors</a>. As things are ramping up, I'm starting to work with more people and this is all self funded. Not only does sponsorship support all this open source work, but sponsors get early access to Tractor Toolkit <em>and</em> see more of what I'm up to.</p>
 <p>Also to you, thanks for reading and following along. I'll be back soon with more releases.</p>
 <p><em>For more posts like this sent directly to your inbox and to stay on top of what I'm up to, get on the list at <a href="http://progrium.com">progrium.com</a> ✌️</em></p>
-]]></content:encoded><pubDate>Mon, 05 Jul 2021 00:00:00 GMT</pubDate></item><item><title>Building your own Ngrok in 130 lines</title><link>https://progrium.xyz/blog/2021/building-your-own-ngrok-in-130-lines</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/building-your-own-ngrok-in-130-lines</guid><description>Remote port forwarding as a service</description><content:encoded><![CDATA[<p>Running a local development server for your app is pretty common, but what if you wanted somebody else to access it? Maybe for a demo, or maybe to debug webhook integrations. If you've ever used <a href="https://ngrok.com/">Ngrok</a> (or perhaps the original <a href="https://github.com/progrium/localtunnel">localtunnel</a>), you know what I'm talking about.</p>
+]]></content:encoded></item><item><title>Building your own Ngrok in 130 lines</title><link>https://progrium.xyz/articles/2021/building-your-own-ngrok-in-130-lines</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/building-your-own-ngrok-in-130-lines</guid><pubDate>Thu, 27 May 2021 00:00:00 GMT</pubDate><description>Remote port forwarding as a service</description><content:encoded><![CDATA[<p>Running a local development server for your app is pretty common, but what if you wanted somebody else to access it? Maybe for a demo, or maybe to debug webhook integrations. If you've ever used <a href="https://ngrok.com/">Ngrok</a> (or perhaps the original <a href="https://github.com/progrium/localtunnel">localtunnel</a>), you know what I'm talking about.</p>
 <p>Today we're going to make a system that emulates the core functionality of Ngrok, exposing a localhost HTTP server via a public URL.</p>
 <p>Just to make sure we're clear on how this all works, let me explain the problem. Normally when you run a server on your computer it can only be accessed by other computers on the same local network. However, many development servers will bind to <code>127.0.0.1</code>, or <code>localhost</code>, which means only a client or browser on your computer can access it. Either way, there are times when you might want another party to access it temporarily, but it's simply not addressable from the public Internet.</p>
 <p>In the olden days, this could only be achieved if you had access to a server running SSH. You could configure SSH to have publicly addressable ports on that server be &quot;forwarded&quot; to a local port on your computer over an SSH connection. This is called <a href="https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding">remote port forwarding</a> or sometimes SSH tunneling. Assuming SSH is configured properly, the command to set this up looks like this:</p>
@@ -715,118 +715,118 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>The other library is actually by the author of Ngrok. Called <a href="https://github.com/inconshreveable/go-vhost">go-vhost</a>, it helps with the problem of virtual hosts. Ideally when a connection comes in to be forwarded down the tunnel we can hand it off wholesale. This way the other end can just start reading off the connection as if received directly. But in order to figure out the hostname used, we have to start reading off the connection up to the Host header. Then we have to hand it off prepended with what was read. What Alan wrote is an abstraction that gives you a virtual listener that lets you accept new connections for a particular virtual host and get the connection as if it hadn't been read yet. A lot of this is due to the interface based approach of the Go standard library.</p>
 <p>This brings us to the main utility function we'll be writing for this system. A TCP connection established between two peers cannot (easily) be handed off between programs, let alone hosts. We don't literally &quot;forward&quot; the connection, we sit in the middle and relay the bytes. This is how every proxy, load balancer, gateway, or tunnel works. It sort of welds two sockets together. I call this socket joining. And if you <em>can</em> avoid doing any protocol level stuff, building a proxy just becomes opening a connection to the backend when a connection comes in and then joining them.</p>
 <p>Since Go models connections using the interfaces of the <code>io</code> package, we can use <code>io.Copy</code> to simplify reading off bytes from one connection into another until an <code>EOF</code>. A two-way copy like this that closes when finished looks like this:</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">join</span>(a io.ReadWriteCloser, b io.ReadWriteCloser) {
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">go</span> io.<span style="color:#900;font-weight:bold">Copy</span>(b, a)
-</span></span><span style="display:flex;"><span>	io.<span style="color:#900;font-weight:bold">Copy</span>(a, b)
-</span></span><span style="display:flex;"><span>	a.<span style="color:#900;font-weight:bold">Close</span>()
-</span></span><span style="display:flex;"><span>	b.<span style="color:#900;font-weight:bold">Close</span>()
-</span></span><span style="display:flex;"><span>}
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">join</span><span class="p">(</span><span class="nx">a</span> <span class="nx">io</span><span class="p">.</span><span class="nx">ReadWriteCloser</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">io</span><span class="p">.</span><span class="nx">ReadWriteCloser</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">a</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre><p>This minimal approach benefits from setting a deadline on the connections in case one end doesn't hang up. You can see we copy bytes from <code>a</code> to <code>b</code> in the background, then wait for copying bytes from <code>b</code> to <code>a</code> before making sure both sides are closed once <code>b</code> gets an <code>EOF</code>.</p>
 <p>We'll also define a helper to generate random subdomains. In a production service this is a big deal. You'd want an incredibly large space of possible subdomains, but here we generate 10 random alphanumeric characters using <code>crypto/rand</code>:</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">newSubdomain</span>() <span style="color:#458;font-weight:bold">string</span> {
-</span></span><span style="display:flex;"><span>	b <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">byte</span>, <span style="color:#099">10</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> _, err <span style="color:#000;font-weight:bold">:=</span> rand.<span style="color:#900;font-weight:bold">Read</span>(b); err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#0086b3">panic</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	letters <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#0086b3">rune</span>(<span style="color:#d14">&#34;abcdefghijklmnopqrstuvwxyz1234567890&#34;</span>)
-</span></span><span style="display:flex;"><span>	r <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">rune</span>, <span style="color:#099">10</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> r {
-</span></span><span style="display:flex;"><span>		r[i] = letters[<span style="color:#0086b3">int</span>(b[i])<span style="color:#000;font-weight:bold">*</span><span style="color:#0086b3">len</span>(letters)<span style="color:#000;font-weight:bold">/</span><span style="color:#099">256</span>]
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">string</span>(r) <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;.&#34;</span>
-</span></span><span style="display:flex;"><span>}
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">newSubdomain</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">letters</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">rune</span><span class="p">(</span><span class="s">&#34;abcdefghijklmnopqrstuvwxyz1234567890&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">rune</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">r</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">r</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">letters</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="nx">letters</span><span class="p">)</span><span class="o">/</span><span class="mi">256</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre><p>Another quick utility to define that's common in simple Go programs is a fatal function. This helps simplify all the error checking.</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">fatal</span>(err <span style="color:#458;font-weight:bold">error</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Fatal</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre><p>Now we can get started in our <code>main()</code> which will contain both client and server modes. However, first we'll define some flags useful to both:</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">var</span> port = flag.<span style="color:#900;font-weight:bold">String</span>(<span style="color:#d14">&#34;p&#34;</span>, <span style="color:#d14">&#34;9999&#34;</span>, <span style="color:#d14">&#34;server port to use&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">var</span> host = flag.<span style="color:#900;font-weight:bold">String</span>(<span style="color:#d14">&#34;h&#34;</span>, <span style="color:#d14">&#34;vcap.me&#34;</span>, <span style="color:#d14">&#34;server hostname to use&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">var</span> addr = flag.<span style="color:#900;font-weight:bold">String</span>(<span style="color:#d14">&#34;b&#34;</span>, <span style="color:#d14">&#34;127.0.0.1&#34;</span>, <span style="color:#d14">&#34;ip to bind [server only]&#34;</span>)
-</span></span><span style="display:flex;"><span>flag.<span style="color:#900;font-weight:bold">Parse</span>()
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">port</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;p&#34;</span><span class="p">,</span> <span class="s">&#34;9999&#34;</span><span class="p">,</span> <span class="s">&#34;server port to use&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">host</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;h&#34;</span><span class="p">,</span> <span class="s">&#34;vcap.me&#34;</span><span class="p">,</span> <span class="s">&#34;server hostname to use&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">addr</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">,</span> <span class="s">&#34;ip to bind [server only]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">flag</span><span class="p">.</span><span class="nf">Parse</span><span class="p">()</span>
 </span></span></code></pre><p>The default hostname of <code>vcap.me</code> is a way to make the server easy to run locally. Since <code>localhost</code> doesn't allow subdomains, but any domain can resolve to <code>127.0.0.1</code>, there are a few public domains that have wildcard subdomains all resolving to <code>127.0.0.1</code>. If we ran this on a real server, we'd need a domain with wildcard subdomains resolving to the server IP, and we'd probably use port <code>80</code> instead of <code>9999</code>.</p>
 <p>Now we'll start with the client, which is quite simple. It's activated when there is an argument specifying the local port to expose publicly.</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// client usage: groktunnel [-h=&lt;server hostname&gt;] &lt;local port&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">if</span> flag.<span style="color:#900;font-weight:bold">Arg</span>(<span style="color:#099">0</span>) <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#34;&#34;</span> {
-</span></span><span style="display:flex;"><span>	conn, err <span style="color:#000;font-weight:bold">:=</span> net.<span style="color:#900;font-weight:bold">Dial</span>(<span style="color:#d14">&#34;tcp&#34;</span>, net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(<span style="color:#000;font-weight:bold">*</span>host, <span style="color:#000;font-weight:bold">*</span>port))
-</span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>	client <span style="color:#000;font-weight:bold">:=</span> httputil.<span style="color:#900;font-weight:bold">NewClientConn</span>(conn, bufio.<span style="color:#900;font-weight:bold">NewReader</span>(conn))
-</span></span><span style="display:flex;"><span>	req, err <span style="color:#000;font-weight:bold">:=</span> http.<span style="color:#900;font-weight:bold">NewRequest</span>(<span style="color:#d14">&#34;GET&#34;</span>, <span style="color:#d14">&#34;/&#34;</span>, <span style="color:#000;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>	req.Host = net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(<span style="color:#000;font-weight:bold">*</span>host, <span style="color:#000;font-weight:bold">*</span>port)
-</span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>	client.<span style="color:#900;font-weight:bold">Write</span>(req)
-</span></span><span style="display:flex;"><span>	resp, _ <span style="color:#000;font-weight:bold">:=</span> client.<span style="color:#900;font-weight:bold">Read</span>(req)
-</span></span><span style="display:flex;"><span>	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;port %s http available at:\n&#34;</span>, flag.<span style="color:#900;font-weight:bold">Arg</span>(<span style="color:#099">0</span>))
-</span></span><span style="display:flex;"><span>	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;http://%s\n&#34;</span>, resp.Header.<span style="color:#900;font-weight:bold">Get</span>(<span style="color:#d14">&#34;X-Public-Host&#34;</span>))
-</span></span><span style="display:flex;"><span>	c, _ <span style="color:#000;font-weight:bold">:=</span> client.<span style="color:#900;font-weight:bold">Hijack</span>()
-</span></span><span style="display:flex;"><span>	sess <span style="color:#000;font-weight:bold">:=</span> session.<span style="color:#900;font-weight:bold">New</span>(c)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">defer</span> sess.<span style="color:#900;font-weight:bold">Close</span>()
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">for</span> {
-</span></span><span style="display:flex;"><span>		ch, err <span style="color:#000;font-weight:bold">:=</span> sess.<span style="color:#900;font-weight:bold">Accept</span>()
-</span></span><span style="display:flex;"><span>		<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>		conn, err <span style="color:#000;font-weight:bold">:=</span> net.<span style="color:#900;font-weight:bold">Dial</span>(<span style="color:#d14">&#34;tcp&#34;</span>, <span style="color:#d14">&#34;127.0.0.1:&#34;</span><span style="color:#000;font-weight:bold">+</span>flag.<span style="color:#900;font-weight:bold">Arg</span>(<span style="color:#099">0</span>))
-</span></span><span style="display:flex;"><span>		<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">join</span>(conn, ch)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// client usage: groktunnel [-h=&lt;server hostname&gt;] &lt;local port&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="o">*</span><span class="nx">host</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">client</span> <span class="o">:=</span> <span class="nx">httputil</span><span class="p">.</span><span class="nf">NewClientConn</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">conn</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">req</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">NewRequest</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">req</span><span class="p">.</span><span class="nx">Host</span> <span class="p">=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="o">*</span><span class="nx">host</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">client</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">resp</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;port %s http available at:\n&#34;</span><span class="p">,</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;http://%s\n&#34;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;X-Public-Host&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Hijack</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sess</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Dial</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1:&#34;</span><span class="o">+</span><span class="nx">flag</span><span class="p">.</span><span class="nf">Arg</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="nf">join</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span> <span class="nx">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre><p>Here we set up the tunnel over HTTP since we'll be serving HTTP anyway, and we need a way to tell the client what the generated public host is to display a URL to the user. You can see we get the hostname from a response header.</p>
 <p>We're manually creating an HTTP request with <code>httputil.NewClientConn</code> because it lets us hijack the connection. This simply means it stops processing as HTTP and treats it like a raw TCP connection. Alternatively we could upgrade to WebSocket for this, but this simply works just as well with fewer dependencies.</p>
 <p>After hijacking we create a qmux session to start multiplexing virtual connections, or channels, over this connection. This is the tunnel. We don't open channels, we just sit in a loop waiting for incoming channels and assume they want to be joined with a connection to our localhost server. That's it.</p>
 <p>Now the server. First we set everything up using our flags, including a TCP listener, which we wrap in a virtual host muxer. The meat of our server is in <code>serve()</code> but that runs asynchronously as we listen for vhost muxing errors until shutdown.</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#998;font-style:italic">// server usage: groktunnel [-h=&lt;hostname&gt;] [-b=&lt;bind ip&gt;]
-</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>l, err <span style="color:#000;font-weight:bold">:=</span> net.<span style="color:#900;font-weight:bold">Listen</span>(<span style="color:#d14">&#34;tcp&#34;</span>, net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(<span style="color:#000;font-weight:bold">*</span>addr, <span style="color:#000;font-weight:bold">*</span>port))
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">defer</span> l.<span style="color:#900;font-weight:bold">Close</span>()
-</span></span><span style="display:flex;"><span>vmux, err <span style="color:#000;font-weight:bold">:=</span> vhost.<span style="color:#900;font-weight:bold">NewHTTPMuxer</span>(l, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">*</span>time.Second)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">serve</span>(vmux, <span style="color:#000;font-weight:bold">*</span>host, <span style="color:#000;font-weight:bold">*</span>port)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>log.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;groktunnel server [%s] ready!\n&#34;</span>, <span style="color:#000;font-weight:bold">*</span>host)
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">for</span> {
-</span></span><span style="display:flex;"><span>	conn, err <span style="color:#000;font-weight:bold">:=</span> vmux.<span style="color:#900;font-weight:bold">NextError</span>()
-</span></span><span style="display:flex;"><span>	fmt.<span style="color:#900;font-weight:bold">Println</span>(err)
-</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> conn <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		conn.<span style="color:#900;font-weight:bold">Close</span>()
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="c1">// server usage: groktunnel [-h=&lt;hostname&gt;] [-b=&lt;bind ip&gt;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">l</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="o">*</span><span class="nx">addr</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">defer</span> <span class="nx">l</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">vmux</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vhost</span><span class="p">.</span><span class="nf">NewHTTPMuxer</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">go</span> <span class="nf">serve</span><span class="p">(</span><span class="nx">vmux</span><span class="p">,</span> <span class="o">*</span><span class="nx">host</span><span class="p">,</span> <span class="o">*</span><span class="nx">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;groktunnel server [%s] ready!\n&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">host</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vmux</span><span class="p">.</span><span class="nf">NextError</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">conn</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre><p>Now the heart of this system in <code>serve()</code>:</p>
-<pre tabindex="0" style="background-color:#fff;"><code><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">serve</span>(vmux <span style="color:#000;font-weight:bold">*</span>vhost.HTTPMuxer, host, port <span style="color:#458;font-weight:bold">string</span>) {
-</span></span><span style="display:flex;"><span>	ml, err <span style="color:#000;font-weight:bold">:=</span> vmux.<span style="color:#900;font-weight:bold">Listen</span>(net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(host, port))
-</span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>	srv <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&amp;</span>http.Server{Handler: http.<span style="color:#900;font-weight:bold">HandlerFunc</span>(<span style="color:#000;font-weight:bold">func</span>(w http.ResponseWriter, r <span style="color:#000;font-weight:bold">*</span>http.Request) {
-</span></span><span style="display:flex;"><span>		publicHost <span style="color:#000;font-weight:bold">:=</span> strings.<span style="color:#900;font-weight:bold">TrimSuffix</span>(net.<span style="color:#900;font-weight:bold">JoinHostPort</span>(<span style="color:#900;font-weight:bold">newSubdomain</span>()<span style="color:#000;font-weight:bold">+</span>host, port), <span style="color:#d14">&#34;:80&#34;</span>)
-</span></span><span style="display:flex;"><span>		pl, err <span style="color:#000;font-weight:bold">:=</span> vmux.<span style="color:#900;font-weight:bold">Listen</span>(publicHost)
-</span></span><span style="display:flex;"><span>		<span style="color:#900;font-weight:bold">fatal</span>(err)
-</span></span><span style="display:flex;"><span>		w.<span style="color:#900;font-weight:bold">Header</span>().<span style="color:#900;font-weight:bold">Add</span>(<span style="color:#d14">&#34;X-Public-Host&#34;</span>, publicHost)
-</span></span><span style="display:flex;"><span>		w.<span style="color:#900;font-weight:bold">Header</span>().<span style="color:#900;font-weight:bold">Add</span>(<span style="color:#d14">&#34;Connection&#34;</span>, <span style="color:#d14">&#34;close&#34;</span>)
-</span></span><span style="display:flex;"><span>		w.<span style="color:#900;font-weight:bold">WriteHeader</span>(http.StatusOK)
-</span></span><span style="display:flex;"><span>		conn, _, _ <span style="color:#000;font-weight:bold">:=</span> w.(http.Hijacker).<span style="color:#900;font-weight:bold">Hijack</span>()
-</span></span><span style="display:flex;"><span>		sess <span style="color:#000;font-weight:bold">:=</span> session.<span style="color:#900;font-weight:bold">New</span>(conn)
-</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">defer</span> sess.<span style="color:#900;font-weight:bold">Close</span>()
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;%s: start session&#34;</span>, publicHost)
-</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">go</span> <span style="color:#000;font-weight:bold">func</span>() {
-</span></span><span style="display:flex;"><span>			<span style="color:#000;font-weight:bold">for</span> {
-</span></span><span style="display:flex;"><span>				conn, err <span style="color:#000;font-weight:bold">:=</span> pl.<span style="color:#900;font-weight:bold">Accept</span>()
-</span></span><span style="display:flex;"><span>				<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>					log.<span style="color:#900;font-weight:bold">Println</span>(err)
-</span></span><span style="display:flex;"><span>					<span style="color:#000;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>				}
-</span></span><span style="display:flex;"><span>				ch, err <span style="color:#000;font-weight:bold">:=</span> sess.<span style="color:#900;font-weight:bold">Open</span>(context.<span style="color:#900;font-weight:bold">Background</span>())
-</span></span><span style="display:flex;"><span>				<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>					log.<span style="color:#900;font-weight:bold">Println</span>(err)
-</span></span><span style="display:flex;"><span>					<span style="color:#000;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>				}
-</span></span><span style="display:flex;"><span>				<span style="color:#000;font-weight:bold">go</span> <span style="color:#900;font-weight:bold">join</span>(ch, conn)
-</span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>		}()
-</span></span><span style="display:flex;"><span>		sess.<span style="color:#900;font-weight:bold">Wait</span>()
-</span></span><span style="display:flex;"><span>		log.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;%s: end session&#34;</span>, publicHost)
-</span></span><span style="display:flex;"><span>	})}
-</span></span><span style="display:flex;"><span>	srv.<span style="color:#900;font-weight:bold">Serve</span>(ml)
-</span></span><span style="display:flex;"><span>}
+<pre tabindex="0" class="chroma"><code class="language-go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">serve</span><span class="p">(</span><span class="nx">vmux</span> <span class="o">*</span><span class="nx">vhost</span><span class="p">.</span><span class="nx">HTTPMuxer</span><span class="p">,</span> <span class="nx">host</span><span class="p">,</span> <span class="nx">port</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ml</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vmux</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="nx">port</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">srv</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">http</span><span class="p">.</span><span class="nx">Server</span><span class="p">{</span><span class="nx">Handler</span><span class="p">:</span> <span class="nx">http</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">publicHost</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">TrimSuffix</span><span class="p">(</span><span class="nx">net</span><span class="p">.</span><span class="nf">JoinHostPort</span><span class="p">(</span><span class="nf">newSubdomain</span><span class="p">()</span><span class="o">+</span><span class="nx">host</span><span class="p">,</span> <span class="nx">port</span><span class="p">),</span> <span class="s">&#34;:80&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">pl</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">vmux</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;X-Public-Host&#34;</span><span class="p">,</span> <span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">w</span><span class="p">.</span><span class="nf">Header</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="s">&#34;Connection&#34;</span><span class="p">,</span> <span class="s">&#34;close&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">w</span><span class="p">.</span><span class="nf">WriteHeader</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">w</span><span class="p">.(</span><span class="nx">http</span><span class="p">.</span><span class="nx">Hijacker</span><span class="p">).</span><span class="nf">Hijack</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sess</span> <span class="o">:=</span> <span class="nx">session</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">defer</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s: start session&#34;</span><span class="p">,</span> <span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">pl</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">ch</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sess</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="k">go</span> <span class="nf">join</span><span class="p">(</span><span class="nx">ch</span><span class="p">,</span> <span class="nx">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sess</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s: end session&#34;</span><span class="p">,</span> <span class="nx">publicHost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">srv</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">ml</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre><p>Here we create a new listener using the vhost muxer passed in to listen for connections on the naked domain (<code>vcap.me</code>). Then we make an HTTP handler that sets up a new tunnel. First it generates a new hostname and tells our vhost muxer to start listening on it. We'll hold on to that listener.</p>
 <p>Then we start writing headers. Remember this is how we tell the client what our generated hostname is. We also use <code>Connection: close</code> to tell the other end we're going to be done and normally hang up, but after we flush the headers with a <code>200 OK</code> status, we hijack the connection like we know is going to happen on the other end. We make a new qmux session and start a new goroutine.</p>
 <p>This goroutine handles connections coming in from our new vhost listener. All this does is sit in a loop accepting new connections, then using our qmux session opens a channel, then joins the new connection with that channel.</p>
@@ -835,7 +835,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>This little program gives us a client and server that recreates the original localtunnel system. It showcases the use case of tunneling for connection multiplexing, but also how easily you can wire things up in Go using mostly the standard library.</p>
 <p>If you wanted to tunnel normal TCP connections, not HTTP connections, this program gets even simpler. However, that's an exercise for the reader. You can see the <a href="https://github.com/progrium/qmux/tree/main/demos/groktunnel">full groktunnel source</a> in the demos directory of the <a href="https://github.com/progrium/qmux">qmux</a> project. Hope you were inspired to build something cool!</p>
 <p><em>For more posts like this sent directly to your inbox and to find out what all I'm up to, get on the list at <a href="http://progrium.com">progrium.com</a> ✌️</em></p>
-]]></content:encoded><pubDate>Thu, 27 May 2021 00:00:00 GMT</pubDate></item><item><title>The History and Future of Socket-level Multiplexing</title><link>https://progrium.xyz/blog/2021/the-history-and-future-of-socket-level-multiplexing</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/the-history-and-future-of-socket-level-multiplexing</guid><description>Towards a socket API with builtin stream muxing</description><content:encoded><![CDATA[<p>Multiplexing (sometimes called muxing) has a long history of innovation in telecommunications. In 1875, Edison figured out how to transmit four separate telegraph lines over a single wire. In 1910, multiplexing technology was brought to telephony. Within 30 years the Bell System could multiplex 2,400 channels over a single cable. Then in the 1960s we got packet switching, a kind of unlimited multiplexing, which led to computer networking and Internet protocols.</p>
+]]></content:encoded></item><item><title>The History and Future of Socket-level Multiplexing</title><link>https://progrium.xyz/articles/2021/the-history-and-future-of-socket-level-multiplexing</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/the-history-and-future-of-socket-level-multiplexing</guid><pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate><description>Towards a socket API with builtin stream muxing</description><content:encoded><![CDATA[<p>Multiplexing (sometimes called muxing) has a long history of innovation in telecommunications. In 1875, Edison figured out how to transmit four separate telegraph lines over a single wire. In 1910, multiplexing technology was brought to telephony. Within 30 years the Bell System could multiplex 2,400 channels over a single cable. Then in the 1960s we got packet switching, a kind of unlimited multiplexing, which led to computer networking and Internet protocols.</p>
 <p>I think of layered protocols and packet switching as &quot;virtualized&quot; multiplexing. Every layer provides a new medium or virtual transport for more protocols to operate, all over the same physical medium. Ethernet allows IPX, IP, and other packets. IP then allows UDP, TCP, and other packets. TCP allows HTTP, SSH, and so on.</p>
 <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7qqgzngwcbyt81uav77w.png" alt="Screen Shot 2021-05-06 at 10.56.29 AM"></p>
 <p>The layers nearly end at TCP and UDP because these two protocols provide most of what any programmer would need to make two programs talk. This was more or less set in stone in the 1980s when Unix introduced the <a href="https://en.wikipedia.org/wiki/Berkeley_sockets">socket API</a>, which has been the de facto standard interface for network programming ever since.</p>
@@ -866,7 +866,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>I'm only releasing this now because it might not have made sense without all this context or more awareness of QUIC. The banality of a brand new subset of a 25 year old protocol does not escape me, but it's the shift in perspective that brings potential. In that way it's similar to webhooks!</p>
 <p>If nothing else, I hope people use this story as inspiration to think about using multiplexing to design better, simpler application protocols. Even if for some reason QUIC isn't the future, you now have <a href="https://github.com/progrium/qmux">qmux</a>!</p>
 <p><em>For more great posts like this sent directly to your inbox and to find out what all I'm up to, get on the list at <a href="http://progrium.com">progrium.com</a></em> ✌️</p>
-]]></content:encoded><pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate></item><item><title>Apple API schemas for code generation and more</title><link>https://progrium.xyz/blog/2021/apple-api-schemas-for-code-generation-and-more</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/apple-api-schemas-for-code-generation-and-more</guid><description>Why I love API schemas and built a tool to generate schemas from Apple documentation.</description><content:encoded><![CDATA[<p>Schemas are pretty dope. My appreciation for API schemas as a toolmaker comes from a desire to build tools that can integrate with many systems, and open new avenues for people to use APIs.</p>
+]]></content:encoded></item><item><title>Apple API schemas for code generation and more</title><link>https://progrium.xyz/articles/2021/apple-api-schemas-for-code-generation-and-more</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/apple-api-schemas-for-code-generation-and-more</guid><pubDate>Fri, 16 Apr 2021 00:00:00 GMT</pubDate><description>Why I love API schemas and built a tool to generate schemas from Apple documentation.</description><content:encoded><![CDATA[<p>Schemas are pretty dope. My appreciation for API schemas as a toolmaker comes from a desire to build tools that can integrate with many systems, and open new avenues for people to use APIs.</p>
 <p>For most, the use case that comes to mind for API schemas is generating documentation. Translating a machine-readable schema into a human friendly representation is a scalable, automated way to maintain solid reference documentation. Although many systems exist to generate documentation directly from code, having an intermediary representation is useful for other use cases.</p>
 <p>Code generation is the other big one. It's common for companies like Google and Amazon to generate client libraries across languages for their many web APIs. Even some libraries for GitHub's API are generated because their API has gotten so big it would be untenable otherwise. This is particularly important in the open source community where maintainer time is a scarce resource. Schemas save a lot of time, but it's still pretty uncommon to find a schema for any given web API.</p>
 <p>Even less common are schemas for non-web APIs. In 2016, <a href="https://www.electronjs.org/blog/api-docs-json-schema">Electron started releasing a JSON schema</a> of all their APIs that allowed me to build a bridge to use Electron APIs from Go. I had that prototype in mind when I started the <a href="https://github.com/progrium/macdriver">macdriver</a> project that was released a couple months ago. Right now we're manually wrapping Apple framework classes with Go types so you can write native Apple platform applications that look like this:</p>
@@ -881,7 +881,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>Today most &quot;no-code&quot; tools need to support integrations to stay competitive, but they're all writing and maintaining their own integrations. In fact, every application with user programmable integrations can benefit from schemas like this. So I'd like to see more.</p>
 <p>If this is interesting, take a look at the tool I built, <a href="https://github.com/progrium/macschema">macschema</a>, which is open source on GitHub. Right now it's just the toolchain, but in theory we could generate schemas for all of Apple's APIs and put them in a repo in such a way that can be updated by a combination of macschema and user contributed patches. I'll let somebody else do that though.</p>
 <p>Thanks for reading, think about schemas more, and consider <a href="https://github.com/sponsors/progrium">sponsoring my work</a>!</p>
-]]></content:encoded><pubDate>Fri, 16 Apr 2021 00:00:00 GMT</pubDate></item><item><title>Customize your computer screen with HTML and JavaScript</title><link>https://progrium.xyz/blog/2021/customize-your-computer-screen-with-html</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/customize-your-computer-screen-with-html</guid><description>A local webpage screen overlay for customizing your computing experience</description><content:encoded><![CDATA[<p>Anybody that knows how to mess around with HTML can now mess around with their desktop computing experience. <a href="https://github.com/progrium/topframe">Topframe</a> is an open source tool that lets you customize your desktop screen using HTML/CSS/JavaScript.</p>
+]]></content:encoded></item><item><title>Customize your computer screen with HTML and JavaScript</title><link>https://progrium.xyz/articles/2021/customize-your-computer-screen-with-html</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/customize-your-computer-screen-with-html</guid><pubDate>Tue, 30 Mar 2021 00:00:00 GMT</pubDate><description>A local webpage screen overlay for customizing your computing experience</description><content:encoded><![CDATA[<p>Anybody that knows how to mess around with HTML can now mess around with their desktop computing experience. <a href="https://github.com/progrium/topframe">Topframe</a> is an open source tool that lets you customize your desktop screen using HTML/CSS/JavaScript.</p>
 <p>It started as a demo for <a href="https://github.com/progrium/macdriver">macdriver</a>, but over the last week or so I've been making a standalone version. 90% of that time was playing around with it while trying to make demos.</p>
 <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hbmx3sbht0l74w74ofud.gif" alt="Topframe Demo"></p>
 <p>Could this bring back the computing aesthetic of personalized MySpace pages and Geocities sites all over again? No?? ...maybe? Well, either way, I'm happy to share a tool for people to <em>experiment</em> once again.</p>
@@ -906,7 +906,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <h2>What Next</h2>
 <p>Again, this is an early project, but it's also a mostly contributor-driven project. I'm going to keep focusing on tools to make stuff <em>like</em> this (including what'll make it cross-platform), so it'll be up to you all to really make this a real thing. For example, it could probably really use a global keyboard shortcut to toggle hiding or interactivity.</p>
 <p>If you have questions, I'm watching the <a href="https://github.com/progrium/topframe/discussions">GitHub discussions</a> so feel free to post there. Otherwise, have fun and consider <a href="https://github.com/sponsors/progrium">sponsoring my work</a>!</p>
-]]></content:encoded><pubDate>Tue, 30 Mar 2021 00:00:00 GMT</pubDate></item><item><title>Use Mac APIs and build Mac apps with Go</title><link>https://progrium.xyz/blog/2021/use-mac-apis-and-build-mac-apps-with-go</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/use-mac-apis-and-build-mac-apps-with-go</guid><description>An Objective-C bridge for Go with bindings to common Mac APIs</description><content:encoded><![CDATA[<p>If you work with Apple devices and you're a Go programmer, or are thinking about learning Go, we just got some new powers that are pretty cool. Today I'm releasing an alpha of <a href="https://github.com/progrium/macdriver">macdriver</a>, an Objective-C bridge for Go with bindings to common Mac APIs.</p>
+]]></content:encoded></item><item><title>Use Mac APIs and build Mac apps with Go</title><link>https://progrium.xyz/articles/2021/use-mac-apis-and-build-mac-apps-with-go</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/use-mac-apis-and-build-mac-apps-with-go</guid><pubDate>Tue, 02 Feb 2021 00:00:00 GMT</pubDate><description>An Objective-C bridge for Go with bindings to common Mac APIs</description><content:encoded><![CDATA[<p>If you work with Apple devices and you're a Go programmer, or are thinking about learning Go, we just got some new powers that are pretty cool. Today I'm releasing an alpha of <a href="https://github.com/progrium/macdriver">macdriver</a>, an Objective-C bridge for Go with bindings to common Mac APIs.</p>
 <p><a href="https://github.com/progrium/macdriver"><img src="https://github.com/progrium/macdriver/raw/main/macdriver.gif" alt="macdriver logo"></a></p>
 <p>Those that were paying attention to my last post about <a href="https://dev.to/progrium/large-type-legacy-celebrated-in-80-line-go-program-1mob">Large Type in 80 lines of Go</a> might have already found macdriver. The largetype program is one of the example projects for macdriver.</p>
 <p><img src="https://camo.githubusercontent.com/707db8e6d47c31ed90f0a65aeea1b805c718b1c18a2cd61b94e1ebb932b091af/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f4571616f4f324d584941454a4e4b323f666f726d61743d6a7067266e616d653d6c61726765" alt="largetype screenshot"></p>
@@ -929,7 +929,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>I'm excited to see what people do with macdriver. There's lots more information on using it in <a href="https://github.com/progrium/macdriver">the README</a>, but I am still working on docs. At this point it should mostly be self explanatory, but feel free to ask questions in <a href="https://github.com/progrium/macdriver/discussions">the forum</a>.</p>
 <p>If you're interested in exploring new possibilities with me, I've been meaning to try using macdriver for an Apple Watch app. There was an iOS proof of concept in the original bridge package by Mikkel, but I haven't tried it. Assuming it works (which may involve Xcode or other developer tools), it seems plausible it would also work for the Apple Watch or even... the Apple TV.</p>
 <p>Thanks for reading, have fun, and <a href="https://github.com/sponsors/progrium">consider sponsoring my work</a>!</p>
-]]></content:encoded><pubDate>Tue, 02 Feb 2021 00:00:00 GMT</pubDate></item><item><title>Large Type legacy celebrated in 80 line Go program</title><link>https://progrium.xyz/blog/2021/large-type-legacy-celebrated-in-80-line-go-program</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/large-type-legacy-celebrated-in-80-line-go-program</guid><description>A tiny, standalone largetype command-line utility</description><content:encoded><![CDATA[<p>There is a little known feature in the MacOS Contacts app where if you right-click a phone number, you get a Large Type option. Large Type fills your screen with the phone number in the largest font size possible, allowing you or anybody else to easily see the number from far away. Nifty!</p>
+]]></content:encoded></item><item><title>Large Type legacy celebrated in 80 line Go program</title><link>https://progrium.xyz/articles/2021/large-type-legacy-celebrated-in-80-line-go-program</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/large-type-legacy-celebrated-in-80-line-go-program</guid><pubDate>Fri, 15 Jan 2021 00:00:00 GMT</pubDate><description>A tiny, standalone largetype command-line utility</description><content:encoded><![CDATA[<p>There is a little known feature in the MacOS Contacts app where if you right-click a phone number, you get a Large Type option. Large Type fills your screen with the phone number in the largest font size possible, allowing you or anybody else to easily see the number from far away. Nifty!</p>
 <p><img src="https://dev-to-uploads.s3.amazonaws.com/i/f33yege5cr9zjdl9wgnj.jpg" alt="Old OS X Large Type"></p>
 <p>As far as I know, this feature has been in every version of OS X since its release back in 2000. Contacts was known as Address Book back then. The builtin calculator also had a Large Type view, but it seems it has since been removed. The feature might even exist in NeXTSTEP apps.</p>
 <p>Presumably inspired by OS X Address Book, Large Type was also added to the legendary <a href="https://qsapp.com/">Quicksilver</a> app launcher from the mid-2000's. Now, using Quicksilver, you could quickly type or paste in <em>any</em> text and display it in Large Type. More nifty!</p>
@@ -950,8 +950,8 @@ $ go build
 <p>This will make you a 4MB binary called <code>largetype</code>. Now you can run it:</p>
 <pre><code>$ ./largetype &quot;Hello world&quot;
 </code></pre>
-]]></content:encoded><pubDate>Fri, 15 Jan 2021 00:00:00 GMT</pubDate></item><item><title>Making the world more programmable</title><link>https://progrium.xyz/blog/2021/making-the-world-more-programmable</link><guid isPermaLink="false">https://progrium.xyz/blog/2021/making-the-world-more-programmable</guid><description>A draft talk I made 5 years ago trying to communicate my mission</description><content:encoded><![CDATA[<p>I'm starting this devlog up again to talk about some of the work I've been doing quietly for the past few years. It will mostly be project reveals, which should be exciting.</p>
+]]></content:encoded></item><item><title>Making the world more programmable</title><link>https://progrium.xyz/articles/2021/making-the-world-more-programmable</link><guid isPermaLink="true">https://progrium.xyz/articles/2021/making-the-world-more-programmable</guid><pubDate>Mon, 04 Jan 2021 00:00:00 GMT</pubDate><description>A draft talk I made 5 years ago trying to communicate my mission</description><content:encoded><![CDATA[<p>I'm starting this devlog up again to talk about some of the work I've been doing quietly for the past few years. It will mostly be project reveals, which should be exciting.</p>
 <p>To kick things off I wanted to set the tone a little. I haven't given any serious talks in a while, and this is one of the last ones I put together. It's actually a rehearsal recording that's been private for 5 years UNTIL NOW of me framing my work around this mission: making the world more programmable.</p>
 <p>This was one attempt at a clear narrative for what I'm trying to achieve, but I didn't feel it was good enough. Five years is a good while, though, and looking back it is a decent introduction for what's to come.</p>
 <p>If I named this talk today I might instead call it &quot;Making the future malleable&quot; or something.</p>
-<iframe src="https://player.vimeo.com/video/159888358?h=6ac5c365c8" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>]]></content:encoded><pubDate>Mon, 04 Jan 2021 00:00:00 GMT</pubDate></item></channel></rss>
+<iframe src="https://player.vimeo.com/video/159888358?h=6ac5c365c8" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>]]></content:encoded></item></channel></rss>
