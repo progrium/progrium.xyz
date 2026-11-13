@@ -1,9 +1,9 @@
 ---
 title: "Apptron"
-emoji: "🪟"
+emoji: "🤖"
 group: "now"
 years: "2022–"
-description: "Native APIs and an app shell for software built with web tech."
+description: "Malleable software environment."
 website: "https://apptron.dev/"
 tags: [tractor]
 ---
