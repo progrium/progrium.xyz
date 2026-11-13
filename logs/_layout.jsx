@@ -10,6 +10,7 @@
         {page.emoji && <> · {page.emoji}</>}
         {page.tags?.length > 0 && <> · <span class="tags">{page.tags.map(t => <a href={`/tags/${t}`}>{t}</a>)}</span></>}
       </div>
+      {kind === "log" && page.title && <h1 class="log-h">{page.title}</h1>}
       {kind !== "log" && <h1 class="link-h"><a href={page.link}>{page.title || page.link} ↗</a><span class="src">{domain(page.link)}</span></h1>}
       {kind === "video" && partial("_partials/youtube", youtubeID(page.link), page.title || "")}
       <div class="e-body">{content}</div>

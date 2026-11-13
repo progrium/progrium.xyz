@@ -39,6 +39,7 @@
     <article class="e e-log">
       {meta(p.emoji && <span class="mark">{p.emoji}</span>)}
       <div class="e-body">
+        {p.title && <h3><a href={p.path}>{p.title}</a></h3>}
         {full || more <= 0 ? raw(p.body) : raw(paras[0])}
         {!full && more > 0 && <a class="cont" href={p.path}>continue ({more} more ¶)</a>}
       </div>
