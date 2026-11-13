@@ -2,10 +2,10 @@ Jeff Lindsay
 
 data({ title: "Jeff Lindsay", description: "Jeff Lindsay, aka progrium. I make simple tools that make computers more programmable." });
 <div class="intro">
-  <p>Hi, I'm Jeff. I make simple tools that make computers more programmable, and I try to treat the computer as an instrument for the imagination.</p>
-  <p>I'm known for webhooks, localtunnel and Dokku. Lately it's Plan 9 ideas on modern machines.</p>
+  <p>Hi, I'm Jeff. I make simple tools that make computers more programmable, and even more an instrument for the imagination.</p>
+  <p>I'm known for pioneering webhooks, prototyping Docker, building Dokku. Lately it's been Wanix and Plan 9 ideas.</p>
 </div>
-{now && <div class="now"><span class="now-k">now</span> <span>{now}</span></div>}
+{now && <div class="now"><span class="now-k">presently</span> <span>{now}</span></div>}
 {partial("_partials/newsletter", "home", "nl-home-email")}
 <h2 class="sec">recently</h2>
 {partial("_partials/stream", entries(pages({ path: ["articles/**", "logs/**"] })).slice(0, 12))}
