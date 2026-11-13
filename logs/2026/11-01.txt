@@ -1,0 +1,7 @@
+vx32: Lightweight User-level Sandboxing on the x86
+2026-11-01 · link · https://pdos.csail.mit.edu/papers/vx32:usenix08.pdf
+
+
+
+-- 
+https://progrium.xyz/logs/2026/11-01
