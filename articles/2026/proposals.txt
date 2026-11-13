@@ -3,7 +3,7 @@ Proposals, Not Milestones
 
 I've started a new primitive called [hyper9](https://github.com/progrium/hyper9), initially as an experiment to see how far I could push working with coding agents. It's ambitious and exciting, and right now it's in a pretty good place. Though, maybe halfway to a real v0.1 release. Getting to this point with it forced me to finally solve a problem I've had with projects like this for a long time.
 
-For day-to-day work we have todos, milestones and sprints, and those work fine when we're actively in that mode. But open source projects with larger arcs, and ideas that need a lot of thought before I can build them (let alone anybody else), have always been missing something. I'm talking about a written proposal process, sometimes called [ADRs](https://martinfowler.com/bliki/ArchitectureDecisionRecord.html). As with most human collaboration technologies, they've been very effective working with coding agents, but also, having coding agents has finally made the process practical for me.
+For day-to-day work we have todos, milestones, and sprints, and those work fine when we're actively in that mode. But my open source projects with larger arcs, and ideas that need a lot of thought before I can build them (let alone anybody else), have always been missing something. It turns out I already knew what it was: a written proposal process, sometimes called [ADRs](https://martinfowler.com/bliki/ArchitectureDecisionRecord.html). They've been very effective working with coding agents, but also, having coding agents has finally made the process practical for me.
 
 ## The usual loop
 
