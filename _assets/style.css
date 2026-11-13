@@ -336,6 +336,7 @@ iframe.vid { border: 0; cursor: auto; }
 .tended { flex-basis: 100%; margin-top: 4px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--tended); }
 .keys { display: inline-flex; gap: 8px; flex-wrap: wrap; }
 .keys .key { color: var(--ink); }
+.built { white-space: nowrap; }
 
 @media (prefers-reduced-motion: reduce) {
   .wordmark:hover::after, .cur { animation: none; }
