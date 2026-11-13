@@ -1,0 +1,23 @@
+Logs from undefined undefined
+log
+
+params(() => pages("logs/**").filter(isEntry).map(p => ({ year: p.date.slice(0, 4), month: p.date.slice(5, 7) })));
+data({ title: `Logs from ${monthName(page.params.month)} ${page.params.year}` });
+{(() => {
+  const ym = `${page.params.year}-${page.params.month}`;
+  const all = entries(pages({ path: ["logs/**"] }));
+  const older = all.find(p => p.date.slice(0, 7) < ym);
+  const newer = [...all].reverse().find(p => p.date.slice(0, 7) > ym);
+  const mlink = (p, text) => <a href={`/logs/${p.date.slice(0, 4)}/${p.date.slice(5, 7)}`}>{text}</a>;
+  return <>
+    {partial("_partials/journal", all.filter(p => p.date.startsWith(ym)))}
+    <p class="more">
+      {newer && mlink(newer, `← ${monthName(newer.date.slice(5, 7))} ${newer.date.slice(0, 4)}`)}
+      {newer && older && " · "}
+      {older && mlink(older, `${monthName(older.date.slice(5, 7))} ${older.date.slice(0, 4)} →`)}
+    </p>
+  </>;
+})()}
+
+-- 
+https://progrium.xyz/logs/2026/07

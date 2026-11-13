@@ -1,0 +1,7 @@
+Apptron v0.7: Offline Sites, Console Embeds, and Much More
+2026-03-03 · link · https://github.com/tractordev/apptron/releases/tag/v0.7.0
+
+Our biggest Apptron release yet. Embeds can now be just a terminal in Console Mode, public sites work offline with an automatic service worker, and environments got 4x faster networking and up to 2x faster builds.
+
+-- 
+https://progrium.xyz/logs/2026/03-03

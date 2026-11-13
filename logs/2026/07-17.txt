@@ -1,0 +1,7 @@
+Wanix v0.4 Preview: Composable compute in HTML
+2026-07-17 · link · https://github.com/tractordev/wanix/releases/tag/v0.4-preview
+
+Wanix Elements are web components for declaring filesystems, tasks, VMs, terminals, and even VS Code in plain HTML, so you can build a sandboxed Unix-style environment in the browser with a few tags. This preview also adds the rc shell and a Wanix-ready Alpine Linux as CDN extras.
+
+-- 
+https://progrium.xyz/logs/2026/07-17

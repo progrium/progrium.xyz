@@ -1,0 +1,7 @@
+webframe v0.2
+2026-10-30 · link · https://github.com/tractordev/webframe/releases/tag/v0.2
+
+webframe is now a tool for scripting and testing pages, not just watching them. You can inject stubs, run test files after load, pass in secrets, set timeouts, and let the page set the exit status, and hidden pages run unthrottled on every platform.
+
+-- 
+https://progrium.xyz/logs/2026/10-30
