@@ -8,7 +8,7 @@ data({ scale: 1 });
     : isLog ? entryTitle(page) : (page.title || siteTitle);
   const font = isLog
     ? { family: "Recursive", size: 54, weight: 500 }
-    : { family: "Recursive", size: 76, weight: 800 };
+    : { family: "Recursive", size: 72, weight: 800 };
   const lh = isLog ? 72 : 84;
   const lines = wrap(text, font, W - 2 * X - 60).slice(0, isLog ? 5 : 4);
   const top = 250 - (isLog ? 30 : 0);
@@ -21,7 +21,7 @@ data({ scale: 1 });
         font-variation-settings={isLog ? "'MONO' 0, 'CASL' 1" : "'MONO' 0, 'CASL' 0"} letter-spacing={isLog ? 0 : -1.5}>
         {lines.map((line, i) => <tspan x={X} y={top + i * lh}>{line}</tspan>)}
       </text>
-      <text x={X} y="560" font-family="Recursive" font-size="28" fill="#777" font-variation-settings="'MONO' 1">{meta}</text>
+      <text x={X} y="550" font-family="Recursive" font-size="28" fill="#777" font-variation-settings="'MONO' 1">{meta}</text>
     </svg>
   );
 }
