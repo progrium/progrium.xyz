@@ -1,0 +1,7 @@
+tailcat: Tailscale without Tailscale, by Tailscale
+2026-11-14 · link · https://github.com/tailscale/tailcat
+
+tailcat is netcat over Tailscale's data plane without its control plane. One side listens and gets a short address, the other connects to it, and traffic flows over end-to-end WireGuard tunnels that bootstrap through DERP and then hole-punch to direct UDP when they can. Connection metadata is exchanged out of band however you like, so there's no Tailscale account, no root, and no changes to routing or DNS. It ships as both a CLI and a Go library.
+
+-- 
+https://progrium.xyz/logs/2026/11-14
