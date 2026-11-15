@@ -24,7 +24,7 @@
       <article class={`e e-link e-${kind}`}>
         {meta(null)}
         <div class="e-body">
-          <h3><a href={p.link}>{p.title || p.link} ↗</a><span class="src">{domain(p.link)}</span></h3>
+          <h3>{p.emoji && <span class="emoji" aria-hidden="true">{p.emoji}</span>}<a href={p.link}>{p.title || p.link} ↗</a><span class="src">{domain(p.link)}</span></h3>
           {yt && partial("_partials/youtube", yt, p.title || "")}
           {raw(p.body)}
           {!full && <a class="cont" href={p.path}>permalink</a>}
@@ -37,9 +37,9 @@
   const more = paras.length - 1;
   return (
     <article class="e e-log">
-      {meta(p.emoji && <span class="mark">{p.emoji}</span>)}
+      {meta(null)}
       <div class="e-body">
-        {p.title && <h3><a href={p.path}>{p.title}</a></h3>}
+        {p.title && <h3>{p.emoji && <span class="emoji" aria-hidden="true">{p.emoji}</span>}<a href={p.path}>{p.title}</a></h3>}
         {full || more <= 0 ? raw(p.body) : raw(paras[0])}
         {!full && more > 0 && <a class="cont" href={p.path}>continue ({more} more ¶)</a>}
       </div>

@@ -7,11 +7,10 @@
     <article class={`post logpost e-${kind}`}>
       <div class="byline">
         <time datetime={page.date}>{page.date}</time> · {kind}
-        {page.emoji && <> · {page.emoji}</>}
         {page.tags?.length > 0 && <> · <span class="tags">{page.tags.map(t => <a href={`/tags/${t}`}>{t}</a>)}</span></>}
       </div>
-      {kind === "log" && page.title && <h1 class="log-h">{page.title}</h1>}
-      {kind !== "log" && <h1 class="link-h"><a href={page.link}>{page.title || page.link} ↗</a><span class="src">{domain(page.link)}</span></h1>}
+      {kind === "log" && page.title && <h1 class="log-h">{page.emoji && <span class="emoji" aria-hidden="true">{page.emoji}</span>}{page.title}</h1>}
+      {kind !== "log" && <h1 class="link-h">{page.emoji && <span class="emoji" aria-hidden="true">{page.emoji}</span>}<a href={page.link}>{page.title || page.link} ↗</a><span class="src">{domain(page.link)}</span></h1>}
       {kind === "video" && partial("_partials/youtube", youtubeID(page.link), page.title || "")}
       <div class="e-body">{content}</div>
       {partial("_partials/replyrow", <a class="backlinks" href={`/logs/${ym.slice(0, 4)}/${ym.slice(5, 7)}`}>all of {monthName(ym.slice(5, 7))} {ym.slice(0, 4)}</a>)}

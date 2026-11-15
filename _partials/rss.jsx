@@ -13,7 +13,7 @@
       const body = (kind === "link" || kind === "video") ? `<p><a href="${p.link}">${p.title || p.link}</a></p>${p.body}` : p.body;
       return (
         <item>
-          <title>{kind === "article" || kind === "doc" ? p.title : (p.title ? `${p.title} ↗` : entryTitle(p))}</title>
+          <title>{kind === "article" || kind === "doc" ? p.title : emojiTitle(p, p.title ? `${p.title} ↗` : entryTitle(p))}</title>
           <link>{url}</link>
           <guid isPermaLink="true">{url}</guid>
           <pubDate>{new Date(p.date).toUTCString()}</pubDate>

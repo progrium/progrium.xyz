@@ -7,7 +7,7 @@
   return (
     <details class="backlinks">
       <summary>{bl.length} {noun} link{bl.length === 1 ? "s" : ""} here</summary>
-      <ul>{bl.map(p => <li><a href={p.path}>{p.date} · {entryTitle(p)}</a></li>)}</ul>
+      <ul>{bl.map(p => <li><a href={p.path}>{p.date} · {emojiTitle(p, entryTitle(p))}</a></li>)}</ul>
     </details>
   );
 }

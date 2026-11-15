@@ -8,8 +8,8 @@
   const dated = (p) => kindOf(p) !== "article";
   return (
     <nav class="prevnext" aria-label={label}>
-      {prev && <a href={prev.path} class="prev"><span class="pn-k">← previous{dated(prev) ? ` · ${shortDate(prev.date)}` : ""}</span>{entryTitle(prev)}</a>}
-      {next && <a href={next.path} class="next"><span class="pn-k">next →{dated(next) ? ` · ${shortDate(next.date)}` : ""}</span>{entryTitle(next)}</a>}
+      {prev && <a href={prev.path} class="prev"><span class="pn-k">← previous{dated(prev) ? ` · ${shortDate(prev.date)}` : ""}</span>{emojiTitle(prev, entryTitle(prev))}</a>}
+      {next && <a href={next.path} class="next"><span class="pn-k">next →{dated(next) ? ` · ${shortDate(next.date)}` : ""}</span>{emojiTitle(next, entryTitle(next))}</a>}
     </nav>
   );
 }
