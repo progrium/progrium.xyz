@@ -1,4 +1,4 @@
-Apptron Demo: Webview Window Building Block
+🎬 Apptron Demo: Webview Window Building Block
 2022-07-05 · log
 
 In this demo, I use the [Apptron](/logs/2022/07-01) API from Go to build a simple birthday card application defined by HTML and CSS. I also explore the architectural approach of Apptron compared to directly working with platform native APIs.

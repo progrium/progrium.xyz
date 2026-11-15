@@ -1,4 +1,4 @@
-Apptron Demo: HTML5 Background Apps
+🎬 Apptron Demo: HTML5 Background Apps
 2022-08-16 · log
 
 In this week’s demo I built a background application using HTML and [Apptron](/logs/2022/07-01). It may seem weird to involve a webview at all for a background app, which is why this was not a use case I had planned, but I was pleasantly surprised to discover how this turned out.

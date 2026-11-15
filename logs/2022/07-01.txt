@@ -1,4 +1,4 @@
-Announcing Apptron
+📣 Announcing Apptron
 2022-07-01 · log
 
 I’m happy to announce the first major building block of the Tractor System: Apptron.

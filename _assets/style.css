@@ -147,6 +147,7 @@ main { max-width: 34em; }
 .meta { color: var(--soft); }
 .meta .k::before, .meta .len::before { content: " · "; }
 .meta .mark { margin-left: .4em; }
+h1 .emoji, h3 .emoji { margin-right: .2em; text-decoration: none; }
 .e-body { min-width: 0; }
 .e-body p + p { margin-top: .75em; }
 .e-article h3 { font-size: 21px; font-weight: 720; letter-spacing: -.01em; line-height: 1.3; text-wrap: balance; }

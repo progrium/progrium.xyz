@@ -1,4 +1,4 @@
-Apptron Demo: Zero Config HTML5 Native Apps
+🎬 Apptron Demo: Zero Config HTML5 Native Apps
 2022-07-19 · log
 
 In this demo I use the [Apptron](/logs/2022/07-01) build command to create an executable from a single HTML file. No setup, no configuration. If you want to change how the window looks, you can add a meta tag to your HTML file. It’s not only simple, it’s fast.

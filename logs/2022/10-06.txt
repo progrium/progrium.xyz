@@ -1,4 +1,4 @@
-Apptron Demo: CSS Themed Windows
+🎬 Apptron Demo: CSS Themed Windows
 2022-10-06 · log
 
 In this demo I show an experimental feature of [Apptron](/logs/2022/07-01) that lets you customize the window frame using HTML and CSS. This allows us to create re-usable themes. Apptron even comes with a few builtin.
