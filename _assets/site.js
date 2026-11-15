@@ -31,6 +31,18 @@
       });
     }
 
+    // 9/ux: boot into a full-viewport iframe. no way out but reload.
+    var boot = document.getElementById("bootkey");
+    if (boot) boot.addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = "https://progrium.github.io/9ux/progrium.html";
+      f.title = "9/ux";
+      f.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;border:0;margin:0;padding:0;z-index:2147483647;background:#000";
+      document.body.appendChild(f);
+      document.body.style.overflow = "hidden";
+      f.focus();
+    });
+
     // language label on highlighted code
     document.querySelectorAll("pre > code[class^='language-']").forEach(function (c) {
       c.parentElement.setAttribute("data-lang", c.className.replace(/^language-/, "").split(" ")[0]);
