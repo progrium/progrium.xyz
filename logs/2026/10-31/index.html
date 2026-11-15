@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>hl: Run aarch64-linux ELF binaries on macOS Apple Silicon · progrium</title>
-    <meta name="description"/>
+    <meta name="description" content="hl runs Linux ELF binaries on Apple Silicon Macs without Docker or a full VM."/>
     <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
     <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/_assets/style.css"/>
@@ -18,7 +18,7 @@
     <meta property="og:site_name" content="progrium.xyz"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="hl: Run aarch64-linux ELF binaries on macOS Apple Silicon"/>
-    <meta property="og:description"/>
+    <meta property="og:description" content="hl runs Linux ELF binaries on Apple Silicon Macs without Docker or a full VM."/>
     <meta property="og:url" content="https://progrium.xyz/logs/2026/10-31"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@progrium"/>
@@ -43,7 +43,9 @@
             <a href="https://github.com/zw3rk/hyper-linux">hl: Run aarch64-linux ELF binaries on macOS Apple Silicon ↗</a>
             <span class="src">github.com</span>
           </h1>
-          <div class="e-body"></div>
+          <div class="e-body">
+            <p>hl runs Linux ELF binaries on Apple Silicon Macs without Docker or a full VM. Each process gets its own tiny Hypervisor.framework VM with a minimal kernel shim that traps Linux syscalls and hands them to the host, which translates about 170 of them to macOS equivalents. It handles static and dynamic binaries, threads, fork and exec, signals, and networking, and can run x86_64 binaries too by way of Rosetta.</p>
+          </div>
           <div class="reply-row">
             <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
             <a class="backlinks" href="/logs/2026/10">all of October 2026</a>

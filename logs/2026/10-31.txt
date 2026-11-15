@@ -1,7 +1,7 @@
 hl: Run aarch64-linux ELF binaries on macOS Apple Silicon
 2026-10-31 · link · https://github.com/zw3rk/hyper-linux
 
-
+hl runs Linux ELF binaries on Apple Silicon Macs without Docker or a full VM. Each process gets its own tiny Hypervisor.framework VM with a minimal kernel shim that traps Linux syscalls and hands them to the host, which translates about 170 of them to macOS equivalents. It handles static and dynamic binaries, threads, fork and exec, signals, and networking, and can run x86_64 binaries too by way of Rosetta.
 
 -- 
 https://progrium.xyz/logs/2026/10-31

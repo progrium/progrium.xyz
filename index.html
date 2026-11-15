@@ -98,6 +98,7 @@
                   <a href="https://pdos.csail.mit.edu/papers/vx32:usenix08.pdf">vx32: Lightweight User-level Sandboxing on the x86 ↗</a>
                   <span class="src">pdos.csail.mit.edu</span>
                 </h3>
+                <p>Bryan Ford and Russ Cox's paper on sandboxing untrusted x86 code entirely in user space, with no kernel changes or special privileges. Vx32 confines guest memory access with segmentation and runs guest code through a dynamic translator that rewrites unsafe instructions, so most code runs close to native speed. Its applications include portable archive decoders and 9vx, which runs the Plan 9 kernel as an ordinary process on another OS.</p>
                 <a class="cont" href="/logs/2026/11-01">permalink</a>
               </div>
             </article>
@@ -111,6 +112,7 @@
                   <a href="https://github.com/zw3rk/hyper-linux">hl: Run aarch64-linux ELF binaries on macOS Apple Silicon ↗</a>
                   <span class="src">github.com</span>
                 </h3>
+                <p>hl runs Linux ELF binaries on Apple Silicon Macs without Docker or a full VM. Each process gets its own tiny Hypervisor.framework VM with a minimal kernel shim that traps Linux syscalls and hands them to the host, which translates about 170 of them to macOS equivalents. It handles static and dynamic binaries, threads, fork and exec, signals, and networking, and can run x86_64 binaries too by way of Rosetta.</p>
                 <a class="cont" href="/logs/2026/10-31">permalink</a>
               </div>
             </article>
