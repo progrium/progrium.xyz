@@ -4,7 +4,7 @@
     : <span>txt</span>} · <a href="/feeds" title="feeds">rss</a> · {sourceURL(page)
     ? <a href={sourceURL(page)} title="this page's source on GitHub">edit</a>
     : <span>edit</span>} ]</span>
-  <span class="elsewhere"><a href="/newsletter"><strong>newsletter</strong></a>{elsewhere.map(([name, href]) => <a href={href}>{name}</a>)}</span>
+  <span class="elsewhere"><a href="/newsletter"><strong>newsletter</strong></a>{elsewhere.filter(([name]) => name !== "email").map(([name, href]) => <a href={href}>{name}</a>)}</span>
   <span class="tended">
     <span class="keys">
       <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
