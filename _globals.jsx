@@ -14,6 +14,28 @@ discussionsURL = "https://github.com/progrium/progrium.xyz/discussions";
 newsletterAction = "https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&id=f964b318bd";
 newsletterHoneypot = "b_0dda02db0663c0132866c08ae_f964b318bd";
 
+// The footer's "edit" link points at a page's source file in this repo.
+sourceRepo = "https://github.com/progrium/progrium.xyz/blob/main";
+// taragen doesn't expose a page's source file, so rebuild it from the page.
+// A generated page links to its template: each param value in the path goes
+// back to its [name]. The extension comes from how the source starts:
+// frontmatter is Markdown, a tag is HTML, anything else is JSX.
+sourceFile = (p) => {
+  if (!p.src) return null;
+  let segs = p.path.split("/").filter(Boolean);
+  if (p.params) {
+    const names = Object.keys(p.params);
+    segs = segs.map(s => {
+      const name = names.find(n => String(p.params[n]) === s);
+      return name ? `[${name}]` : s;
+    });
+  }
+  const ext = p.params ? ".jsx" : p.src.startsWith("---") ? ".md" : p.src.trimStart().startsWith("<") ? ".html" : ".jsx";
+  const base = segs.join("/");
+  return p.isDir ? `${base ? base + "/" : ""}index${ext}` : `${base}${ext}`;
+};
+sourceURL = (p) => { const f = sourceFile(p); return f && `${sourceRepo}/${f.replace(/\[/g, "%5B").replace(/\]/g, "%5D")}`; };
+
 elsewhere = [
   ["email", "mailto:progrium+web@gmail.com"],
   ["github", "https://github.com/progrium"],
