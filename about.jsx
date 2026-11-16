@@ -25,7 +25,7 @@ data({ title: "About", description: "Jeff Lindsay, aka progrium: twenty years of
         <p>Some of them you may have used: webhooks, Docker, Twilio, Dokku. Since 2020 most of my work has gone into Tractor, searching for a few simple primitives to build any software. Wanix, Apptron, and h9 all come out of that.</p>
         <p>Otherwise I make indie games and music when I can. I also used to build communities. Someday I'd like to make films.</p>
         <dl class="dl">
-          <dt>write to</dt><dd><a href={link("email")}>email</a><a href="https://discord.gg/JraBdNHuuP">Discord</a></dd>
+          <dt>write to</dt><dd><a href={link("email")}>email</a></dd>
           <dt>follow</dt><dd><a href={link("mastodon")}>Mastodon</a><a href={link("bsky")}>Bluesky</a><a href={link("github")}>GitHub</a><a href="https://www.youtube.com/c/progrium">YouTube</a><a href="/feeds">RSS</a></dd>
           <dt>support</dt><dd><a href="https://github.com/sponsors/progrium">GitHub Sponsors</a></dd>
         </dl>
