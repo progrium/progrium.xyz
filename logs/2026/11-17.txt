@@ -1,0 +1,7 @@
+🚀 minipg v0.3
+2026-11-17 · link · https://github.com/progrium/minipg/releases/tag/v0.3
+
+minipg is PostgreSQL as a single executable you use like SQLite: a `.pgdb` folder holds the whole database, and `minipg app.pgdb` opens a shell on it. This release swaps the v86-in-a-webview runtime for hyper9, which runs Alpine's own Postgres binaries directly on the host's hypervisor, taking best case boot from 7 seconds to 800ms. It also adds a full SQLite-inspired CLI and defaults to Postgres 18, with other majors a flag away.
+
+-- 
+https://progrium.xyz/logs/2026/11-17
