@@ -8,6 +8,8 @@ aliases:
   - /blog/2014/the-start-of-the-age-of-flynn
 ---
 
+> Perhaps because of this post, many believe Flynn was a project of mine. However, I didn't start or lead the project, I was simply an early collaborator helping out some friends.
+
 For about the past six months, I've been working on an open source project called [Flynn](https://flynn.io/). It's gotten a lot of attention, but I haven't written much about it. I've been hoping to start a series discussing the design and development behind Flynn, but it seems appropriate to at least introduce the project and provide some context. 
 
 ## What is Flynn?
