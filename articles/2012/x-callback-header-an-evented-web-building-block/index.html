@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>X-Callback Header: Evented Web Building Block · progrium</title>
+    <meta name="description" content="A proposed HTTP header for registering callbacks, as a building block for the evented web"/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2012/x-callback-header-an-evented-web-building-block.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2012/x-callback-header-an-evented-web-building-block"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="X-Callback Header: Evented Web Building Block"/>
+    <meta property="og:description" content="A proposed HTTP header for registering callbacks, as a building block for the evented web"/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2012/x-callback-header-an-evented-web-building-block"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2012/x-callback-header-an-evented-web-building-block.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2012-11-26T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <svg class="mark" viewBox="8 8 124 124" aria-hidden="true">
+          <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"></path>
+          <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"></path>
+        </svg>
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>X-Callback Header: Evented Web Building Block</h1>
+          <div class="byline">
+            <time datetime="2012-11-26">2012-11-26</time>
+            · 4 min · <span class="tags"><a href="/tags/webhooks">webhooks</a><a href="/tags/eventedweb">eventedweb</a><a href="/tags/http">http</a><a href="/tags/api">api</a></span>
+          </div>
+          <div class="body">
+            <blockquote>
+              <p>
+                <strong>Note:</strong> Since this posting, we decided to adopt &quot;best current practice&quot; and drop the X- prefix as described in 
+                <a href="http://tools.ietf.org/html/rfc6648">RFC 6648</a>
+                . Future posts refer to this as the Callback header.
+                Webhooks is the simple concept of HTTP callbacks. It expands on the simple request/response model of HTTP, giving you the semantics of <a href="http://j.mp/10EitT8">callbacks in programming</a>. Request/response gives you one response for one request in one synchronous operation. It's like invoking a function and getting a return value. With callbacks, after you register a callback, the callback will receive one or more invocations, perhaps minutes or hours apart.
+              </p>
+            </blockquote>
+            <p>
+              Callbacks are a necessary component of any evented or reactor-based system, like Node.js, Twisted, or EventMachine. So, naturally, HTTP callbacks are necessary to achieve 
+              <a href="/articles/2012/from-webhooks-to-the-evented-web">the Evented Web</a>
+              .
+            </p>
+            <p>Modeling callbacks in HTTP is somewhat straightforward. The callback is a URL. You perform an HTTP request against an application to register a callback URL. The application then performs an HTTP request to that URL to invoke that callback.</p>
+            <p>Those high-level requirements are enough to set anybody in the right direction to effectively implement webhooks or HTTP callbacks for their application. The problem is that now every application implements the specifics differently. While this is fine to provide a callback paradigm for each application, it doesn't let us <em>build</em> on this paradigm. The Evented Web needs to agree on some standards, and the X-Callback header is one of those standards.</p>
+            <h3>X-Callback Header</h3>
+            <p>
+              The X-Callback header is a proposal for a common way to describe HTTP callbacks, primarily in the case of registering them. It does not get into the specifics for different ways of using HTTP callbacks, so it's more of a building block for APIs or larger protocols such as HTTP Subscriptions, which I mentioned 
+              <a href="/articles/2012/from-webhooks-to-the-evented-web">in my previous post</a>
+              .
+            </p>
+            <p>Here's what it looks like to use X-Callback:</p>
+            <pre><code>X-Callback: &lt;http://example.com/callback&gt;; method=&quot;post&quot;
+</code></pre>
+            <p>
+              The format is directly borrowed from the 
+              <a href="http://www.w3.org/Protocols/9707-link-header.html">Link header</a>
+              used for responses. You provide a URL and then optional key-value parameters. In the case above, the HTTP method for invoking the callback was specified as a parameter.
+            </p>
+            <p>Here is a more formal description of the header:</p>
+            <pre><code>X-Callback     = &quot;X-Callback&quot; &quot;:&quot; #(&quot;&lt;&quot; URI &quot;&gt;&quot; *( &quot;;&quot; callback-param ) )
+callback-param  = token [ &quot;=&quot; ( token | quoted-string ) ]
+</code></pre>
+            <p>Since this is just the beginning of the conversation, there are no &quot;built-in&quot; callback parameters in this definition. They're effectively all extensions. However, these are what I'd propose for standard parameters:</p>
+            <ul>
+              <li><strong>method</strong>: The HTTP method preferred for invoking this callback. Servers can ignore or override based on their policies, but this lets the requester optionally state preference.</li>
+              <li><strong>secret</strong>: The secret to be used for signing callback requests. More on this in the next section.</li>
+              <li><strong>rel</strong>: The relationship of this callback to this request, similar to the rel of the Link header. This lets you specify the role of this callback, which is useful when multiple callbacks are provided. It effectively lets you classify the callbacks.</li>
+            </ul>
+            <h3>Authenticating with Signatures</h3>
+            <p>A common pattern across most implementations of webhooks has been the use of signatures for authenticating the callback &quot;invocation&quot; requests. Either built-in to the X-Callback header spec or maybe as a separate extension, a standard way of providing a secret then building and including a signature would be a Good Idea. The following is a proposal based on PubSubHubbub's signature model, but is not that different from the majority of implementations out there.</p>
+            <p>We start with a shared secret. Transmission of this secret can be done out of band (through a dashboard, for example), or the secret can be provided via the <em>secret</em> parameter of the X-Callback header during registration.</p>
+            <p>The secret can then be used with HMAC to sign anything. In the case of callbacks, it would sign the body of the callback request body. Since you can use different hashing techniques with HMAC, the technique used is specified along with a hexadecimal digest of the HMAC signature. This is put in the X-Signature header of requests:</p>
+            <pre><code>X-Signature: sha1=0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33
+</code></pre>
+            <p>Now the callback handler can rebuild this signature knowing the secret and having the content body and the hash technique. Authenticating is then comparing the built signature with the one provided in the X-Signature header.</p>
+            <p>Signing lets the callback handler be more certain of the source without requiring SSL. Signatures become much less necessary if all requests are using HTTPS. But having this simple complement to X-Callback makes it easy when you need it, and may help unify all the different approaches that are all effectively doing the same thing.</p>
+            <h3>Example Callback Flow</h3>
+            <p>Let's use all this in an example, showing you the actual HTTP requests. First, we're going to register a callback at a particular endpoint:</p>
+            <pre><code>POST /callbacks/register HTTP/1.1
+Host: server-example.com
+X-Callback: &lt;http://example.com/callback&gt;; method=&quot;post&quot;; secret=&quot;opensesame&quot;
+Content-Length: 0
+</code></pre>
+            <p>The server can respond however it likes since X-Callback header doesn't specify anything more than how to hand the server a callback. Let's assume it returned 200 OK.</p>
+            <p>Now, whenever it likes, the server is going to be performing an HTTP POST on the callback URL. Since a secret was provided, the server will be providing a signature using the X-Signature header. Here's what one of those requests might look like:</p>
+            <pre><code>POST /callback HTTP/1.1
+Host: example.com
+Content-Type: application/json
+Content-Length: 26
+X-Signature: sha1=76afe1da675cf6d3d59c71a4af44dafc69fd03f0
+
+{&quot;payload&quot;: &quot;Hello world&quot;}
+</code></pre>
+            <p>You'll notice we've stayed completely out of the content layer of HTTP. This is quite intentional. This gives implementors lots of flexibility and keeps this a &quot;pure&quot; extension to HTTP.</p>
+            <h3>A Building Block</h3>
+            <p>As I've mentioned, this header is intended to be used in APIs and protocols that use callbacks in different ways. The obvious example is HTTP Subscriptions, which will let you subscribe to events using HTTP callbacks.</p>
+            <p>
+              Another example, which I'll also talk about soon, is HTTP Response Redirection. Regular 
+              <a href="http://en.wikipedia.org/wiki/URL_redirection#HTTP_status_codes_3xx">HTTP Redirection</a>
+              lets the server redirect the client's request to another URL, whereas Response Redirection lets the client redirect where the server sends the response using an HTTP callback.
+            </p>
+            <p>The X-Callback header is simple, focused, and content neutral. Hopefully this makes it a powerful building block for other technologies of the Evented Web.</p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+            <details class="backlinks">
+              <summary>2 pages link here</summary>
+              <ul>
+                <li>
+                  <a href="/articles/2012/async-http-responses-with-response-redirection">2012-12-06 · Async HTTP Responses with Response Redirection</a>
+                </li>
+                <li>
+                  <a href="/articles/2012/http-signatures-with-content-hmac">2012-12-17 · HTTP Signatures with Content-HMAC</a>
+                </li>
+              </ul>
+            </details>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send out a newsletter with a little of everything: new articles, the best of the logs, useful resources, and a few surprises.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2012/from-webhooks-to-the-evented-web" class="prev"><span class="pn-k">← previous</span>From Webhooks to the Evented Web</a>
+            <a href="/articles/2012/async-http-responses-with-response-redirection" class="next"><span class="pn-k">next →</span>Async HTTP Responses with Response Redirection</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2012/x-callback-header-an-evented-web-building-block.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · 
+          <a href="https://github.com/progrium/progrium.xyz/blob/main/articles/2012/x-callback-header-an-evented-web-building-block.md" title="this page&#39;s source on GitHub">edit</a>
+          ]
+        </span>
+        <span class="elsewhere">
+          <a href="/newsletter"><strong>newsletter</strong></a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.bsky.social">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" id="bootkey" title="boot 9/ux: browse this site as files (reload to exit)">🖥️ boot 9/ux</button>
+          </span>
+          <span>
+            last tended 2026-11-17 ·
+            <span class="built">
+              built with 
+              <a href="https://progrium.github.io/taragen/">taragen</a>
+            </span>
+          </span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

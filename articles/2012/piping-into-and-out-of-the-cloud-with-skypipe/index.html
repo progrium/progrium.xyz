@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Piping into and out of the cloud with skypipe · progrium</title>
+    <meta name="description" content="Skypipe gives you named pipes in the sky for piping data anywhere from the command line"/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/articles/2012/piping-into-and-out-of-the-cloud-with-skypipe.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/articles/2012/piping-into-and-out-of-the-cloud-with-skypipe"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Piping into and out of the cloud with skypipe"/>
+    <meta property="og:description" content="Skypipe gives you named pipes in the sky for piping data anywhere from the command line"/>
+    <meta property="og:url" content="https://progrium.xyz/articles/2012/piping-into-and-out-of-the-cloud-with-skypipe"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/articles/2012/piping-into-and-out-of-the-cloud-with-skypipe.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="article:published_time" content="2012-09-30T00:00:00Z"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <svg class="mark" viewBox="8 8 124 124" aria-hidden="true">
+          <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"></path>
+          <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"></path>
+        </svg>
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles" aria-current="page">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post">
+          <h1>Piping into and out of the cloud with skypipe</h1>
+          <div class="byline">
+            <time datetime="2012-09-30">2012-09-30</time>
+            · 4 min · <span class="tags"><a href="/tags/skypipe">skypipe</a><a href="/tags/networking">networking</a><a href="/tags/cli">cli</a><a href="/tags/showdev">showdev</a></span>
+          </div>
+          <div class="body">
+            <p>
+              <a href="https://github.com/progrium/skypipe">Skypipe</a>
+              is a magical command line tool that lets you easily pipe data across terminal sessions regardless of whether the sessions are on the same machine, across thousands of machines, or even behind a firewall. It gives you named pipes in the sky and lets you pipe data <em>anywhere</em>.
+            </p>
+            <p>
+              I built it while on vacation the last couple months. I wasn't intending
+              to write software while on my trip, but I just couldn't help myself.
+            </p>
+            <p>Skypipe is conceptually similar to named pipes or netcat, but with more power and a simpler interface. Here is a basic example using skypipe as you would a regular named pipe to gzip a file across shells:</p>
+            <pre><code>$ skypipe | gzip -9 -c &gt; out.gz
+</code></pre>
+            <p>Your skypipe is now ready to receive some data from another shell process:</p>
+            <pre><code>$ cat file | skypipe
+</code></pre>
+            <p>Unlike named pipes, however, <em>this will work across any machines connected to the Internet</em>. You don't have to specify a host address or set up &quot;listen mode&quot; like you would with netcat. In fact, unlike netcat, which is point to point, you could use skypipe for log aggregation. Here we'll used named skypipes. Run this on several hosts:</p>
+            <pre><code>$ tail -f /var/log/somefile | skypipe logs
+</code></pre>
+            <p>Then run this on a single machine:</p>
+            <pre><code>$ skypipe logs &gt; /var/log/aggregate
+</code></pre>
+            <p>This can also broadcast to multiple hosts. With the above, you can &quot;listen in&quot; by running this from your laptop, even while behind a NAT:</p>
+            <pre><code>$ skypipe logs
+</code></pre>
+            <p>You can also temporarily store data or files in the pipe, even several files, until you pull them out. On one machine load some files into a named skypipe:</p>
+            <pre><code>$ cat file_a | skypipe files
+$ cat file_b | skypipe files
+</code></pre>
+            <p>Now, from somewhere else, pull them out in order:</p>
+            <pre><code>$ skypipe files &gt; new_file_a
+$ skypipe files &gt; new_file_b
+</code></pre>
+            <p>Lastly, you can use skypipe like the channel primitive in Go for coordinating between shell scripts. As a simple example, we'll use skypipe to wait for an event triggered by another script:</p>
+            <pre><code>#!/bin/bash
+echo &quot;I'm going to wait until triggered&quot;
+skypipe trigger
+echo &quot;I was triggered!&quot;
+</code></pre>
+            <p>Triggering is just sending an EOF over the pipe, causing the listening skypipe to terminate. We can do this with a simple idiom:</p>
+            <pre><code>$ echo | skypipe trigger
+</code></pre>
+            <h3>How does this magic work?</h3>
+            <p>You'll need a free <a href="https://www.dotcloud.com/">Dotcloud</a> account to use skypipe, but you don't need to know anything about using Dotcloud to use skypipe.</p>
+            <p>When you first use skypipe it will want you to run a setup command (<code>skypipe --setup</code>). This will deploy a very simple messaging server to Dotcloud. From then on, skypipe will use your account to transparently find and use this server, no matter where you are. The server is managed automatically and runs on Dotcloud free of charge, so you never need to think about it.</p>
+            <h3>Software with a service!</h3>
+            <p>This is a new paradigm of creating tools that transparently leverage the cloud to create magical experiences. It's not quite software as a service, it's software <em>with</em> a service. Nobody is using a shared, central server, and no one needs to setup or manage their own server. The <em>software</em> deploys and manages its own server for you.</p>
+            <p>Thanks to platforms like Heroku and Dotcloud, we can now build software leveraging features of software as a service that is <em>packaged and distributed like normal open source software</em>.</p>
+            <p>I'm excited to see what else can be done with this pattern. Naturally, I'm already thinking about a number of other potential uses.</p>
+            <h3>Using skypipe and getting involved</h3>
+            <p>Skypipe is still an alpha piece of software. Be warned, there are some rough edges. That said, you can install skypipe with pip:</p>
+            <pre><code>$ pip install skypipe
+</code></pre>
+            <p>The user experience is not yet entirely optimized. One of the biggest issues is that it needs to check for the server on every use. This can be done less often and cached, which would make it much snappier and on par with most command line utilities.</p>
+            <p>
+              This and a few other issues are already tracked in 
+              <a href="https://github.com/progrium/skypipe/issues">Github Issues</a>
+              ; feel free to take a whack at them. The codebase is intentionally small, documented, and written to be read, although there are no tests yet.
+            </p>
+            <p>The project also depends on ZeroMQ, which requires a C extension to be compiled. Even using the pyzmq-static package, you still need certain header files (python.h at the very least) to install skypipe, and not every environment has these. Ideally, I'd like to find a way to package skypipe in a way that includes all its dependencies. Perhaps <a href="http://www.pyinstaller.org/">PyInstaller</a> can help with this.</p>
+            <p>Another feature I'm sure a lot of people will want (or complain about) is being able to run your own server and ignore the software with a service aspect. Since the server is packaged with the client, this is not far off from happening. Somebody just needs to make it happen.</p>
+            <p>Contribution ideas aside, I'm hoping skypipe will be useful to others besides myself. I was really going for a magical tool. I think a big part of this magic is the use of software with a service, which I consider a bit novel in itself. What do you think?</p>
+          </div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+          </div>
+          <form class="nl nl-box" action="https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&amp;id=f964b318bd" method="post" aria-label="Newsletter">
+            <p class="nl-lead">Once a month I send out a newsletter with a little of everything: new articles, the best of the logs, useful resources, and a few surprises.</p>
+            <div class="nl-row">
+              <label for="nl-article-email" class="sr">Email address</label>
+              <span class="hp" aria-hidden="true">
+                <input type="text" name="b_0dda02db0663c0132866c08ae_f964b318bd" tabindex="-1"/>
+              </span>
+              <input id="nl-article-email" name="EMAIL" type="email" autocomplete="email" required placeholder="you@example.com"/>
+              <button type="submit">subscribe</button>
+            </div>
+          </form>
+          <nav class="prevnext" aria-label="More articles">
+            <a href="/articles/2012/let-me-tell-you-about-my-website" class="prev"><span class="pn-k">← previous</span>Let me tell you about my website</a>
+            <a href="/articles/2012/from-webhooks-to-the-evented-web" class="next"><span class="pn-k">next →</span>From Webhooks to the Evented Web</a>
+          </nav>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/articles/2012/piping-into-and-out-of-the-cloud-with-skypipe.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · 
+          <a href="https://github.com/progrium/progrium.xyz/blob/main/articles/2012/piping-into-and-out-of-the-cloud-with-skypipe.md" title="this page&#39;s source on GitHub">edit</a>
+          ]
+        </span>
+        <span class="elsewhere">
+          <a href="/newsletter"><strong>newsletter</strong></a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.bsky.social">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" id="bootkey" title="boot 9/ux: browse this site as files (reload to exit)">🖥️ boot 9/ux</button>
+          </span>
+          <span>
+            last tended 2026-11-17 ·
+            <span class="built">
+              built with 
+              <a href="https://progrium.github.io/taragen/">taragen</a>
+            </span>
+          </span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>
