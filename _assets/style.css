@@ -91,11 +91,21 @@ main { max-width: 34em; }
 /* ---------- header ---------- */
 .head {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas: "name" "who" "nav";
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "mark name" "mark who" "nav nav";
   column-gap: 24px;
   max-width: 34em;
   margin-bottom: 40px;
+}
+/* the glider: from the top of "progrium" to the baseline of "aka" (ink measured, not boxes) */
+.mark {
+  grid-area: mark;
+  align-self: start;
+  width: 37px;
+  height: 37px;
+  margin: 6px -10px 0 0;
+  stroke: var(--ink);
+  fill: var(--ink);
 }
 .wordmark {
   grid-area: name;
@@ -127,7 +137,7 @@ main { max-width: 34em; }
 .nav a + a::before { content: " | "; color: var(--soft); display: inline-block; white-space: pre; text-decoration: none; }
 .nav a[aria-current] { text-decoration: none; font-weight: 500; }
 @container (min-width: 620px) {
-  .head { grid-template-columns: auto 1fr; grid-template-areas: "name nav" "who nav"; }
+  .head { grid-template-columns: auto auto 1fr; grid-template-areas: "mark name nav" "mark who nav"; }
   .nav { align-self: start; justify-self: end; margin-top: 0; padding-top: 6px; line-height: 1; white-space: nowrap; font-size: 14px; }
 }
 
