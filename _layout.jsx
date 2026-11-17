@@ -36,6 +36,10 @@
   <body>
     <div class="site">
       <header class="head">
+        <svg class="mark" viewBox="8 8 124 124" aria-hidden="true">
+          <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122" />
+          <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0" />
+        </svg>
         <a class="wordmark" href="/">progrium</a>
         <span class="who">Jeff Lindsay</span>
         {partial("_partials/nav")}
