@@ -203,8 +203,36 @@ h1 .emoji, h3 .emoji { margin-right: .2em; text-decoration: none; }
 .body blockquote { border-left: 2px solid var(--ink); padding-left: 16px; color: var(--dim); }
 .body hr { border: 0; border-top: 1px solid var(--hair); margin: 2em 0; }
 .body img { display: block; margin: 1.4em 0; }
-.body table { border-collapse: collapse; font-size: .9em; }
-.body td, .body th { border-bottom: 1px solid var(--hair); padding: 6px 10px 6px 0; text-align: left; }
+
+/* markdown extras (GFM): tables, task lists, strikethrough. Logs render markdown in .e-body, so style both. */
+.body table, .e-body table {
+  display: block; max-width: 100%; overflow-x: auto;
+  border-collapse: collapse; font-size: .9em; line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+.e-body table { margin: .75em 0; }
+.body th, .e-body th {
+  font-family: var(--mono); font-variation-settings: "MONO" 1, "CASL" 0;
+  font-size: 13px; font-weight: 500; color: var(--soft);
+  text-align: left; vertical-align: bottom; white-space: nowrap;
+  border-bottom: 1px solid var(--ink); padding: 0 12px 6px;
+}
+.body td, .e-body td { border-bottom: 1px solid var(--hair); padding: 7px 12px; vertical-align: top; }
+.body td code, .e-body td code { white-space: nowrap; }
+.body th:first-child, .body td:first-child, .e-body th:first-child, .e-body td:first-child { padding-left: 0; }
+.body th:last-child, .body td:last-child, .e-body th:last-child, .e-body td:last-child { padding-right: 0; }
+/* task lists: the box takes the bullet's place, so item text lines up with plain items */
+.body li:has(> input[type="checkbox"]:first-child), .e-body li:has(> input[type="checkbox"]:first-child) { list-style: none; position: relative; }
+.body li > input[type="checkbox"]:first-child, .e-body li > input[type="checkbox"]:first-child {
+  appearance: none; -webkit-appearance: none;
+  position: absolute; left: -1.25em; top: .45em;
+  width: .8em; height: .8em; margin: 0;
+  border: 1px solid var(--ink); border-radius: 2px; background: var(--paper);
+}
+.body li > input[type="checkbox"]:checked, .e-body li > input[type="checkbox"]:checked {
+  background: var(--ink); box-shadow: inset 0 0 0 2px var(--paper);
+}
+del { color: var(--soft); text-decoration-thickness: 1px; }
 
 /* margin notes: inline on narrow screens, in the margin when there's room */
 .sn { display: block; font-size: 14.5px; line-height: 1.45; color: var(--dim); margin: 1em 0; padding-left: 12px; border-left: 1px solid var(--hair); }
