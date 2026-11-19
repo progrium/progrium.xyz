@@ -1,7 +1,5 @@
-Nov 19, 2026 · Jeff Lindsay, h.d.a.
-doc
-
-# The dotfs protocol for 9P servers
+The dotfs protocol for 9P
+2026-11-19 · doc
 
 Nov 19, 2026 · Jeff Lindsay, h.d.a.
 
