@@ -1,7 +1,65 @@
 Newsletter Issue
 2026-11-17 · doc
 
-Stuff goes here
+> Note from editor: Blah blah, new website, new monthly newsletter, migrating list, AI warning?
+
+## Features
+
+# How I Got Postgres into a Single Binary
+
+blah blah paragraph 1
+
+blah blah paragraph 2
+
+blah blah paragraph 3??
+
+[Full Article](https://progrium.xyz/articles/2026/proposals/) (7min)
+
+# Proposals, Not Milestones
+
+I've started a new primitive called hyper9 , initially as an experiment to see how far I could push working with coding agents. It's ambitious and exciting, and right now it's in a pretty good place. Though, maybe halfway to a real v0.1 release. Getting to this point with it forced me to finally solve a problem I've had with projects like this for a long time.
+
+For day-to-day work we have todos, milestones, and sprints, and those work fine when we're actively in that mode. But my open source projects with larger arcs, and ideas that need a lot of thought before I can build them (let alone anybody else), have always been missing something. It turns out I already knew what it was: a written proposal process, sometimes called ADRs . They've been very effective working with coding agents, but also, having coding agents has finally made the process practical for me.
+
+[Full Article](https://progrium.xyz/articles/2026/proposals/) (7min)
+
+## New Releases
+* [minipg v0.3](https://github.com/progrium/minipg/releases/tag/v0.3): Some kind of description.
+* [webframe v0.2](https://github.com/tractordev/webframe/releases/tag/v0.2): Some kind of description.
+* [taragen v0.2](TODO): Some kind of description.
+
+## Sneak Previews
+* [9/UX](https://github.com/progrium/9ux): Some kind of description.
+* [dotfs](https://github.com/progrium/dotfs): Some kind of description.
+
+## Featured Preview: keepsync
+[keepsync github](https://github.com/progrium/keepsync)
+
+Blah blah blah quick description of keepsync
+
+* Some bullet points
+* Some bullet points
+* Some bullet points
+
+Call to action!
+
+#### Related Links
+* [tailcat website](https://tailscale.com/tailcat)
+* [syncthing website](https://syncthing.net/)
+* [perkeep website](https://perkeep.org/)
+* [zerofs website](https://www.zerofs.net/)
+
+
+## Curious Links
+* [hyper-linux](https://github.com/zw3rk/hyper-linux)
+* [vx32 paper](https://pdos.csail.mit.edu/papers/vx32:usenix08.pdf) (2008)
+* [vx32 website](https://pdos.csail.mit.edu/~baford/vm/)
+* [9vx website](https://swtch.com/9vx/)
+
+## Relevant Videos
+* [Apple A/UX: The First UNIX Mac OS](https://www.youtube.com/watch?v=nwrTTXOg-KI) (15min)
+* [Perkeep: your personal storage system for life](https://www.youtube.com/watch?v=PlAU_da_U4s) (1hr) (LinuxFest Northwest 2018)
+* [Tailscale Without Tailscale, By Tailscale](https://www.youtube.com/watch?v=QkmjKr2QXM8) (11min) (TailscaleUp 2026)
 
 -- 
 https://progrium.xyz/docs/newsletter/2026-11

@@ -471,7 +471,59 @@
 <p>While working on a startup in 2006, Jeff wrote about a pattern in web architecture he called &quot;webhooks&quot;. Jeff has since presented about webhooks at Glue Conference, SXSW, and for Google and Pivotal Labs tech talks. Jeff's work has led to the adoption of webhooks by Google, GitHub, PBworks, SocialText and many others. In 2009, the pattern was used in a protocol called PubSubHubbub, used to make RSS and Atom feeds real-time. Jeff is a contributor to PubSubHubbub, which has been deployed by Google, Six Apart, FriendFeed and others. Jeff has also developed many tools and open source software to support a webhooks ecosystem, including RequestBin and Localtunnel.</p>
 <p>The success of SuperHappyDevHouse led to the formation of Hacker Dojo, a non-profit community center for technologists. Jeff co-founded Hacker Dojo in 2009 with SuperHappyDevHouse co-founder David Weekly and a group of passionate friends from the community, including Lee Felsenstein, moderator of the 1970's computer hobbyist group Homebrew Computer Club. In just three months of operating with over 100 paying members and hundreds of visitors for events and coworking, Hacker Dojo achieved immediate success. Hacker Dojo made headlines on the front page of the Mercury News and garnered a letter of congratulations from the City of Mountain View.</p>
 <p>Over the years, Jeff has worked with various startups and organizations as a software developer or advisor, including CommerceNet, Netflix, NASA Ames, and Twilio.</p>
-]]></content:encoded></item><item><title>Newsletter Issue</title><link>https://progrium.xyz/docs/newsletter/2026-11</link><guid isPermaLink="true">https://progrium.xyz/docs/newsletter/2026-11</guid><pubDate>Tue, 17 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p>Stuff goes here</p>
+]]></content:encoded></item><item><title>Newsletter Issue</title><link>https://progrium.xyz/docs/newsletter/2026-11</link><guid isPermaLink="true">https://progrium.xyz/docs/newsletter/2026-11</guid><pubDate>Tue, 17 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[<blockquote>
+<p>Note from editor: Blah blah, new website, new monthly newsletter, migrating list, AI warning?</p>
+</blockquote>
+<h2>Features</h2>
+<h1>How I Got Postgres into a Single Binary</h1>
+<p>blah blah paragraph 1</p>
+<p>blah blah paragraph 2</p>
+<p>blah blah paragraph 3??</p>
+<p><a href="https://progrium.xyz/articles/2026/proposals/">Full Article</a> (7min)</p>
+<h1>Proposals, Not Milestones</h1>
+<p>I've started a new primitive called hyper9 , initially as an experiment to see how far I could push working with coding agents. It's ambitious and exciting, and right now it's in a pretty good place. Though, maybe halfway to a real v0.1 release. Getting to this point with it forced me to finally solve a problem I've had with projects like this for a long time.</p>
+<p>For day-to-day work we have todos, milestones, and sprints, and those work fine when we're actively in that mode. But my open source projects with larger arcs, and ideas that need a lot of thought before I can build them (let alone anybody else), have always been missing something. It turns out I already knew what it was: a written proposal process, sometimes called ADRs . They've been very effective working with coding agents, but also, having coding agents has finally made the process practical for me.</p>
+<p><a href="https://progrium.xyz/articles/2026/proposals/">Full Article</a> (7min)</p>
+<h2>New Releases</h2>
+<ul>
+<li><a href="https://github.com/progrium/minipg/releases/tag/v0.3">minipg v0.3</a>: Some kind of description.</li>
+<li><a href="https://github.com/tractordev/webframe/releases/tag/v0.2">webframe v0.2</a>: Some kind of description.</li>
+<li><a href="TODO">taragen v0.2</a>: Some kind of description.</li>
+</ul>
+<h2>Sneak Previews</h2>
+<ul>
+<li><a href="https://github.com/progrium/9ux">9/UX</a>: Some kind of description.</li>
+<li><a href="https://github.com/progrium/dotfs">dotfs</a>: Some kind of description.</li>
+</ul>
+<h2>Featured Preview: keepsync</h2>
+<p><a href="https://github.com/progrium/keepsync">keepsync github</a></p>
+<p>Blah blah blah quick description of keepsync</p>
+<ul>
+<li>Some bullet points</li>
+<li>Some bullet points</li>
+<li>Some bullet points</li>
+</ul>
+<p>Call to action!</p>
+<h4>Related Links</h4>
+<ul>
+<li><a href="https://tailscale.com/tailcat">tailcat website</a></li>
+<li><a href="https://syncthing.net/">syncthing website</a></li>
+<li><a href="https://perkeep.org/">perkeep website</a></li>
+<li><a href="https://www.zerofs.net/">zerofs website</a></li>
+</ul>
+<h2>Curious Links</h2>
+<ul>
+<li><a href="https://github.com/zw3rk/hyper-linux">hyper-linux</a></li>
+<li><a href="https://pdos.csail.mit.edu/papers/vx32:usenix08.pdf">vx32 paper</a> (2008)</li>
+<li><a href="https://pdos.csail.mit.edu/~baford/vm/">vx32 website</a></li>
+<li><a href="https://swtch.com/9vx/">9vx website</a></li>
+</ul>
+<h2>Relevant Videos</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=nwrTTXOg-KI">Apple A/UX: The First UNIX Mac OS</a> (15min)</li>
+<li><a href="https://www.youtube.com/watch?v=PlAU_da_U4s">Perkeep: your personal storage system for life</a> (1hr) (LinuxFest Northwest 2018)</li>
+<li><a href="https://www.youtube.com/watch?v=QkmjKr2QXM8">Tailscale Without Tailscale, By Tailscale</a> (11min) (TailscaleUp 2026)</li>
+</ul>
 ]]></content:encoded></item><item><title>🚀 minipg v0.3 ↗</title><link>https://progrium.xyz/logs/2026/11-17</link><guid isPermaLink="true">https://progrium.xyz/logs/2026/11-17</guid><pubDate>Tue, 17 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p><a href="https://github.com/progrium/minipg/releases/tag/v0.3">minipg v0.3</a></p><p>minipg is PostgreSQL as a single executable you use like SQLite: a <code>.pgdb</code> folder holds the whole database, and <code>minipg app.pgdb</code> opens a shell on it. This release swaps the v86-in-a-webview runtime for hyper9, which runs Alpine's own Postgres binaries directly on the host's hypervisor, taking best case boot from 7 seconds to 800ms. It also adds a full SQLite-inspired CLI and defaults to Postgres 18, with other majors a flag away.</p>
 ]]></content:encoded></item><item><title>🛠️ tailcat: Tailscale without Tailscale, by Tailscale ↗</title><link>https://progrium.xyz/logs/2026/11-14</link><guid isPermaLink="true">https://progrium.xyz/logs/2026/11-14</guid><pubDate>Sat, 14 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p><a href="https://github.com/tailscale/tailcat">tailcat: Tailscale without Tailscale, by Tailscale</a></p><p>tailcat is netcat over Tailscale's data plane without its control plane. One side listens and gets a short address, the other connects to it, and traffic flows over end-to-end WireGuard tunnels that bootstrap through DERP and then hole-punch to direct UDP when they can. Connection metadata is exchanged out of band however you like, so there's no Tailscale account, no root, and no changes to routing or DNS. It ships as both a CLI and a Go library.</p>
 ]]></content:encoded></item><item><title>Proposals, Not Milestones</title><link>https://progrium.xyz/articles/2026/proposals</link><guid isPermaLink="true">https://progrium.xyz/articles/2026/proposals</guid><pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p>I've started a new primitive called <a href="https://github.com/progrium/hyper9">hyper9</a>, initially as an experiment to see how far I could push working with coding agents. It's ambitious and exciting, and right now it's in a pretty good place. Though, maybe halfway to a real v0.1 release. Getting to this point with it forced me to finally solve a problem I've had with projects like this for a long time.</p>
