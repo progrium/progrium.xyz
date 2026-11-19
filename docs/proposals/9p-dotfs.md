@@ -1,4 +1,9 @@
-# The dotfs protocol for 9P servers
+---
+title: The dotfs protocol for 9P
+date: "2026-11-19"
+status: draft
+description: A family of progressive protocol extensions for 9P
+---
 
 Nov 19, 2026 · Jeff Lindsay, h.d.a.
 
