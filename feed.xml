@@ -524,7 +524,7 @@ I want to have the primitives to create more software like Dokku--extremely simp
 <p>Building simpler alternatives by disaggregating into new primitives expands the adjacent possibility space of what can be thrown together, while also simplifying and commoditizing what it takes to build great software. It actually is a sort of reversing of entropy! Repacking down our abstractions, engineering for generativity.</p>
 <p>What I love is how &quot;building blocks&quot; brings to mind a sort of ideal vision we have of building software. Like LEGO, we snap together little components to realize something new. But this metaphor also points out how far that ideal is from reality. LEGO is fun. Building software really <em>isn't</em> most of the time. And I think trying to express the reality through this metaphor is helpful:</p>
 <p>While ALL our software is made of many small bricks or components or modules, most come to us fully assembled with the bricks glued in place and painted over. We can't change it or even get a sense of how it was composed. Most apps come as an opaque &quot;turn-key solution&quot; to a specific problem because... that’s how you sell things.</p>
-<p>Perhaps there’s nothing wrong with that, but we can at least try to find ways to build more software like LEGO kits, where the focus is on good, re-usable, re-combinable building blocks and showcasing what you can do with them. In the long term, I believe this is the way that provides the most value.<br>
+<p>Perhaps there’s nothing wrong with that, but we can at least try to find ways to build more software like LEGO kits, where the focus is on good, re-usable, re-combinable building blocks and showcasing what you can do with them. In the long term, I believe this is the way that provides the most value. <br>
  
 A few years ago I realized that I need to build a single cohesive system that lets me express all these ideas, and really show the potential I've been talking about. I need to create my own LEGO system for software that would be an umbrella for all my work and let me build the way I want to build, while being at the very least a useful example to others...</p>
 <p>So I'm announcing the Tractor System. It's not one project, but a system of projects building towards a malleable software environment and ecosystem. It is my take on a &quot;Photoshop of software&quot;.</p>
@@ -533,7 +533,7 @@ A few years ago I realized that I need to build a single cohesive system that le
  
 Some say we live in a post PC era, but the original idea of the PC, the <em>personal</em> computer, is and will always be significant because it puts a magical form of <em>leverage</em> into the hands of <em>individuals</em> for their own use. But instead of this becoming more obvious with time, this generative power has been centralized and sterilized into &quot;pop computing&quot;. Today we consume and are defined by software that benefits engines of capitalism more than engines of equity. You could say, instead of being able to program our own leverage, we are being programmed by those that can.</p>
 <p>Luckily, underneath all the apps, social media, and enterprise &quot;solutions&quot;, there is still an <em>imagination compiler</em>. This is what I focus on. This is what I'd love to dust off, polish up, and see where that takes us in the proper hands.</p>
-<p>Even if that doesn't happen, I'd love to just get some better building blocks. Perhaps just find simpler, more enjoyable ways to build software.<br>
+<p>Even if that doesn't happen, I'd love to just get some better building blocks. Perhaps just find simpler, more enjoyable ways to build software.  <br>
  
 As an independent creator, I depend on people like you to help fund this work, and I'd love you to come along and help make the Tractor System a reality by <a href="https://github.com/sponsors/progrium">becoming a sponsor</a>.</p>
 <hr>
@@ -1062,7 +1062,7 @@ As an independent creator, I depend on people like you to help fund this work, a
 <p>The feature almost died with Quicksilver. Unsurprisingly, the modern Quicksilver equivalent, Alfred, also has Large Type. Except. I don't really want Alfred or Quicksilver installed just for Large Type now. It would be nice to have a standalone utility!</p>
 <p>Thanks to a project I'm sharing in a couple weeks, I basically achieved perfection for such a utility. A standalone <code>largetype</code> command, in a single native code binary smaller than 4MB. And in under 80 lines of Go code:</p>
 <p><img src="https://camo.githubusercontent.com/707db8e6d47c31ed90f0a65aeea1b805c718b1c18a2cd61b94e1ebb932b091af/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f4571616f4f324d584941454a4e4b323f666f726d61743d6a7067266e616d653d6c61726765" alt="largetype screenshot"></p>
-<p>{% gist https://gist.github.com/progrium/cb967815b3ed21a77e65a4ad9b1dbdf6 file=largetype.go %}</p>
+<p>{% gist <a href="https://gist.github.com/progrium/cb967815b3ed21a77e65a4ad9b1dbdf6">https://gist.github.com/progrium/cb967815b3ed21a77e65a4ad9b1dbdf6</a> file=largetype.go %}</p>
 <h3>Building</h3>
 <p><em>Note: For now, Apple Silicon users need to be <a href="https://gist.github.com/progrium/b286cd8c82ce0825b2eb3b0b3a0720a0">set up for x86 mode</a></em></p>
 <p>First, <a href="https://golang.org/dl/">download Go</a> or <code>brew install go</code>. Then, put <code>largetype.go</code> in a directory called <code>largetype</code> and from there run:</p>
@@ -1259,7 +1259,7 @@ URL.</p>
 <p>— Joël Franusic (@jf) <a href="https://twitter.com/jf/status/279033679592951809">December 12, 2012</a></p>
 </blockquote>
 <p>Just so you know what it would look like, if you put that program in a
-shell script and ran it against a short URL that redirected to www.google.com, this is what you would see:</p>
+shell script and ran it against a short URL that redirected to <a href="http://www.google.com">www.google.com</a>, this is what you would see:</p>
 <pre><code>$ ./unshortener.sh http://j.mp/www-google-com
 http://j.mp/www-google-com
 http://www.google.com/
@@ -1633,7 +1633,7 @@ echo &quot;I was triggered!&quot;
 <pre><code>$ localtunnel 8080
 Port 8080 is now publicly accessible from http://8bv2.localtunnel.com ...
 </code></pre>
-<p>What's going on behind the scenes is a web server component running on localtunnel.com. It serves two purposes: a virtual host reverse proxy to the port forward, and a tunnel register API (try going to <a href="http://open.localtunnel.com">http://open.localtunnel.com</a>). This simple API allocates a port to tunnel on, and gives the localtunnel client command the information it needs to set up an SSH tunnel for you. The localtunnel command just wraps an SSH library and does this register call.</p>
+<p>What's going on behind the scenes is a web server component running on localtunnel.com. It serves two purposes: a virtual host reverse proxy to the port forward, and a tunnel register API (try going to <a href="http://open.localtunnel.com"><a href="http://open.localtunnel.com">http://open.localtunnel.com</a></a>). This simple API allocates a port to tunnel on, and gives the localtunnel client command the information it needs to set up an SSH tunnel for you. The localtunnel command just wraps an SSH library and does this register call.</p>
 <p>Of course, there's also the authentication part. As a free, public service, we don't want to just give everybody SSH access to this machine (as it may seem). The user localtunnel on that box is made just for this service. It has no shell. It only has a home directory with an authorized_keys file. We require you to upload a public key for authentication, and we also mark that key with options that say you can only do port forwarding. Although, it can't be used for arbitrary port forwarding... because it's only a private port on the remote side, it can only be used with the special reverse proxy.</p>
 <p>So there it is. <a href="http://github.com/progrium/localtunnel">And the code is on GitHub.</a> You might notice the server is in Python and the client in Ruby. Why? It just made sense. Python has Twisted, which I like for server stuff. And Ruby is great for command line scripts, and has a nice SSH library. In the end, it doesn't matter what it's written in. Ultimately it's a Unix program.</p>
 <p>Enjoy!</p>

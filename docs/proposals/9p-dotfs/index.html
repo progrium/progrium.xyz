@@ -45,14 +45,42 @@
             <p>Nov 19, 2026 · Jeff Lindsay, h.d.a.</p>
             <h2>Summary</h2>
             <p>The dotfs protocol (9p-dotfs in full) is four small, independent extensions a 9P server can expose as synthetic files under <code>.fs/</code>. A server implements only the ones it needs, and a client discovers each one by whether its file exists.</p>
-            <p>
-              | Extension | File | What it gives a client | Useful alone for |
-              | --- | --- | --- | --- |
-              | Index | <code>.fs/index</code> | the whole tree's metadata in one read | caching metadata of read-only trees, the <code>.h9index</code> use case |
-              | Events | <code>.fs/events</code> | a stream of changes after a sequence number | inotify-style watching of any mutable server |
-              | Path operations | <code>.fs/ctl</code> | <code>mv</code>, <code>rm</code>, <code>mkdir</code>, <code>cp</code>, and flag changes by path, optionally conditional on a version | quick operations without walk, open, and clunk sequences, and cross-directory rename on plain 9P2000 |
-              | Staged commit | <code>.fs/stage/</code> plus <code>commit</code> on ctl | resumable uploads published atomically if a path is still at an expected version | conflict-safe writes |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Extension</th>
+                  <th>File</th>
+                  <th>What it gives a client</th>
+                  <th>Useful alone for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Index</td>
+                  <td><code>.fs/index</code></td>
+                  <td>the whole tree's metadata in one read</td>
+                  <td>caching metadata of read-only trees, the <code>.h9index</code> use case</td>
+                </tr>
+                <tr>
+                  <td>Events</td>
+                  <td><code>.fs/events</code></td>
+                  <td>a stream of changes after a sequence number</td>
+                  <td>inotify-style watching of any mutable server</td>
+                </tr>
+                <tr>
+                  <td>Path operations</td>
+                  <td><code>.fs/ctl</code></td>
+                  <td><code>mv</code>, <code>rm</code>, <code>mkdir</code>, <code>cp</code>, and flag changes by path, optionally conditional on a version</td>
+                  <td>quick operations without walk, open, and clunk sequences, and cross-directory rename on plain 9P2000</td>
+                </tr>
+                <tr>
+                  <td>Staged commit</td>
+                  <td><code>.fs/stage/</code> plus <code>commit</code> on ctl</td>
+                  <td>resumable uploads published atomically if a path is still at an expected version</td>
+                  <td>conflict-safe writes</td>
+                </tr>
+              </tbody>
+            </table>
             <p>Together, index, events, path operations, and staged commit are enough to build a Dropbox-style synced folder, with one server ordering every change (the sync profile below), but nothing in the first three depends on sync.</p>
             <p>The protocol works over any 9P transport. 9P2000.L over a WebSocket is the expected transport for browser clients, with authentication on the HTTP upgrade. This document is separate from hyper9's mount-index proposal and does not change it.</p>
             <h2>Conventions</h2>
@@ -98,19 +126,52 @@
 /Photos d 0755 0 1763491000 48100 - i
 /bin l 0777 7 1763000000 120 - - usr/bin
 </code></pre>
-            <p>
-              | Field | Meaning |
-              | --- | --- |
-              | path | escaped path from the scope root; lines sorted by path in byte order |
-              | type | <code>d</code> directory, <code>f</code> file, <code>l</code> symlink |
-              | mode | permission bits, octal |
-              | length | bytes; 0 for directories, target length for symlinks |
-              | mtime | seconds since the epoch |
-              | version | see Conventions; <code>0</code> allowed for read-only trees |
-              | hash | <code>&lt;algo&gt;:&lt;hex&gt;</code> content hash for files (<code>b3</code> is BLAKE3-256), or <code>-</code> |
-              | flags | <code>-</code>, or a set of letters: <code>p</code> prefetch, <code>i</code> nested index |
-              | target | symlink target, escaped, only for type <code>l</code> |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>path</td>
+                  <td>escaped path from the scope root; lines sorted by path in byte order</td>
+                </tr>
+                <tr>
+                  <td>type</td>
+                  <td><code>d</code> directory, <code>f</code> file, <code>l</code> symlink</td>
+                </tr>
+                <tr>
+                  <td>mode</td>
+                  <td>permission bits, octal</td>
+                </tr>
+                <tr>
+                  <td>length</td>
+                  <td>bytes; 0 for directories, target length for symlinks</td>
+                </tr>
+                <tr>
+                  <td>mtime</td>
+                  <td>seconds since the epoch</td>
+                </tr>
+                <tr>
+                  <td>version</td>
+                  <td>see Conventions; <code>0</code> allowed for read-only trees</td>
+                </tr>
+                <tr>
+                  <td>hash</td>
+                  <td><code>&lt;algo&gt;:&lt;hex&gt;</code> content hash for files (<code>b3</code> is BLAKE3-256), or <code>-</code></td>
+                </tr>
+                <tr>
+                  <td>flags</td>
+                  <td><code>-</code>, or a set of letters: <code>p</code> prefetch, <code>i</code> nested index</td>
+                </tr>
+                <tr>
+                  <td>target</td>
+                  <td>symlink target, escaped, only for type <code>l</code></td>
+                </tr>
+              </tbody>
+            </table>
             <p><strong>Reading</strong></p>
             <ul>
               <li>The header line is always plain text. Before reading, a client may write <code>accept &lt;encoding&gt; [...]</code> to the index fid; the server then may name one of them as the header's last word and send the rest of the file in that encoding. <code>zstd</code> (one frame) is the only encoding defined. With no <code>accept</code>, the body is plain, so <code>cat .fs/index</code> works.</li>
@@ -128,13 +189,28 @@
             <p><code>.fs/events</code> streams change records for the scope, so a client can watch a tree like inotify without polling, with or without an index.</p>
             <p><strong>Opening a stream</strong></p>
             <p>Each open fid is its own stream. Before the first read a client may write any of:</p>
-            <p>
-              | Write | Effect |
-              | --- | --- |
-              | <code>since &lt;N&gt;</code> | start with the first change after seq N |
-              | <code>path &lt;dir&gt;</code> | only report changes at or below <code>&lt;dir&gt;</code> (repeatable) |
-              | <code>coalesce</code> | allow the server to merge consecutive changes to one path into the latest |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Write</th>
+                  <th>Effect</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>since &lt;N&gt;</code></td>
+                  <td>start with the first change after seq N</td>
+                </tr>
+                <tr>
+                  <td><code>path &lt;dir&gt;</code></td>
+                  <td>only report changes at or below <code>&lt;dir&gt;</code> (repeatable)</td>
+                </tr>
+                <tr>
+                  <td><code>coalesce</code></td>
+                  <td>allow the server to merge consecutive changes to one path into the latest</td>
+                </tr>
+              </tbody>
+            </table>
             <p>Without <code>since</code>, the first record is <code>seq &lt;current&gt;</code> and only later changes follow.</p>
             <p><strong>Reading</strong></p>
             <p>Each <code>Tread</code> returns one or more whole records and blocks while there are none. A pending read is the push channel; <code>Tflush</code> cancels it. A record never spans two reads.</p>
@@ -163,19 +239,62 @@
             <h2>Extension 3: path operations</h2>
             <p><code>ctl</code> performs namespace operations by path in one round trip, optionally conditional on a version. It needs no index or events, though a server with events reports every change it makes.</p>
             <p><strong>Commands</strong></p>
-            <p>
-              | Command | Effect | Replies |
-              | --- | --- | --- |
-              | <code>caps</code> | lists supported commands | <code>ok &lt;command&gt;...</code> |
-              | <code>hello &lt;device-id&gt;</code> | names this client in events (<code>dev=</code>) | <code>ok</code> |
-              | <code>mkdir &lt;path&gt; [&lt;base&gt;]</code> | creates a directory | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code> |
-              | <code>rm &lt;path&gt; [&lt;base&gt;]</code> | removes a file, symlink, or empty directory | <code>ok &lt;seq&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
-              | <code>rmtree &lt;path&gt; [&lt;base&gt;]</code> | removes a directory and everything below it | <code>ok &lt;seq&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
-              | <code>mv &lt;from&gt; &lt;to&gt; [&lt;base&gt;] [&lt;tobase&gt;]</code> | renames, across directories, atomically | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
-              | <code>cp &lt;from&gt; &lt;to&gt; [&lt;tobase&gt;]</code> | copies on the server; cheap when content is deduplicated | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
-              | <code>flags &lt;path&gt; &lt;flags&gt;</code> | sets the index flags (<code>p</code>, <code>i</code>) | <code>ok &lt;version&gt;</code> |
-              | <code>stat &lt;path&gt;</code> | returns the path's index line | <code>ok &lt;index line&gt;</code>, <code>missing</code> |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Effect</th>
+                  <th>Replies</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>caps</code></td>
+                  <td>lists supported commands</td>
+                  <td><code>ok &lt;command&gt;...</code></td>
+                </tr>
+                <tr>
+                  <td><code>hello &lt;device-id&gt;</code></td>
+                  <td>names this client in events (<code>dev=</code>)</td>
+                  <td><code>ok</code></td>
+                </tr>
+                <tr>
+                  <td><code>mkdir &lt;path&gt; [&lt;base&gt;]</code></td>
+                  <td>creates a directory</td>
+                  <td><code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code></td>
+                </tr>
+                <tr>
+                  <td><code>rm &lt;path&gt; [&lt;base&gt;]</code></td>
+                  <td>removes a file, symlink, or empty directory</td>
+                  <td><code>ok &lt;seq&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code></td>
+                </tr>
+                <tr>
+                  <td><code>rmtree &lt;path&gt; [&lt;base&gt;]</code></td>
+                  <td>removes a directory and everything below it</td>
+                  <td><code>ok &lt;seq&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code></td>
+                </tr>
+                <tr>
+                  <td><code>mv &lt;from&gt; &lt;to&gt; [&lt;base&gt;] [&lt;tobase&gt;]</code></td>
+                  <td>renames, across directories, atomically</td>
+                  <td><code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code></td>
+                </tr>
+                <tr>
+                  <td><code>cp &lt;from&gt; &lt;to&gt; [&lt;tobase&gt;]</code></td>
+                  <td>copies on the server; cheap when content is deduplicated</td>
+                  <td><code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code></td>
+                </tr>
+                <tr>
+                  <td><code>flags &lt;path&gt; &lt;flags&gt;</code></td>
+                  <td>sets the index flags (<code>p</code>, <code>i</code>)</td>
+                  <td><code>ok &lt;version&gt;</code></td>
+                </tr>
+                <tr>
+                  <td><code>stat &lt;path&gt;</code></td>
+                  <td>returns the path's index line</td>
+                  <td><code>ok &lt;index line&gt;</code>, <code>missing</code></td>
+                </tr>
+              </tbody>
+            </table>
             <p><strong>Conditional operations</strong></p>
             <ul>
               <li><code>&lt;base&gt;</code> is the version the client expects <code>&lt;path&gt;</code> (or <code>&lt;from&gt;</code>) to have; <code>&lt;tobase&gt;</code> is the expected version of the destination, <code>0</code> meaning it must not exist.</li>
@@ -198,13 +317,32 @@
               <li>A server removes stage files that have not been written for a period it chooses, at least one hour.</li>
             </ul>
             <p><strong>Publishing</strong></p>
-            <p>
-              | Command | Effect | Replies |
-              | --- | --- | --- |
-              | <code>commit &lt;stage&gt; &lt;path&gt; &lt;base&gt; &lt;mtime&gt; &lt;mode&gt; [hash=&lt;hash&gt;]</code> | publishes the stage file at <code>&lt;path&gt;</code> if it is at <code>&lt;base&gt;</code>, then removes the stage file | <code>ok &lt;version&gt; &lt;hash&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>invalid</code> |
-              | <code>commit-hash &lt;hash&gt; &lt;path&gt; &lt;base&gt; &lt;mtime&gt; &lt;mode&gt;</code> | publishes content the server already holds, with no upload | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
-              | <code>abort &lt;stage&gt;</code> | discards a stage file | <code>ok</code> |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Command</th>
+                  <th>Effect</th>
+                  <th>Replies</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>commit &lt;stage&gt; &lt;path&gt; &lt;base&gt; &lt;mtime&gt; &lt;mode&gt; [hash=&lt;hash&gt;]</code></td>
+                  <td>publishes the stage file at <code>&lt;path&gt;</code> if it is at <code>&lt;base&gt;</code>, then removes the stage file</td>
+                  <td><code>ok &lt;version&gt; &lt;hash&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>invalid</code></td>
+                </tr>
+                <tr>
+                  <td><code>commit-hash &lt;hash&gt; &lt;path&gt; &lt;base&gt; &lt;mtime&gt; &lt;mode&gt;</code></td>
+                  <td>publishes content the server already holds, with no upload</td>
+                  <td><code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code></td>
+                </tr>
+                <tr>
+                  <td><code>abort &lt;stage&gt;</code></td>
+                  <td>discards a stage file</td>
+                  <td><code>ok</code></td>
+                </tr>
+              </tbody>
+            </table>
             <ul>
               <li><code>&lt;base&gt;</code> is required, <code>0</code> for a new path. There is no unconditional commit; plain 9P writes serve that role.</li>
               <li>With <code>hash=</code>, the server verifies the content and replies <code>invalid</code> on a mismatch.</li>
@@ -217,13 +355,32 @@
             <p>A server with staged commit should still accept ordinary 9P writes. They apply as last-writer-wins when the fid is clunked and produce events like any other change.</p>
             <h2>Profiles</h2>
             <p>A profile is a named set of extensions plus the behavior a client can expect. Servers state the profiles they meet; the reference implementation meets all three.</p>
-            <p>
-              | Profile | Extensions | Typical server |
-              | --- | --- | --- |
-              | Read-only cache | index | package and image caches such as wanix-cache |
-              | Watchable | index (optional), events, path operations | a mutable file server that other tools watch |
-              | Sync | index, events, path operations, staged commit | a server holding user roots for synced folders |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Profile</th>
+                  <th>Extensions</th>
+                  <th>Typical server</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Read-only cache</td>
+                  <td>index</td>
+                  <td>package and image caches such as wanix-cache</td>
+                </tr>
+                <tr>
+                  <td>Watchable</td>
+                  <td>index (optional), events, path operations</td>
+                  <td>a mutable file server that other tools watch</td>
+                </tr>
+                <tr>
+                  <td>Sync</td>
+                  <td>index, events, path operations, staged commit</td>
+                  <td>a server holding user roots for synced folders</td>
+                </tr>
+              </tbody>
+            </table>
             <h3>Sync, as a composition (non-normative)</h3>
             <p>A sync client keeps a local copy of a scope and needs nothing beyond the four extensions:</p>
             <ol>
@@ -256,37 +413,114 @@
             </ul>
             <h2>Relation to mount-index</h2>
             <p>The index extension is a deliberate iteration on <code>/.h9index</code>, but the mount-index proposal stays unchanged until this is proven. If it is later folded in:</p>
-            <p>
-              |  | <code>/.h9index</code> today | <code>.fs/index</code> |
-              | --- | --- | --- |
-              | Location | <code>/.h9index</code> at the root | <code>.fs/index</code>, alongside the other extensions |
-              | Names with spaces or non-UTF-8 | left out, directory marked <code>!unindexed</code> | percent-escaped, always listed |
-              | qid.vers of entries | 0 | the path's version, or 0 for read-only trees |
-              | Changes | regenerate the file | the events extension |
-              | Content identity | none | optional hash per file |
-              | Hints | none | <code>p</code> prefetch, <code>i</code> nested index |
-              | Encoding | plain text | plain, or zstd after an opt-in |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th><code>/.h9index</code> today</th>
+                  <th><code>.fs/index</code></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Location</td>
+                  <td><code>/.h9index</code> at the root</td>
+                  <td><code>.fs/index</code>, alongside the other extensions</td>
+                </tr>
+                <tr>
+                  <td>Names with spaces or non-UTF-8</td>
+                  <td>left out, directory marked <code>!unindexed</code></td>
+                  <td>percent-escaped, always listed</td>
+                </tr>
+                <tr>
+                  <td>qid.vers of entries</td>
+                  <td>0</td>
+                  <td>the path's version, or 0 for read-only trees</td>
+                </tr>
+                <tr>
+                  <td>Changes</td>
+                  <td>regenerate the file</td>
+                  <td>the events extension</td>
+                </tr>
+                <tr>
+                  <td>Content identity</td>
+                  <td>none</td>
+                  <td>optional hash per file</td>
+                </tr>
+                <tr>
+                  <td>Hints</td>
+                  <td>none</td>
+                  <td><code>p</code> prefetch, <code>i</code> nested index</td>
+                </tr>
+                <tr>
+                  <td>Encoding</td>
+                  <td>plain text</td>
+                  <td>plain, or zstd after an opt-in</td>
+                </tr>
+              </tbody>
+            </table>
             <h2>Prior art</h2>
-            <p>
-              | System | What this borrows |
-              | --- | --- |
-              | Coda (CMU, from AFS) | disconnected operation: a log of local changes replayed with conflict detection |
-              | Plan 9 replica(1) | a database of paths plus a change log to bring a copy up to date |
-              | Upspin | <code>Watch(name, sequence)</code>, a change stream after a sequence number |
-              | Dropbox API v2 | snapshot with a cursor, deltas, and a long-poll to block; hash dedupe; resumable uploads |
-              | WebDAV sync-collection (RFC 6578), Nextcloud | sync tokens for deltas; <code>If-Match</code> compare-and-swap writes |
-              | Syncthing BEP | index and index updates keyed by sequence; conflict-copy naming |
-              | inotify, fanotify | event vocabulary for local watching |
-            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>System</th>
+                  <th>What this borrows</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Coda (CMU, from AFS)</td>
+                  <td>disconnected operation: a log of local changes replayed with conflict detection</td>
+                </tr>
+                <tr>
+                  <td>Plan 9 replica(1)</td>
+                  <td>a database of paths plus a change log to bring a copy up to date</td>
+                </tr>
+                <tr>
+                  <td>Upspin</td>
+                  <td><code>Watch(name, sequence)</code>, a change stream after a sequence number</td>
+                </tr>
+                <tr>
+                  <td>Dropbox API v2</td>
+                  <td>snapshot with a cursor, deltas, and a long-poll to block; hash dedupe; resumable uploads</td>
+                </tr>
+                <tr>
+                  <td>WebDAV sync-collection (RFC 6578), Nextcloud</td>
+                  <td>sync tokens for deltas; <code>If-Match</code> compare-and-swap writes</td>
+                </tr>
+                <tr>
+                  <td>Syncthing BEP</td>
+                  <td>index and index updates keyed by sequence; conflict-copy naming</td>
+                </tr>
+                <tr>
+                  <td>inotify, fanotify</td>
+                  <td>event vocabulary for local watching</td>
+                </tr>
+              </tbody>
+            </table>
             <p>These are from memory; links and checks against each system's documentation are still to add.</p>
             <h2>Open questions</h2>
             <ul>
-              <li>[ ] Is one snapshot per scope fine at user-data scale (about 100 bytes a line, roughly 10 MB uncompressed for 100k files), with nested indexes only for large subtrees?</li>
-              <li>[ ] Should events offer an index diff for a client slightly behind, or is <code>since N</code> always enough?</li>
-              <li>[ ] Should ignore rules (temp files, <code>.DS_Store</code>) be part of the protocol, for example as a flag or a shared file, or left to clients?</li>
-              <li>[ ] Is <code>hello</code> worth keeping, or should the device id come from the transport?</li>
-              <li>[ ] Which hash algorithms are allowed besides BLAKE3, and is the hash ever required?</li>
+              <li>
+                <input disabled="" type="checkbox">
+                Is one snapshot per scope fine at user-data scale (about 100 bytes a line, roughly 10 MB uncompressed for 100k files), with nested indexes only for large subtrees?
+              </li>
+              <li>
+                <input disabled="" type="checkbox">
+                Should events offer an index diff for a client slightly behind, or is <code>since N</code> always enough?
+              </li>
+              <li>
+                <input disabled="" type="checkbox">
+                Should ignore rules (temp files, <code>.DS_Store</code>) be part of the protocol, for example as a flag or a shared file, or left to clients?
+              </li>
+              <li>
+                <input disabled="" type="checkbox">
+                Is <code>hello</code> worth keeping, or should the device id come from the transport?
+              </li>
+              <li>
+                <input disabled="" type="checkbox">
+                Which hash algorithms are allowed besides BLAKE3, and is the hash ever required?
+              </li>
             </ul>
           </div>
           <div class="doc-foot meta"></div>
