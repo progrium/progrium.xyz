@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Nov 19, 2026 · Jeff Lindsay, h.d.a. · progrium</title>
+    <meta name="description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preload" href="/_assets/fonts/Recursive.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/_assets/style.css"/>
+    <script src="/_assets/site.js" defer></script>
+    <link rel="icon" href="/_assets/glider.svg"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: everything" href="/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: articles" href="/articles/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="progrium.xyz: logs" href="/logs/feed.xml"/>
+    <link rel="alternate" type="text/plain" href="/docs/proposals/9p-dotfs.txt"/>
+    <link rel="canonical" href="https://progrium.xyz/docs/proposals/9p-dotfs"/>
+    <meta property="og:site_name" content="progrium.xyz"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Nov 19, 2026 · Jeff Lindsay, h.d.a."/>
+    <meta property="og:description" content="Jeff Lindsay, aka progrium. Simple tools that make computers more programmable."/>
+    <meta property="og:url" content="https://progrium.xyz/docs/proposals/9p-dotfs"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@progrium"/>
+    <meta property="og:image" content="https://progrium.xyz/docs/proposals/9p-dotfs.card.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+  </head>
+  <body>
+    <div class="site">
+      <header class="head">
+        <svg class="mark" viewBox="8 8 124 124" aria-hidden="true">
+          <path stroke-width="122" stroke-dasharray="2,38" d="m9,70h122M70,9v122"></path>
+          <path stroke-width="33" stroke-linecap="round" d="m70,30h0m40,40h0m-80,40v0m40,0h0m40,0h0"></path>
+        </svg>
+        <a class="wordmark" href="/">progrium</a><span class="who">Jeff Lindsay</span>
+        <nav class="nav" aria-label="Site"><a href="/articles">articles</a><a href="/logs">logs</a><a href="/projects">projects</a><a href="/about">about</a></nav>
+      </header>
+      <main>
+        <article class="post doc">
+          <div class="byline">doc · updated undefined</div>
+          <h1></h1>
+          <div class="body">
+            <h1>The dotfs protocol for 9P servers</h1>
+            <p>Nov 19, 2026 · Jeff Lindsay, h.d.a.</p>
+            <h2>Summary</h2>
+            <p>The dotfs protocol (9p-dotfs in full) is four small, independent extensions a 9P server can expose as synthetic files under <code>.fs/</code>. A server implements only the ones it needs, and a client discovers each one by whether its file exists.</p>
+            <p>
+              | Extension | File | What it gives a client | Useful alone for |
+              | --- | --- | --- | --- |
+              | Index | <code>.fs/index</code> | the whole tree's metadata in one read | caching metadata of read-only trees, the <code>.h9index</code> use case |
+              | Events | <code>.fs/events</code> | a stream of changes after a sequence number | inotify-style watching of any mutable server |
+              | Path operations | <code>.fs/ctl</code> | <code>mv</code>, <code>rm</code>, <code>mkdir</code>, <code>cp</code>, and flag changes by path, optionally conditional on a version | quick operations without walk, open, and clunk sequences, and cross-directory rename on plain 9P2000 |
+              | Staged commit | <code>.fs/stage/</code> plus <code>commit</code> on ctl | resumable uploads published atomically if a path is still at an expected version | conflict-safe writes |
+            </p>
+            <p>Together, index, events, path operations, and staged commit are enough to build a Dropbox-style synced folder, with one server ordering every change (the sync profile below), but nothing in the first three depends on sync.</p>
+            <p>The protocol works over any 9P transport. 9P2000.L over a WebSocket is the expected transport for browser clients, with authentication on the HTTP upgrade. This document is separate from hyper9's mount-index proposal and does not change it.</p>
+            <h2>Conventions</h2>
+            <p>These rules apply to every extension.</p>
+            <p><strong>Location and scope</strong></p>
+            <ul>
+              <li><code>.fs/</code> lives at the top of an attach root. A directory may carry its own <code>.fs/</code> (see nested indexes); everything in that <code>.fs/</code> is scoped to that directory's subtree.</li>
+              <li><code>.fs/</code> is synthetic. It is never listed in its own index, never reported in events, and cannot be removed or renamed.</li>
+              <li>A server that implements none of the extensions has no <code>.fs/</code>. Clients must treat <code>Enotfound</code> on any <code>.fs/</code> file as &quot;not supported&quot; and fall back to plain 9P.</li>
+            </ul>
+            <p><strong>Discovery</strong></p>
+            <p>A client walks to <code>.fs/</code> and reads the directory. Each extension is present if and only if its file is: <code>index</code>, <code>events</code>, <code>ctl</code>, <code>stage/</code>. <code>ctl</code> additionally answers <code>caps</code> with the commands it accepts, so a server can offer path operations without staged commit.</p>
+            <p><strong>Paths</strong></p>
+            <ul>
+              <li>Paths are absolute from the scope root and use <code>/</code>. The scope root itself is <code>/</code>.</li>
+              <li>In every line format, bytes outside printable ASCII, space, <code>%</code>, and the newline are percent-escaped (<code>%20</code>). Every valid name can be listed, so there is no <code>!unindexed</code>.</li>
+            </ul>
+            <p><strong>Versions and sequence numbers</strong></p>
+            <ul>
+              <li>A scope with events or staged commit has a <strong>seq</strong>: an unsigned 64-bit counter that increases by one on every change in the scope.</li>
+              <li>A path's <strong>version</strong> is the seq of its last change; <code>0</code> means the path does not exist.</li>
+              <li>A server with an index but no events (a read-only tree) may report version <code>0</code> for every path and a fixed seq.</li>
+              <li>9P qid.vers carries the low 32 bits of the version.</li>
+            </ul>
+            <p><strong>Line formats</strong></p>
+            <p>Index lines, event records, and ctl commands are UTF-8 text, one record per line, fields separated by single spaces, unknown trailing fields ignored. A <code>-</code> stands for an empty field. Optional <code>key=value</code> fields may follow the positional ones.</p>
+            <p><strong>ctl exchange</strong></p>
+            <p>A client writes one command per <code>Twrite</code> to an open <code>ctl</code> fid, then reads the reply from the same fid before writing again. Replies start with <code>ok</code> or with an error word (<code>conflict</code>, <code>missing</code>, <code>denied</code>, <code>invalid</code>). Different fids are independent, so a client opens one ctl fid per concurrent operation.</p>
+            <p><strong>Errors</strong></p>
+            <p>Normal 9P errors (<code>Rerror</code> or <code>Rlerror</code>) report transport and permission failures. Protocol outcomes that a client acts on, such as a version conflict, are reply words on ctl rather than 9P errors.</p>
+            <h2>Extension 1: index</h2>
+            <p><code>.fs/index</code> is a read-only snapshot of every path in the scope at one seq, so a client can answer walks, stats, and directory reads without asking the server.</p>
+            <p><strong>Format</strong></p>
+            <pre><code>fsindex 1 seq &lt;N&gt; [&lt;encoding&gt;]
+&lt;path&gt; &lt;type&gt; &lt;mode&gt; &lt;length&gt; &lt;mtime&gt; &lt;version&gt; &lt;hash&gt; &lt;flags&gt; [&lt;target&gt;] [key=value...]
+...
+</code></pre>
+            <pre><code>fsindex 1 seq 48211
+/ d 0755 0 1763491200 48000 - -
+/.config d 0755 0 1763491100 47950 - p
+/.config/git/config f 0644 212 1763400000 31002 b3:5e1a… p
+/Documents/Tax%202025.pdf f 0644 284113 1763480011 46990 b3:9f2c… -
+/Photos d 0755 0 1763491000 48100 - i
+/bin l 0777 7 1763000000 120 - - usr/bin
+</code></pre>
+            <p>
+              | Field | Meaning |
+              | --- | --- |
+              | path | escaped path from the scope root; lines sorted by path in byte order |
+              | type | <code>d</code> directory, <code>f</code> file, <code>l</code> symlink |
+              | mode | permission bits, octal |
+              | length | bytes; 0 for directories, target length for symlinks |
+              | mtime | seconds since the epoch |
+              | version | see Conventions; <code>0</code> allowed for read-only trees |
+              | hash | <code>&lt;algo&gt;:&lt;hex&gt;</code> content hash for files (<code>b3</code> is BLAKE3-256), or <code>-</code> |
+              | flags | <code>-</code>, or a set of letters: <code>p</code> prefetch, <code>i</code> nested index |
+              | target | symlink target, escaped, only for type <code>l</code> |
+            </p>
+            <p><strong>Reading</strong></p>
+            <ul>
+              <li>The header line is always plain text. Before reading, a client may write <code>accept &lt;encoding&gt; [...]</code> to the index fid; the server then may name one of them as the header's last word and send the rest of the file in that encoding. <code>zstd</code> (one frame) is the only encoding defined. With no <code>accept</code>, the body is plain, so <code>cat .fs/index</code> works.</li>
+              <li>The snapshot is consistent at seq N: every line reflects the scope after change N and before change N+1.</li>
+              <li>qid.vers of <code>.fs/index</code> is the low 32 bits of N, and its qid.path is stable, so a client can tell from <code>Tstat</code> whether a cached copy is current.</li>
+              <li>Length in <code>Tstat</code> may be 0 when the server generates the file on open.</li>
+            </ul>
+            <p><strong>Nested indexes (flag <code>i</code>)</strong></p>
+            <p>A directory flagged <code>i</code> has its own <code>.fs/</code> with its own index (and, if the server supports them, its own events and ctl). The parent's index lists the directory itself but none of its children, and versions inside are scoped to it. Use it for very large or busy subtrees, or for a different server mounted under a path. A client reads a nested index the first time it needs anything inside.</p>
+            <p><strong>Prefetch (flag <code>p</code>)</strong></p>
+            <p>A hint that a client keeping a local copy should fetch the file's content right after reading the index. On a directory it covers everything below. It is advisory and shared by all clients; per-device pinning is a client matter.</p>
+            <p><strong>Read-only servers</strong></p>
+            <p>A server with only an index (like a package cache) may use version <code>0</code>, a fixed seq, and <code>-</code> for hashes and flags. That is exactly the role <code>/.h9index</code> plays today.</p>
+            <h2>Extension 2: events</h2>
+            <p><code>.fs/events</code> streams change records for the scope, so a client can watch a tree like inotify without polling, with or without an index.</p>
+            <p><strong>Opening a stream</strong></p>
+            <p>Each open fid is its own stream. Before the first read a client may write any of:</p>
+            <p>
+              | Write | Effect |
+              | --- | --- |
+              | <code>since &lt;N&gt;</code> | start with the first change after seq N |
+              | <code>path &lt;dir&gt;</code> | only report changes at or below <code>&lt;dir&gt;</code> (repeatable) |
+              | <code>coalesce</code> | allow the server to merge consecutive changes to one path into the latest |
+            </p>
+            <p>Without <code>since</code>, the first record is <code>seq &lt;current&gt;</code> and only later changes follow.</p>
+            <p><strong>Reading</strong></p>
+            <p>Each <code>Tread</code> returns one or more whole records and blocks while there are none. A pending read is the push channel; <code>Tflush</code> cancels it. A record never spans two reads.</p>
+            <p><strong>Records</strong></p>
+            <pre><code>&lt;seq&gt; put &lt;index line&gt;
+&lt;seq&gt; del &lt;path&gt; [key=value...]
+&lt;seq&gt; mv &lt;from&gt; &lt;to&gt; [key=value...]
+&lt;seq&gt; flags &lt;path&gt; &lt;flags&gt; [key=value...]
+&lt;seq&gt; reset
+</code></pre>
+            <pre><code>48212 put /Notes/todo.md f 0644 830 1763491250 48212 b3:77d0… p dev=mac-a1
+48213 del /Downloads/old.zip dev=linux-b2
+48214 mv /Draft.md /Posts/Final.md dev=mac-a1
+48215 flags /Projects p dev=mac-a1
+</code></pre>
+            <ul>
+              <li><code>put</code> is a create or modify and carries the whole index line, so a client never needs a follow-up stat.</li>
+              <li><code>mv</code> of a directory moves everything below it; there is no record per child.</li>
+              <li><code>dev=&lt;id&gt;</code> names the client that made the change, when known.</li>
+              <li>Records arrive in seq order. With <code>coalesce</code> a client may see gaps in seq; without it there are none.</li>
+            </ul>
+            <p><strong>Falling behind</strong></p>
+            <p>A server keeps a bounded log. If <code>since N</code> names a seq it no longer has, or a reader falls too far behind, the server sends <code>&lt;seq&gt; reset</code> and ends the stream; the client must re-read the index (or simply rescan) and reopen with <code>since</code>.</p>
+            <p><strong>Bootstrapping with an index</strong></p>
+            <p>Two gap-free ways: read the index at seq N, then open events with <code>since N</code>; or open events first (getting <code>seq &lt;current&gt;</code>), read the index at some M, and drop records at or below M.</p>
+            <h2>Extension 3: path operations</h2>
+            <p><code>ctl</code> performs namespace operations by path in one round trip, optionally conditional on a version. It needs no index or events, though a server with events reports every change it makes.</p>
+            <p><strong>Commands</strong></p>
+            <p>
+              | Command | Effect | Replies |
+              | --- | --- | --- |
+              | <code>caps</code> | lists supported commands | <code>ok &lt;command&gt;...</code> |
+              | <code>hello &lt;device-id&gt;</code> | names this client in events (<code>dev=</code>) | <code>ok</code> |
+              | <code>mkdir &lt;path&gt; [&lt;base&gt;]</code> | creates a directory | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code> |
+              | <code>rm &lt;path&gt; [&lt;base&gt;]</code> | removes a file, symlink, or empty directory | <code>ok &lt;seq&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
+              | <code>rmtree &lt;path&gt; [&lt;base&gt;]</code> | removes a directory and everything below it | <code>ok &lt;seq&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
+              | <code>mv &lt;from&gt; &lt;to&gt; [&lt;base&gt;] [&lt;tobase&gt;]</code> | renames, across directories, atomically | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
+              | <code>cp &lt;from&gt; &lt;to&gt; [&lt;tobase&gt;]</code> | copies on the server; cheap when content is deduplicated | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
+              | <code>flags &lt;path&gt; &lt;flags&gt;</code> | sets the index flags (<code>p</code>, <code>i</code>) | <code>ok &lt;version&gt;</code> |
+              | <code>stat &lt;path&gt;</code> | returns the path's index line | <code>ok &lt;index line&gt;</code>, <code>missing</code> |
+            </p>
+            <p><strong>Conditional operations</strong></p>
+            <ul>
+              <li><code>&lt;base&gt;</code> is the version the client expects <code>&lt;path&gt;</code> (or <code>&lt;from&gt;</code>) to have; <code>&lt;tobase&gt;</code> is the expected version of the destination, <code>0</code> meaning it must not exist.</li>
+              <li>If a base is given and does not match, nothing changes and the reply is <code>conflict &lt;current-version&gt;</code>.</li>
+              <li>Omitted bases make the operation unconditional, as with plain 9P.</li>
+              <li>A server without versions (no events, no staged commit) rejects any base with <code>invalid</code>.</li>
+            </ul>
+            <p><strong>Why this exists</strong></p>
+            <ul>
+              <li>9P2000 <code>wstat</code> can only rename within one directory, so a cross-directory move otherwise means copy plus delete. 9P2000.L has <code>Trenameat</code>, but it is not conditional.</li>
+              <li>Path operations need no walk, open, and clunk sequence, which matters over high-latency WebSockets.</li>
+              <li>A conditional <code>rm</code> or <code>mv</code> lets a client act without racing another client's change.</li>
+            </ul>
+            <h2>Extension 4: staged commit</h2>
+            <p>Staged commit lets a client upload a file's bytes over any number of connections and attempts, then publish them atomically at a path only if that path is still at the version the client expects.</p>
+            <p><strong>Staging</strong></p>
+            <ul>
+              <li>A client creates a file under <code>.fs/stage/</code> with any name it chooses (a UUID is recommended) and writes bytes at any offsets. Re-opening an existing stage file and writing more resumes an interrupted upload.</li>
+              <li>Stage files are private to the attaching user and invisible in the index and events.</li>
+              <li>A server removes stage files that have not been written for a period it chooses, at least one hour.</li>
+            </ul>
+            <p><strong>Publishing</strong></p>
+            <p>
+              | Command | Effect | Replies |
+              | --- | --- | --- |
+              | <code>commit &lt;stage&gt; &lt;path&gt; &lt;base&gt; &lt;mtime&gt; &lt;mode&gt; [hash=&lt;hash&gt;]</code> | publishes the stage file at <code>&lt;path&gt;</code> if it is at <code>&lt;base&gt;</code>, then removes the stage file | <code>ok &lt;version&gt; &lt;hash&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>invalid</code> |
+              | <code>commit-hash &lt;hash&gt; &lt;path&gt; &lt;base&gt; &lt;mtime&gt; &lt;mode&gt;</code> | publishes content the server already holds, with no upload | <code>ok &lt;version&gt;</code>, <code>conflict &lt;version&gt;</code>, <code>missing</code> |
+              | <code>abort &lt;stage&gt;</code> | discards a stage file | <code>ok</code> |
+            </p>
+            <ul>
+              <li><code>&lt;base&gt;</code> is required, <code>0</code> for a new path. There is no unconditional commit; plain 9P writes serve that role.</li>
+              <li>With <code>hash=</code>, the server verifies the content and replies <code>invalid</code> on a mismatch.</li>
+              <li>The publish is atomic: other clients see either the old content or the new, never a mix.</li>
+              <li><code>commit-hash</code> answers <code>missing</code> when the server lacks the content; the client then stages and commits normally. A server decides how widely it searches (one scope, or every scope of the same user); see Security considerations.</li>
+            </ul>
+            <p><strong>Ordering guarantee</strong></p>
+            <p>On a server with events, the <code>put</code> record for a commit is assigned before the <code>ok</code> reply is sent, and the reply carries that version. A client therefore recognizes its own change in the stream by version, and never mistakes it for a remote edit.</p>
+            <p><strong>Plain writes</strong></p>
+            <p>A server with staged commit should still accept ordinary 9P writes. They apply as last-writer-wins when the fid is clunked and produce events like any other change.</p>
+            <h2>Profiles</h2>
+            <p>A profile is a named set of extensions plus the behavior a client can expect. Servers state the profiles they meet; the reference implementation meets all three.</p>
+            <p>
+              | Profile | Extensions | Typical server |
+              | --- | --- | --- |
+              | Read-only cache | index | package and image caches such as wanix-cache |
+              | Watchable | index (optional), events, path operations | a mutable file server that other tools watch |
+              | Sync | index, events, path operations, staged commit | a server holding user roots for synced folders |
+            </p>
+            <h3>Sync, as a composition (non-normative)</h3>
+            <p>A sync client keeps a local copy of a scope and needs nothing beyond the four extensions:</p>
+            <ol>
+              <li><strong>Bootstrap:</strong><code>hello</code>, read the index with <code>accept zstd</code>, store every entry, then fetch content for <code>p</code> files not already held locally by hash.</li>
+              <li><strong>Follow:</strong> open events <code>since &lt;N&gt;</code>. Apply <code>put</code>, <code>del</code>, <code>mv</code>, and <code>flags</code> to the local copy; a changed hash makes a local copy stale.</li>
+              <li><strong>Write:</strong> remember the version a local edit started from. Publish with <code>commit</code> (or <code>commit-hash</code> first), and use conditional <code>rm</code> and <code>mv</code> for deletes and renames.</li>
+              <li><strong>Conflict:</strong> on <code>conflict</code>, keep the server's copy at the path, rename the local copy to <code>name.sync-conflict-&lt;YYYYMMDD-HHMMSS&gt;-&lt;device&gt;.ext</code>, and commit it as a new file with base <code>0</code>. A delete that conflicts with an edit loses, so the edit stays.</li>
+              <li><strong>Offline:</strong> queue changes with their base versions and replay them in order on reconnect.</li>
+              <li><strong>Reset:</strong> on a <code>reset</code> record, re-read the index and reconcile.</li>
+            </ol>
+            <p>Because the server assigns one version per path, this needs no version vectors, and every change reaches every connected client in one round trip. The first commit to arrive wins, which is deterministic and never loses the other side's work.</p>
+            <h2>Future extension: history (sketch)</h2>
+            <p>A server that keeps old content and does not trim its log can expose past states with one more read-only extension, and no git-style checkout is needed: every seq already names a consistent state of the scope, so a past state can simply be served as a tree.</p>
+            <ul>
+              <li><strong><code>.fs/at/&lt;seq&gt;/</code></strong> is a read-only view of the scope as it was right after change <code>&lt;seq&gt;</code>, with its own <code>.fs/index</code> at that seq. <code>.fs/at/&lt;timestamp&gt;/</code> (RFC 3339) resolves to the last seq at or before that time.</li>
+              <li><strong><code>history &lt;path&gt;</code> on ctl</strong> lists a path's versions, newest first, as <code>&lt;version&gt; &lt;mtime&gt; &lt;hash&gt; &lt;op&gt; dev=&lt;id&gt;</code> lines.</li>
+              <li><strong>Restore is an ordinary commit.</strong><code>cp /.fs/at/46990/Documents/Tax%202025.pdf /Documents/Tax%202025.pdf &lt;base&gt;</code> copies an old version over the current one with a base version, so it goes through conflict detection and reaches every client as a normal <code>put</code>. With content deduplicated by hash, the copy costs nothing.</li>
+              <li><strong>Retention</strong> is the server's policy (for example, every version for 30 days, then daily). <code>.fs/at/&lt;seq&gt;</code> answers <code>Enotfound</code> once a state is pruned.</li>
+            </ul>
+            <p>Branches, merges, and per-client checkouts stay out of scope; the sketch only covers browsing and restoring the single line of history the server already orders. It needs nothing from the other extensions beyond what they define, so it can be added later without changing them.</p>
+            <h2>Security considerations</h2>
+            <p>The protocol adds no authentication of its own; it relies on the transport and on 9P's per-attach identity, and adds a few concerns to handle.</p>
+            <ul>
+              <li><strong>Authentication.</strong> Over WebSocket, authenticate on the HTTP upgrade (cookie or bearer token) and map that to the attach user. 9P <code>Tauth</code> is not used. Raw TCP transports should be limited to localhost or wrapped in TLS.</li>
+              <li><strong>Scope.</strong> Every <code>.fs/</code> file and command is limited to the attach root. Paths in ctl are resolved within the scope, and <code>..</code> never leaves it.</li>
+              <li><strong>Hash probing.</strong><code>commit-hash</code> and <code>cp</code> reveal whether the server holds some content. A server must only consider content the attaching user can already read, so a user cannot learn about another user's files.</li>
+              <li><strong>Metadata exposure.</strong> The index exposes every name in the scope at once. A server must only serve indexes of scopes the user can fully read, or leave unreadable subtrees out.</li>
+              <li><strong>Resource limits.</strong> Servers should cap index size, the number of open event streams per user, stage space per user, and ctl command length, and return <code>denied</code> or a 9P error when a limit is hit.</li>
+              <li><strong>Event retention.</strong> The log reveals recent names, including of deleted files, to anyone who can read the scope; keep the retention window no longer than needed.</li>
+            </ul>
+            <h2>Relation to mount-index</h2>
+            <p>The index extension is a deliberate iteration on <code>/.h9index</code>, but the mount-index proposal stays unchanged until this is proven. If it is later folded in:</p>
+            <p>
+              |  | <code>/.h9index</code> today | <code>.fs/index</code> |
+              | --- | --- | --- |
+              | Location | <code>/.h9index</code> at the root | <code>.fs/index</code>, alongside the other extensions |
+              | Names with spaces or non-UTF-8 | left out, directory marked <code>!unindexed</code> | percent-escaped, always listed |
+              | qid.vers of entries | 0 | the path's version, or 0 for read-only trees |
+              | Changes | regenerate the file | the events extension |
+              | Content identity | none | optional hash per file |
+              | Hints | none | <code>p</code> prefetch, <code>i</code> nested index |
+              | Encoding | plain text | plain, or zstd after an opt-in |
+            </p>
+            <h2>Prior art</h2>
+            <p>
+              | System | What this borrows |
+              | --- | --- |
+              | Coda (CMU, from AFS) | disconnected operation: a log of local changes replayed with conflict detection |
+              | Plan 9 replica(1) | a database of paths plus a change log to bring a copy up to date |
+              | Upspin | <code>Watch(name, sequence)</code>, a change stream after a sequence number |
+              | Dropbox API v2 | snapshot with a cursor, deltas, and a long-poll to block; hash dedupe; resumable uploads |
+              | WebDAV sync-collection (RFC 6578), Nextcloud | sync tokens for deltas; <code>If-Match</code> compare-and-swap writes |
+              | Syncthing BEP | index and index updates keyed by sequence; conflict-copy naming |
+              | inotify, fanotify | event vocabulary for local watching |
+            </p>
+            <p>These are from memory; links and checks against each system's documentation are still to add.</p>
+            <h2>Open questions</h2>
+            <ul>
+              <li>[ ] Is one snapshot per scope fine at user-data scale (about 100 bytes a line, roughly 10 MB uncompressed for 100k files), with nested indexes only for large subtrees?</li>
+              <li>[ ] Should events offer an index diff for a client slightly behind, or is <code>since N</code> always enough?</li>
+              <li>[ ] Should ignore rules (temp files, <code>.DS_Store</code>) be part of the protocol, for example as a flag or a shared file, or left to clients?</li>
+              <li>[ ] Is <code>hello</code> worth keeping, or should the device id come from the transport?</li>
+              <li>[ ] Which hash algorithms are allowed besides BLAKE3, and is the hash ever required?</li>
+            </ul>
+          </div>
+          <div class="doc-foot meta"></div>
+          <div class="reply-row">
+            <a class="key" href="https://github.com/progrium/progrium.xyz/discussions">reply on GitHub ↗</a>
+          </div>
+        </article>
+      </main>
+      <footer class="foot">
+        <span>
+          [ 
+          <a href="/docs/proposals/9p-dotfs.txt" title="this page as plain text">txt</a>
+          · <a href="/feeds" title="feeds">rss</a> · 
+          <a href="https://github.com/progrium/progrium.xyz/blob/main/docs/proposals/9p-dotfs.jsx" title="this page&#39;s source on GitHub">edit</a>
+          ]
+        </span>
+        <span class="elsewhere">
+          <a href="/newsletter"><strong>newsletter</strong></a><a href="https://github.com/progrium">github</a><a href="https://mas.to/@progrium">mastodon</a>
+          <a href="https://bsky.app/profile/progrium.bsky.social">bsky</a>
+          <a href="https://x.com/progrium">x</a>
+        </span>
+        <span class="tended">
+          <span class="keys">
+            <button type="button" class="key small" id="modekey" aria-label="switch between light and dark">◐ <span class="mk-l">dark</span></button>
+            <button type="button" class="key small" id="bootkey" title="boot 9/ux: browse this site as files (reload to exit)">🖥️ boot 9/ux</button>
+          </span>
+          <span>
+            last tended 2026-11-19 ·
+            <span class="built">
+              built with 
+              <a href="https://progrium.github.io/taragen/">taragen</a>
+            </span>
+          </span>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>
