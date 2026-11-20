@@ -8,9 +8,9 @@ tags: [hyper9, databases, webframe]
 
 SQLite is one of my favorite database technologies. It's a full SQL database, designed as an embeddable library, that stores all its data in a single file. The `sqlite3` command line tool is great too. You point it at a file and run queries. There's no server to run.
 
-That makes SQLite a natural fit for software that needs a database but isn't meant to be deployed in the cloud at scale: desktop apps, self-hosted tools, things you run locally. These applications can use SQLite and manage it themselves, so you barely know there's a database involved.
-
 At the other end of the spectrum is Postgres. It's the most capable general purpose SQL database, trusted in production at scale, and is something of an industry standard. With that comes complexity, starting with the fact that it's client-server.
+
+SQLite is a natural fit for software that needs a database but isn't meant to be deployed in the cloud at scale: desktop apps, self-hosted tools, things you run locally. These applications can use SQLite and manage it themselves, so you barely know there's a database involved.
 
 So when you find self-hostable open source software you'd like to run on your own computer, it can be daunting when it says it requires Postgres. Now you're responsible for setting up a database and getting it ready for the software to use.
 
