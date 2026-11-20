@@ -1,6 +1,7 @@
 // One entry in a stream. `full` shows a log's whole body (the logs index)
 // instead of its first paragraph, and dates link to the entry. `excerpt`
-// shows an article's first paragraph and a keycap to the full post (homepage).
+// shows an article's opening paragraphs and a keycap to the full post
+// (homepage). How many: `excerpt_paragraphs` in front matter, default 2.
 (p, full = false, excerpt = false) => {
   const kind = kindOf(p);
   const date = full
@@ -15,7 +16,7 @@
       <div class="e-body">
         <h3><a href={p.path}>{p.title}</a></h3>
         {excerpt && paras.length
-          ? [raw(paras[0]), <p class="read-on"><a class="key small" href={p.path}>read the full post →</a></p>]
+          ? [...paras.slice(0, excerptLength(p)).map(raw), <p class="read-on"><a class="key small" href={p.path}>read the full post →</a></p>]
           : <p class="dek">{dek(p)}</p>}
       </div>
     </article>

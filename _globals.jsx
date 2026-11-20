@@ -81,6 +81,9 @@ firstSentence = (text) => {
   return (m ? m[0] : text).trim();
 };
 clip = (text, n) => text.length > n ? text.slice(0, n).replace(/\s+\S*$/, "") + "…" : text;
+// How many opening paragraphs an article shows on the homepage.
+// Set `excerpt_paragraphs: 3` in an article's front matter to change it.
+excerptLength = (p) => { const n = Number(p.excerpt_paragraphs); return Number.isInteger(n) && n > 0 ? n : 2; };
 minutes = (p) => Math.max(1, Math.round(stripTags(p.body).split(/\s+/).length / 230));
 dek = (p) => p.description || clip(firstSentence(stripTags(paragraphs(p.body)[0] || "")), 180);
 // A log's name, wherever a title is needed: its first sentence.
