@@ -1,7 +1,7 @@
 ---
 title: "How I Got Postgres into a Single Binary"
 date: "2026-11-20"
-description: "What if we had full PostreSQL but in the shape of SQLite?"
+description: "What if we had full PostgreSQL but in the shape of SQLite?"
 tags: [hyper9, databases, webframe]
 ---
 
