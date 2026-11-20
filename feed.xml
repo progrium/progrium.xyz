@@ -31,7 +31,7 @@ minipg ./mydb &quot;select * from notes&quot;
 <li><strong>Embedding Postgres in your own programs.</strong> If your tool needs Postgres, and PGlite doesn't cut it, you can ship and use miniPG. Users who don't care won't have to think about it, and users who want control can use it like <code>sqlite3</code> to work with their data.</li>
 <li><strong>SQLite-style apps that need Postgres features.</strong> JSONB, full text search, window functions, extensions like pgvector or PostGIS. Postgres does so much more than SQLite, but it often wasn't worth the dependency.</li>
 <li><strong>Learning and experimenting with Postgres.</strong> No server, no config. Point it at a directory and start typing SQL.</li>
-<li><strong>Tests, local dev, and agents</strong>**.** A throwaway database per test, or a local copy of the same database you run in production, without Docker. Agents can spin up a real Postgres for a task and throw it away when they're done.</li>
+<li><strong>Tests, local dev, and agents.</strong> A throwaway database per test, or a local copy of the same database you run in production, without Docker. Agents can spin up a real Postgres for a task and throw it away when they're done.</li>
 </ul>
 <p>This really makes Postgres more viable for scenarios it wasn't before. I'd love to hear the use cases I haven't thought of.</p>
 <h2>Embedding Real Postgres</h2>

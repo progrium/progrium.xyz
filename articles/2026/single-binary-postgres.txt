@@ -57,7 +57,7 @@ Software people, from developers to open source power users, and agents too, can
 - **Embedding Postgres in your own programs.** If your tool needs Postgres, and PGlite doesn't cut it, you can ship and use miniPG. Users who don't care won't have to think about it, and users who want control can use it like `sqlite3` to work with their data.
 - **SQLite-style apps that need Postgres features.** JSONB, full text search, window functions, extensions like pgvector or PostGIS. Postgres does so much more than SQLite, but it often wasn't worth the dependency.
 - **Learning and experimenting with Postgres.** No server, no config. Point it at a directory and start typing SQL.
-- **Tests, local dev, and agents****.** A throwaway database per test, or a local copy of the same database you run in production, without Docker. Agents can spin up a real Postgres for a task and throw it away when they're done.
+- **Tests, local dev, and agents.** A throwaway database per test, or a local copy of the same database you run in production, without Docker. Agents can spin up a real Postgres for a task and throw it away when they're done.
 
 This really makes Postgres more viable for scenarios it wasn't before. I'd love to hear the use cases I haven't thought of.
 
