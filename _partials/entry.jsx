@@ -1,6 +1,7 @@
 // One entry in a stream. `full` shows a log's whole body (the logs index)
-// instead of its first paragraph, and dates link to the entry.
-(p, full = false) => {
+// instead of its first paragraph, and dates link to the entry. `excerpt`
+// shows an article's first paragraph and a keycap to the full post (homepage).
+(p, full = false, excerpt = false) => {
   const kind = kindOf(p);
   const date = full
     ? <a class="permalink" href={p.path}>{p.date}</a>
@@ -13,7 +14,9 @@
       {meta(kind === "article" && <span class="len">{minutes(p)} min</span>)}
       <div class="e-body">
         <h3><a href={p.path}>{p.title}</a></h3>
-        <p class="dek">{dek(p)}</p>
+        {excerpt && paras.length
+          ? [raw(paras[0]), <p class="read-on"><a class="key small" href={p.path}>read the full post →</a></p>]
+          : <p class="dek">{dek(p)}</p>}
       </div>
     </article>
   );
