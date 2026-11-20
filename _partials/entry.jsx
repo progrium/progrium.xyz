@@ -16,7 +16,7 @@
       <div class="e-body">
         <h3><a href={p.path}>{p.title}</a></h3>
         {excerpt && paras.length
-          ? [...paras.slice(0, excerptLength(p)).map(raw), <p class="read-on"><a class="key small" href={p.path}>read the full post →</a></p>]
+          ? [p.description && <p class="subtitle">{p.description}</p>,...paras.slice(0, excerptLength(p)).map(raw), <p class="read-on"><a class="key small" href={p.path}>read the full article →</a></p>]
           : <p class="dek">{dek(p)}</p>}
       </div>
     </article>
