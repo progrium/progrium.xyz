@@ -35,7 +35,7 @@ minipg ./mydb "select * from notes"
 
 That directory is the database. When nothing is using it, it's just files on disk. You can copy it, back it up, or delete it.
 
-This is actually real Postgres, not a compatibility layer, and the same binary runs on Mac, Windows, and Linux.
+This is actually real Postgres, not a compatibility layer, and this binary compiles to Mac, Windows, and Linux.
 
 When some software expects a Postgres server, miniPG can be one:
 
