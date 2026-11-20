@@ -4,12 +4,6 @@ siteDescription = "Jeff Lindsay, aka progrium. Simple tools that make computers 
 // The one-line "now" on the homepage. Edit freely.
 now = "🐇 getting h9 ready for a first preview";
 
-// Logs share one GitHub discussion per month. Add a line when you open a new one.
-// Months without one link to the discussions index.
-logDiscussions = {
-  // "2026-11": "https://github.com/progrium/progrium.xyz/discussions/3",
-};
-discussionsURL = "https://github.com/progrium/progrium.xyz/discussions";
 
 newsletterAction = "https://progrium.us13.list-manage.com/subscribe/post?u=0dda02db0663c0132866c08ae&id=f964b318bd";
 newsletterHoneypot = "b_0dda02db0663c0132866c08ae_f964b318bd";
@@ -100,9 +94,6 @@ youtubeID = (url) => {
   return m ? m[1] : null;
 };
 
-discussionFor = (p) => p.comment_url || (kindOf(p) === "log" || kindOf(p) === "link" || kindOf(p) === "video"
-  ? logDiscussions[p.date.slice(0, 7)] || discussionsURL
-  : null);
 
 groupByYear = (list) => list.reduce((groups, p) => {
   const y = p.date.slice(0, 4);
