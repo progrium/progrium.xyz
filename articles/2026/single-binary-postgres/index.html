@@ -65,7 +65,7 @@ minipg ./mydb &quot;insert into notes (body) values ('hello')&quot;
 minipg ./mydb &quot;select * from notes&quot;
 </code></pre>
             <p>That directory is the database. When nothing is using it, it's just files on disk. You can copy it, back it up, or delete it.</p>
-            <p>This is actually real Postgres, not a compatibility layer, and the same binary runs on Mac, Windows, and Linux.</p>
+            <p>This is actually real Postgres, not a compatibility layer, and this binary compiles to Mac, Windows, and Linux.</p>
             <p>When some software expects a Postgres server, miniPG can be one:</p>
             <pre><code>minipg serve ./mydb -p 5432
 </code></pre>
