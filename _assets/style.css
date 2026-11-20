@@ -63,7 +63,7 @@ img { height: auto; }
 ::selection { background: var(--ink); color: var(--paper); }
 
 /* the machinery voice: dates, nav, meta, code */
-.mono, .meta, .nav, .foot, .yr, .byline, .now, .sec, .more, .src, .cont,
+.mono, .meta, .nav, .foot, .yr, .byline, .now, .sec, .more, .src, .cont, .read-on,
 .reply-row, .prevnext, .nl-home, .nl-row, .pl, .yrs, .dl, figcaption, code, pre, .vid .vt, .vid .vs, .term {
   font-family: var(--mono);
   font-variation-settings: "MONO" 1, "CASL" 0;
@@ -164,6 +164,7 @@ h1 .emoji, h3 .emoji { margin-right: .2em; text-decoration: none; }
 .e-article h3 a { text-decoration: none; }
 .e-article h3 a:hover { text-decoration: underline; }
 .dek { color: var(--dim); }
+.e-body .read-on { margin-top: 10px; font-size: 13.5px; }
 .e-link h3, .e-log h3 { font-size: 17.5px; font-weight: 600; line-height: 1.4; }
 .e-log h3 { margin-bottom: .35em; }
 .e-log h3 a { text-decoration: none; }
