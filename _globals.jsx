@@ -86,6 +86,13 @@ clip = (text, n) => text.length > n ? text.slice(0, n).replace(/\s+\S*$/, "") + 
 excerptLength = (p) => { const n = Number(p.excerpt_paragraphs); return Number.isInteger(n) && n > 0 ? n : 2; };
 minutes = (p) => Math.max(1, Math.round(stripTags(p.body).split(/\s+/).length / 230));
 dek = (p) => p.description || clip(firstSentence(stripTags(paragraphs(p.body)[0] || "")), 180);
+// The meta/social-card description. A derived one always trails off with an
+// ellipsis (a final period gives way to it) so it reads as a teaser.
+cardDek = (p) => {
+  if (p.description) return p.description;
+  const d = dek(p);
+  return d && !d.endsWith("…") ? d.replace(/\.$/, "") + "…" : d;
+};
 // A log's name, wherever a title is needed: its first sentence.
 // A log's emoji, prefixed to its title in plain-text contexts.
 emojiTitle = (p, t) => p.emoji ? `${p.emoji} ${t}` : t;

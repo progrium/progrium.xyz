@@ -1,7 +1,7 @@
 (content) => {
   const kind = kindOf(page);
   const title = page.path === "/" ? "progrium" : `${page.title || entryTitle(page)} · progrium`;
-  const description = page.description || (isEntry(page) ? dek(page) : siteDescription);
+  const description = page.description || (isEntry(page) ? cardDek(page) : siteDescription);
   return (
 <html lang="en">
   <head>
