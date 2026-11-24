@@ -64,6 +64,36 @@
         <div class="yeargroup">
           <div class="yr">2026</div>
           <div class="stream excerpts">
+            <article class="e e-link e-link">
+              <div class="meta">
+                <time datetime="2026-11-23">Nov 23</time>
+                <span class="k">link</span>
+              </div>
+              <div class="e-body">
+                <h3>
+                  <span class="emoji" aria-hidden="true">🛠️</span>
+                  <a href="https://github.com/AFK-surf/xnulinux">xnulinux: XNU as a loadable kernel module inside Linux ↗</a>
+                  <span class="src">github.com</span>
+                </h3>
+                <p>xnulinux builds XNU, the macOS kernel, from Apple's open source releases and loads it as a module into an unmodified arm64 Linux kernel. The hosted XNU drives the CPU and MMU directly, so macOS and Linux processes run side by side with no hypervisor between them. A GPL shim module lends it pinned kernel threads for CPUs, a contiguous block of memory it manages with its own pmap, and files, network, and interrupts, while kexts provide disk, display, input, and a GPU bridge that runs Metal over Vulkan. It boots a user-supplied macOS 27 install to the desktop, with Finder, Dock, and Safari, inside an arm64 Linux VM on Apple Silicon.</p>
+                <a class="cont" href="/logs/2026/11-23-2">permalink</a>
+              </div>
+            </article>
+            <article class="e e-link e-link">
+              <div class="meta">
+                <time datetime="2026-11-23">Nov 23</time>
+                <span class="k">link</span>
+              </div>
+              <div class="e-body">
+                <h3>
+                  <span class="emoji" aria-hidden="true">🛠️</span>
+                  <a href="https://github.com/wcandillon/skia-wasm">skia-wasm: Skia Graphite on WebGPU, compiled to WebAssembly ↗</a>
+                  <span class="src">github.com</span>
+                </h3>
+                <p>skia-wasm compiles Skia's Graphite renderer to WebAssembly and runs it on the page's WebGPU device through Dawn's Emscripten bindings. It comes from William Candillon of React Native Skia and links the same prebuilt Skia archives as their native builds. The API is in the style of CanvasKit, with canvases, paints, and paths, but it sits on plain C exports instead of embind and trades CanvasKit's rect and matrix objects for plain numbers, string enums, CSS colors, and explicit disposal. It's early and still at 0.x, but already covers paths, shaders, filters, text, and paragraphs.</p>
+                <a class="cont" href="/logs/2026/11-23-1">permalink</a>
+              </div>
+            </article>
             <article class="e e-article e-article">
               <div class="meta">
                 <time datetime="2026-11-20">Nov 20</time>
@@ -221,36 +251,6 @@
                 </h3>
                 <p>The first release of webframe, which runs a web page like a program: it loads a URL in a hidden web view and wires its console to stdout, its exceptions to stderr, and stdin to a JavaScript REPL. It's a single ~5 MB binary that uses the webview your OS already has.</p>
                 <a class="cont" href="/logs/2026/10-24">permalink</a>
-              </div>
-            </article>
-            <article class="e e-link e-link">
-              <div class="meta">
-                <time datetime="2026-07-17">Jul 17</time>
-                <span class="k">link</span>
-              </div>
-              <div class="e-body">
-                <h3>
-                  <span class="emoji" aria-hidden="true">🚀</span>
-                  <a href="https://github.com/tractordev/wanix/releases/tag/v0.4-preview">Wanix v0.4 Preview: Composable compute in HTML ↗</a>
-                  <span class="src">github.com</span>
-                </h3>
-                <p>Wanix Elements are web components for declaring filesystems, tasks, VMs, terminals, and even VS Code in plain HTML, so you can build a sandboxed Unix-style environment in the browser with a few tags. This preview also adds the rc shell and a Wanix-ready Alpine Linux as CDN extras.</p>
-                <a class="cont" href="/logs/2026/07-17">permalink</a>
-              </div>
-            </article>
-            <article class="e e-link e-link">
-              <div class="meta">
-                <time datetime="2026-03-03">Mar 03</time>
-                <span class="k">link</span>
-              </div>
-              <div class="e-body">
-                <h3>
-                  <span class="emoji" aria-hidden="true">🚀</span>
-                  <a href="https://github.com/tractordev/apptron/releases/tag/v0.7.0">Apptron v0.7: Offline Sites, Console Embeds, and Much More ↗</a>
-                  <span class="src">github.com</span>
-                </h3>
-                <p>Our biggest Apptron release yet. Embeds can now be just a terminal in Console Mode, public sites work offline with an automatic service worker, and environments got 4x faster networking and up to 2x faster builds.</p>
-                <a class="cont" href="/logs/2026/03-03">permalink</a>
               </div>
             </article>
           </div>

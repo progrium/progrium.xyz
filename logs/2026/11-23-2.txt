@@ -1,0 +1,7 @@
+🛠️ xnulinux: XNU as a loadable kernel module inside Linux
+2026-11-23 · link · https://github.com/AFK-surf/xnulinux
+
+xnulinux builds XNU, the macOS kernel, from Apple's open source releases and loads it as a module into an unmodified arm64 Linux kernel. The hosted XNU drives the CPU and MMU directly, so macOS and Linux processes run side by side with no hypervisor between them. A GPL shim module lends it pinned kernel threads for CPUs, a contiguous block of memory it manages with its own pmap, and files, network, and interrupts, while kexts provide disk, display, input, and a GPU bridge that runs Metal over Vulkan. It boots a user-supplied macOS 27 install to the desktop, with Finder, Dock, and Safari, inside an arm64 Linux VM on Apple Silicon.
+
+-- 
+https://progrium.xyz/logs/2026/11-23-2
