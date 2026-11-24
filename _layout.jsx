@@ -32,6 +32,14 @@
     {page.outputs?.card && <meta property="og:image:width" content="1200" />}
     {page.outputs?.card && <meta property="og:image:height" content="630" />}
     {page.date && <meta property="article:published_time" content={`${page.date}T00:00:00Z`} />}
+    <script>{`window.op=window.op||function(){var n=[];return new Proxy(function(){arguments.length&&n.push([].slice.call(arguments))},{get:function(t,r){return"q"===r?n:function(){n.push([r].concat([].slice.call(arguments)))}} ,has:function(t,r){return"q"===r}}) }();
+window.op('init', {
+  clientId: '3d352d3c-32fd-4fc2-b5a7-a79320e8cd9b',
+  trackScreenViews: true,
+  trackOutgoingLinks: true,
+  trackAttributes: true,
+});`}</script>
+    <script src="https://openpanel.dev/op1.js" defer={true} async={true}></script>
   </head>
   <body>
     <div class="site">
